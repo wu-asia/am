@@ -7,7 +7,8 @@
     ['index.html', '高等数学', (name) => name === 'index.html' || name.startsWith('calculus-')],
     ['linear-algebra.html', '线性代数', (name) => name === 'linear-algebra.html' || name.startsWith('linear-')],
     ['discrete-math.html', '离散数学', (name) => name === 'discrete-math.html' || name.startsWith('discrete-')],
-    ['probability-statistics.html', '概率论与数理统计', (name) => name === 'probability-statistics.html' || name.startsWith('probability-')]
+    ['probability-statistics.html', '概率论与数理统计', (name) => name === 'probability-statistics.html' || name.startsWith('probability-')],
+    ['complex-integral-transforms.html', '复变函数与积分变换', (name) => name === 'complex-integral-transforms.html' || name.startsWith('complex-')]
   ];
   const roots = new Set(subjects.map(([href]) => href));
   nav.querySelectorAll('a[href]').forEach((link) => {
