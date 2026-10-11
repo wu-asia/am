@@ -359,36 +359,20 @@ src/
 克隆仓库：
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/wu-asia/am.git
 ```
 
 进入项目目录：
 
 ```bash
-cd <repository-name>
+cd am
 ```
 
-安装依赖：
+静态预览：
 
 ```bash
-npm install
+npx serve dist
 ```
-
-启动开发环境：
-
-```bash
-npm run dev
-```
-
-构建项目：
-
-```bash
-npm run build
-```
-
-具体命令请以仓库中的 `package.json` 为准。
-
----
 
 ## 🤝 Contribution
 
