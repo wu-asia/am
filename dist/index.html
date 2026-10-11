@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="高等数学考试复习讲义：函数、极限、连续、导数与微分。">
+<title>高等数学复习讲义</title>
+<style>
+:root{--ink:#16251d;--muted:#637067;--paper:#fbfaf5;--panel:#fffefa;--line:#dce3d7;--leaf:#1d6b4f;--mint:#dff3df;--sun:#ffd97a;--code:#f1f6ef}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.75 "Noto Serif SC","Songti SC",Georgia,serif}.shell{display:grid;grid-template-columns:275px minmax(0,1fr);max-width:1500px;margin:auto}.side{position:sticky;top:0;height:100vh;padding:34px 24px;border-right:1px solid var(--line);background:#f5f8f1}.brand{font-family:system-ui,sans-serif;font-size:22px;font-weight:800;line-height:1.3}.brand span{display:block;font-size:12px;letter-spacing:.13em;color:var(--leaf);margin-top:6px}.side nav{margin:38px 0}.side a{display:block;padding:8px 10px;color:var(--muted);text-decoration:none;border-radius:8px}.side a:hover{color:var(--leaf);background:#e8f3e7}.progress{font:13px system-ui,sans-serif;color:var(--muted);border-top:1px solid var(--line);padding-top:18px}.bar{height:7px;background:#dce7db;border-radius:99px;margin:8px 0;overflow:hidden}.bar b{display:block;height:100%;width:0;background:var(--leaf);transition:.2s}.main{padding:50px clamp(24px,5vw,80px) 100px;max-width:1100px}.hero{padding:34px 36px;background:linear-gradient(128deg,#e2f1dd,#fff7d8);border:1px solid #cee1c8;border-radius:20px;margin-bottom:55px}.tag{display:inline-block;background:var(--leaf);color:#fff;border-radius:99px;padding:3px 11px;font:12px system-ui,sans-serif;letter-spacing:.08em}.hero h1{font-size:clamp(32px,5vw,54px);line-height:1.15;margin:16px 0 12px}.hero p{max-width:670px;color:#344538;margin:0}section{margin:65px 0}.chapter{border-top:4px solid var(--leaf);padding-top:12px}.chapter h2{font-size:31px;margin:8px 0}.intro{color:var(--muted)}h3{font-size:21px;margin-top:36px}h4{font-size:17px;margin:25px 0 8px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}.card{background:var(--panel);border:1px solid var(--line);padding:20px;border-radius:13px}.card h4{margin:0 0 7px}.stars{color:#a66f00;font:14px system-ui,sans-serif}blockquote{margin:18px 0;padding:12px 16px;border-left:4px solid var(--sun);background:#fff8e4;color:#5e4a18}table{border-collapse:collapse;width:100%;margin:16px 0;background:#fff;font-size:14px}th,td{padding:10px;text-align:left;border:1px solid var(--line);vertical-align:top}th{background:#eef5eb}code,.formula{background:var(--code);padding:2px 5px;border-radius:4px}.formula{display:block;padding:12px;margin:12px 0;overflow:auto;font-family:ui-monospace,monospace}ol{padding-left:25px}.method{background:#eef7ed;border-radius:12px;padding:18px 22px}.example{border-left:4px solid var(--leaf);padding:4px 20px;margin:22px 0;background:#fbfffa}.example strong{color:var(--leaf)}details{background:#fff;border:1px solid var(--line);border-radius:10px;padding:13px 16px;margin:10px 0}summary{cursor:pointer;font-weight:700}details p:last-child{margin-bottom:0}.check{display:flex;gap:9px;align-items:start;margin:9px 0}.check input{margin-top:7px;accent-color:var(--leaf)}.quick{background:#172a20;color:#f1faed;border-radius:14px;padding:22px;overflow:auto}.quick table{color:#1d2a20}.footer{border-top:1px solid var(--line);padding-top:25px;color:var(--muted);font-size:14px}@media(max-width:800px){.shell{display:block}.side{position:static;height:auto;border:0;padding:22px}.side nav{margin:18px 0;display:flex;gap:4px;overflow:auto}.side a{white-space:nowrap}.main{padding:25px 18px 70px}.grid{grid-template-columns:1fr}.hero{padding:26px}.side .progress{display:none}}
+</style>
+</head>
+<body>
+<div class="shell">
+<aside class="side">
+<div class="brand">高等数学复习讲义<span>EXAM REVIEW · 01–02</span></div>
+<nav>
+<a href="#start">开始复习</a><a href="#ch1">01 函数、极限与连续</a><a href="#ch2">02 导数与微分</a><a href="#plan">复习清单</a>
+</nav>
+<div class="progress">本页掌握度 <b id="pct">0%</b><div class="bar"><b id="bar"></b></div><span>勾选“已掌握”将保存在本机。</span></div>
+</aside>
+<main class="main">
+<header class="hero" id="start">
+<span class="tag">大学考试前系统复习</span>
+<h1>高等数学<br>复习讲义</h1>
+<p>不是公式堆砌：每章按“知识框架 → 判断方法 → 解题模板 → 例题 → 练习与解析”组织。当前包含函数、极限、连续与导数、微分两章。</p>
+</header>
+
+<section id="ch1" class="chapter">
+<span class="tag">CHAPTER 01</span><h2>函数、极限与连续</h2>
+<p class="intro">核心：极限描述靠近时的趋势；连续要求函数值恰等于该趋势。重点是 \(0/0\) 型极限、分段点与零点定理。</p>
+<div class="grid">
+<div class="card"><h4>极限与单侧极限 <span class="stars">⭐⭐⭐</span></h4><p>双侧极限存在，当且仅当左右极限存在且相等。极限看的是邻近行为，不要求函数在该点有定义。</p></div>
+<div class="card"><h4>等价无穷小 <span class="stars">⭐⭐⭐</span></h4><p>用于 \(x\to0\) 的乘除结构；不能在加减中直接替换。</p></div>
+<div class="card"><h4>连续性 <span class="stars">⭐⭐⭐</span></h4><p>函数值存在、极限存在、两者相等，三项缺一不可。</p></div>
+<div class="card"><h4>夹逼与零点定理 <span class="stars">⭐⭐</span></h4><p>前者处理有界振荡量乘趋零量；后者证明方程至少有一根。</p></div>
+</div>
+
+<h3>知识点速览</h3>
+<h4>函数与定义域</h4>
+<table><tr><th>表达式</th><th>有意义条件</th></tr><tr><td>\(\sqrt{A(x)}\)</td><td>\(A(x)\ge0\)</td></tr><tr><td>\(\ln A(x)\)</td><td>\(A(x)>0\)</td></tr><tr><td>\(\frac1{A(x)}\)</td><td>\(A(x)\ne0\)</td></tr></table>
+<blockquote>判断奇偶性时，除验证 \(f(-x)=\pm f(x)\) 外，还必须先确认定义域关于原点对称。</blockquote>
+<h4>重要极限与等价量</h4>
+<div class="formula">\(\sin x\sim x,\ \tan x\sim x,\ \ln(1+x)\sim x,\ e^x-1\sim x,\ 1-\cos x\sim x^2/2\quad(x\to0)\)</div>
+<p>三角函数重要极限使用<strong>弧度制</strong>。如 \(\frac{1-\cos x}{x\sin x}\) 是乘除结构，可整体替换；但 \(\sin x-x\) 为相减结构，不可这样做。</p>
+<h4>连续与间断</h4>
+<div class="formula">\(f\) 在 \(x_0\) 连续 \(\Longleftrightarrow f(x_0)\) 有定义，\(\lim_{x\to x_0}f(x)\) 存在，且 \(\lim_{x\to x_0}f(x)=f(x_0)\)。</div>
+<table><tr><th>间断类型</th><th>识别特征</th></tr><tr><td>可去</td><td>左右极限相等且有限，函数值缺失或不等</td></tr><tr><td>跳跃</td><td>左右极限有限但不相等</td></tr><tr><td>无穷</td><td>至少一侧极限为无穷大</td></tr><tr><td>振荡</td><td>无限振荡，无极限</td></tr></table>
+
+<h3>解题模板</h3>
+<div class="method"><strong>\(0/0\) 型极限：</strong><ol><li>先代入确认是未定式，而非结果。</li><li>多项式用因式分解；根式差用有理化；标准小量转为等价量。</li><li>化简后再代入，并写清所用条件。</li></ol><strong>证明存在根：</strong>构造 \(F(x)=0\) → 说明 \(F\) 在闭区间连续 → 验证端点异号 → 用零点定理。端点异号只能证明“至少一个根”。</div>
+
+<h3>典型例题</h3>
+<div class="example"><strong>例 1 · 因式分解</strong><p>求 \(\lim_{x\to2}\frac{x^2-4}{x-2}\)。</p><p>代入为 \(0/0\)。在 \(x\ne2\) 时，\(\frac{(x-2)(x+2)}{x-2}=x+2\)，故极限为 \(\boxed4\)。极限允许原函数在该点无定义。</p></div>
+<div class="example"><strong>例 2 · 分段连续</strong><p>\(f(x)=x+1(x<0),\ a(x=0),\ x^2+b(x>0)\)。使其在 \(0\) 连续。</p><p>左极限为 \(1\)，右极限为 \(b\)，函数值为 \(a\)。令三者相等，\(\boxed{a=b=1}\)。</p></div>
+<div class="example"><strong>例 3 · 零点定理</strong><p>证明 \(x^3+x-1=0\) 在 \((0,1)\) 内有根。</p><p>令 \(F=x^3+x-1\)。多项式在 \([0,1]\) 连续，且 \(F(0)=-1,F(1)=1\)，端点异号；故存在 \(\xi\in(0,1)\) 使 \(F(\xi)=0\)。</p></div>
+
+<h3>练习与详细解析</h3>
+<details><summary>1. 求 \(\lim_{x\to0}\frac{e^{2x}-1}{\sin3x}\)</summary><p><strong>思路：</strong>两部分均为标准无穷小。<br><strong>步骤：</strong>\(e^{2x}-1\sim2x,\ \sin3x\sim3x\)，故极限为 \(\frac{2x}{3x}=\boxed{\frac23}\)。<br><strong>易错：</strong>不能漏掉内层系数 \(2,3\)。</p></details>
+<details><summary>2. 判断 \(\frac{|x|}{x}\) 在 \(0\) 处的极限</summary><p><strong>思路：</strong>求左右极限。\(x<0\) 时值为 \(-1\)，\(x>0\) 时值为 \(1\)。左右不等，所以极限<strong>不存在</strong>，为跳跃间断。</p></details>
+<details><summary>3. 证明 \(e^x+x-2=0\) 在 \((0,1)\) 内有根</summary><p>令 \(F=e^x+x-2\)。它在 \([0,1]\) 连续，\(F(0)=-1<0,\ F(1)=e-1>0\)。由零点定理，结论成立。</p></details>
+<details><summary>4. 求 \(\lim_{x\to0}x\sin\frac1x\)</summary><p>\(\left|x\sin\frac1x\right|\le|x|\to0\)。由夹逼定理，答案为 \(\boxed0\)。注意：振荡因子本身没极限，不妨碍乘积有极限。</p></details>
+</section>
+
+<section id="ch2" class="chapter">
+<span class="tag">CHAPTER 02</span><h2>导数与微分</h2>
+<p class="intro">核心：导数是瞬时变化率与切线斜率；微分是一阶线性近似。重点是链式法则、隐函数与切线法线。</p>
+<div class="grid">
+<div class="card"><h4>导数定义 <span class="stars">⭐⭐⭐</span></h4><p>由增量比的极限定义；可导必连续，连续未必可导。</p></div>
+<div class="card"><h4>链式法则 <span class="stars">⭐⭐⭐</span></h4><p>所有“函数套函数”均需乘内层导数。</p></div>
+<div class="card"><h4>隐函数与参数方程 <span class="stars">⭐⭐</span></h4><p>把 \(y\) 视作 \(y(x)\)，或分别对参数求导再相除。</p></div>
+<div class="card"><h4>微分近似 <span class="stars">⭐⭐⭐</span></h4><p>用容易计算的基准点作一阶近似，注意 \(\approx\) 而非等号。</p></div>
+</div>
+
+<h3>核心公式</h3>
+<div class="formula">\(f'(x_0)=\lim_{\Delta x\to0}\frac{f(x_0+\Delta x)-f(x_0)}{\Delta x}\)</div>
+<table><tr><th>规则</th><th>公式</th><th>易错提醒</th></tr><tr><td>乘积</td><td>\((uv)'=u'v+uv'\)</td><td>不是 \(u'v'\)</td></tr><tr><td>商</td><td>\((u/v)'=(u'v-uv')/v^2\)</td><td>分母整体平方</td></tr><tr><td>复合</td><td>\([f(u)]'=f'(u)u'\)</td><td>不可漏内层导数</td></tr><tr><td>参数方程</td><td>\(\frac{dy}{dx}=\frac{dy/dt}{dx/dt}\)</td><td>要求 \(dx/dt\ne0\)</td></tr><tr><td>微分</td><td>\(dy=f'(x)dx\)</td><td>是近似主部</td></tr></table>
+<div class="formula">\((x^\alpha)'=\alpha x^{\alpha-1},\quad(e^x)'=e^x,\quad(\ln x)'=1/x,\quad(\sin x)'=\cos x,\quad(\cos x)'=-\sin x\)</div>
+<blockquote>可导 \(\Rightarrow\) 连续，但连续 \(\not\Rightarrow\) 可导；\(|x|\) 在 \(0\) 连续却不可导。</blockquote>
+
+<h3>解题模板</h3>
+<div class="method"><strong>复杂函数求导：</strong><ol><li>先找最外层（和、积、商或复合）。</li><li>先用外层规则；遇到内层继续链式法则。</li><li>最后整理，避免一开始过度展开。</li></ol><strong>切线与法线：</strong>求 \(k_t=f'(x_0)\)，切线为 \(y-y_0=k_t(x-x_0)\)；当 \(k_t\ne0\) 时法线斜率为 \(-1/k_t\)。若切线水平，法线为竖直线。</div>
+
+<h3>典型例题</h3>
+<div class="example"><strong>例 1 · 复合乘积</strong><p>求 \(y=x^2e^{3x}\sin x\) 的导数。</p><p>\(u=x^2e^{3x}\)，则 \(u'=e^{3x}(2x+3x^2)\)。所以 \(\boxed{y'=e^{3x}[(2x+3x^2)\sin x+x^2\cos x]}\)。</p></div>
+<div class="example"><strong>例 2 · 隐函数切线</strong><p>圆 \(x^2+y^2=25\) 在 \((3,4)\) 的切线。</p><p>两边求导：\(2x+2yy'=0\)，故 \(y'=-x/y\)。点处斜率 \(-3/4\)，所以 \(\boxed{y-4=-\frac34(x-3)}\)。</p></div>
+<div class="example"><strong>例 3 · 微分近似</strong><p>估算 \(\sqrt{4.04}\)。</p><p>取 \(f(x)=\sqrt x,x_0=4,\Delta x=.04\)。\(f'(4)=1/4\)，\(dy=.01\)，故 \(\boxed{\sqrt{4.04}\approx2.01}\)。</p></div>
+
+<h3>练习与详细解析</h3>
+<details><summary>1. 用定义求 \(f(x)=x^2\) 在 \(1\) 处的导数</summary><p>\(\frac{(1+\Delta x)^2-1}{\Delta x}=2+\Delta x\)（\(\Delta x\ne0\)），取极限得 \(\boxed2\)。</p></details>
+<details><summary>2. 求 \(y=\ln(1+x^2)\) 的导数</summary><p>外层为 \(\ln u\)，内层 \(u=1+x^2\)。\(y'=u'/u=\boxed{\frac{2x}{1+x^2}}\)。易错：漏掉 \(2x\)。</p></details>
+<details><summary>3. 求隐函数 \(x^2+xy+y^2=3\) 的导数</summary><p>求导得 \(2x+(xy)'+2yy'=0\)，即 \(2x+y+xy'+2yy'=0\)。收集 \(y'\)，\(\boxed{y'=-\frac{2x+y}{x+2y}}\)。</p></details>
+<details><summary>4. 用微分估算 \((1.02)^5\)</summary><p>取 \(f(x)=x^5,x_0=1,dx=.02\)。\(f(1)=1,f'(1)=5\)，所以 \(dy=.1\)，\(\boxed{(1.02)^5\approx1.1}\)。这是一阶近似，不能写等号。</p></details>
+</section>
+
+<section id="plan">
+<span class="tag">CHECKLIST</span><h2>考前复习清单</h2>
+<label class="check"><input type="checkbox"><span>能按表达式特征选择：因式分解、有理化、等价无穷小或夹逼。</span></label>
+<label class="check"><input type="checkbox"><span>能写出连续的三条件，并区分四类常见间断点。</span></label>
+<label class="check"><input type="checkbox"><span>能完整使用零点定理证明“至少有一个根”。</span></label>
+<label class="check"><input type="checkbox"><span>能稳定使用乘积、商与链式法则，不漏内层导数。</span></label>
+<label class="check"><input type="checkbox"><span>能处理隐函数、切线法线与微分近似。</span></label>
+<div class="quick"><strong>最后 10 分钟速记</strong><br>极限先看结构；连续检查“值、极限、相等”；可导必连续；复合必乘内层导数；微分是近似而非等式；零点定理证明的是“至少一个”。</div>
+</section>
+<footer class="footer">高等数学复习讲义 · 持续扩展中 · 章节 01–02</footer>
+</main>
+</div>
+<script>
+const boxes=[...document.querySelectorAll('input[type=checkbox]')],key='math-review-checks';
+const saved=JSON.parse(localStorage.getItem(key)||'[]');boxes.forEach((b,i)=>{b.checked=!!saved[i];b.addEventListener('change',()=>{localStorage.setItem(key,JSON.stringify(boxes.map(x=>x.checked)));paint()})});
+function paint(){const p=Math.round(boxes.filter(x=>x.checked).length/boxes.length*100);document.querySelector('#pct').textContent=p+'%';document.querySelector('#bar').style.width=p+'%'}paint();
+</script>
+</body>
+</html>
