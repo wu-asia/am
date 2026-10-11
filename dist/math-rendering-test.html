@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>数学公式渲染测试</title>
+  <link rel="stylesheet" href="assets/chapter-layout.css">
+  <script src="assets/mathjax-config.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+  <script defer src="assets/chapter-layout.js"></script>
+</head>
+<body>
+<div class="cl-shell" data-chapter-layout>
+  <aside class="cl-sidebar">
+    <div class="cl-brand">数学复习系统<small>MATH RENDERING TEST</small></div>
+    <nav aria-label="测试目录" data-toc></nav>
+  </aside>
+  <main class="cl-main">
+    <header class="cl-hero">
+      <span class="cl-kicker">公式渲染测试</span>
+      <h1>Math Rendering Test</h1>
+      <p>本页用于验证统一 MathJax 配置在普通正文、公式块、表格、折叠答案与窄屏长公式中的排版行为。</p>
+    </header>
+
+    <section id="inline" class="cl-section" data-toc-section>
+      <h2>1. 行内公式与常用结构</h2>
+      <p>行内公式：\(x^2+y^2=r^2\)、\(\frac{a+b}{c}\)、\(\sqrt[n]{x}\)、\(\lim_{x\to0}\frac{\sin x}{x}=1\)。</p>
+      <div class="cl-formula">\[\int_a^b f(x)\,dx,\qquad \sum_{k=1}^{n}k=\frac{n(n+1)}2,\qquad \operatorname{rank}(A)=r.\]</div>
+    </section>
+
+    <section id="blocks" class="cl-section" data-toc-section>
+      <h2>2. 矩阵、行列式与分段函数</h2>
+      <div class="cl-formula">\[A=\begin{pmatrix}1&2\\3&4\end{pmatrix},\qquad \det(A)=1\cdot4-2\cdot3=-2.\]</div>
+      <div class="cl-formula">\[f(x)=\begin{cases}x^2,&x\ge0,\\-x,&x<0.\end{cases}\]</div>
+      <div class="cl-formula">\[\left(\frac{a}{b}\right)^2+\left[\sqrt{a^2+b^2}\right]^2=a^2+b^2+\frac{a^2}{b^2}.\]</div>
+    </section>
+
+    <section id="align" class="cl-section" data-toc-section>
+      <h2>3. 多行推导与长公式</h2>
+      <div class="cl-formula">\[\begin{aligned}
+S_n&=\sum_{k=1}^{n}k\\
+&=\frac{n(n+1)}2.
+\end{aligned}\]</div>
+      <div class="cl-formula">\[\frac{\left(\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})\right)^2}{\left(\sum_{i=1}^{n}(x_i-\bar{x})^2\right)\left(\sum_{i=1}^{n}(y_i-\bar{y})^2\right)}\le1.\]</div>
+      <p class="cl-intro">窄屏下，上述容器应横向滚动，而不是压缩公式。</p>
+    </section>
+
+    <section id="table" class="cl-section" data-toc-section>
+      <h2>4. 表格内公式</h2>
+      <table class="cl-table">
+        <thead><tr><th>对象</th><th>公式</th><th>说明</th></tr></thead>
+        <tbody>
+          <tr><td>导数</td><td>\(\frac{d}{dx}\sin x=\cos x\)</td><td>行内公式不应撑破单元格。</td></tr>
+          <tr><td>正态标准化</td><td>\(Z=\frac{X-\mu}{\sigma}\sim N(0,1)\)</td><td>上下标与分式应正常排版。</td></tr>
+          <tr><td>矩阵</td><td>\(\begin{pmatrix}a&b\\c&d\end{pmatrix}\)</td><td>矩阵应保持列对齐。</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="details" class="cl-section" data-toc-section>
+      <h2>5. 折叠区域公式</h2>
+      <details class="cl-exercise">
+        <summary>展开检查折叠答案中的公式</summary>
+        <p>由等比数列求和公式，\(1+q+\cdots+q^{n-1}=\frac{1-q^n}{1-q}\;(q\ne1)\)。</p>
+        <div class="cl-formula">\[\begin{aligned}
+\int_0^1x^2\,dx&=\left.\frac{x^3}{3}\right|_0^1\\
+&=\frac13.
+\end{aligned}\]</div>
+      </details>
+    </section>
+  </main>
+</div>
+</body>
+</html>
