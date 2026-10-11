@@ -5,8 +5,19 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="高等数学考试复习讲义：函数、极限、连续、导数与微分。">
 <title>高等数学复习讲义</title>
+<script>
+window.MathJax = {
+  tex: {
+    inlineMath: [['\\(', '\\)']],
+    displayMath: [['\\[', '\\]']]
+  },
+  chtml: { scale: 1.04 }
+};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
 <style>
 :root{--ink:#16251d;--muted:#637067;--paper:#fbfaf5;--panel:#fffefa;--line:#dce3d7;--leaf:#1d6b4f;--mint:#dff3df;--sun:#ffd97a;--code:#f1f6ef}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.75 "Noto Serif SC","Songti SC",Georgia,serif}.shell{display:grid;grid-template-columns:275px minmax(0,1fr);max-width:1500px;margin:auto}.side{position:sticky;top:0;height:100vh;padding:34px 24px;border-right:1px solid var(--line);background:#f5f8f1}.brand{font-family:system-ui,sans-serif;font-size:22px;font-weight:800;line-height:1.3}.brand span{display:block;font-size:12px;letter-spacing:.13em;color:var(--leaf);margin-top:6px}.side nav{margin:38px 0}.side a{display:block;padding:8px 10px;color:var(--muted);text-decoration:none;border-radius:8px}.side a:hover{color:var(--leaf);background:#e8f3e7}.progress{font:13px system-ui,sans-serif;color:var(--muted);border-top:1px solid var(--line);padding-top:18px}.bar{height:7px;background:#dce7db;border-radius:99px;margin:8px 0;overflow:hidden}.bar b{display:block;height:100%;width:0;background:var(--leaf);transition:.2s}.main{padding:50px clamp(24px,5vw,80px) 100px;max-width:1100px}.hero{padding:34px 36px;background:linear-gradient(128deg,#e2f1dd,#fff7d8);border:1px solid #cee1c8;border-radius:20px;margin-bottom:55px}.tag{display:inline-block;background:var(--leaf);color:#fff;border-radius:99px;padding:3px 11px;font:12px system-ui,sans-serif;letter-spacing:.08em}.hero h1{font-size:clamp(32px,5vw,54px);line-height:1.15;margin:16px 0 12px}.hero p{max-width:670px;color:#344538;margin:0}section{margin:65px 0}.chapter{border-top:4px solid var(--leaf);padding-top:12px}.chapter h2{font-size:31px;margin:8px 0}.intro{color:var(--muted)}h3{font-size:21px;margin-top:36px}h4{font-size:17px;margin:25px 0 8px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}.card{background:var(--panel);border:1px solid var(--line);padding:20px;border-radius:13px}.card h4{margin:0 0 7px}.stars{color:#a66f00;font:14px system-ui,sans-serif}blockquote{margin:18px 0;padding:12px 16px;border-left:4px solid var(--sun);background:#fff8e4;color:#5e4a18}table{border-collapse:collapse;width:100%;margin:16px 0;background:#fff;font-size:14px}th,td{padding:10px;text-align:left;border:1px solid var(--line);vertical-align:top}th{background:#eef5eb}code,.formula{background:var(--code);padding:2px 5px;border-radius:4px}.formula{display:block;padding:12px;margin:12px 0;overflow:auto;font-family:ui-monospace,monospace}ol{padding-left:25px}.method{background:#eef7ed;border-radius:12px;padding:18px 22px}.example{border-left:4px solid var(--leaf);padding:4px 20px;margin:22px 0;background:#fbfffa}.example strong{color:var(--leaf)}details{background:#fff;border:1px solid var(--line);border-radius:10px;padding:13px 16px;margin:10px 0}summary{cursor:pointer;font-weight:700}details p:last-child{margin-bottom:0}.check{display:flex;gap:9px;align-items:start;margin:9px 0}.check input{margin-top:7px;accent-color:var(--leaf)}.quick{background:#172a20;color:#f1faed;border-radius:14px;padding:22px;overflow:auto}.quick table{color:#1d2a20}.footer{border-top:1px solid var(--line);padding-top:25px;color:var(--muted);font-size:14px}@media(max-width:800px){.shell{display:block}.side{position:static;height:auto;border:0;padding:22px}.side nav{margin:18px 0;display:flex;gap:4px;overflow:auto}.side a{white-space:nowrap}.main{padding:25px 18px 70px}.grid{grid-template-columns:1fr}.hero{padding:26px}.side .progress{display:none}}
+ mjx-container{max-width:100%;overflow-x:auto;overflow-y:hidden}
 </style>
 </head>
 <body>
@@ -14,7 +25,7 @@
 <aside class="side">
 <div class="brand">高等数学复习讲义<span>EXAM REVIEW · 01–02</span></div>
 <nav>
-<a href="#start">开始复习</a><a href="#ch1">01 函数、极限与连续</a><a href="#ch2">02 导数与微分</a><a href="#plan">复习清单</a>
+<a href="linear-algebra.html">线性代数复习 →</a><a href="discrete-math.html">离散数学复习 →</a><a href="#start">开始复习</a><a href="#ch1">01 函数、极限与连续</a><a href="#ch2">02 导数与微分</a><a href="#ch3">03 微分中值定理</a><a href="#ch4">04 导数的应用</a><a href="#ch5">05 不定积分</a><a href="#ch6">06 定积分</a><a href="#ch7">07 定积分应用</a><a href="#ch8">08 微分方程</a><a href="#ch9">09 多元微分</a><a href="#ch10">10 重积分</a><a href="#ch11">11 曲线曲面积分</a><a href="#ch12">12 无穷级数</a><a href="#review">总复习</a><a href="#plan">复习清单</a>
 </nav>
 <div class="progress">本页掌握度 <b id="pct">0%</b><div class="bar"><b id="bar"></b></div><span>勾选“已掌握”将保存在本机。</span></div>
 </aside>
@@ -92,6 +103,196 @@
 <details><summary>4. 用微分估算 \((1.02)^5\)</summary><p>取 \(f(x)=x^5,x_0=1,dx=.02\)。\(f(1)=1,f'(1)=5\)，所以 \(dy=.1\)，\(\boxed{(1.02)^5\approx1.1}\)。这是一阶近似，不能写等号。</p></details>
 </section>
 
++
+<section id="ch3" class="chapter">
+<span class="tag">CHAPTER 03</span><h2>微分中值定理</h2>
+<p class="intro">本章把“某一点的导数”连接到“整个区间的变化”。考试核心不是背结论，而是准确核对各定理的区间条件。</p>
+<div class="grid">
+<div class="card"><h4>罗尔定理 <span class="stars">⭐⭐⭐</span></h4><p>闭区间连续、开区间可导、端点函数值相等，则中间至少有一点导数为零。</p></div>
+<div class="card"><h4>拉格朗日中值定理 <span class="stars">⭐⭐⭐</span></h4><p>某点切线斜率等于区间平均变化率，是证明不等式和估计增量的主工具。</p></div>
+<div class="card"><h4>柯西中值定理 <span class="stars">⭐⭐</span></h4><p>两个函数的增量比可转化为某点导数比；是洛必达法则的理论基础。</p></div>
+<div class="card"><h4>泰勒公式 <span class="stars">⭐⭐</span></h4><p>用多项式在一点附近逼近函数；关注余项与近似误差。</p></div>
+</div>
+<h3>定理链与使用条件</h3>
+<table><tr><th>定理</th><th>条件</th><th>结论</th><th>看到什么时使用</th></tr>
+<tr><td>罗尔</td><td>\([a,b]\) 连续，\((a,b)\) 可导，\(f(a)=f(b)\)</td><td>存在 \(\xi\in(a,b)\)，\(f'(\xi)=0\)</td><td>端点等值、证明导数有零点</td></tr>
+<tr><td>拉格朗日</td><td>\([a,b]\) 连续，\((a,b)\) 可导</td><td>\(f'(\xi)=\frac{f(b)-f(a)}{b-a}\)</td><td>估计差值、证明不等式</td></tr>
+<tr><td>柯西</td><td>两函数连续可导，且 \(g(b)\ne g(a)\)</td><td>\(\frac{f'(\xi)}{g'(\xi)}=\frac{f(b)-f(a)}{g(b)-g(a)}\)</td><td>两个增量的比值</td></tr></table>
+<blockquote>三个定理都必须先检查“闭区间连续、开区间可导”。不能只写“由中值定理”。罗尔定理是拉格朗日定理在平均变化率为零时的特例。</blockquote>
+<h3>解题模板</h3>
+<div class="method"><strong>证明存在 \(\xi\)：</strong><ol><li>写出所用定理和区间 \([a,b]\)。</li><li>逐项说明连续、可导条件。</li><li>核对罗尔定理的端点等值，或计算拉格朗日的平均变化率。</li><li>代入结论，写出 \(\xi\in(a,b)\) 的存在性。</li></ol><strong>证明不等式：</strong>将目标差写为 \(f(b)-f(a)\)，由拉格朗日定理变成 \(f'(\xi)(b-a)\)，再用导数范围估计。</div>
+<h3>典型例题</h3>
+<div class="example"><strong>例 1 · 罗尔定理</strong><p>证明 \(x^3-3x+1=0\) 在 \((-2,0)\) 内至少有一个根。</p><p>令 \(f(x)=x^3-3x+1\)。有 \(f(-2)=-1,\ f(0)=1\)，此题应先用<strong>零点定理</strong>，不是罗尔定理：多项式在 \([-2,0]\) 连续且端点异号，故存在根。识别定理比硬套更重要。</p></div>
+<div class="example"><strong>例 2 · 拉格朗日估计</strong><p>证明 \(\ln(1+x)<x\)（\(x>0\)）。</p><p>对 \(f(t)=\ln t\) 在 \([1,1+x]\) 用拉格朗日定理：\(\ln(1+x)-\ln1=f'(\xi)x=\frac{x}{\xi}\)，其中 \(\xi>1\)。故 \(\frac{x}{\xi}<x\)，即结论成立。</p></div>
+<div class="example"><strong>例 3 · 泰勒展开</strong><p>写出 \(e^x\) 在 \(x=0\) 的三阶麦克劳林公式。</p><p>各阶导数在 \(0\) 处均为 \(1\)，所以 \(\boxed{e^x=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+o(x^3)}\)。用于近似时必须说明 \(x\) 接近 \(0\)。</p></div>
+<h3>练习与详细解析</h3>
+<details><summary>1. 验证 \(f(x)=x^2-4x+3\) 在 \([1,3]\) 是否可用罗尔定理，并求 \(\xi\)</summary><p>多项式处处连续可导，且 \(f(1)=f(3)=0\)，满足罗尔条件。\(f'(x)=2x-4\)，令其为零得 \(\boxed{\xi=2}\)。</p></details>
+<details><summary>2. 证明 \(|\sin x-\sin y|\le|x-y|\)</summary><p>若 \(x=y\) 显然。否则对 \(\sin t\) 在以 \(x,y\) 为端点的区间用拉格朗日定理：\(\sin x-\sin y=\cos\xi(x-y)\)。取绝对值并用 \(|\cos\xi|\le1\)，即得结论。</p></details>
+<details><summary>3. 写出 \(\sin x\) 的三阶麦克劳林展开</summary><p>\(\sin0=0,\cos0=1,-\sin0=0,-\cos0=-1\)，故 \(\boxed{\sin x=x-\frac{x^3}{3!}+o(x^3)}\)。易错：二次项系数为零，不可误写 \(x^2/2\)。</p></details>
+</section>
+
+<section id="ch4" class="chapter">
+<span class="tag">CHAPTER 04</span><h2>导数的应用</h2>
+<p class="intro">本章将“会求导”转化为“会读函数图像、会求最值、会做优化”。先找定义域和驻点，再以导数符号决定结论。</p>
+<div class="grid">
+<div class="card"><h4>单调性 <span class="stars">⭐⭐⭐</span></h4><p>\(f'>0\) 则递增，\(f'<0\) 则递减；区间内的符号比某一点导数更重要。</p></div>
+<div class="card"><h4>极值与最值 <span class="stars">⭐⭐⭐</span></h4><p>极值候选点包括 \(f'=0\)、导数不存在点和闭区间端点。</p></div>
+<div class="card"><h4>凹凸与拐点 <span class="stars">⭐⭐</span></h4><p>二阶导数符号判凹凸；拐点处凹凸性必须改变。</p></div>
+<div class="card"><h4>实际优化 <span class="stars">⭐⭐</span></h4><p>设变量、列目标函数、确定定义域、求最值并解释结果。</p></div>
+</div>
+<h3>判断规则</h3>
+<table><tr><th>目标</th><th>导数信息</th><th>必要提醒</th></tr>
+<tr><td>单调区间</td><td>\(f'>0\) 递增；\(f'<0\) 递减</td><td>在每个定义域分段内判断</td></tr>
+<tr><td>极大/极小值</td><td>\(f'\) 从 \(+\) 变 \(-\)：极大；从 \(-\) 变 \(+\)：极小</td><td>\(f'=0\) 只是候选点</td></tr>
+<tr><td>凹凸</td><td>\(f''>0\) 凸；\(f''<0\) 凹</td><td>按课程教材术语书写</td></tr>
+<tr><td>拐点</td><td>\(f''\) 左右变号</td><td>\(f''=0\) 不是充分条件</td></tr></table>
+<h3>解题模板</h3>
+<div class="method"><strong>闭区间最值：</strong><ol><li>写定义域与闭区间。</li><li>求 \(f'\)，找驻点及不可导点。</li><li>筛选区间内候选点，与端点一起代回 \(f\)。</li><li>比较函数值并回答最大、最小值及取值点。</li></ol><strong>应用题：</strong>先把实际量用一个变量表示，再将约束代入目标函数。没有定义域的最值题，答案常不完整。</div>
+<h3>典型例题</h3>
+<div class="example"><strong>例 1 · 单调与极值</strong><p>讨论 \(f(x)=x^3-3x\) 的单调性和极值。</p><p>\(f'(x)=3(x-1)(x+1)\)。符号为 \(+\)、\(-\)、\(+\)，故递增区间为 \((-\infty,-1), (1,\infty)\)，递减区间为 \((-1,1)\)。在 \(-1\) 处极大值 \(2\)，在 \(1\) 处极小值 \(-2\)。</p></div>
+<div class="example"><strong>例 2 · 闭区间最值</strong><p>求 \(f(x)=x^3-3x\) 在 \([-2,2]\) 上的最值。</p><p>候选点为端点 \(-2,2\) 与驻点 \(-1,1\)。函数值依次为 \(-2,2,2,-2\)。最大值 \(\boxed2\)，最小值 \(\boxed{-2}\)。</p></div>
+<div class="example"><strong>例 3 · 优化</strong><p>周长为 \(20\) 的矩形，何时面积最大？</p><p>设一边 \(x\)，另一边 \(10-x\)，\(0<x<10\)。\(S=x(10-x)\)，\(S'=10-2x=0\) 得 \(x=5\)。因抛物线开口向下，面积最大为 \(\boxed{25}\)，即正方形时取得。</p></div>
+<h3>练习与详细解析</h3>
+<details><summary>1. 求 \(f(x)=x+\frac1x\) 在 \((0,\infty)\) 的最小值</summary><p>\(f'=1-\frac1{x^2}\)。当 \(0<x<1\) 时为负，\(x>1\) 时为正，故 \(x=1\) 为极小点且为全局最小点。最小值 \(\boxed2\)。</p></details>
+<details><summary>2. 判断 \(f(x)=x^3\) 的拐点</summary><p>\(f''(x)=6x\)，在 \(0\) 左右由负变正，故 \((0,0)\) 是拐点。这里不仅有 \(f''(0)=0\)，还验证了变号。</p></details>
+<details><summary>3. 求 \(f(x)=x^2-4x+1\) 在 \([0,5]\) 的最大、最小值</summary><p>\(f'=2x-4\)，驻点 \(x=2\)。计算 \(f(0)=1,f(2)=-3,f(5)=6\)。故最小值 \(\boxed{-3}\)（\(x=2\)），最大值 \(\boxed6\)（\(x=5\)）。</p></details>
+</section>
+
++
+<section id="ch5" class="chapter">
+<span class="tag">CHAPTER 05</span><h2>不定积分</h2>
+<p class="intro">不定积分是求导的逆运算，但“反向”并不意味着逐项生搬公式。考试关键在于先识别被积式结构，再选择直接积分、换元、分部积分或有理函数分解。</p>
+<div class="grid">
+<div class="card"><h4>原函数与不定积分 <span class="stars">⭐⭐⭐</span></h4><p>若 \(F'(x)=f(x)\)，则 \(\int f(x)\,dx=F(x)+C\)。常数 \(C\) 不可遗漏。</p></div>
+<div class="card"><h4>凑微分与换元法 <span class="stars">⭐⭐⭐</span></h4><p>出现 \(f(g(x))g'(x)\) 的结构时，优先令 \(u=g(x)\)。</p></div>
+<div class="card"><h4>分部积分法 <span class="stars">⭐⭐⭐</span></h4><p>适合“一个因子求导会简化，另一个易积分”的乘积。</p></div>
+<div class="card"><h4>有理函数积分 <span class="stars">⭐⭐</span></h4><p>先约分或做多项式除法，再依分母因式分解为部分分式。</p></div>
+</div>
+
+<h3>核心知识与公式</h3>
+<div class="formula">\(\int f(x)\,dx=F(x)+C\quad\Longleftrightarrow\quad F'(x)=f(x)\)</div>
+<table><tr><th>被积函数</th><th>不定积分</th><th>使用条件 / 提醒</th></tr>
+<tr><td>\(x^\alpha\)</td><td>\(\frac{x^{\alpha+1}}{\alpha+1}+C\)</td><td>\(\alpha\ne-1\)</td></tr>
+<tr><td>\(1/x\)</td><td>\(\ln|x|+C\)</td><td>绝对值不可漏</td></tr>
+<tr><td>\(e^x\)</td><td>\(e^x+C\)</td><td></td></tr>
+<tr><td>\(a^x\)</td><td>\(\frac{a^x}{\ln a}+C\)</td><td>\(a>0,a\ne1\)</td></tr>
+<tr><td>\(\sin x,\cos x\)</td><td>\(-\cos x+C,\ \sin x+C\)</td><td>注意符号</td></tr>
+<tr><td>\(\frac1{1+x^2}\)</td><td>\(\arctan x+C\)</td><td></td></tr>
+<tr><td>\(\frac1{\sqrt{1-x^2}}\)</td><td>\(\arcsin x+C\)</td><td>\(|x|<1\) 的区间内</td></tr></table>
+<blockquote>不定积分结果必须写 \(+C\)。不同原函数只相差一个常数；没有 \(+C\) 的答案不是完整不定积分。</blockquote>
+
+<h3>解题方法与判断模板</h3>
+<div class="method"><strong>方法选择：</strong><ol><li>先尝试拆项，直接套基本积分公式。</li><li>若出现“内函数导数”或只差常数倍，优先凑微分/换元。</li><li>若为多项式与指数、对数、三角函数的乘积，判断分部积分：选求导后更简单的一项为 \(u\)。</li><li>若为有理式 \(\frac{P(x)}{Q(x)}\)，先比较次数；分子次数不低于分母先做除法，再分解分母。</li></ol></div>
+<h4>换元法</h4>
+<div class="formula">\(\int f(g(x))g'(x)\,dx=\int f(u)\,du,\quad u=g(x)\)</div>
+<p>常见信号：\(\frac{g'(x)}{g(x)}\)、\(\cos(g(x))g'(x)\)、\(e^{g(x)}g'(x)\)、\([g(x)]^\alpha g'(x)\)。凑微分时，补上的常数必须在积分外补偿。</p>
+<h4>分部积分法</h4>
+<div class="formula">\(\int u\,dv=uv-\int v\,du\)</div>
+<p>常用选取顺序可记为：反三角/对数优先作 \(u\)，其次多项式，再考虑指数或三角函数。判断标准是：求导后的 \(u'\) 是否更简单，且 \(dv\) 是否容易积分。</p>
+<h4>有理函数</h4>
+<p>真分式且分母可分解时，按因子设部分分式。对于线性因子 \((x-a)\) 配 \(\frac A{x-a}\)；不可约二次因子 \(x^2+px+q\) 配 \(\frac{Ax+B}{x^2+px+q}\)。</p>
+
+<h3>典型例题</h3>
+<div class="example"><strong>例 1 · 凑微分</strong><p>计算 \(\int\frac{2x}{1+x^2}\,dx\)。</p><p>分母内层 \(1+x^2\) 的导数正好是 \(2x\)。令 \(u=1+x^2,du=2x\,dx\)，得 \(\int\frac{du}{u}=\boxed{\ln(1+x^2)+C}\)。因 \(1+x^2>0\)，这里可省绝对值。</p></div>
+<div class="example"><strong>例 2 · 分部积分</strong><p>计算 \(\int xe^x\,dx\)。</p><p>选 \(u=x,dv=e^x dx\)，则 \(du=dx,v=e^x\)。由分部积分，\(\int xe^x dx=xe^x-\int e^x dx=\boxed{e^x(x-1)+C}\)。选 \(u=e^x\) 会使问题没有简化，因此不合适。</p></div>
+<div class="example"><strong>例 3 · 有理函数</strong><p>计算 \(\int\frac{1}{x^2-1}\,dx\)。</p><p>\(\frac1{x^2-1}=\frac1{(x-1)(x+1)}=\frac A{x-1}+\frac B{x+1}\)。比较系数得 \(A=\frac12,B=-\frac12\)。故积分为 \(\boxed{\frac12\ln\left|\frac{x-1}{x+1}\right|+C}\)。</p></div>
+
+<h3>复习习题与详细解析</h3>
+<details><summary>1. 计算 \(\int(3x^2-2+\cos x)\,dx\)</summary><p><strong>思路：</strong>逐项直接积分。<br><strong>步骤：</strong>\(\int3x^2dx=x^3,\int(-2)dx=-2x,\int\cos xdx=\sin x\)。<br><strong>答案：</strong>\(\boxed{x^3-2x+\sin x+C}\)。<br><strong>易错：</strong>每一项合并后只需统一写一个 \(+C\)。</p></details>
+<details><summary>2. 计算 \(\int\frac{x}{x^2+4}\,dx\)</summary><p><strong>思路：</strong>分母内层导数为 \(2x\)，只差常数倍。<br><strong>步骤：</strong>\(\int\frac{x}{x^2+4}dx=\frac12\int\frac{2x}{x^2+4}dx\)。令 \(u=x^2+4\)，得 \(\boxed{\frac12\ln(x^2+4)+C}\)。</p></details>
+<details><summary>3. 计算 \(\int x\ln x\,dx\)（\(x>0\)）</summary><p><strong>思路：</strong>多项式与对数相乘，用分部积分，取 \(u=\ln x,dv=x\,dx\)。<br><strong>步骤：</strong>\(du=dx/x,v=x^2/2\)。故 \(\int x\ln xdx=\frac{x^2}{2}\ln x-\frac12\int xdx=\boxed{\frac{x^2}{2}\ln x-\frac{x^2}{4}+C}\)。</p></details>
+<details><summary>4. 计算 \(\int\frac{2x+3}{x^2+3x+2}\,dx\)</summary><p><strong>思路：</strong>分母导数正好是 \(2x+3\)。<br><strong>步骤：</strong>令 \(u=x^2+3x+2\)，则 \(du=(2x+3)dx\)。答案为 \(\boxed{\ln|x^2+3x+2|+C}\)。<br><strong>易错：</strong>二次式可能为负，不能擅自去掉绝对值。</p></details>
+<details><summary>5. 计算 \(\int\frac{1}{x(x+1)}\,dx\)</summary><p><strong>思路：</strong>部分分式分解。令 \(\frac1{x(x+1)}=\frac A x+\frac B{x+1}\)，得 \(A=1,B=-1\)。<br><strong>答案：</strong>\(\boxed{\ln|x|-\ln|x+1|+C=\ln\left|\frac{x}{x+1}\right|+C}\)。</p></details>
+
+<h3>常见错误</h3>
+<table><tr><th>错误做法</th><th>正确做法与原因</th></tr>
+<tr><td>\(\int x^{-1}dx=\frac{x^0}{0}\)</td><td>幂函数公式不适用于 \(\alpha=-1\)，应为 \(\ln|x|+C\)。</td></tr>
+<tr><td>分部积分后忘记负号</td><td>牢记 \(\int u\,dv=uv-\int v\,du\)，建议先写完整公式再代入。</td></tr>
+<tr><td>换元后仍混用 \(u,x\)</td><td>换元后将积分完全改写为 \(u\) 的式子，积分完再回代。</td></tr>
+<tr><td>有理函数直接硬积分</td><td>先判假分式/真分式，再除法或部分分式分解。</td></tr>
+</section>
+
++
+<section id="ch6" class="chapter"><span class="tag">CHAPTER 06</span><h2>定积分</h2><p class="intro">定积分是区间上的累积量。计算时以牛顿—莱布尼茨公式为落点；换元时必须同步改上下限，分部积分时需保留边界项。</p>
+<div class="grid"><div class="card"><h4>定义与性质 <span class="stars">⭐⭐</span></h4><p>定积分与原函数无关，具有线性性、区间可加性和保序性。</p></div><div class="card"><h4>牛顿—莱布尼茨 <span class="stars">⭐⭐⭐</span></h4><p>连续函数的定积分等于任一原函数在端点的差。</p></div><div class="card"><h4>换元、分部 <span class="stars">⭐⭐⭐</span></h4><p>本质与不定积分相同，但上下限或边界项必须正确处理。</p></div><div class="card"><h4>反常积分 <span class="stars">⭐⭐</span></h4><p>先化为极限；不能把无穷端点直接代入原函数。</p></div></div>
+<div class="formula">\(\int_a^b f(x)\,dx=F(b)-F(a)\quad(F'=f)\)</div>
+<div class="method"><strong>定积分换元：</strong>\(\int_a^b f(\varphi(x))\varphi'(x)dx=\int_{\varphi(a)}^{\varphi(b)}f(u)du\)。<strong>分部积分：</strong>\(\int_a^b u\,dv=[uv]_a^b-\int_a^b v\,du\)。<strong>反常积分：</strong>如 \(\int_1^\infty f(x)dx=\lim_{R\to\infty}\int_1^R f(x)dx\)，极限存在才收敛。</div>
+<h3>典型例题</h3>
+<div class="example"><strong>例 1 · 牛顿—莱布尼茨</strong><p>\(\int_0^1(3x^2+2x+1)dx=[x^3+x^2+x]_0^1=\boxed3\)。</p></div>
+<div class="example"><strong>例 2 · 定积分换元</strong><p>\(\int_0^1 2xe^{x^2}dx\)。令 \(u=x^2\)，上下限由 \(0,1\) 变为 \(0,1\)，得 \(\int_0^1e^u du=\boxed{e-1}\)。</p></div>
+<div class="example"><strong>例 3 · 反常积分</strong><p>\(\int_1^\infty\frac1{x^2}dx=\lim_{R\to\infty}[-1/x]_1^R=\boxed1\)，收敛。一般 \(\int_1^\infty x^{-p}dx\) 当且仅当 \(p>1\) 收敛。</p></div>
+<h3>练习与解析</h3>
+<details><summary>1. 计算 \(\int_0^{\pi/2}\sin x\,dx\)</summary><p>\([-\cos x]_0^{\pi/2}=0-(-1)=\boxed1\)。易错：上、下限代入后必须相减。</p></details>
+<details><summary>2. 计算 \(\int_0^1x\ln x\,dx\)</summary><p>分部积分：取 \(u=\ln x,dv=x dx\)。先在 \([\varepsilon,1]\) 上计算，再令 \(\varepsilon\to0^+\)，边界项 \(\varepsilon^2\ln\varepsilon\to0\)。结果 \(\boxed{-1/4}\)。</p></details>
+<details><summary>3. 判断 \(\int_1^\infty\frac1x dx\) 是否收敛</summary><p>\(\lim_{R\to\infty}\int_1^Rdx/x=\lim_{R\to\infty}\ln R=\infty\)，故 \(\boxed{\text{发散}}\)。</p></details>
+</section>
+
+<section id="ch7" class="chapter"><span class="tag">CHAPTER 07</span><h2>定积分的应用</h2><p class="intro">应用题的第一步永远是画草图、确定边界。面积取非负，体积由截面面积累加；旋转轴和变量必须对应。</p>
+<div class="grid"><div class="card"><h4>平面面积 <span class="stars">⭐⭐⭐</span></h4><p>上减下或右减左；交点决定积分区间。</p></div><div class="card"><h4>旋转体体积 <span class="stars">⭐⭐⭐</span></h4><p>圆盘/垫片法与柱壳法按切片方向选择。</p></div><div class="card"><h4>弧长 <span class="stars">⭐⭐</span></h4><p>先确认函数光滑；曲线弧长由微元累加。</p></div><div class="card"><h4>平均值 <span class="stars">⭐⭐</span></h4><p>\(\frac1{b-a}\int_a^bf(x)dx\) 是区间平均高度。</p></div></div>
+<table><tr><th>对象</th><th>公式</th><th>判断提示</th></tr><tr><td>面积（\(x\) 积分）</td><td>\(A=\int_a^b(\text{上}-\text{下})dx\)</td><td>先解交点</td></tr><tr><td>绕 \(x\) 轴体积</td><td>\(V=\pi\int_a^b(R^2-r^2)dx\)</td><td>截面垂直于轴</td></tr><tr><td>弧长</td><td>\(L=\int_a^b\sqrt{1+[f'(x)]^2}dx\)</td><td>图像 \(y=f(x)\)</td></tr></table>
+<div class="example"><strong>例 1 · 面积</strong><p>求 \(y=x\) 与 \(y=x^2\) 围成面积。交点为 \(0,1\)，在 \([0,1]\) 上 \(x\ge x^2\)，故 \(A=\int_0^1(x-x^2)dx=\boxed{1/6}\)。</p></div>
+<div class="example"><strong>例 2 · 体积</strong><p>\(y=\sqrt x,0\le x\le1\) 绕 \(x\) 轴旋转。\(V=\pi\int_0^1(\sqrt x)^2dx=\boxed{\pi/2}\)。</p></div>
+<h3>练习与解析</h3>
+<details><summary>1. 求 \(y=2x\) 与 \(y=x^2\) 围成面积</summary><p>交点为 \(0,2\)，上方 \(2x\)。\(A=\int_0^2(2x-x^2)dx=\boxed{4/3}\)。</p></details>
+<details><summary>2. 求 \(y=x,0\le x\le1\) 绕 \(x\) 轴体积</summary><p>\(V=\pi\int_0^1x^2dx=\boxed{\pi/3}\)。注意半径是 \(y=x\)，需平方。</p></details>
+<details><summary>3. 求 \(f(x)=x^2\) 在 \([0,1]\) 的平均值</summary><p>\(\bar f=\int_0^1x^2dx/(1-0)=\boxed{1/3}\)。</p></details>
+</section>
+
+<section id="ch8" class="chapter"><span class="tag">CHAPTER 08</span><h2>微分方程</h2><p class="intro">微分方程以未知函数及其导数为对象。重点是识别类型：可分离变量、一阶线性、二阶常系数线性方程。</p>
+<div class="grid"><div class="card"><h4>可分离变量 <span class="stars">⭐⭐⭐</span></h4><p>可写为 \(g(y)dy=f(x)dx\)，两边积分并代初值。</p></div><div class="card"><h4>一阶线性 <span class="stars">⭐⭐⭐</span></h4><p>\(y'+P(x)y=Q(x)\)，用积分因子。</p></div><div class="card"><h4>二阶常系数齐次 <span class="stars">⭐⭐</span></h4><p>由特征方程根的三种情形写通解。</p></div><div class="card"><h4>初值问题 <span class="stars">⭐⭐</span></h4><p>通解后再代初值确定常数；不可颠倒。</p></div></div>
+<div class="formula">\(y'+P(x)y=Q(x),\quad \mu(x)=e^{\int P(x)dx},\quad y=\frac{\int\mu Qdx+C}{\mu}\)</div>
+<div class="example"><strong>例 1 · 可分离变量</strong><p>解 \(y'=xy\)。分离得 \(dy/y=x dx\)，积分 \(\ln|y|=x^2/2+C\)，所以 \(\boxed{y=Ce^{x^2/2}}\)（包含零解）。</p></div>
+<div class="example"><strong>例 2 · 一阶线性</strong><p>解 \(y'+y=x\)。\(\mu=e^x\)，故 \((e^xy)'=xe^x\)。积分并整理得 \(\boxed{y=x-1+Ce^{-x}}\)。</p></div>
+<h3>练习与解析</h3>
+<details><summary>1. 解 \(y'=2xy,\ y(0)=3\)</summary><p>通解 \(y=Ce^{x^2}\)，由 \(y(0)=3\) 得 \(C=3\)。\(\boxed{y=3e^{x^2}}\)。</p></details>
+<details><summary>2. 解 \(y'-2y=0\)</summary><p>分离或一阶线性均可，\(\boxed{y=Ce^{2x}}\)。</p></details>
+<details><summary>3. 解 \(y''-3y'+2y=0\)</summary><p>特征方程 \(r^2-3r+2=0\)，根为 \(1,2\)，故 \(\boxed{y=C_1e^x+C_2e^{2x}}\)。</p></details>
+</section>
+
+<section id="ch9" class="chapter"><span class="tag">CHAPTER 09</span><h2>多元函数微分学</h2><p class="intro">多元函数中，偏导数固定其他变量；全微分把多个独立增量的一阶影响相加。极值题必须结合定义域与二阶判别。</p>
+<div class="grid"><div class="card"><h4>偏导与全微分 <span class="stars">⭐⭐⭐</span></h4><p>\(f_x,f_y\) 分别描述沿坐标轴方向的变化；\(dz=f_xdx+f_ydy\)。</p></div><div class="card"><h4>方向导数与梯度 <span class="stars">⭐⭐</span></h4><p>梯度指向增长最快方向，最大方向导数为 \(|\nabla f|\)。</p></div><div class="card"><h4>极值判别 <span class="stars">⭐⭐⭐</span></h4><p>先解 \(f_x=f_y=0\)，再看 \(D=f_{xx}f_{yy}-f_{xy}^2\)。</p></div><div class="card"><h4>条件极值 <span class="stars">⭐⭐</span></h4><p>有约束时用拉格朗日乘数法。</p></div></div>
+<table><tr><th>判别</th><th>结论</th></tr><tr><td>\(D>0,f_{xx}>0\)</td><td>极小值</td></tr><tr><td>\(D>0,f_{xx}<0\)</td><td>极大值</td></tr><tr><td>\(D<0\)</td><td>鞍点</td></tr><tr><td>\(D=0\)</td><td>该判别法失效</td></tr></table>
+<div class="example"><strong>例题</strong><p>\(f=x^2+y^2-2x-4y\)。令偏导为零得 \((1,2)\)，且 \(D=4>0,f_{xx}=2>0\)，故在此取极小值 \(\boxed{-5}\)。</p></div>
+<details><summary>练习：求 \(f=x^2+y^2\) 在 \((1,-2)\) 的全微分</summary><p>\(f_x=2x,f_y=2y\)，代点得 \(\boxed{dz=2dx-4dy}\)。</p></details>
+<details><summary>练习：判定 \(f=x^2-y^2\) 在原点</summary><p>\(f_x=f_y=0,D=2\cdot(-2)-0=-4<0\)，故原点为 \(\boxed{\text{鞍点}}\)。</p></details>
+</section>
+
+<section id="ch10" class="chapter"><span class="tag">CHAPTER 10</span><h2>重积分</h2><p class="intro">二重积分是平面区域上的累积。计算成功的关键是画区域、写清边界，再选择更简单的积分次序或坐标系。</p>
+<div class="grid"><div class="card"><h4>直角坐标 <span class="stars">⭐⭐⭐</span></h4><p>先定 \(x\) 型或 \(y\) 型区域，再写二次积分。</p></div><div class="card"><h4>换序 <span class="stars">⭐⭐⭐</span></h4><p>先画图，再改变内外层边界；不要只交换符号。</p></div><div class="card"><h4>极坐标 <span class="stars">⭐⭐⭐</span></h4><p>圆、扇形、\(x^2+y^2\) 结构优先考虑，面积元为 \(rdrd\theta\)。</p></div></div>
+<div class="formula">\(\iint_Df(x,y)dA=\int_a^b\int_{\varphi_1(x)}^{\varphi_2(x)}f(x,y)\,dy\,dx;\quad dA=r\,dr\,d\theta\)</div>
+<div class="example"><strong>例题</strong><p>在 \(D=[0,1]\times[0,2]\) 上，\(\iint_D(x+y)dA=\int_0^1\int_0^2(x+y)dydx=\boxed3\)。</p></div>
+<details><summary>练习：计算单位圆 \(x^2+y^2\le1\) 上的 \(\iint_D(x^2+y^2)dA\)</summary><p>用极坐标：\(\int_0^{2\pi}\int_0^1r^2\cdot r\,drd\theta=2\pi\cdot\frac14=\boxed{\pi/2}\)。易错：面积元多一个 \(r\)。</p></details>
+<details><summary>练习：求 \(0\le y\le x\le1\) 上的 \(\iint_D1dA\)</summary><p>积分即面积：\(\int_0^1\int_0^xdy dx=\int_0^1x dx=\boxed{1/2}\)。</p></details>
+</section>
+
+<section id="ch11" class="chapter"><span class="tag">CHAPTER 11</span><h2>曲线积分与曲面积分</h2><p class="intro">本章首先区分“对弧长”与“对坐标”的积分。计算前必须写清曲线方向、参数化和积分微元；平面区域上的格林公式是高频转换工具。</p>
+<div class="grid"><div class="card"><h4>第一类曲线积分 <span class="stars">⭐⭐</span></h4><p>\(\int_Lf\,ds\)，与方向无关，参数化后 \(ds=\sqrt{x'^2+y'^2}dt\)。</p></div><div class="card"><h4>第二类曲线积分 <span class="stars">⭐⭐⭐</span></h4><p>\(\int_LPdx+Qdy\)，与方向有关，反向时变号。</p></div><div class="card"><h4>格林公式 <span class="stars">⭐⭐⭐</span></h4><p>将正向闭曲线积分转为二重积分。</p></div><div class="card"><h4>曲面积分 <span class="stars">⭐⭐</span></h4><p>第一类与方向无关；第二类有方向，闭曲面常用高斯公式。</p></div></div>
+<div class="formula">\(\oint_{\partial D}Pdx+Qdy=\iint_D\left(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\right)dA\)</div>
+<div class="example"><strong>例题</strong><p>计算单位圆逆时针 \(\oint_L(-y\,dx+x\,dy)\)。由格林公式，\(\partial Q/\partial x-\partial P/\partial y=1-(-1)=2\)，故结果为 \(2\) 乘单位圆面积，即 \(\boxed{2\pi}\)。</p></div>
+<details><summary>练习：第二类曲线积分反向后如何变化？</summary><p>\(\boxed{\text{变为原积分的相反数}}\)。这是方向型积分，与第一类曲线积分不同。</p></details>
+<details><summary>练习：第一类曲线积分 \(\int_L1ds\) 的几何意义</summary><p>\(\boxed{L\text{ 的弧长}}\)。</p></details>
+</section>
+
+<section id="ch12" class="chapter"><span class="tag">CHAPTER 12</span><h2>无穷级数</h2><p class="intro">无穷级数首先问“收敛还是发散”，其次才是和函数。正项级数比较判别、幂级数收敛域和泰勒展开是最常考的三条主线。</p>
+<div class="grid"><div class="card"><h4>数项级数 <span class="stars">⭐⭐⭐</span></h4><p>收敛必要条件：通项必须趋于零；通项趋零却不保证级数收敛。</p></div><div class="card"><h4>正项级数 <span class="stars">⭐⭐⭐</span></h4><p>比较、比值、根值判别法；\(p\) 级数是标尺。</p></div><div class="card"><h4>交错级数 <span class="stars">⭐⭐</span></h4><p>项递减且趋零时，由莱布尼茨判别法收敛。</p></div><div class="card"><h4>幂级数 <span class="stars">⭐⭐⭐</span></h4><p>先找收敛半径，再单独检查两个端点。</p></div></div>
+<table><tr><th>结论</th><th>条件</th></tr><tr><td>\(\sum1/n^p\) 收敛</td><td>\(p>1\)</td></tr><tr><td>比值判别法收敛</td><td>\(\lim|a_{n+1}/a_n|<1\)</td></tr><tr><td>\(\sum(-1)^{n-1}b_n\) 收敛</td><td>\(b_n\downarrow0\)</td></tr><tr><td>\(\sum c_n(x-x_0)^n\)</td><td>\(|x-x_0|<R\) 内绝对收敛；端点另验</td></tr></table>
+<div class="formula">\(e^x=\sum_{n=0}^{\infty}\frac{x^n}{n!},\quad\sin x=\sum_{n=0}^{\infty}(-1)^n\frac{x^{2n+1}}{(2n+1)!},\quad\frac1{1-x}=\sum_{n=0}^{\infty}x^n\ (|x|<1)\)</div>
+<details><summary>练习：判断 \(\sum_{n=1}^\infty1/n\)</summary><p>这是 \(p=1\) 的调和级数，\(\boxed{\text{发散}}\)。通项 \(1/n\to0\) 只是必要条件。</p></details>
+<details><summary>练习：求 \(\sum_{n=1}^\infty x^n/n!\) 的收敛域</summary><p>比值判别对任意 \(x\) 都给出极限 \(0\)，故 \(R=\infty\)，收敛域为 \(\boxed{(-\infty,\infty)}\)，和为 \(e^x-1\)。</p></details>
+</section>
+
+<section id="review" class="chapter"><span class="tag">FINAL REVIEW</span><h2>全书总复习与模拟题</h2><p class="intro">建议用“方法触发词”而非章节名称检索知识：看到端点异号想零点定理；看到内层导数想换元；看到闭曲线想格林；看到圆域想极坐标。</p>
+<table><tr><th>题面特征</th><th>优先方法</th></tr><tr><td>\(0/0\)、标准小量</td><td>结构变形、等价无穷小</td></tr><tr><td>存在根、端点异号</td><td>连续性与零点定理</td></tr><tr><td>最值、优化</td><td>导数符号与端点比较</td></tr><tr><td>内层函数及其导数</td><td>换元积分</td></tr><tr><td>圆、扇形区域</td><td>极坐标</td></tr><tr><td>幂级数</td><td>先求 \(R\)，后验端点</td></tr></table>
+<h3>模拟题（建议限时 60 分钟）</h3>
+<details><summary>第 1 题：求 \(\lim_{x\to0}\frac{\ln(1+x)}x\)</summary><p>\(\boxed1\)。使用 \(\ln(1+x)\sim x\)。</p></details>
+<details><summary>第 2 题：求 \(\int_0^1\frac{2x}{1+x^2}dx\)</summary><p>令 \(u=1+x^2\)，得 \([\ln u]_1^2=\boxed{\ln2}\)。</p></details>
+<details><summary>第 3 题：解 \(y'=y,\ y(0)=2\)</summary><p>\(\boxed{y=2e^x}\)。</p></details>
+<details><summary>第 4 题：求单位圆上的 \(\iint_D1dA\)</summary><p>面积为 \(\boxed\pi\)。</p></details>
+<details><summary>第 5 题：判断 \(\sum1/n^2\)</summary><p>\(p=2>1\)，故 \(\boxed{\text{收敛}}\)。</p></details>
+<h3>考前最后检查</h3>
+<label class="check"><input type="checkbox"><span>我会写出定理的全部条件，而不只写结论。</span></label><label class="check"><input type="checkbox"><span>我会在不定积分末尾写 \(+C\)，在定积分中正确处理上下限。</span></label><label class="check"><input type="checkbox"><span>我会先画积分区域，再写二重积分或曲线积分的边界与方向。</span></label><label class="check"><input type="checkbox"><span>我会在幂级数端点处单独检验，而不是只写收敛半径。</span></label>
+</section>
+
 <section id="plan">
 <span class="tag">CHECKLIST</span><h2>考前复习清单</h2>
 <label class="check"><input type="checkbox"><span>能按表达式特征选择：因式分解、有理化、等价无穷小或夹逼。</span></label>
@@ -101,7 +302,7 @@
 <label class="check"><input type="checkbox"><span>能处理隐函数、切线法线与微分近似。</span></label>
 <div class="quick"><strong>最后 10 分钟速记</strong><br>极限先看结构；连续检查“值、极限、相等”；可导必连续；复合必乘内层导数；微分是近似而非等式；零点定理证明的是“至少一个”。</div>
 </section>
-<footer class="footer">高等数学复习讲义 · 持续扩展中 · 章节 01–02</footer>
+<footer class="footer">高等数学复习讲义 · 章节 01–12 与全书总复习</footer>
 </main>
 </div>
 <script>
