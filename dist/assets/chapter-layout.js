@@ -63,6 +63,46 @@
       mistakes: '<aside class="cl-warning"><strong>错误做法：</strong>只看边界像就结束。<br><strong>正确做法：</strong>必须以内部测试点判定侧别，并检查映射极点。</aside>',
       formula: '<tr><td>解析且 \\(f^{\\prime}(z_0)\\ne0\\)</td><td>在 \\(z_0\\) 邻域解析</td><td>局部保角</td></tr><tr><td>\\((az+b)/(cz+d)\\)</td><td>\\(ad-bc\\ne0\\)</td><td>圆、直线映射</td></tr>',
       summary: '<article class="cl-summary"><p><strong>必须理解：</strong>保角是局部结论。<br><strong>必须会做：</strong>三点定边界、内点定侧别。<br><strong>易丢分：</strong>忽略极点或 \\(z^n\\) 的非单射性。</p></article>'
+    },
+    'complex-08-fourier-series.html': {
+      intro: '从正交性推导 Fourier 系数，掌握奇偶延拓、半区间展开与收敛判定。',
+      concepts: '<h3>正交性与系数</h3><p>在 \\([-L,L]\\) 上，\\(1,\\cos(n\\pi x/L),\\sin(n\\pi x/L)\\) 两两正交。周期函数的展开为</p><div class="cl-formula">\\[f(x)\\sim\\frac{a_0}{2}+\\sum_{n=1}^{\\infty}\\left(a_n\\cos\\frac{n\\pi x}{L}+b_n\\sin\\frac{n\\pi x}{L}\\right),\\]</div><p>其中 \\(a_n=\\frac1L\\int_{-L}^{L}f(x)\\cos\\frac{n\\pi x}{L}dx\\)，\\(b_n=\\frac1L\\int_{-L}^{L}f(x)\\sin\\frac{n\\pi x}{L}dx\\)。分段光滑且周期延拓后，连续点收敛到 \\(f(x)\\)，跳跃点收敛到左右极限平均值。</p><h3>奇偶性与半区间</h3><p>偶函数乘余弦仍为偶函数、乘正弦为奇函数，所以 \\(b_n=0\\)；奇函数反之 \\(a_0=a_n=0\\)。在 \\([0,L]\\) 上，先作偶延拓得到余弦级数，作奇延拓得到正弦级数。</p>',
+      methods: '<article class="cl-card"><h3>计算模板</h3><ol><li>确定周期与区间半长 \\(L\\)。</li><li>先判断奇偶性，删去必为零的系数。</li><li>利用正交性计算剩余积分，并写明延拓方式。</li><li>检查端点和跳跃点的收敛值。</li></ol></article>',
+      examples: '<article class="cl-example"><h3>例题：\\(f(x)=x\\) 的正弦级数</h3><p>在 \\(0&lt;x&lt;\\pi\\) 作奇延拓，\\(L=\\pi\\)，因此只有正弦项：</p><div class="cl-formula">\\[b_n=\\frac{2}{\\pi}\\int_0^{\\pi}x\\sin(nx)dx=\\frac{2(-1)^{n+1}}n.\\]</div><p>故 \\(x\\sim2\\sum_{n\\ge1}(-1)^{n+1}\\sin(nx)/n\\)。</p></article>',
+      exercises: '<details class="cl-exercise"><summary>基础：偶函数的 Fourier 级数哪些系数为零？</summary><p><strong>考点：</strong>奇偶性。<strong>解析：</strong>\\(f\\sin\\) 为奇函数，积分为零。<strong>答案：</strong>所有 \\(b_n=0\\)。<strong>易错点：</strong>还要确认积分区间关于 0 对称。</p></details><details class="cl-exercise"><summary>提高：\\(f(x)=1\\) 在 \\([-\\pi,\\pi]\\) 的级数</summary><p><strong>过程：</strong>\\(a_0=2\\)，其余系数积分为 0。<strong>答案：</strong>\\(f(x)=1\\)。</p></details>',
+      mistakes: '<aside class="cl-warning"><strong>错误做法：</strong>把半区间函数直接代入全区间公式。<br><strong>正确做法：</strong>先说明奇延拓或偶延拓，再使用对应的正弦或余弦系数公式。</aside>',
+      formula: '<tr><td>\\(a_n=\\frac1L\\int_{-L}^{L}f\\cos(n\\pi x/L)dx\\)</td><td>周期 \\(2L\\)</td><td>余弦系数</td></tr><tr><td>\\(b_n=\\frac1L\\int_{-L}^{L}f\\sin(n\\pi x/L)dx\\)</td><td>周期 \\(2L\\)</td><td>正弦系数</td></tr><tr><td>Parseval 等式</td><td>平方可积条件下</td><td>能量/级数求和</td></tr>',
+      summary: '<article class="cl-summary"><p><strong>必须记忆：</strong>正交性和系数公式。<br><strong>必须理解：</strong>奇偶性消项、延拓决定级数类型、跳跃点取平均。<br><strong>必须会做：</strong>系数计算和半区间展开。</p></article>'
+    },
+    'complex-09-fourier-transform.html': {
+      intro: '本章统一采用对称性较弱但工程中常用的约定：正变换无系数，逆变换含 \\(1/(2\\pi)\\)。',
+      concepts: '<h3>定义与约定</h3><div class="cl-formula">\\[\\widehat f(\\omega)=\\int_{-\\infty}^{\\infty}f(t)e^{-i\\omega t}dt,\\qquad f(t)=\\frac1{2\\pi}\\int_{-\\infty}^{\\infty}\\widehat f(\\omega)e^{i\\omega t}d\\omega.\\]</div><p>在可积或平方可积等相应条件下理解变换；不能把密度、收敛和普通函数变换无条件混用。</p><h3>性质与卷积</h3><p>线性保持；平移 \\(f(t-t_0)\\) 产生因子 \\(e^{-i\\omega t_0}\\)；尺度变换满足 \\(f(at)\\leftrightarrow |a|^{-1}\\widehat f(\\omega/a)\\)。若两函数卷积存在，则 \\(\\mathcal F(f*g)=\\widehat f\\,\\widehat g\\)，微分满足 \\(\\mathcal F(f^{\\prime})=i\\omega\\widehat f\\)。</p>',
+      methods: '<article class="cl-card"><h3>变换题模板</h3><ol><li>先写清本题采用的正、逆变换约定。</li><li>识别平移、尺度、微分或已知基本变换。</li><li>逆变换时检查 \\(1/(2\\pi)\\) 系数和变量符号。</li><li>卷积题优先变到频域相乘，再按约定逆变换。</li></ol></article>',
+      examples: '<article class="cl-example"><h3>例题：平移性质</h3><p>已知 \\(e^{-t^2}\\leftrightarrow\\sqrt\\pi e^{-\\omega^2/4}\\)。令 \\(g(t)=e^{-(t-2)^2}\\)，则由时间平移</p><div class="cl-formula">\\[\\widehat g(\\omega)=e^{-2i\\omega}\\sqrt\\pi e^{-\\omega^2/4}.\\]</div><p>关键是平移只增加相位因子，不改变频谱幅值。</p></article>',
+      exercises: '<details class="cl-exercise"><summary>基础：求常数倍函数的 Fourier 变换</summary><p><strong>考点：</strong>线性。<strong>过程：</strong>直接提出常数。<strong>答案：</strong>\\(\\mathcal F[3f-2g]=3\\hat f-2\\hat g\\)。</p></details><details class="cl-exercise"><summary>提高：说明卷积定理的使用方向</summary><p><strong>答案：</strong>时域卷积变频域乘积；若已知乘积的逆变换，也可反向得到卷积，但必须使用同一归一化约定。</p></details>',
+      mistakes: '<aside class="cl-warning"><strong>错误做法：</strong>在正变换和逆变换之间混用 \\(1/\\sqrt{2\\pi}\\) 对称约定。<br><strong>正确做法：</strong>全站本章固定采用“正变换无系数、逆变换 \\(1/(2\\pi)\\)”约定。</aside>',
+      formula: '<tr><td>正/逆变换定义</td><td>本章统一约定</td><td>变换与逆变换</td></tr><tr><td>\\(f(t-t_0)\\leftrightarrow e^{-i\\omega t_0}\\hat f(\\omega)\\)</td><td>平移可积</td><td>平移题</td></tr><tr><td>\\(\\mathcal F(f*g)=\\hat f\\hat g\\)</td><td>卷积存在</td><td>卷积题</td></tr>',
+      summary: '<article class="cl-summary"><p><strong>必须记忆：</strong>统一归一化、平移、尺度、微分和卷积性质。<br><strong>必须理解：</strong>频域代数运算对应时域运算。<br><strong>易丢分：</strong>漏写 \\(1/(2\\pi)\\) 或把平移方向写反。</p></article>'
+    },
+    'complex-10-laplace-transform.html': {
+      intro: '掌握单边 Laplace 变换、收敛域、逆变换与初值问题求解；每个定理都先核对存在条件。',
+      concepts: '<h3>定义与常用变换</h3><div class="cl-formula">\\[F(s)=\\mathcal L\\{f(t)\\}=\\int_0^{\\infty}e^{-st}f(t)dt.\\]</div><p>若函数分段连续且指数阶，则在某个半平面内存在变换。常用公式：\\(\\mathcal L\\{1\\}=1/s\\)、\\(\\mathcal L\\{e^{at}\\}=1/(s-a)\\)、\\(\\mathcal L\\{t^n\\}=n!/s^{n+1}\\)。</p><h3>微分、位移与卷积</h3><p>若初值存在，\\(\\mathcal L\\{f^{\\prime}\\}=sF(s)-f(0^+)\\)；\\(\\mathcal L\\{e^{at}f(t)\\}=F(s-a)\\)。卷积 \\(f*g\\) 的变换为 \\(F(s)G(s)\\)。终值定理仅在 \\(sF(s)\\) 的所有极点位于左半平面（至多允许原点简单极点）等稳定条件下使用。</p>',
+      methods: '<article class="cl-card"><h3>逆变换模板</h3><ol><li>先确定收敛域和有理式的真分式形式。</li><li>部分分式分解，匹配基本变换表。</li><li>若有 \\(e^{-as}\\)，使用第二移位定理写阶跃函数。</li><li>求微分方程时代入初值，解出 \\(Y(s)\\)，再逆变换。</li></ol></article>',
+      examples: '<article class="cl-example"><h3>例题：Laplace 求初值问题</h3><p>求 \\(y^{\\prime\\prime}+y=1\\)，\\(y(0)=0,y^{\\prime}(0)=1\\)。变换得 \\(s^2Y-1+Y=1/s\\)，所以 \\(Y=(1/s+1)/(s^2+1)\\)。分解为 \\(Y=1/[s(s^2+1)]+1/(s^2+1)\\)，逆变换得到</p><div class="cl-formula">\\[y(t)=1-\\cos t+\\sin t.\\]</div></article>',
+      exercises: '<details class="cl-exercise"><summary>基础：\\(\\mathcal L\\{t\\}\\)</summary><p><strong>过程：</strong>由幂函数公式取 \\(n=1\\)。<strong>答案：</strong>\\(1/s^2\\)，\\(\\operatorname{Re}s&gt;0\\)。</p></details><details class="cl-exercise"><summary>提高：逆变换 \\(1/[s(s+1)]\\)</summary><p><strong>过程：</strong>\\(1/[s(s+1)]=1/s-1/(s+1)\\)。<strong>答案：</strong>\\(1-e^{-t}\\)。<strong>易错点：</strong>部分分式符号要回代检查。</p></details>',
+      mistakes: '<aside class="cl-warning"><strong>错误做法：</strong>无条件使用终值定理。<br><strong>正确做法：</strong>先检查 \\(sF(s)\\) 的极点位置；不满足稳定条件时只能通过原函数极限判断。</aside>',
+      formula: '<tr><td>\\(\\mathcal L\\{f' + "'" + '\\}=sF-f(0^+)\\)</td><td>初值存在且变换存在</td><td>初值问题</td></tr><tr><td>\\(\\mathcal L\\{e^{at}f(t)\\}=F(s-a)\\)</td><td>收敛域相应平移</td><td>指数因子</td></tr><tr><td>\\(\\mathcal L\\{f*g\\}=FG\\)</td><td>卷积存在</td><td>卷积与逆变换</td></tr>',
+      summary: '<article class="cl-summary"><p><strong>必须记忆：</strong>定义、微分定理、位移定理、卷积和部分分式。<br><strong>必须理解：</strong>收敛域与定理条件。<br><strong>必须会做：</strong>逆变换和二阶初值问题。<br><strong>易丢分：</strong>漏初值项、终值定理条件不足。</p></article>'
+    },
+    'complex-11-transform-applications.html': {
+      intro: '综合运用 Fourier/Laplace 变换处理卷积、阶跃函数和常微分方程初值问题。',
+      concepts: '<h3>选择方法</h3><p>初值问题和因果分段函数优先考虑 Laplace；整轴上的频率分解和卷积优先考虑 Fourier。Heaviside 函数满足 \\(\\mathcal L\\{u(t-a)g(t-a)\\}=e^{-as}G(s)\\)。</p><h3>时域与变换域</h3><p>微分在变换域变为含初值的多项式乘法；卷积在变换域变为乘法。变换前要确认函数的增长、分段和边界条件。</p>',
+      methods: '<article class="cl-card"><h3>综合题步骤</h3><ol><li>识别初值、边值、分段或卷积结构。</li><li>选择 Fourier 或 Laplace，并写出归一化约定。</li><li>完成变换域代数运算，保留所有初值项。</li><li>部分分式或使用卷积定理逆变换，最后代回验证。</li></ol></article>',
+      examples: '<article class="cl-example"><h3>例题：阶跃函数逆变换</h3><p>\\(Y(s)=e^{-2s}/[s(s+1)]\\)。先分解 \\(1/[s(s+1)]=1/s-1/(s+1)\\)，再用第二移位定理：</p><div class="cl-formula">\\[y(t)=u(t-2)\\left(1-e^{-(t-2)}\\right).\\]</div><p>这说明延迟因子对应时域中的阶跃开启。</p></article>',
+      exercises: '<details class="cl-exercise"><summary>基础：判断 Fourier 级数和 Fourier 变换的对象</summary><p><strong>答案：</strong>Fourier 级数处理周期函数；Fourier 变换通常处理整轴上的非周期函数或广义函数。</p></details><details class="cl-exercise"><summary>综合：卷积为何适合变换域求解？</summary><p><strong>过程：</strong>时域积分卷积直接计算复杂，而变换后为 \\(F(s)G(s)\\) 或 \\(\\hat f\\hat g\\)。<strong>答案：</strong>先乘后逆变换通常计算量更小。</p></details>',
+      mistakes: '<aside class="cl-warning"><strong>错误做法：</strong>看到积分就直接套 Fourier 或 Laplace。<br><strong>正确做法：</strong>先看定义域、周期性、因果性和边界条件，再选择变换。</aside>',
+      formula: '<tr><td>周期函数</td><td>Fourier 级数</td><td>周期展开</td></tr><tr><td>因果初值问题</td><td>Laplace 变换</td><td>常微分方程</td></tr><tr><td>卷积 \\(f*g\\)</td><td>相应变换存在</td><td>频域/\\(s\\) 域乘法</td></tr>',
+      summary: '<article class="cl-summary"><p><strong>必须理解：</strong>对象和边界条件决定变换方法。<br><strong>必须会做：</strong>阶跃函数、卷积和初值问题。<br><strong>易错点：</strong>混淆 Fourier 归一化与 Laplace 的收敛域。</p></article>'
     }
   };
 
