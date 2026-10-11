@@ -1,24 +1,218 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>高等数学：微分中值定理</title><link rel="stylesheet" href="assets/chapter-layout.css"><script src="assets/mathjax-config.js"></script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script><script defer src="assets/chapter-layout.js"></script><link rel="stylesheet" href="assets/subject-navigation.css"><script defer src="assets/subject-navigation.js"></script></head><body><div class="cl-shell" data-chapter-layout data-prev-href="calculus-02-derivatives-differentials.html" data-prev-label="第 2 章：导数与微分" data-next-href="calculus-04-applications-of-derivatives.html" data-next-label="第 4 章：导数的应用"><aside class="cl-sidebar"><div class="cl-brand">高等数学<small>CHAPTER 3</small></div><nav aria-label="章节目录" data-toc></nav></aside><main class="cl-main"><header class="cl-hero"><span class="cl-kicker">⭐⭐⭐ 重点复习</span><h1>第 3 章：微分中值定理</h1><p>本章把“某一点的导数”连接到“整个区间的变化”。考试核心不是背结论，而是准确核对各定理的区间条件。</p><div class="cl-meta"><span>高等数学</span><span>·</span><span>概念 / 计算 / 证明与综合应用</span></div></header><section id="goals" class="cl-section" data-toc-section><h2>1. 本章复习目标</h2><article class="cl-card"><h3>学习目标</h3><p>掌握定义、公式与定理的适用条件；能从题目结构选择方法，并通过原讲义例题与练习检验掌握程度。</p></article></section><section id="framework" class="cl-section" data-toc-section><h2>2. 知识框架</h2><div class="cl-grid"><article class="cl-card"><h3>概念与性质</h3><p>由基本定义出发，梳理性质、公式和定理条件。</p></article><article class="cl-card"><h3>方法与应用</h3><p>结合解题模板、例题和练习完成从理解到计算的迁移。</p></article></div></section><section id="concepts" class="cl-section" data-toc-section><h2>3. 核心知识点</h2><h3>原讲义内容</h3><div class="cl-legacy">
-<div class="grid">
-<div class="card"><h4>罗尔定理 <span class="stars">⭐⭐⭐</span></h4><p>闭区间连续、开区间可导、端点函数值相等，则中间至少有一点导数为零。</p></div>
-<div class="card"><h4>拉格朗日中值定理 <span class="stars">⭐⭐⭐</span></h4><p>某点切线斜率等于区间平均变化率，是证明不等式和估计增量的主工具。</p></div>
-<div class="card"><h4>柯西中值定理 <span class="stars">⭐⭐</span></h4><p>两个函数的增量比可转化为某点导数比；是洛必达法则的理论基础。</p></div>
-<div class="card"><h4>泰勒公式 <span class="stars">⭐⭐</span></h4><p>用多项式在一点附近逼近函数；关注余项与近似误差。</p></div>
-</div>
-<h3>定理链与使用条件</h3>
-<table><tr><th>定理</th><th>条件</th><th>结论</th><th>看到什么时使用</th></tr>
-<tr><td>罗尔</td><td>\([a,b]\) 连续，\((a,b)\) 可导，\(f(a)=f(b)\)</td><td>存在 \(\xi\in(a,b)\)，\(f'(\xi)=0\)</td><td>端点等值、证明导数有零点</td></tr>
-<tr><td>拉格朗日</td><td>\([a,b]\) 连续，\((a,b)\) 可导</td><td>\(f'(\xi)=\frac{f(b)-f(a)}{b-a}\)</td><td>估计差值、证明不等式</td></tr>
-<tr><td>柯西</td><td>两函数连续可导，且 \(g(b)\ne g(a)\)</td><td>\(\frac{f'(\xi)}{g'(\xi)}=\frac{f(b)-f(a)}{g(b)-g(a)}\)</td><td>两个增量的比值</td></tr></table>
-<blockquote>三个定理都必须先检查“闭区间连续、开区间可导”。不能只写“由中值定理”。罗尔定理是拉格朗日定理在平均变化率为零时的特例。</blockquote>
-<h3>解题模板</h3>
-<div class="method"><strong>证明存在 \(\xi\)：</strong><ol><li>写出所用定理和区间 \([a,b]\)。</li><li>逐项说明连续、可导条件。</li><li>核对罗尔定理的端点等值，或计算拉格朗日的平均变化率。</li><li>代入结论，写出 \(\xi\in(a,b)\) 的存在性。</li></ol><strong>证明不等式：</strong>将目标差写为 \(f(b)-f(a)\)，由拉格朗日定理变成 \(f'(\xi)(b-a)\)，再用导数范围估计。</div>
-<h3>典型例题</h3>
-<div class="example"><strong>例 1 · 罗尔定理</strong><p>证明 \(x^3-3x+1=0\) 在 \((-2,0)\) 内至少有一个根。</p><p>令 \(f(x)=x^3-3x+1\)。有 \(f(-2)=-1,\ f(0)=1\)，此题应先用<strong>零点定理</strong>，不是罗尔定理：多项式在 \([-2,0]\) 连续且端点异号，故存在根。识别定理比硬套更重要。</p></div>
-<div class="example"><strong>例 2 · 拉格朗日估计</strong><p>证明 \(\ln(1+x)<x\)（\(x>0\)）。</p><p>对 \(f(t)=\ln t\) 在 \([1,1+x]\) 用拉格朗日定理：\(\ln(1+x)-\ln1=f'(\xi)x=\frac{x}{\xi}\)，其中 \(\xi>1\)。故 \(\frac{x}{\xi}<x\)，即结论成立。</p></div>
-<div class="example"><strong>例 3 · 泰勒展开</strong><p>写出 \(e^x\) 在 \(x=0\) 的三阶麦克劳林公式。</p><p>各阶导数在 \(0\) 处均为 \(1\)，所以 \(\boxed{e^x=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+o(x^3)}\)。用于近似时必须说明 \(x\) 接近 \(0\)。</p></div>
-<h3>练习与详细解析</h3>
-<details><summary>1. 验证 \(f(x)=x^2-4x+3\) 在 \([1,3]\) 是否可用罗尔定理，并求 \(\xi\)</summary><p>多项式处处连续可导，且 \(f(1)=f(3)=0\)，满足罗尔条件。\(f'(x)=2x-4\)，令其为零得 \(\boxed{\xi=2}\)。</p></details>
-<details><summary>2. 证明 \(|\sin x-\sin y|\le|x-y|\)</summary><p>若 \(x=y\) 显然。否则对 \(\sin t\) 在以 \(x,y\) 为端点的区间用拉格朗日定理：\(\sin x-\sin y=\cos\xi(x-y)\)。取绝对值并用 \(|\cos\xi|\le1\)，即得结论。</p></details>
-<details><summary>3. 写出 \(\sin x\) 的三阶麦克劳林展开</summary><p>\(\sin0=0,\cos0=1,-\sin0=0,-\cos0=-1\)，故 \(\boxed{\sin x=x-\frac{x^3}{3!}+o(x^3)}\)。易错：二次项系数为零，不可误写 \(x^2/2\)。</p></details>
-</div></section><section id="methods" class="cl-section" data-toc-section><h2>4. 常见题型</h2><article class="cl-card"><h3>方法选择</h3><p>原讲义中对应的解题模板与判断条件已完整保留在“核心知识点”区。</p></article></section><section id="examples" class="cl-section" data-toc-section><h2>5. 典型例题</h2><article class="cl-card"><h3>例题使用方式</h3><p>先独立完成原讲义中的例题，再核对推导和公式条件。</p></article></section><section id="exercises" class="cl-section" data-toc-section><h2>6. 练习题</h2><article class="cl-card"><h3>练习与解析</h3><p>原有折叠练习、答案与解析均保留在“核心知识点”区。</p></article></section><section id="mistakes" class="cl-section" data-toc-section><h2>7. 易错点</h2><aside class="cl-warning"><strong>复习提醒：</strong>先核对题设条件、符号方向和变量范围，再代入公式；原讲义中的具体易错提示均未删减。</aside></section><section id="formulas" class="cl-section" data-toc-section><h2>8. 公式速查</h2><table class="cl-table"><thead><tr><th>复习顺序</th><th>使用要求</th><th>检查项</th></tr></thead><tbody><tr><td>定义与定理</td><td>先确认适用条件</td><td>对象、范围、已知条件</td></tr><tr><td>公式与计算</td><td>代入前保持符号一致</td><td>变量、上下标、边界或矩阵维数</td></tr><tr><td>结论</td><td>写清结果的条件或范围</td><td>数值、符号和逻辑方向</td></tr></tbody></table></section><section id="summary" class="cl-section" data-toc-section><h2>9. 本章总结</h2><article class="cl-summary"><h3>必须记忆</h3><p>定义、公式与定理条件。</p><h3>必须理解</h3><p>概念关系与方法选择依据。</p><h3>必须会做</h3><p>原讲义中的例题、练习与综合题型。</p><h3>容易丢分</h3><p>忽略条件、符号不严谨或跳过关键步骤。</p></article></section><nav class="cl-pager" aria-label="章节切换"><a data-prev href="#"></a><a data-next href="#"></a></nav></main></div></body></html>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>高等数学：微分中值定理</title>
+  <link rel="stylesheet" href="assets/chapter-layout.css">
+  <script src="assets/mathjax-config.js"></script>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+
+  <script defer src="assets/chapter-layout.js"></script>
+  <link rel="stylesheet" href="assets/subject-navigation.css">
+  <script defer src="assets/subject-navigation.js"></script>
+</head>
+<body>
+  <div
+    class="cl-shell"
+    data-chapter-layout
+    data-prev-href="calculus-02-derivatives-differentials.html"
+    data-prev-label="第 2 章：导数与微分"
+    data-next-href="calculus-04-applications-of-derivatives.html"
+    data-next-label="第 4 章：导数的应用"
+  >
+    <aside class="cl-sidebar">
+      <div class="cl-brand">高等数学<small>CHAPTER 3</small></div>
+      <nav aria-label="章节目录" data-toc>
+
+      </nav>
+    </aside>
+    <main class="cl-main">
+      <header class="cl-hero"><span class="cl-kicker">⭐⭐⭐ 重点复习</span>
+        <h1>第 3 章：微分中值定理</h1>
+        <p>本章把“某一点的导数”连接到“整个区间的变化”。考试核心不是背结论，而是准确核对各定理的区间条件。</p>
+        <div class="cl-meta"><span>高等数学</span><span>·</span><span>概念 / 计算 / 证明与综合应用</span></div>
+      </header>
+      <section id="goals" class="cl-section" data-toc-section>
+        <h2>1. 本章复习目标</h2>
+        <article class="cl-card">
+          <h3>学习目标</h3>
+          <p>掌握定义、公式与定理的适用条件；能从题目结构选择方法，并通过原讲义例题与练习检验掌握程度。</p>
+        </article>
+      </section>
+      <section id="framework" class="cl-section" data-toc-section>
+        <h2>2. 知识框架</h2>
+        <div class="cl-grid">
+          <article class="cl-card">
+            <h3>概念与性质</h3>
+            <p>由基本定义出发，梳理性质、公式和定理条件。</p>
+          </article>
+          <article class="cl-card">
+            <h3>方法与应用</h3>
+            <p>结合解题模板、例题和练习完成从理解到计算的迁移。</p>
+          </article>
+        </div>
+      </section>
+      <section id="concepts" class="cl-section" data-toc-section>
+        <h2>3. 核心知识点</h2>
+        <h3>原讲义内容</h3>
+        <div class="cl-legacy">
+          <div class="grid">
+            <div class="card">
+              <h4>罗尔定理 <span class="stars">⭐⭐⭐</span></h4>
+              <p>闭区间连续、开区间可导、端点函数值相等，则中间至少有一点导数为零。</p>
+            </div>
+            <div class="card">
+              <h4>拉格朗日中值定理 <span class="stars">⭐⭐⭐</span></h4>
+              <p>某点切线斜率等于区间平均变化率，是证明不等式和估计增量的主工具。</p>
+            </div>
+            <div class="card">
+              <h4>柯西中值定理 <span class="stars">⭐⭐</span></h4>
+              <p>两个函数的增量比可转化为某点导数比；是洛必达法则的理论基础。</p>
+            </div>
+            <div class="card">
+              <h4>泰勒公式 <span class="stars">⭐⭐</span></h4>
+              <p>用多项式在一点附近逼近函数；关注余项与近似误差。</p>
+            </div>
+          </div>
+          <h3>定理链与使用条件</h3>
+          <table>
+            <tr>
+              <th>定理</th>
+              <th>条件</th>
+              <th>结论</th>
+              <th>看到什么时使用</th>
+            </tr>
+            <tr>
+              <td>罗尔</td>
+              <td>\([a,b]\) 连续，\((a,b)\) 可导，\(f(a)=f(b)\)</td>
+              <td>存在 \(\xi\in(a,b)\)，\(f'(\xi)=0\)</td>
+              <td>端点等值、证明导数有零点</td>
+            </tr>
+            <tr>
+              <td>拉格朗日</td>
+              <td>\([a,b]\) 连续，\((a,b)\) 可导</td>
+              <td>\(f'(\xi)=\frac{f(b)-f(a)}{b-a}\)</td>
+              <td>估计差值、证明不等式</td>
+            </tr>
+            <tr>
+              <td>柯西</td>
+              <td>两函数连续可导，且 \(g(b)\ne g(a)\)</td>
+              <td>\(\frac{f'(\xi)}{g'(\xi)}=\frac{f(b)-f(a)}{g(b)-g(a)}\)</td>
+              <td>两个增量的比值</td>
+            </tr>
+          </table>
+          <blockquote>三个定理都必须先检查“闭区间连续、开区间可导”。不能只写“由中值定理”。罗尔定理是拉格朗日定理在平均变化率为零时的特例。</blockquote>
+          <h3>解题模板</h3>
+          <div class="method"><strong>证明存在 \(\xi\)：</strong>
+            <ol>
+              <li>写出所用定理和区间 \([a,b]\)。</li>
+              <li>逐项说明连续、可导条件。</li>
+              <li>核对罗尔定理的端点等值，或计算拉格朗日的平均变化率。</li>
+              <li>代入结论，写出 \(\xi\in(a,b)\) 的存在性。</li>
+            </ol><strong>证明不等式：</strong>将目标差写为 \(f(b)-f(a)\)，由拉格朗日定理变成 \(f'(\xi)(b-a)\)，再用导数范围估计。
+          </div>
+          <h3>典型例题</h3>
+          <div class="example"><strong>例 1 · 罗尔定理</strong>
+            <p>证明 \(x^3-3x+1=0\) 在 \((-2,0)\) 内至少有一个根。</p>
+            <p>令 \(f(x)=x^3-3x+1\)。有 \(f(-2)=-1,\ f(0)=1\)，此题应先用<strong>零点定理</strong>，不是罗尔定理：多项式在 \([-2,0]\) 连续且端点异号，故存在根。识别定理比硬套更重要。</p>
+          </div>
+          <div class="example"><strong>例 2 · 拉格朗日估计</strong>
+            <p>证明 \(\ln(1+x)<x\)（\(x>0\)）。</p>
+            <p>对 \(f(t)=\ln t\) 在 \([1,1+x]\) 用拉格朗日定理：\(\ln(1+x)-\ln1=f'(\xi)x=\frac{x}{\xi}\)，其中 \(\xi>1\)。故 \(\frac{x}{\xi}<x\)，即结论成立。</p>
+          </div>
+          <div class="example"><strong>例 3 · 泰勒展开</strong>
+            <p>写出 \(e^x\) 在 \(x=0\) 的三阶麦克劳林公式。</p>
+            <p>各阶导数在 \(0\) 处均为 \(1\)，所以 \(\boxed{e^x=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+o(x^3)}\)。用于近似时必须说明 \(x\) 接近 \(0\)。</p>
+          </div>
+          <h3>练习与详细解析</h3>
+          <details>
+            <summary>1. 验证 \(f(x)=x^2-4x+3\) 在 \([1,3]\) 是否可用罗尔定理，并求 \(\xi\)</summary>
+            <p>多项式处处连续可导，且 \(f(1)=f(3)=0\)，满足罗尔条件。\(f'(x)=2x-4\)，令其为零得 \(\boxed{\xi=2}\)。</p>
+          </details>
+          <details>
+            <summary>2. 证明 \(|\sin x-\sin y|\le|x-y|\)</summary>
+            <p>若 \(x=y\) 显然。否则对 \(\sin t\) 在以 \(x,y\) 为端点的区间用拉格朗日定理：\(\sin x-\sin y=\cos\xi(x-y)\)。取绝对值并用 \(|\cos\xi|\le1\)，即得结论。</p>
+          </details>
+          <details>
+            <summary>3. 写出 \(\sin x\) 的三阶麦克劳林展开</summary>
+            <p>\(\sin0=0,\cos0=1,-\sin0=0,-\cos0=-1\)，故 \(\boxed{\sin x=x-\frac{x^3}{3!}+o(x^3)}\)。易错：二次项系数为零，不可误写 \(x^2/2\)。</p>
+          </details>
+        </div>
+      </section>
+      <section id="methods" class="cl-section" data-toc-section>
+        <h2>4. 常见题型</h2>
+        <article class="cl-card">
+          <h3>方法选择</h3>
+          <p>原讲义中对应的解题模板与判断条件已完整保留在“核心知识点”区。</p>
+        </article>
+      </section>
+      <section id="examples" class="cl-section" data-toc-section>
+        <h2>5. 典型例题</h2>
+        <article class="cl-card">
+          <h3>例题使用方式</h3>
+          <p>先独立完成原讲义中的例题，再核对推导和公式条件。</p>
+        </article>
+      </section>
+      <section id="exercises" class="cl-section" data-toc-section>
+        <h2>6. 练习题</h2>
+        <article class="cl-card">
+          <h3>练习与解析</h3>
+          <p>原有折叠练习、答案与解析均保留在“核心知识点”区。</p>
+        </article>
+      </section>
+      <section id="mistakes" class="cl-section" data-toc-section>
+        <h2>7. 易错点</h2>
+        <aside class="cl-warning"><strong>复习提醒：</strong>先核对题设条件、符号方向和变量范围，再代入公式；原讲义中的具体易错提示均未删减。</aside>
+      </section>
+      <section id="formulas" class="cl-section" data-toc-section>
+        <h2>8. 公式速查</h2>
+        <table class="cl-table">
+          <thead>
+            <tr>
+              <th>复习顺序</th>
+              <th>使用要求</th>
+              <th>检查项</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>定义与定理</td>
+              <td>先确认适用条件</td>
+              <td>对象、范围、已知条件</td>
+            </tr>
+            <tr>
+              <td>公式与计算</td>
+              <td>代入前保持符号一致</td>
+              <td>变量、上下标、边界或矩阵维数</td>
+            </tr>
+            <tr>
+              <td>结论</td>
+              <td>写清结果的条件或范围</td>
+              <td>数值、符号和逻辑方向</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section id="summary" class="cl-section" data-toc-section>
+        <h2>9. 本章总结</h2>
+        <article class="cl-summary">
+          <h3>必须记忆</h3>
+          <p>定义、公式与定理条件。</p>
+          <h3>必须理解</h3>
+          <p>概念关系与方法选择依据。</p>
+          <h3>必须会做</h3>
+          <p>原讲义中的例题、练习与综合题型。</p>
+          <h3>容易丢分</h3>
+          <p>忽略条件、符号不严谨或跳过关键步骤。</p>
+        </article>
+      </section>
+      <nav class="cl-pager" aria-label="章节切换">
+        <a data-prev href="#"></a>
+        <a data-next href="#"></a>
+      </nav>
+    </main>
+  </div>
+</body>
+</html>

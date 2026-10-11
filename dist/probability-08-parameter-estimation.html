@@ -1,1 +1,191 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>概率论与数理统计：参数估计</title><link rel="stylesheet" href="assets/chapter-layout.css"><script src="assets/mathjax-config.js"></script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script><script defer src="assets/chapter-layout.js"></script><link rel="stylesheet" href="assets/subject-navigation.css"><script defer src="assets/subject-navigation.js"></script></head><body><div class="cl-shell" data-chapter-layout data-prev-href="probability-07-statistical-basics.html" data-prev-label="第 7 章：数理统计基础" data-next-href="probability-09-hypothesis-testing.html" data-next-label="第 9 章：假设检验"><aside class="cl-sidebar"><div class="cl-brand">概率论与数理统计<small>CHAPTER 8</small></div><nav aria-label="章节目录" data-toc></nav></aside><main class="cl-main"><header class="cl-hero"><span class="cl-kicker">⭐⭐⭐ 重点复习</span><h1>第 8 章：参数估计</h1><p>点估计用统计量 \(\hat\theta\) 估计未知参数 \(\theta\)。矩估计令样本矩等于理论矩；最大似然估计选择使当前已观察样本出现可能性最大的参数值。</p><div class="cl-meta"><span>概率论与数理统计</span><span>·</span><span>概念 / 计算 / 证明与综合应用</span></div></header><section id="goals" class="cl-section" data-toc-section><h2>1. 本章复习目标</h2><article class="cl-card"><h3>学习目标</h3><p>掌握定义、公式与定理条件；能使用原讲义中的真值表、矩阵、图表、分布和统计推断题完成练习。</p></article></section><section id="framework" class="cl-section" data-toc-section><h2>2. 知识框架</h2><div class="cl-grid"><article class="cl-card"><h3>概念与性质</h3><p>先厘清定义、条件和性质的联系。</p></article><article class="cl-card"><h3>公式与应用</h3><p>再用题型模板、例题和练习完成方法迁移。</p></article></div></section><section id="concepts" class="cl-section" data-toc-section><h2>3. 核心知识点</h2><h3>原讲义内容</h3><div class="cl-legacy"><div class="formula">\[L(\theta)=\prod_{i=1}^nf(x_i;\theta),\qquad\hat\theta_{\mathrm{MLE}}=\arg\max_\theta L(\theta).\]</div><table><tr><th>评价</th><th>含义</th></tr><tr><td>无偏性</td><td>\(E(\hat\theta)=\theta\)，重复抽样平均不系统偏离。</td></tr><tr><td>有效性</td><td>在同为无偏估计量中，方差较小者更有效。</td></tr><tr><td>一致性</td><td>\(\hat\theta_n\xrightarrow P\theta\)，样本量大时趋近真值。</td></tr></table><div class="example"><strong>例题 1：10 次 Bernoulli(\(p\)) 试验有 7 次成功，求 p 的矩估计与最大似然估计。</strong><p><strong>过程：</strong>样本均值为 \(7/10\)。理论一阶矩 \(E(X)=p\)，矩估计为 \(0.7\)；似然正比于 \(p^7(1-p)^3\)，令对数似然导数为零也得 \(7/10\)。</p><p><strong>答案：</strong>\(\boxed{\hat p_{\rm MOM}=\hat p_{\rm MLE}=0.7}\)。</p></div><details><summary>练习 2：指数密度 \(f(x;\lambda)=\lambda e^{-\lambda x},x>0\)，求 \(\lambda\) 的极大似然估计。</summary><p><strong>思路：</strong>先乘出似然，再对对数似然求导。</p><p><strong>过程：</strong>\(\ell(\lambda)=n\ln\lambda-\lambda\sum x_i\)，故 \(\ell'(\lambda)=n/\lambda-\sum x_i=0\)，且 \(\ell''<0\)。</p><p><strong>答案：</strong>\(\boxed{\hat\lambda=n/\sum x_i=1/\bar x}\)。</p></details><p>置信区间是随机样本产生的随机区间。95% 置信是指重复使用同一构造规则时约 95% 的区间覆盖真参数，不是参数有 95% 概率落在这次固定区间中。</p><table><tr><th>条件</th><th>\(1-\alpha\) 均值置信区间</th></tr><tr><td>正态总体或大样本，\(\sigma\) 已知</td><td>\(\bar X\pm z_{\alpha/2}\frac{\sigma}{\sqrt n}\)</td></tr><tr><td>正态总体，\(\sigma\) 未知</td><td>\(\bar X\pm t_{\alpha/2,n-1}\frac{S}{\sqrt n}\)</td></tr><tr><td>正态总体方差</td><td>\(\left[\frac{(n-1)S^2}{\chi^2_{\alpha/2,n-1}},\frac{(n-1)S^2}{\chi^2_{1-\alpha/2,n-1}}\right]\)，分位点记号以教材约定为准。</td></tr></table><details><summary>练习 3：\(\sigma=8,n=16,\bar x=52\)，求 \(\mu\) 的 95% 置信区间。</summary><p><strong>思路：</strong>方差已知，用 \(z_{0.025}=1.96\)，标准误为 \(8/\sqrt{16}=2\)。</p><p><strong>过程：</strong>\(52\pm1.96\times2=52\pm3.92\)。</p><p><strong>答案：</strong>\(\boxed{[48.08,55.92]}\)。</p></details></div></section><section id="methods" class="cl-section" data-toc-section><h2>4. 常见题型</h2><article class="cl-card"><h3>方法选择</h3><p>原讲义中的判断方法、真值表、矩阵、图示、分布或统计计算流程均已完整保留在“核心知识点”区。</p></article></section><section id="examples" class="cl-section" data-toc-section><h2>5. 典型例题</h2><article class="cl-card"><h3>例题使用方式</h3><p>先独立作答，再核对原讲义中的关键推导、公式条件与答案。</p></article></section><section id="exercises" class="cl-section" data-toc-section><h2>6. 练习题</h2><article class="cl-card"><h3>练习与解析</h3><p>原有折叠练习、完整解析与易错提示均保留在“核心知识点”区。</p></article></section><section id="mistakes" class="cl-section" data-toc-section><h2>7. 易错点</h2><aside class="cl-warning"><strong>复习提醒：</strong>先检查对象、条件、符号和变量范围；概率题还要检查事件与分布条件，离散题还要检查定义和逻辑方向。</aside></section><section id="formulas" class="cl-section" data-toc-section><h2>8. 公式速查</h2><table class="cl-table"><thead><tr><th>复习顺序</th><th>使用要求</th><th>检查项</th></tr></thead><tbody><tr><td>定义与定理</td><td>确认适用条件</td><td>对象、范围、已知条件</td></tr><tr><td>公式与计算</td><td>代入前保持符号一致</td><td>量词、集合符号、矩阵维数或概率参数</td></tr><tr><td>结论</td><td>说明结论范围</td><td>结果、逻辑方向与单位</td></tr></tbody></table></section><section id="summary" class="cl-section" data-toc-section><h2>9. 本章总结</h2><article class="cl-summary"><h3>必须记忆</h3><p>核心定义、公式和定理条件。</p><h3>必须理解</h3><p>概念间的区别与方法选择依据。</p><h3>必须会做</h3><p>原讲义中的例题、练习与综合题型。</p><h3>容易丢分</h3><p>忽略前提、符号不严谨、混淆相近概念或跳过关键步骤。</p></article></section><nav class="cl-pager" aria-label="章节切换"><a data-prev href="#"></a><a data-next href="#"></a></nav></main></div></body></html>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>概率论与数理统计：参数估计</title>
+  <link rel="stylesheet" href="assets/chapter-layout.css">
+  <script src="assets/mathjax-config.js"></script>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+
+  <script defer src="assets/chapter-layout.js"></script>
+  <link rel="stylesheet" href="assets/subject-navigation.css">
+  <script defer src="assets/subject-navigation.js"></script>
+</head>
+<body>
+  <div
+    class="cl-shell"
+    data-chapter-layout
+    data-prev-href="probability-07-statistical-basics.html"
+    data-prev-label="第 7 章：数理统计基础"
+    data-next-href="probability-09-hypothesis-testing.html"
+    data-next-label="第 9 章：假设检验"
+  >
+    <aside class="cl-sidebar">
+      <div class="cl-brand">概率论与数理统计<small>CHAPTER 8</small></div>
+      <nav aria-label="章节目录" data-toc>
+
+      </nav>
+    </aside>
+    <main class="cl-main">
+      <header class="cl-hero"><span class="cl-kicker">⭐⭐⭐ 重点复习</span>
+        <h1>第 8 章：参数估计</h1>
+        <p>点估计用统计量 \(\hat\theta\) 估计未知参数 \(\theta\)。矩估计令样本矩等于理论矩；最大似然估计选择使当前已观察样本出现可能性最大的参数值。</p>
+        <div class="cl-meta"><span>概率论与数理统计</span><span>·</span><span>概念 / 计算 / 证明与综合应用</span></div>
+      </header>
+      <section id="goals" class="cl-section" data-toc-section>
+        <h2>1. 本章复习目标</h2>
+        <article class="cl-card">
+          <h3>学习目标</h3>
+          <p>掌握定义、公式与定理条件；能使用原讲义中的真值表、矩阵、图表、分布和统计推断题完成练习。</p>
+        </article>
+      </section>
+      <section id="framework" class="cl-section" data-toc-section>
+        <h2>2. 知识框架</h2>
+        <div class="cl-grid">
+          <article class="cl-card">
+            <h3>概念与性质</h3>
+            <p>先厘清定义、条件和性质的联系。</p>
+          </article>
+          <article class="cl-card">
+            <h3>公式与应用</h3>
+            <p>再用题型模板、例题和练习完成方法迁移。</p>
+          </article>
+        </div>
+      </section>
+      <section id="concepts" class="cl-section" data-toc-section>
+        <h2>3. 核心知识点</h2>
+        <h3>原讲义内容</h3>
+        <div class="cl-legacy">
+          <div class="formula">\[L(\theta)=\prod_{i=1}^nf(x_i;\theta),\qquad\hat\theta_{\mathrm{MLE}}=\arg\max_\theta L(\theta).\]</div>
+          <table>
+            <tr>
+              <th>评价</th>
+              <th>含义</th>
+            </tr>
+            <tr>
+              <td>无偏性</td>
+              <td>\(E(\hat\theta)=\theta\)，重复抽样平均不系统偏离。</td>
+            </tr>
+            <tr>
+              <td>有效性</td>
+              <td>在同为无偏估计量中，方差较小者更有效。</td>
+            </tr>
+            <tr>
+              <td>一致性</td>
+              <td>\(\hat\theta_n\xrightarrow P\theta\)，样本量大时趋近真值。</td>
+            </tr>
+          </table>
+          <div class="example"><strong>例题 1：10 次 Bernoulli(\(p\)) 试验有 7 次成功，求 p 的矩估计与最大似然估计。</strong>
+            <p><strong>过程：</strong>样本均值为 \(7/10\)。理论一阶矩 \(E(X)=p\)，矩估计为 \(0.7\)；似然正比于 \(p^7(1-p)^3\)，令对数似然导数为零也得 \(7/10\)。</p>
+            <p><strong>答案：</strong>\(\boxed{\hat p_{\rm MOM}=\hat p_{\rm MLE}=0.7}\)。</p>
+          </div>
+          <details>
+            <summary>练习 2：指数密度 \(f(x;\lambda)=\lambda e^{-\lambda x},x>0\)，求 \(\lambda\) 的极大似然估计。</summary>
+            <p><strong>思路：</strong>先乘出似然，再对对数似然求导。</p>
+            <p><strong>过程：</strong>\(\ell(\lambda)=n\ln\lambda-\lambda\sum x_i\)，故 \(\ell'(\lambda)=n/\lambda-\sum x_i=0\)，且 \(\ell''<0\)。</p>
+            <p><strong>答案：</strong>\(\boxed{\hat\lambda=n/\sum x_i=1/\bar x}\)。</p>
+          </details>
+          <p>置信区间是随机样本产生的随机区间。95% 置信是指重复使用同一构造规则时约 95% 的区间覆盖真参数，不是参数有 95% 概率落在这次固定区间中。</p>
+          <table>
+            <tr>
+              <th>条件</th>
+              <th>\(1-\alpha\) 均值置信区间</th>
+            </tr>
+            <tr>
+              <td>正态总体或大样本，\(\sigma\) 已知</td>
+              <td>\(\bar X\pm z_{\alpha/2}\frac{\sigma}{\sqrt n}\)</td>
+            </tr>
+            <tr>
+              <td>正态总体，\(\sigma\) 未知</td>
+              <td>\(\bar X\pm t_{\alpha/2,n-1}\frac{S}{\sqrt n}\)</td>
+            </tr>
+            <tr>
+              <td>正态总体方差</td>
+              <td>\(\left[\frac{(n-1)S^2}{\chi^2_{\alpha/2,n-1}},\frac{(n-1)S^2}{\chi^2_{1-\alpha/2,n-1}}\right]\)，分位点记号以教材约定为准。</td>
+            </tr>
+          </table>
+          <details>
+            <summary>练习 3：\(\sigma=8,n=16,\bar x=52\)，求 \(\mu\) 的 95% 置信区间。</summary>
+            <p><strong>思路：</strong>方差已知，用 \(z_{0.025}=1.96\)，标准误为 \(8/\sqrt{16}=2\)。</p>
+            <p><strong>过程：</strong>\(52\pm1.96\times2=52\pm3.92\)。</p>
+            <p><strong>答案：</strong>\(\boxed{[48.08,55.92]}\)。</p>
+          </details>
+        </div>
+      </section>
+      <section id="methods" class="cl-section" data-toc-section>
+        <h2>4. 常见题型</h2>
+        <article class="cl-card">
+          <h3>方法选择</h3>
+          <p>原讲义中的判断方法、真值表、矩阵、图示、分布或统计计算流程均已完整保留在“核心知识点”区。</p>
+        </article>
+      </section>
+      <section id="examples" class="cl-section" data-toc-section>
+        <h2>5. 典型例题</h2>
+        <article class="cl-card">
+          <h3>例题使用方式</h3>
+          <p>先独立作答，再核对原讲义中的关键推导、公式条件与答案。</p>
+        </article>
+      </section>
+      <section id="exercises" class="cl-section" data-toc-section>
+        <h2>6. 练习题</h2>
+        <article class="cl-card">
+          <h3>练习与解析</h3>
+          <p>原有折叠练习、完整解析与易错提示均保留在“核心知识点”区。</p>
+        </article>
+      </section>
+      <section id="mistakes" class="cl-section" data-toc-section>
+        <h2>7. 易错点</h2>
+        <aside class="cl-warning"><strong>复习提醒：</strong>先检查对象、条件、符号和变量范围；概率题还要检查事件与分布条件，离散题还要检查定义和逻辑方向。</aside>
+      </section>
+      <section id="formulas" class="cl-section" data-toc-section>
+        <h2>8. 公式速查</h2>
+        <table class="cl-table">
+          <thead>
+            <tr>
+              <th>复习顺序</th>
+              <th>使用要求</th>
+              <th>检查项</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>定义与定理</td>
+              <td>确认适用条件</td>
+              <td>对象、范围、已知条件</td>
+            </tr>
+            <tr>
+              <td>公式与计算</td>
+              <td>代入前保持符号一致</td>
+              <td>量词、集合符号、矩阵维数或概率参数</td>
+            </tr>
+            <tr>
+              <td>结论</td>
+              <td>说明结论范围</td>
+              <td>结果、逻辑方向与单位</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section id="summary" class="cl-section" data-toc-section>
+        <h2>9. 本章总结</h2>
+        <article class="cl-summary">
+          <h3>必须记忆</h3>
+          <p>核心定义、公式和定理条件。</p>
+          <h3>必须理解</h3>
+          <p>概念间的区别与方法选择依据。</p>
+          <h3>必须会做</h3>
+          <p>原讲义中的例题、练习与综合题型。</p>
+          <h3>容易丢分</h3>
+          <p>忽略前提、符号不严谨、混淆相近概念或跳过关键步骤。</p>
+        </article>
+      </section>
+      <nav class="cl-pager" aria-label="章节切换">
+        <a data-prev href="#"></a>
+        <a data-next href="#"></a>
+      </nav>
+    </main>
+  </div>
+</body>
+</html>

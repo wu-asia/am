@@ -1,20 +1,225 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>离散数学：树</title><link rel="stylesheet" href="assets/chapter-layout.css"><script src="assets/mathjax-config.js"></script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script><script defer src="assets/chapter-layout.js"></script><link rel="stylesheet" href="assets/subject-navigation.css"><script defer src="assets/subject-navigation.js"></script></head><body><div class="cl-shell" data-chapter-layout data-prev-href="discrete-07-graph-theory.html" data-prev-label="第 7 章：图论" data-next-href="discrete-09-combinatorics.html" data-next-label="第 9 章：组合数学"><aside class="cl-sidebar"><div class="cl-brand">离散数学<small>CHAPTER 8</small></div><nav aria-label="章节目录" data-toc></nav></aside><main class="cl-main"><header class="cl-hero"><span class="cl-kicker">⭐⭐⭐ 重点复习</span><h1>第 8 章：树</h1><p><strong>无根树</strong>是连通且无回路的简单无向图。指定一个顶点为根，边按从根到叶的层次理解，得到<strong>根树</strong>；无子女的顶点是叶（叶节点），其他顶点是内部节点。</p><div class="cl-meta"><span>离散数学</span><span>·</span><span>概念 / 计算 / 证明与综合应用</span></div></header><section id="goals" class="cl-section" data-toc-section><h2>1. 本章复习目标</h2><article class="cl-card"><h3>学习目标</h3><p>掌握定义、公式与定理条件；能使用原讲义中的真值表、矩阵、图表、分布和统计推断题完成练习。</p></article></section><section id="framework" class="cl-section" data-toc-section><h2>2. 知识框架</h2><div class="cl-grid"><article class="cl-card"><h3>概念与性质</h3><p>先厘清定义、条件和性质的联系。</p></article><article class="cl-card"><h3>公式与应用</h3><p>再用题型模板、例题和练习完成方法迁移。</p></article></div></section><section id="concepts" class="cl-section" data-toc-section><h2>3. 核心知识点</h2><h3>原讲义内容</h3><div class="cl-legacy"><h3>1. 树与根树</h3><p class="intro"><strong>无根树</strong>是连通且无回路的简单无向图。指定一个顶点为根，边按从根到叶的层次理解，得到<strong>根树</strong>；无子女的顶点是叶（叶节点），其他顶点是内部节点。</p>
-<div class="formula">对有 \(n\) 个顶点的图，以下命题等价：<br>① 它是树；② 连通且有 \(n-1\) 条边；③ 无回路且有 \(n-1\) 条边；④ 任意两点之间存在且仅存在一条简单路径。</div>
-<div class="example"><strong>为什么树有 \(n-1\) 条边？</strong><p>从单个顶点开始有 \(0\) 条边。每次加入一个新顶点并保持连通且无回路，只能用一条边把它接到已有部分；加入 \(n-1\) 次后共有 \(n\) 个顶点和 \(n-1\) 条边。反过来，若连通图边多于 \(n-1\)，沿着边必会形成回路。</p></div>
-<table><tr><th>重要性质</th><th>使用方式</th></tr><tr><td>任意两点间路径唯一 ⭐⭐⭐</td><td>若有两条不同简单路径，合起来会产生回路；常用于证明与路径计数。</td></tr><tr><td>删去任一条边，树变为两个分支 ⭐⭐⭐</td><td>树中边都是桥；可用于割边、最小生成树的交换论证。</td></tr><tr><td>加入一条不在树中的边，恰产生一个回路 ⭐⭐⭐</td><td>是 Kruskal “不成环再选边”的结构依据。</td></tr><tr><td>至少有两个叶（\(n\ge2\)） ⭐⭐</td><td>可从最长简单路径的两端证明；端点若还能延伸，就与“最长”矛盾。</td></tr></table>
-<details><summary>练习 5：证明：树中任意两点之间至多存在一条简单路径。</summary><p><strong>思路：</strong>用反证法，把“两条不同简单路径”转化为“存在回路”。</p><p><strong>过程：</strong>假设顶点 \(u,v\) 间有两条不同的简单路径。从 \(u\) 沿两条路径走，在第一次分叉后又在某点相遇；这两段不同的路径首尾相同，合在一起构成回路。这与树无回路矛盾。</p><p><strong>答案：</strong>\(\boxed{\text{树中两点间简单路径唯一}}\)。连通性同时保证“至少有一条”，故为“存在且仅存在一条”。</p></details>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>离散数学：树</title>
+  <link rel="stylesheet" href="assets/chapter-layout.css">
+  <script src="assets/mathjax-config.js"></script>
 
-<h3>2. 生成树与最小生成树</h3><p>连通图 \(G\) 的<strong>生成树</strong>是包含 \(G\) 全部顶点的树：在保持连通的前提下删去足够的边，直到只剩 \(n-1\) 条。加权连通图的<strong>最小生成树</strong>（MST）是在所有生成树中边权总和最小的一棵。</p>
-<div class="compare"><div class="card"><h4>Prim 算法 ⭐⭐⭐</h4><p><strong>生长一棵树。</strong>任选起点，每步选一条连接“已选顶点集合”和“未选顶点集合”的最轻边，直到覆盖所有顶点。</p><p>适合从一个顶点逐步扩张；每一步都必须跨越当前割，不能只选全图最小边。</p></div><div class="card"><h4>Kruskal 算法 ⭐⭐⭐</h4><p><strong>合并若干分量。</strong>把全图边按权从小到大扫描；若一条边连接两个不同分量，就选它；若会成回路，就跳过。</p><p>适合边少或已排序边表；结束时恰选 \(n-1\) 条边。</p></div></div>
-<div class="diagram"><svg viewBox="0 0 520 240" role="img" aria-label="最小生成树示例">
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+
+  <script defer src="assets/chapter-layout.js"></script>
+  <link rel="stylesheet" href="assets/subject-navigation.css">
+  <script defer src="assets/subject-navigation.js"></script>
+</head>
+<body>
+  <div
+    class="cl-shell"
+    data-chapter-layout
+    data-prev-href="discrete-07-graph-theory.html"
+    data-prev-label="第 7 章：图论"
+    data-next-href="discrete-09-combinatorics.html"
+    data-next-label="第 9 章：组合数学"
+  >
+    <aside class="cl-sidebar">
+      <div class="cl-brand">离散数学<small>CHAPTER 8</small></div>
+      <nav aria-label="章节目录" data-toc>
+
+      </nav>
+    </aside>
+    <main class="cl-main">
+      <header class="cl-hero"><span class="cl-kicker">⭐⭐⭐ 重点复习</span>
+        <h1>第 8 章：树</h1>
+        <p><strong>无根树</strong>是连通且无回路的简单无向图。指定一个顶点为根，边按从根到叶的层次理解，得到<strong>根树</strong>；无子女的顶点是叶（叶节点），其他顶点是内部节点。</p>
+        <div class="cl-meta"><span>离散数学</span><span>·</span><span>概念 / 计算 / 证明与综合应用</span></div>
+      </header>
+      <section id="goals" class="cl-section" data-toc-section>
+        <h2>1. 本章复习目标</h2>
+        <article class="cl-card">
+          <h3>学习目标</h3>
+          <p>掌握定义、公式与定理条件；能使用原讲义中的真值表、矩阵、图表、分布和统计推断题完成练习。</p>
+        </article>
+      </section>
+      <section id="framework" class="cl-section" data-toc-section>
+        <h2>2. 知识框架</h2>
+        <div class="cl-grid">
+          <article class="cl-card">
+            <h3>概念与性质</h3>
+            <p>先厘清定义、条件和性质的联系。</p>
+          </article>
+          <article class="cl-card">
+            <h3>公式与应用</h3>
+            <p>再用题型模板、例题和练习完成方法迁移。</p>
+          </article>
+        </div>
+      </section>
+      <section id="concepts" class="cl-section" data-toc-section>
+        <h2>3. 核心知识点</h2>
+        <h3>原讲义内容</h3>
+        <div class="cl-legacy">
+          <h3>1. 树与根树</h3>
+          <p class="intro"><strong>无根树</strong>是连通且无回路的简单无向图。指定一个顶点为根，边按从根到叶的层次理解，得到<strong>根树</strong>；无子女的顶点是叶（叶节点），其他顶点是内部节点。</p>
+          <div class="formula">对有 \(n\) 个顶点的图，以下命题等价：<br>① 它是树；② 连通且有 \(n-1\) 条边；③ 无回路且有 \(n-1\) 条边；④ 任意两点之间存在且仅存在一条简单路径。</div>
+          <div class="example"><strong>为什么树有 \(n-1\) 条边？</strong>
+            <p>从单个顶点开始有 \(0\) 条边。每次加入一个新顶点并保持连通且无回路，只能用一条边把它接到已有部分；加入 \(n-1\) 次后共有 \(n\) 个顶点和 \(n-1\) 条边。反过来，若连通图边多于 \(n-1\)，沿着边必会形成回路。</p>
+          </div>
+          <table>
+            <tr>
+              <th>重要性质</th>
+              <th>使用方式</th>
+            </tr>
+            <tr>
+              <td>任意两点间路径唯一 ⭐⭐⭐</td>
+              <td>若有两条不同简单路径，合起来会产生回路；常用于证明与路径计数。</td>
+            </tr>
+            <tr>
+              <td>删去任一条边，树变为两个分支 ⭐⭐⭐</td>
+              <td>树中边都是桥；可用于割边、最小生成树的交换论证。</td>
+            </tr>
+            <tr>
+              <td>加入一条不在树中的边，恰产生一个回路 ⭐⭐⭐</td>
+              <td>是 Kruskal “不成环再选边”的结构依据。</td>
+            </tr>
+            <tr>
+              <td>至少有两个叶（\(n\ge2\)） ⭐⭐</td>
+              <td>可从最长简单路径的两端证明；端点若还能延伸，就与“最长”矛盾。</td>
+            </tr>
+          </table>
+          <details>
+            <summary>练习 5：证明：树中任意两点之间至多存在一条简单路径。</summary>
+            <p><strong>思路：</strong>用反证法，把“两条不同简单路径”转化为“存在回路”。</p>
+            <p><strong>过程：</strong>假设顶点 \(u,v\) 间有两条不同的简单路径。从 \(u\) 沿两条路径走，在第一次分叉后又在某点相遇；这两段不同的路径首尾相同，合在一起构成回路。这与树无回路矛盾。</p>
+            <p><strong>答案：</strong>\(\boxed{\text{树中两点间简单路径唯一}}\)。连通性同时保证“至少有一条”，故为“存在且仅存在一条”。</p>
+          </details>
+
+          <h3>2. 生成树与最小生成树</h3>
+          <p>连通图 \(G\) 的<strong>生成树</strong>是包含 \(G\) 全部顶点的树：在保持连通的前提下删去足够的边，直到只剩 \(n-1\) 条。加权连通图的<strong>最小生成树</strong>（MST）是在所有生成树中边权总和最小的一棵。</p>
+          <div class="compare">
+            <div class="card">
+              <h4>Prim 算法 ⭐⭐⭐</h4>
+              <p><strong>生长一棵树。</strong>任选起点，每步选一条连接“已选顶点集合”和“未选顶点集合”的最轻边，直到覆盖所有顶点。</p>
+              <p>适合从一个顶点逐步扩张；每一步都必须跨越当前割，不能只选全图最小边。</p>
+            </div>
+            <div class="card">
+              <h4>Kruskal 算法 ⭐⭐⭐</h4>
+              <p><strong>合并若干分量。</strong>把全图边按权从小到大扫描；若一条边连接两个不同分量，就选它；若会成回路，就跳过。</p>
+              <p>适合边少或已排序边表；结束时恰选 \(n-1\) 条边。</p>
+            </div>
+          </div>
+          <div class="diagram"><svg viewBox="0 0 520 240" role="img" aria-label="最小生成树示例">
   <line class="chosen" x1="70" y1="120" x2="180" y2="55"/><line class="edge" x1="70" y1="120" x2="200" y2="185"/><line class="chosen" x1="180" y1="55" x2="300" y2="115"/><line class="edge" x1="180" y1="55" x2="390" y2="55"/><line class="chosen" x1="300" y1="115" x2="390" y2="55"/><line class="chosen" x1="390" y1="55" x2="445" y2="165"/><line class="edge" x1="300" y1="115" x2="445" y2="165"/>
   <text class="edge-label" x="120" y="76">1</text><text class="edge-label" x="130" y="163">4</text><text class="edge-label" x="233" y="76">2</text><text class="edge-label" x="283" y="44">5</text><text class="edge-label" x="345" y="91">1</text><text class="edge-label" x="430" y="103">2</text><text class="edge-label" x="372" y="161">3</text>
   <circle class="dot" cx="70" cy="120" r="22"/><circle class="dot" cx="180" cy="55" r="22"/><circle class="dot" cx="300" cy="115" r="22"/><circle class="dot" cx="390" cy="55" r="22"/><circle class="dot" cx="445" cy="165" r="22"/>
   <text class="vertex-label" x="64" y="126">A</text><text class="vertex-label" x="174" y="61">B</text><text class="vertex-label" x="294" y="121">C</text><text class="vertex-label" x="384" y="61">D</text><text class="vertex-label" x="439" y="171">E</text>
-</svg><p class="intro">绿色粗边构成最小生成树：\(AB,BC,CD,DE\)，总权为 \(1+2+1+2=6\)。</p></div>
-<details><summary>练习 6：对上图从 \(A\) 运行 Prim，逐步写出所选边与总权。</summary><p><strong>思路：</strong>每一步只比较“已在树内”与“树外”之间的候选边。</p><p><strong>过程：</strong>起点 \(A\)：选 \(AB(1)\)；候选 \(AC(4),BC(2),BD(5)\)，选 \(BC(2)\)；候选 \(BD(5),CD(1),CE(3)\)，选 \(CD(1)\)；候选 \(CE(3),DE(2)\)，选 \(DE(2)\)。已覆盖五个顶点。</p><p><strong>答案：</strong>\(\boxed{\{AB,BC,CD,DE\}}\)，最小总权 \(\boxed{6}\)。</p><blockquote>易错点：第三步不能在所有未选边中任选最小，而必须选连接当前树与外部的边。</blockquote></details>
-<details><summary>练习 7：对上图用 Kruskal，为什么 \(CE(3)\) 不选？</summary><p><strong>思路：</strong>按权排序，并在每步判断端点是否已通过已选边连通。</p><p><strong>过程：</strong>依次选 \(AB(1),CD(1),BC(2),DE(2)\)。此时已选 \(4=n-1\) 条边，所有顶点连通，算法结束。若提前考察 \(CE(3)\)，在 \(BC,CD,DE\) 已选后，\(C\) 与 \(E\) 已连通，加入它会构成回路 \(C-D-E-C\)。</p><p><strong>答案：</strong>\(\boxed{CE(3)\text{ 不选，因为会成回路}}\)。</p></details>
+</svg>
+            <p class="intro">绿色粗边构成最小生成树：\(AB,BC,CD,DE\)，总权为 \(1+2+1+2=6\)。</p>
+          </div>
+          <details>
+            <summary>练习 6：对上图从 \(A\) 运行 Prim，逐步写出所选边与总权。</summary>
+            <p><strong>思路：</strong>每一步只比较“已在树内”与“树外”之间的候选边。</p>
+            <p><strong>过程：</strong>起点 \(A\)：选 \(AB(1)\)；候选 \(AC(4),BC(2),BD(5)\)，选 \(BC(2)\)；候选 \(BD(5),CD(1),CE(3)\)，选 \(CD(1)\)；候选 \(CE(3),DE(2)\)，选 \(DE(2)\)。已覆盖五个顶点。</p>
+            <p><strong>答案：</strong>\(\boxed{\{AB,BC,CD,DE\}}\)，最小总权 \(\boxed{6}\)。</p>
+            <blockquote>易错点：第三步不能在所有未选边中任选最小，而必须选连接当前树与外部的边。</blockquote>
+          </details>
+          <details>
+            <summary>练习 7：对上图用 Kruskal，为什么 \(CE(3)\) 不选？</summary>
+            <p><strong>思路：</strong>按权排序，并在每步判断端点是否已通过已选边连通。</p>
+            <p><strong>过程：</strong>依次选 \(AB(1),CD(1),BC(2),DE(2)\)。此时已选 \(4=n-1\) 条边，所有顶点连通，算法结束。若提前考察 \(CE(3)\)，在 \(BC,CD,DE\) 已选后，\(C\) 与 \(E\) 已连通，加入它会构成回路 \(C-D-E-C\)。</p>
+            <p><strong>答案：</strong>\(\boxed{CE(3)\text{ 不选，因为会成回路}}\)。</p>
+          </details>
 
-<h3>3. 二叉树与 Huffman 树（课程扩展）</h3><div class="grid"><div class="card"><h4>二叉树、完全二叉树 ⭐⭐</h4><p>二叉树中每个结点至多两个子女，区分左、右子树。满二叉树中每个内部结点恰有两个子女，此时叶数 \(n_0=n_2+1\)。完全二叉树的各层从上到下填满，仅最后一层可不满且从左到右连续。</p></div><div class="card"><h4>Huffman 树 ⭐⭐</h4><p>反复合并权值最小的两个结点，合并权为二者之和，直至只剩根。它给出带权路径长度最小的前缀编码树；频率高的符号倾向于离根更近。</p></div></div>
-<details><summary>练习 8：权值 \(5,7,10,15\) 构造 Huffman 树，求最小带权路径长度。</summary><p><strong>思路：</strong>每轮合并当前最小的两个权值；每次合并产生的新权重新参与比较。</p><p><strong>过程：</strong>\(5+7=12\)，再 \(10+12=22\)，最后 \(15+22=37\)。对应深度为：\(15\) 的深度 \(1\)，\(10\) 的深度 \(2\)，\(5,7\) 的深度 \(3\)。</p><p><strong>答案：</strong>\(\boxed{5\cdot3+7\cdot3+10\cdot2+15\cdot1=71}\)。</p></details>
-</div></section><section id="methods" class="cl-section" data-toc-section><h2>4. 常见题型</h2><article class="cl-card"><h3>方法选择</h3><p>原讲义中的判断方法、真值表、矩阵、图示、分布或统计计算流程均已完整保留在“核心知识点”区。</p></article></section><section id="examples" class="cl-section" data-toc-section><h2>5. 典型例题</h2><article class="cl-card"><h3>例题使用方式</h3><p>先独立作答，再核对原讲义中的关键推导、公式条件与答案。</p></article></section><section id="exercises" class="cl-section" data-toc-section><h2>6. 练习题</h2><article class="cl-card"><h3>练习与解析</h3><p>原有折叠练习、完整解析与易错提示均保留在“核心知识点”区。</p></article></section><section id="mistakes" class="cl-section" data-toc-section><h2>7. 易错点</h2><aside class="cl-warning"><strong>复习提醒：</strong>先检查对象、条件、符号和变量范围；概率题还要检查事件与分布条件，离散题还要检查定义和逻辑方向。</aside></section><section id="formulas" class="cl-section" data-toc-section><h2>8. 公式速查</h2><table class="cl-table"><thead><tr><th>复习顺序</th><th>使用要求</th><th>检查项</th></tr></thead><tbody><tr><td>定义与定理</td><td>确认适用条件</td><td>对象、范围、已知条件</td></tr><tr><td>公式与计算</td><td>代入前保持符号一致</td><td>量词、集合符号、矩阵维数或概率参数</td></tr><tr><td>结论</td><td>说明结论范围</td><td>结果、逻辑方向与单位</td></tr></tbody></table></section><section id="summary" class="cl-section" data-toc-section><h2>9. 本章总结</h2><article class="cl-summary"><h3>必须记忆</h3><p>核心定义、公式和定理条件。</p><h3>必须理解</h3><p>概念间的区别与方法选择依据。</p><h3>必须会做</h3><p>原讲义中的例题、练习与综合题型。</p><h3>容易丢分</h3><p>忽略前提、符号不严谨、混淆相近概念或跳过关键步骤。</p></article></section><nav class="cl-pager" aria-label="章节切换"><a data-prev href="#"></a><a data-next href="#"></a></nav></main></div></body></html>
+          <h3>3. 二叉树与 Huffman 树（课程扩展）</h3>
+          <div class="grid">
+            <div class="card">
+              <h4>二叉树、完全二叉树 ⭐⭐</h4>
+              <p>二叉树中每个结点至多两个子女，区分左、右子树。满二叉树中每个内部结点恰有两个子女，此时叶数 \(n_0=n_2+1\)。完全二叉树的各层从上到下填满，仅最后一层可不满且从左到右连续。</p>
+            </div>
+            <div class="card">
+              <h4>Huffman 树 ⭐⭐</h4>
+              <p>反复合并权值最小的两个结点，合并权为二者之和，直至只剩根。它给出带权路径长度最小的前缀编码树；频率高的符号倾向于离根更近。</p>
+            </div>
+          </div>
+          <details>
+            <summary>练习 8：权值 \(5,7,10,15\) 构造 Huffman 树，求最小带权路径长度。</summary>
+            <p><strong>思路：</strong>每轮合并当前最小的两个权值；每次合并产生的新权重新参与比较。</p>
+            <p><strong>过程：</strong>\(5+7=12\)，再 \(10+12=22\)，最后 \(15+22=37\)。对应深度为：\(15\) 的深度 \(1\)，\(10\) 的深度 \(2\)，\(5,7\) 的深度 \(3\)。</p>
+            <p><strong>答案：</strong>\(\boxed{5\cdot3+7\cdot3+10\cdot2+15\cdot1=71}\)。</p>
+          </details>
+        </div>
+      </section>
+      <section id="methods" class="cl-section" data-toc-section>
+        <h2>4. 常见题型</h2>
+        <article class="cl-card">
+          <h3>方法选择</h3>
+          <p>原讲义中的判断方法、真值表、矩阵、图示、分布或统计计算流程均已完整保留在“核心知识点”区。</p>
+        </article>
+      </section>
+      <section id="examples" class="cl-section" data-toc-section>
+        <h2>5. 典型例题</h2>
+        <article class="cl-card">
+          <h3>例题使用方式</h3>
+          <p>先独立作答，再核对原讲义中的关键推导、公式条件与答案。</p>
+        </article>
+      </section>
+      <section id="exercises" class="cl-section" data-toc-section>
+        <h2>6. 练习题</h2>
+        <article class="cl-card">
+          <h3>练习与解析</h3>
+          <p>原有折叠练习、完整解析与易错提示均保留在“核心知识点”区。</p>
+        </article>
+      </section>
+      <section id="mistakes" class="cl-section" data-toc-section>
+        <h2>7. 易错点</h2>
+        <aside class="cl-warning"><strong>复习提醒：</strong>先检查对象、条件、符号和变量范围；概率题还要检查事件与分布条件，离散题还要检查定义和逻辑方向。</aside>
+      </section>
+      <section id="formulas" class="cl-section" data-toc-section>
+        <h2>8. 公式速查</h2>
+        <table class="cl-table">
+          <thead>
+            <tr>
+              <th>复习顺序</th>
+              <th>使用要求</th>
+              <th>检查项</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>定义与定理</td>
+              <td>确认适用条件</td>
+              <td>对象、范围、已知条件</td>
+            </tr>
+            <tr>
+              <td>公式与计算</td>
+              <td>代入前保持符号一致</td>
+              <td>量词、集合符号、矩阵维数或概率参数</td>
+            </tr>
+            <tr>
+              <td>结论</td>
+              <td>说明结论范围</td>
+              <td>结果、逻辑方向与单位</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section id="summary" class="cl-section" data-toc-section>
+        <h2>9. 本章总结</h2>
+        <article class="cl-summary">
+          <h3>必须记忆</h3>
+          <p>核心定义、公式和定理条件。</p>
+          <h3>必须理解</h3>
+          <p>概念间的区别与方法选择依据。</p>
+          <h3>必须会做</h3>
+          <p>原讲义中的例题、练习与综合题型。</p>
+          <h3>容易丢分</h3>
+          <p>忽略前提、符号不严谨、混淆相近概念或跳过关键步骤。</p>
+        </article>
+      </section>
+      <nav class="cl-pager" aria-label="章节切换">
+        <a data-prev href="#"></a>
+        <a data-next href="#"></a>
+      </nav>
+    </main>
+  </div>
+</body>
+</html>

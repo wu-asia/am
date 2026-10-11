@@ -1,67 +1,584 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>离散数学：图论与树</title>
+
   <script src="assets/mathjax-config.js"></script>
+
+
   <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+
+
   <style>
-    :root{--ink:#16251d;--muted:#637067;--paper:#fbfaf5;--line:#dce3d7;--green:#1d6b4f;--warn:#fff8e4;--red:#b34732}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.75 "Noto Serif SC",serif}.shell{display:grid;grid-template-columns:265px 1fr;max-width:1450px;margin:auto}.side{position:sticky;top:0;height:100vh;padding:30px 20px;background:#f5f8f1;border-right:1px solid var(--line)}.brand{font:bold 21px system-ui}.brand span{display:block;color:var(--green);font-size:11px;letter-spacing:.12em;margin-top:7px}.side nav{margin-top:24px}.side a{display:block;text-decoration:none;color:var(--muted);padding:7px 8px;border-radius:7px}.side a:hover{color:var(--green);background:#e8f3e7}.main{max-width:1080px;padding:48px clamp(22px,5vw,75px) 90px}.hero{padding:30px;background:linear-gradient(125deg,#e2f1dd,#fff7d8);border:1px solid #cee1c8;border-radius:18px}.tag{display:inline-block;background:var(--green);color:white;border-radius:30px;padding:3px 10px;font:12px system-ui}.hero h1{font-size:42px;line-height:1.2;margin:14px 0}.intro{color:var(--muted)}section{margin:58px 0}.chapter{border-top:4px solid var(--green);padding-top:10px}h2{font-size:29px;margin:7px 0}h3{margin-top:30px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.card,.example{background:#fffefa;border:1px solid var(--line);border-radius:11px;padding:16px}.card h4{margin:0}.stars{color:#a66f00;font:13px system-ui}.formula,.method{background:#eef7ed;padding:13px 16px;border-radius:8px;margin:13px 0;overflow:auto}.formula{font-family:ui-monospace}table{width:100%;border-collapse:collapse;background:white;font-size:14px;margin:14px 0}th,td{border:1px solid var(--line);padding:9px;text-align:left;vertical-align:top}th{background:#eef5eb}details{background:white;border:1px solid var(--line);border-radius:9px;padding:11px 14px;margin:9px 0}summary{cursor:pointer;font-weight:bold}blockquote{margin:15px 0;padding:11px 15px;background:var(--warn);border-left:4px solid #ffd97a}ol{padding-left:1.4em}mjx-container{max-width:100%;overflow:auto}.compare{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.diagram{max-width:620px;margin:17px auto;padding:12px;background:white;border:1px solid var(--line);border-radius:10px}.diagram svg{width:100%;height:auto}.dot{fill:#f7fff6;stroke:#1d6b4f;stroke-width:2}.edge{stroke:#637067;stroke-width:2}.chosen{stroke:#1d6b4f;stroke-width:5}.edge-label{fill:#b34732;font:14px system-ui;font-weight:bold}.vertex-label{fill:#16251d;font:16px system-ui;font-weight:bold}.matrix{font-family:ui-monospace;white-space:pre;line-height:1.4;background:#fff;padding:12px;border:1px solid var(--line);border-radius:8px;overflow:auto}@media(max-width:780px){.shell{display:block}.side{position:static;height:auto}.side nav{display:flex;overflow:auto;gap:2px}.side a{white-space:nowrap}.main{padding:24px 17px}.grid,.compare{grid-template-columns:1fr}}
+    :root {
+      --ink: #16251d;
+      --muted: #637067;
+      --paper: #fbfaf5;
+      --line: #dce3d7;
+      --green: #1d6b4f;
+      --warn: #fff8e4;
+      --red: #b34732
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font: 16px/1.75 "Noto Serif SC", serif
+    }
+
+    .shell {
+      display: grid;
+      grid-template-columns: 265px 1fr;
+      max-width: 1450px;
+      margin: auto
+    }
+
+    .side {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 30px 20px;
+      background: #f5f8f1;
+      border-right: 1px solid var(--line)
+    }
+
+    .brand {
+      font: bold 21px system-ui
+    }
+
+    .brand span {
+      display: block;
+      color: var(--green);
+      font-size: 11px;
+      letter-spacing: .12em;
+      margin-top: 7px
+    }
+
+    .side nav {
+      margin-top: 24px
+    }
+
+    .side a {
+      display: block;
+      text-decoration: none;
+      color: var(--muted);
+      padding: 7px 8px;
+      border-radius: 7px
+    }
+
+    .side a:hover {
+      color: var(--green);
+      background: #e8f3e7
+    }
+
+    .main {
+      max-width: 1080px;
+      padding: 48px clamp(22px, 5vw, 75px) 90px
+    }
+
+    .hero {
+      padding: 30px;
+      background: linear-gradient(125deg, #e2f1dd, #fff7d8);
+      border: 1px solid #cee1c8;
+      border-radius: 18px
+    }
+
+    .tag {
+      display: inline-block;
+      background: var(--green);
+      color: white;
+      border-radius: 30px;
+      padding: 3px 10px;
+      font: 12px system-ui
+    }
+
+    .hero h1 {
+      font-size: 42px;
+      line-height: 1.2;
+      margin: 14px 0
+    }
+
+    .intro {
+      color: var(--muted)
+    }
+
+    section {
+      margin: 58px 0
+    }
+
+    .chapter {
+      border-top: 4px solid var(--green);
+      padding-top: 10px
+    }
+
+    h2 {
+      font-size: 29px;
+      margin: 7px 0
+    }
+
+    h3 {
+      margin-top: 30px
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 13px
+    }
+
+    .card,
+    .example {
+      background: #fffefa;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      padding: 16px
+    }
+
+    .card h4 {
+      margin: 0
+    }
+
+    .stars {
+      color: #a66f00;
+      font: 13px system-ui
+    }
+
+    .formula,
+    .method {
+      background: #eef7ed;
+      padding: 13px 16px;
+      border-radius: 8px;
+      margin: 13px 0;
+      overflow: auto
+    }
+
+    .formula {
+      font-family: ui-monospace
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      font-size: 14px;
+      margin: 14px 0
+    }
+
+    th,
+    td {
+      border: 1px solid var(--line);
+      padding: 9px;
+      text-align: left;
+      vertical-align: top
+    }
+
+    th {
+      background: #eef5eb
+    }
+
+    details {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      padding: 11px 14px;
+      margin: 9px 0
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: bold
+    }
+
+    blockquote {
+      margin: 15px 0;
+      padding: 11px 15px;
+      background: var(--warn);
+      border-left: 4px solid #ffd97a
+    }
+
+    ol {
+      padding-left: 1.4em
+    }
+
+    mjx-container {
+      max-width: 100%;
+      overflow: auto
+    }
+
+    .compare {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px
+    }
+
+    .diagram {
+      max-width: 620px;
+      margin: 17px auto;
+      padding: 12px;
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 10px
+    }
+
+    .diagram svg {
+      width: 100%;
+      height: auto
+    }
+
+    .dot {
+      fill: #f7fff6;
+      stroke: #1d6b4f;
+      stroke-width: 2
+    }
+
+    .edge {
+      stroke: #637067;
+      stroke-width: 2
+    }
+
+    .chosen {
+      stroke: #1d6b4f;
+      stroke-width: 5
+    }
+
+    .edge-label {
+      fill: #b34732;
+      font: 14px system-ui;
+      font-weight: bold
+    }
+
+    .vertex-label {
+      fill: #16251d;
+      font: 16px system-ui;
+      font-weight: bold
+    }
+
+    .matrix {
+      font-family: ui-monospace;
+      white-space: pre;
+      line-height: 1.4;
+      background: #fff;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: auto
+    }
+
+    @media(max-width:780px) {
+      .shell {
+        display: block
+      }
+
+      .side {
+        position: static;
+        height: auto
+      }
+
+      .side nav {
+        display: flex;
+        overflow: auto;
+        gap: 2px
+      }
+
+      .side a {
+        white-space: nowrap
+      }
+
+      .main {
+        padding: 24px 17px
+      }
+
+      .grid,
+      .compare {
+        grid-template-columns: 1fr
+      }
+    }
   </style>
-<link rel="stylesheet" href="assets/subject-navigation.css"><script defer src="assets/subject-navigation.js"></script></head>
-<body><div class="shell">
-<aside class="side"><div class="brand">离散数学复习<span>STAGE 05 · GRAPHS / TREES</span></div><nav>
-  <a href="discrete-math.html">离散数学首页</a><a href="discrete-logic.html">阶段 2：逻辑</a><a href="discrete-sets-relations-functions.html">阶段 3：集合、关系与函数</a><a href="discrete-algebra-boolean.html">阶段 4：代数系统与布尔代数</a><a href="#graphs">图论</a><a href="#trees">树</a><a href="#review">阶段总结</a>
-</nav></aside>
-<main class="main"><header class="hero"><span class="tag">阶段 5 · 仅两章</span><h1>图论与树</h1><p>图论用“顶点—边”刻画连接关系；树是其中结构最简洁的一类连通图。本页把判定条件、矩阵表示、算法过程与典型题型放在同一条复习路径中。</p></header>
 
-<section id="graphs" class="chapter"><span class="tag">PART 01</span><h2>图论 <span class="stars">⭐⭐⭐ 度 / 连通 / Euler / 矩阵</span></h2><h3>1. 图与基本类型</h3><p class="intro">无向图写作 \(G=(V,E)\)，其中 \(V\) 是顶点集，\(E\) 是无序顶点对构成的边集；有向图（有向网络）中的边是有序对 \((u,v)\)，方向不能忽略。</p>
-<table><tr><th>概念</th><th>定义或判断特征</th><th>考试提醒</th></tr><tr><td>简单图 ⭐⭐⭐</td><td>无环、无平行边。</td><td>“顶点相邻”通常默认在简单无向图语境下。</td></tr><tr><td>多重图 ⭐⭐</td><td>允许同一对顶点之间有平行边；有的教材还允许环。</td><td>计算度数时，每条平行边都要计数；一个环对无向度数贡献 \(2\)。</td></tr><tr><td>完全图 \(K_n\) ⭐⭐</td><td>每对不同顶点之间恰有一条边，\(|E|=\frac{n(n-1)}2\)。</td><td>不要把完全图误解为“所有顶点都有环”。</td></tr><tr><td>子图、导出子图 ⭐⭐</td><td>子图取部分顶点、部分边；对 \(S\subseteq V\)，导出子图保留 \(S\) 内原有的全部边。</td><td>题目给“由顶点集导出”时，不能随意删边。</td></tr><tr><td>补图 \(\overline G\) ⭐⭐</td><td>对简单图，保留原图顶点；不同顶点在补图相邻，当且仅当在原图不相邻。</td><td>\(G\) 与 \(\overline G\) 的边数之和为 \(\binom n2\)。</td></tr></table>
+  <link rel="stylesheet" href="assets/subject-navigation.css">
+  <script defer src="assets/subject-navigation.js"></script>
+</head>
+<body>
+  <div class="shell">
+    <aside class="side">
+      <div class="brand">离散数学复习<span>STAGE 05 · GRAPHS / TREES</span></div>
+      <nav>
 
-<h3>2. 度与握手定理</h3><p>无向图中顶点 \(v\) 的度 \(\deg(v)\) 是与它关联的边数。有向图中，入度 \(\deg^-(v)\) 数入边，出度 \(\deg^+(v)\) 数出边。</p>
-<div class="formula">\[\sum_{v\in V}\deg(v)=2|E|,\qquad \sum_{v\in V}\deg^+(v)=\sum_{v\in V}\deg^-(v)=|E|.\]</div>
-<div class="example"><strong>握手定理为什么成立？</strong><p>无向图每条边有两个端点，统计所有顶点的度时，这条边在两个端点各贡献 \(1\)，故总共恰被数两次，得到 \(2|E|\)。因此奇度顶点的个数必为偶数：若奇度顶点有奇数个，所有度数之和会是奇数，和 \(2|E|\) 矛盾。</p></div>
-<details><summary>练习 1：无向图的度数依次为 \(3,3,2,2,2\)，它有多少条边？奇度顶点数是否合理？</summary><p><strong>思路：</strong>先用握手定理求边数；再检查奇度顶点个数。</p><p><strong>过程：</strong>度数和为 \(3+3+2+2+2=12=2|E|\)，所以 \(|E|=6\)。奇度顶点有两个，确为偶数。</p><p><strong>答案：</strong>\(\boxed{|E|=6}\)，该度序列未违反握手定理。</p><blockquote>易错点：握手定理只给必要条件，度数和为偶数不自动保证一定存在这样的简单图。</blockquote></details>
+        <a href="discrete-math.html">离散数学首页</a>
+        <a href="discrete-logic.html">阶段 2：逻辑</a>
+        <a href="discrete-sets-relations-functions.html">阶段 3：集合、关系与函数</a>
+        <a href="discrete-algebra-boolean.html">阶段 4：代数系统与布尔代数</a>
+        <a href="#graphs">图论</a>
+        <a href="#trees">树</a>
+        <a href="#review">阶段总结</a>
 
-<h3>3. 通路、回路与连通性</h3><p>本页采用常见约定：<strong>通路</strong>是不重复边的顶点—边交替序列；<strong>简单通路</strong>还要求顶点不重复；首尾相同的通路为<strong>回路</strong>；除起止顶点外无重复顶点的回路为<strong>简单回路</strong>。不同教材可能把“通路”称为“迹”，作答前以题目约定为准。</p>
-<table><tr><th>概念</th><th>判断方法</th></tr><tr><td>无向图连通 ⭐⭐⭐</td><td>任意两顶点间存在通路；从任一顶点做 DFS/BFS 能访问所有顶点。</td></tr><tr><td>连通分支 ⭐⭐⭐</td><td>极大的连通子图。每个顶点恰属于一个连通分支；数分支可用多次 DFS/BFS。</td></tr><tr><td>强连通（有向图） ⭐⭐⭐</td><td>任意 \(u,v\) 都存在 \(u\leadsto v\) 与 \(v\leadsto u\) 的有向通路。只“忽略方向后连通”并不够。</td></tr></table>
-<div class="method"><strong>判连通模板：</strong><ol><li>任选未访问顶点作为起点，沿边访问所有可达顶点。</li><li>若所有顶点均被访问，无向图连通；否则已访问部分形成一个分支。</li><li>换一个未访问顶点重复，起点次数就是连通分支数。对有向图的强连通性，要同时考虑正向与反向可达。</li></ol></div>
+      </nav>
+    </aside>
+    <main class="main">
+      <header class="hero"><span class="tag">阶段 5 · 仅两章</span>
+        <h1>图论与树</h1>
+        <p>图论用“顶点—边”刻画连接关系；树是其中结构最简洁的一类连通图。本页把判定条件、矩阵表示、算法过程与典型题型放在同一条复习路径中。</p>
+      </header>
 
-<h3>4. Euler 图与 Hamilton 图</h3><div class="compare"><div class="card"><h4>Euler：研究“边” ⭐⭐⭐</h4><p>Euler 路经过每条边恰一次；Euler 回路经过每条边恰一次且回到起点。</p><p>对无向连通图：存在 Euler 回路 \(\Longleftrightarrow\) 所有顶点度均为偶数；存在 Euler 路 \(\Longleftrightarrow\) 奇度顶点恰有 \(0\) 或 \(2\) 个。</p></div><div class="card"><h4>Hamilton：研究“顶点” ⭐⭐⭐</h4><p>Hamilton 路经过每个顶点恰一次；Hamilton 回路经过每个顶点恰一次并回到起点。</p><p>没有像 Euler 条件那样简单的充要度数判据。若简单图 \(n\ge3\) 且每点度至少 \(n/2\)，Dirac 定理保证存在 Hamilton 回路，但它只是充分条件。</p></div></div>
-<p><strong>Euler 条件为何正确：</strong>走到一个中间顶点时，每次“进入”必须配一条尚未使用的“离开”边，所以中间顶点度数为偶数。若路不闭合，只有起点和终点可各多出一条未配对的边，故恰有两个奇度顶点；闭合时连起终也配对，故无奇度顶点。</p>
-<details><summary>练习 2：连通图的顶点度为 \(4,2,2,2,2\)，能否一笔画回到起点？若度为 \(3,3,2,2\) 呢？</summary><p><strong>思路：</strong>只需数奇度顶点，并先确认题目给出连通。</p><p><strong>过程：</strong>第一组全为偶数，存在 Euler 回路。第二组有两个奇度顶点，存在 Euler 路但起点、终点必须是两个奇度顶点，不能形成 Euler 回路。</p><p><strong>答案：</strong>第一组 \(\boxed{\text{可一笔回到起点}}\)；第二组 \(\boxed{\text{只能一笔走完，不能回到起点}}\)。</p></details>
-<details><summary>练习 3：为什么 \(K_{3,4}\) 没有 Hamilton 回路，却有 Hamilton 路？</summary><p><strong>思路：</strong>\(K_{3,4}\) 是二分图，任何回路必须在两个部分之间交替。</p><p><strong>过程：</strong>Hamilton 回路若经过所有 \(7\) 个顶点，交替序列回到起点时两部分使用数必须相等；但两部分大小为 \(3,4\)，矛盾。Hamilton 路可以从大小为 \(4\) 的一侧开始，也在这一侧结束，交替经过 \(4+3\) 个顶点。</p><p><strong>答案：</strong>\(\boxed{\text{无 Hamilton 回路，有 Hamilton 路}}\)。</p></details>
+      <section id="graphs" class="chapter"><span class="tag">PART 01</span>
+        <h2>图论 <span class="stars">⭐⭐⭐ 度 / 连通 / Euler / 矩阵</span></h2>
+        <h3>1. 图与基本类型</h3>
+        <p class="intro">无向图写作 \(G=(V,E)\)，其中 \(V\) 是顶点集，\(E\) 是无序顶点对构成的边集；有向图（有向网络）中的边是有序对 \((u,v)\)，方向不能忽略。</p>
+        <table>
+          <tr>
+            <th>概念</th>
+            <th>定义或判断特征</th>
+            <th>考试提醒</th>
+          </tr>
+          <tr>
+            <td>简单图 ⭐⭐⭐</td>
+            <td>无环、无平行边。</td>
+            <td>“顶点相邻”通常默认在简单无向图语境下。</td>
+          </tr>
+          <tr>
+            <td>多重图 ⭐⭐</td>
+            <td>允许同一对顶点之间有平行边；有的教材还允许环。</td>
+            <td>计算度数时，每条平行边都要计数；一个环对无向度数贡献 \(2\)。</td>
+          </tr>
+          <tr>
+            <td>完全图 \(K_n\) ⭐⭐</td>
+            <td>每对不同顶点之间恰有一条边，\(|E|=\frac{n(n-1)}2\)。</td>
+            <td>不要把完全图误解为“所有顶点都有环”。</td>
+          </tr>
+          <tr>
+            <td>子图、导出子图 ⭐⭐</td>
+            <td>子图取部分顶点、部分边；对 \(S\subseteq V\)，导出子图保留 \(S\) 内原有的全部边。</td>
+            <td>题目给“由顶点集导出”时，不能随意删边。</td>
+          </tr>
+          <tr>
+            <td>补图 \(\overline G\) ⭐⭐</td>
+            <td>对简单图，保留原图顶点；不同顶点在补图相邻，当且仅当在原图不相邻。</td>
+            <td>\(G\) 与 \(\overline G\) 的边数之和为 \(\binom n2\)。</td>
+          </tr>
+        </table>
 
-<h3>5. 平面图与矩阵表示</h3><div class="formula">连通平面图的 Euler 公式：\[\boxed{v-e+f=2}\]其中 \(v,e,f\) 分别是顶点、边、面（含外部面）数。</div>
-<p>对 \(v\ge3\) 的简单连通平面图，因每个面边界至少有三条边且每条边至多邻接两个面，得 \(e\le3v-6\)。若图违反此不等式，就不可能是平面图；满足它却不保证一定平面。</p>
-<table><tr><th>表示</th><th>构造与用途</th><th>关键性质</th></tr><tr><td>邻接矩阵 \(A\) ⭐⭐⭐</td><td>\(a_{ij}=1\) 表示 \(v_i,v_j\) 相邻；多重图可填边数。</td><td>简单无向图矩阵对称、主对角为 \(0\)；\(A^k\) 的 \((i,j)\) 项计数长度 \(k\) 的走法数。</td></tr><tr><td>关联矩阵 \(B\) ⭐⭐</td><td>行对应顶点、列对应边；无向图中一条普通边所在列有两个 \(1\)。</td><td>用来读“哪条边连接哪些顶点”；有向图常用 \(-1,1\) 分别标记起点、终点。</td></tr><tr><td>可达矩阵 \(P\) ⭐⭐⭐</td><td>\(p_{ij}=1\) 表示存在 \(v_i\leadsto v_j\) 的通路。</td><td>把长度 \(0\) 的自身可达也计入时，\(P=I\lor A\lor A^2\lor\cdots\lor A^{n-1}\)（布尔运算）；强连通时 \(P\) 全为 \(1\)。</td></tr></table>
-<details><summary>练习 4：图 \(V=\{1,2,3,4\},E=\{\{1,2\},\{1,3\},\{2,3\},\{2,4\}\}\)，写邻接矩阵。</summary><p><strong>思路：</strong>按顶点顺序 \(1,2,3,4\)，第 \(i\) 行第 \(j\) 列写 \(i,j\) 是否相邻。</p><p><strong>答案：</strong></p><div class="matrix">A = [ 0 1 1 0
+        <h3>2. 度与握手定理</h3>
+        <p>无向图中顶点 \(v\) 的度 \(\deg(v)\) 是与它关联的边数。有向图中，入度 \(\deg^-(v)\) 数入边，出度 \(\deg^+(v)\) 数出边。</p>
+        <div class="formula">\[\sum_{v\in V}\deg(v)=2|E|,\qquad \sum_{v\in V}\deg^+(v)=\sum_{v\in V}\deg^-(v)=|E|.\]</div>
+        <div class="example"><strong>握手定理为什么成立？</strong>
+          <p>无向图每条边有两个端点，统计所有顶点的度时，这条边在两个端点各贡献 \(1\)，故总共恰被数两次，得到 \(2|E|\)。因此奇度顶点的个数必为偶数：若奇度顶点有奇数个，所有度数之和会是奇数，和 \(2|E|\) 矛盾。</p>
+        </div>
+        <details>
+          <summary>练习 1：无向图的度数依次为 \(3,3,2,2,2\)，它有多少条边？奇度顶点数是否合理？</summary>
+          <p><strong>思路：</strong>先用握手定理求边数；再检查奇度顶点个数。</p>
+          <p><strong>过程：</strong>度数和为 \(3+3+2+2+2=12=2|E|\)，所以 \(|E|=6\)。奇度顶点有两个，确为偶数。</p>
+          <p><strong>答案：</strong>\(\boxed{|E|=6}\)，该度序列未违反握手定理。</p>
+          <blockquote>易错点：握手定理只给必要条件，度数和为偶数不自动保证一定存在这样的简单图。</blockquote>
+        </details>
+
+        <h3>3. 通路、回路与连通性</h3>
+        <p>本页采用常见约定：<strong>通路</strong>是不重复边的顶点—边交替序列；<strong>简单通路</strong>还要求顶点不重复；首尾相同的通路为<strong>回路</strong>；除起止顶点外无重复顶点的回路为<strong>简单回路</strong>。不同教材可能把“通路”称为“迹”，作答前以题目约定为准。</p>
+        <table>
+          <tr>
+            <th>概念</th>
+            <th>判断方法</th>
+          </tr>
+          <tr>
+            <td>无向图连通 ⭐⭐⭐</td>
+            <td>任意两顶点间存在通路；从任一顶点做 DFS/BFS 能访问所有顶点。</td>
+          </tr>
+          <tr>
+            <td>连通分支 ⭐⭐⭐</td>
+            <td>极大的连通子图。每个顶点恰属于一个连通分支；数分支可用多次 DFS/BFS。</td>
+          </tr>
+          <tr>
+            <td>强连通（有向图） ⭐⭐⭐</td>
+            <td>任意 \(u,v\) 都存在 \(u\leadsto v\) 与 \(v\leadsto u\) 的有向通路。只“忽略方向后连通”并不够。</td>
+          </tr>
+        </table>
+        <div class="method"><strong>判连通模板：</strong>
+          <ol>
+            <li>任选未访问顶点作为起点，沿边访问所有可达顶点。</li>
+            <li>若所有顶点均被访问，无向图连通；否则已访问部分形成一个分支。</li>
+            <li>换一个未访问顶点重复，起点次数就是连通分支数。对有向图的强连通性，要同时考虑正向与反向可达。</li>
+          </ol>
+        </div>
+
+        <h3>4. Euler 图与 Hamilton 图</h3>
+        <div class="compare">
+          <div class="card">
+            <h4>Euler：研究“边” ⭐⭐⭐</h4>
+            <p>Euler 路经过每条边恰一次；Euler 回路经过每条边恰一次且回到起点。</p>
+            <p>对无向连通图：存在 Euler 回路 \(\Longleftrightarrow\) 所有顶点度均为偶数；存在 Euler 路 \(\Longleftrightarrow\) 奇度顶点恰有 \(0\) 或 \(2\) 个。</p>
+          </div>
+          <div class="card">
+            <h4>Hamilton：研究“顶点” ⭐⭐⭐</h4>
+            <p>Hamilton 路经过每个顶点恰一次；Hamilton 回路经过每个顶点恰一次并回到起点。</p>
+            <p>没有像 Euler 条件那样简单的充要度数判据。若简单图 \(n\ge3\) 且每点度至少 \(n/2\)，Dirac 定理保证存在 Hamilton 回路，但它只是充分条件。</p>
+          </div>
+        </div>
+        <p><strong>Euler 条件为何正确：</strong>走到一个中间顶点时，每次“进入”必须配一条尚未使用的“离开”边，所以中间顶点度数为偶数。若路不闭合，只有起点和终点可各多出一条未配对的边，故恰有两个奇度顶点；闭合时连起终也配对，故无奇度顶点。</p>
+        <details>
+          <summary>练习 2：连通图的顶点度为 \(4,2,2,2,2\)，能否一笔画回到起点？若度为 \(3,3,2,2\) 呢？</summary>
+          <p><strong>思路：</strong>只需数奇度顶点，并先确认题目给出连通。</p>
+          <p><strong>过程：</strong>第一组全为偶数，存在 Euler 回路。第二组有两个奇度顶点，存在 Euler 路但起点、终点必须是两个奇度顶点，不能形成 Euler 回路。</p>
+          <p><strong>答案：</strong>第一组 \(\boxed{\text{可一笔回到起点}}\)；第二组 \(\boxed{\text{只能一笔走完，不能回到起点}}\)。</p>
+        </details>
+        <details>
+          <summary>练习 3：为什么 \(K_{3,4}\) 没有 Hamilton 回路，却有 Hamilton 路？</summary>
+          <p><strong>思路：</strong>\(K_{3,4}\) 是二分图，任何回路必须在两个部分之间交替。</p>
+          <p><strong>过程：</strong>Hamilton 回路若经过所有 \(7\) 个顶点，交替序列回到起点时两部分使用数必须相等；但两部分大小为 \(3,4\)，矛盾。Hamilton 路可以从大小为 \(4\) 的一侧开始，也在这一侧结束，交替经过 \(4+3\) 个顶点。</p>
+          <p><strong>答案：</strong>\(\boxed{\text{无 Hamilton 回路，有 Hamilton 路}}\)。</p>
+        </details>
+
+        <h3>5. 平面图与矩阵表示</h3>
+        <div class="formula">连通平面图的 Euler 公式：\[\boxed{v-e+f=2}\]其中 \(v,e,f\) 分别是顶点、边、面（含外部面）数。</div>
+        <p>对 \(v\ge3\) 的简单连通平面图，因每个面边界至少有三条边且每条边至多邻接两个面，得 \(e\le3v-6\)。若图违反此不等式，就不可能是平面图；满足它却不保证一定平面。</p>
+        <table>
+          <tr>
+            <th>表示</th>
+            <th>构造与用途</th>
+            <th>关键性质</th>
+          </tr>
+          <tr>
+            <td>邻接矩阵 \(A\) ⭐⭐⭐</td>
+            <td>\(a_{ij}=1\) 表示 \(v_i,v_j\) 相邻；多重图可填边数。</td>
+            <td>简单无向图矩阵对称、主对角为 \(0\)；\(A^k\) 的 \((i,j)\) 项计数长度 \(k\) 的走法数。</td>
+          </tr>
+          <tr>
+            <td>关联矩阵 \(B\) ⭐⭐</td>
+            <td>行对应顶点、列对应边；无向图中一条普通边所在列有两个 \(1\)。</td>
+            <td>用来读“哪条边连接哪些顶点”；有向图常用 \(-1,1\) 分别标记起点、终点。</td>
+          </tr>
+          <tr>
+            <td>可达矩阵 \(P\) ⭐⭐⭐</td>
+            <td>\(p_{ij}=1\) 表示存在 \(v_i\leadsto v_j\) 的通路。</td>
+            <td>把长度 \(0\) 的自身可达也计入时，\(P=I\lor A\lor A^2\lor\cdots\lor A^{n-1}\)（布尔运算）；强连通时 \(P\) 全为 \(1\)。</td>
+          </tr>
+        </table>
+        <details>
+          <summary>练习 4：图 \(V=\{1,2,3,4\},E=\{\{1,2\},\{1,3\},\{2,3\},\{2,4\}\}\)，写邻接矩阵。</summary>
+          <p><strong>思路：</strong>按顶点顺序 \(1,2,3,4\)，第 \(i\) 行第 \(j\) 列写 \(i,j\) 是否相邻。</p>
+          <p><strong>答案：</strong></p>
+          <div class="matrix">A = [ 0 1 1 0
       1 0 1 1
       1 1 0 0
-      0 1 0 0 ]</div><blockquote>易错点：无向图要同时填 \(a_{ij}\) 与 \(a_{ji}\)；简单图主对角线不填 \(1\)。</blockquote></details>
-</section>
+      0 1 0 0 ]</div>
+          <blockquote>易错点：无向图要同时填 \(a_{ij}\) 与 \(a_{ji}\)；简单图主对角线不填 \(1\)。</blockquote>
+        </details>
+      </section>
 
-<section id="trees" class="chapter"><span class="tag">PART 02</span><h2>树 <span class="stars">⭐⭐⭐ 性质 / 生成树 / 最小生成树</span></h2>
-<h3>1. 树与根树</h3><p class="intro"><strong>无根树</strong>是连通且无回路的简单无向图。指定一个顶点为根，边按从根到叶的层次理解，得到<strong>根树</strong>；无子女的顶点是叶（叶节点），其他顶点是内部节点。</p>
-<div class="formula">对有 \(n\) 个顶点的图，以下命题等价：<br>① 它是树；② 连通且有 \(n-1\) 条边；③ 无回路且有 \(n-1\) 条边；④ 任意两点之间存在且仅存在一条简单路径。</div>
-<div class="example"><strong>为什么树有 \(n-1\) 条边？</strong><p>从单个顶点开始有 \(0\) 条边。每次加入一个新顶点并保持连通且无回路，只能用一条边把它接到已有部分；加入 \(n-1\) 次后共有 \(n\) 个顶点和 \(n-1\) 条边。反过来，若连通图边多于 \(n-1\)，沿着边必会形成回路。</p></div>
-<table><tr><th>重要性质</th><th>使用方式</th></tr><tr><td>任意两点间路径唯一 ⭐⭐⭐</td><td>若有两条不同简单路径，合起来会产生回路；常用于证明与路径计数。</td></tr><tr><td>删去任一条边，树变为两个分支 ⭐⭐⭐</td><td>树中边都是桥；可用于割边、最小生成树的交换论证。</td></tr><tr><td>加入一条不在树中的边，恰产生一个回路 ⭐⭐⭐</td><td>是 Kruskal “不成环再选边”的结构依据。</td></tr><tr><td>至少有两个叶（\(n\ge2\)） ⭐⭐</td><td>可从最长简单路径的两端证明；端点若还能延伸，就与“最长”矛盾。</td></tr></table>
-<details><summary>练习 5：证明：树中任意两点之间至多存在一条简单路径。</summary><p><strong>思路：</strong>用反证法，把“两条不同简单路径”转化为“存在回路”。</p><p><strong>过程：</strong>假设顶点 \(u,v\) 间有两条不同的简单路径。从 \(u\) 沿两条路径走，在第一次分叉后又在某点相遇；这两段不同的路径首尾相同，合在一起构成回路。这与树无回路矛盾。</p><p><strong>答案：</strong>\(\boxed{\text{树中两点间简单路径唯一}}\)。连通性同时保证“至少有一条”，故为“存在且仅存在一条”。</p></details>
+      <section id="trees" class="chapter"><span class="tag">PART 02</span>
+        <h2>树 <span class="stars">⭐⭐⭐ 性质 / 生成树 / 最小生成树</span></h2>
+        <h3>1. 树与根树</h3>
+        <p class="intro"><strong>无根树</strong>是连通且无回路的简单无向图。指定一个顶点为根，边按从根到叶的层次理解，得到<strong>根树</strong>；无子女的顶点是叶（叶节点），其他顶点是内部节点。</p>
+        <div class="formula">对有 \(n\) 个顶点的图，以下命题等价：<br>① 它是树；② 连通且有 \(n-1\) 条边；③ 无回路且有 \(n-1\) 条边；④ 任意两点之间存在且仅存在一条简单路径。</div>
+        <div class="example"><strong>为什么树有 \(n-1\) 条边？</strong>
+          <p>从单个顶点开始有 \(0\) 条边。每次加入一个新顶点并保持连通且无回路，只能用一条边把它接到已有部分；加入 \(n-1\) 次后共有 \(n\) 个顶点和 \(n-1\) 条边。反过来，若连通图边多于 \(n-1\)，沿着边必会形成回路。</p>
+        </div>
+        <table>
+          <tr>
+            <th>重要性质</th>
+            <th>使用方式</th>
+          </tr>
+          <tr>
+            <td>任意两点间路径唯一 ⭐⭐⭐</td>
+            <td>若有两条不同简单路径，合起来会产生回路；常用于证明与路径计数。</td>
+          </tr>
+          <tr>
+            <td>删去任一条边，树变为两个分支 ⭐⭐⭐</td>
+            <td>树中边都是桥；可用于割边、最小生成树的交换论证。</td>
+          </tr>
+          <tr>
+            <td>加入一条不在树中的边，恰产生一个回路 ⭐⭐⭐</td>
+            <td>是 Kruskal “不成环再选边”的结构依据。</td>
+          </tr>
+          <tr>
+            <td>至少有两个叶（\(n\ge2\)） ⭐⭐</td>
+            <td>可从最长简单路径的两端证明；端点若还能延伸，就与“最长”矛盾。</td>
+          </tr>
+        </table>
+        <details>
+          <summary>练习 5：证明：树中任意两点之间至多存在一条简单路径。</summary>
+          <p><strong>思路：</strong>用反证法，把“两条不同简单路径”转化为“存在回路”。</p>
+          <p><strong>过程：</strong>假设顶点 \(u,v\) 间有两条不同的简单路径。从 \(u\) 沿两条路径走，在第一次分叉后又在某点相遇；这两段不同的路径首尾相同，合在一起构成回路。这与树无回路矛盾。</p>
+          <p><strong>答案：</strong>\(\boxed{\text{树中两点间简单路径唯一}}\)。连通性同时保证“至少有一条”，故为“存在且仅存在一条”。</p>
+        </details>
 
-<h3>2. 生成树与最小生成树</h3><p>连通图 \(G\) 的<strong>生成树</strong>是包含 \(G\) 全部顶点的树：在保持连通的前提下删去足够的边，直到只剩 \(n-1\) 条。加权连通图的<strong>最小生成树</strong>（MST）是在所有生成树中边权总和最小的一棵。</p>
-<div class="compare"><div class="card"><h4>Prim 算法 ⭐⭐⭐</h4><p><strong>生长一棵树。</strong>任选起点，每步选一条连接“已选顶点集合”和“未选顶点集合”的最轻边，直到覆盖所有顶点。</p><p>适合从一个顶点逐步扩张；每一步都必须跨越当前割，不能只选全图最小边。</p></div><div class="card"><h4>Kruskal 算法 ⭐⭐⭐</h4><p><strong>合并若干分量。</strong>把全图边按权从小到大扫描；若一条边连接两个不同分量，就选它；若会成回路，就跳过。</p><p>适合边少或已排序边表；结束时恰选 \(n-1\) 条边。</p></div></div>
-<div class="diagram"><svg viewBox="0 0 520 240" role="img" aria-label="最小生成树示例">
+        <h3>2. 生成树与最小生成树</h3>
+        <p>连通图 \(G\) 的<strong>生成树</strong>是包含 \(G\) 全部顶点的树：在保持连通的前提下删去足够的边，直到只剩 \(n-1\) 条。加权连通图的<strong>最小生成树</strong>（MST）是在所有生成树中边权总和最小的一棵。</p>
+        <div class="compare">
+          <div class="card">
+            <h4>Prim 算法 ⭐⭐⭐</h4>
+            <p><strong>生长一棵树。</strong>任选起点，每步选一条连接“已选顶点集合”和“未选顶点集合”的最轻边，直到覆盖所有顶点。</p>
+            <p>适合从一个顶点逐步扩张；每一步都必须跨越当前割，不能只选全图最小边。</p>
+          </div>
+          <div class="card">
+            <h4>Kruskal 算法 ⭐⭐⭐</h4>
+            <p><strong>合并若干分量。</strong>把全图边按权从小到大扫描；若一条边连接两个不同分量，就选它；若会成回路，就跳过。</p>
+            <p>适合边少或已排序边表；结束时恰选 \(n-1\) 条边。</p>
+          </div>
+        </div>
+        <div class="diagram"><svg viewBox="0 0 520 240" role="img" aria-label="最小生成树示例">
   <line class="chosen" x1="70" y1="120" x2="180" y2="55"/><line class="edge" x1="70" y1="120" x2="200" y2="185"/><line class="chosen" x1="180" y1="55" x2="300" y2="115"/><line class="edge" x1="180" y1="55" x2="390" y2="55"/><line class="chosen" x1="300" y1="115" x2="390" y2="55"/><line class="chosen" x1="390" y1="55" x2="445" y2="165"/><line class="edge" x1="300" y1="115" x2="445" y2="165"/>
   <text class="edge-label" x="120" y="76">1</text><text class="edge-label" x="130" y="163">4</text><text class="edge-label" x="233" y="76">2</text><text class="edge-label" x="283" y="44">5</text><text class="edge-label" x="345" y="91">1</text><text class="edge-label" x="430" y="103">2</text><text class="edge-label" x="372" y="161">3</text>
   <circle class="dot" cx="70" cy="120" r="22"/><circle class="dot" cx="180" cy="55" r="22"/><circle class="dot" cx="300" cy="115" r="22"/><circle class="dot" cx="390" cy="55" r="22"/><circle class="dot" cx="445" cy="165" r="22"/>
   <text class="vertex-label" x="64" y="126">A</text><text class="vertex-label" x="174" y="61">B</text><text class="vertex-label" x="294" y="121">C</text><text class="vertex-label" x="384" y="61">D</text><text class="vertex-label" x="439" y="171">E</text>
-</svg><p class="intro">绿色粗边构成最小生成树：\(AB,BC,CD,DE\)，总权为 \(1+2+1+2=6\)。</p></div>
-<details><summary>练习 6：对上图从 \(A\) 运行 Prim，逐步写出所选边与总权。</summary><p><strong>思路：</strong>每一步只比较“已在树内”与“树外”之间的候选边。</p><p><strong>过程：</strong>起点 \(A\)：选 \(AB(1)\)；候选 \(AC(4),BC(2),BD(5)\)，选 \(BC(2)\)；候选 \(BD(5),CD(1),CE(3)\)，选 \(CD(1)\)；候选 \(CE(3),DE(2)\)，选 \(DE(2)\)。已覆盖五个顶点。</p><p><strong>答案：</strong>\(\boxed{\{AB,BC,CD,DE\}}\)，最小总权 \(\boxed{6}\)。</p><blockquote>易错点：第三步不能在所有未选边中任选最小，而必须选连接当前树与外部的边。</blockquote></details>
-<details><summary>练习 7：对上图用 Kruskal，为什么 \(CE(3)\) 不选？</summary><p><strong>思路：</strong>按权排序，并在每步判断端点是否已通过已选边连通。</p><p><strong>过程：</strong>依次选 \(AB(1),CD(1),BC(2),DE(2)\)。此时已选 \(4=n-1\) 条边，所有顶点连通，算法结束。若提前考察 \(CE(3)\)，在 \(BC,CD,DE\) 已选后，\(C\) 与 \(E\) 已连通，加入它会构成回路 \(C-D-E-C\)。</p><p><strong>答案：</strong>\(\boxed{CE(3)\text{ 不选，因为会成回路}}\)。</p></details>
+</svg>
+          <p class="intro">绿色粗边构成最小生成树：\(AB,BC,CD,DE\)，总权为 \(1+2+1+2=6\)。</p>
+        </div>
+        <details>
+          <summary>练习 6：对上图从 \(A\) 运行 Prim，逐步写出所选边与总权。</summary>
+          <p><strong>思路：</strong>每一步只比较“已在树内”与“树外”之间的候选边。</p>
+          <p><strong>过程：</strong>起点 \(A\)：选 \(AB(1)\)；候选 \(AC(4),BC(2),BD(5)\)，选 \(BC(2)\)；候选 \(BD(5),CD(1),CE(3)\)，选 \(CD(1)\)；候选 \(CE(3),DE(2)\)，选 \(DE(2)\)。已覆盖五个顶点。</p>
+          <p><strong>答案：</strong>\(\boxed{\{AB,BC,CD,DE\}}\)，最小总权 \(\boxed{6}\)。</p>
+          <blockquote>易错点：第三步不能在所有未选边中任选最小，而必须选连接当前树与外部的边。</blockquote>
+        </details>
+        <details>
+          <summary>练习 7：对上图用 Kruskal，为什么 \(CE(3)\) 不选？</summary>
+          <p><strong>思路：</strong>按权排序，并在每步判断端点是否已通过已选边连通。</p>
+          <p><strong>过程：</strong>依次选 \(AB(1),CD(1),BC(2),DE(2)\)。此时已选 \(4=n-1\) 条边，所有顶点连通，算法结束。若提前考察 \(CE(3)\)，在 \(BC,CD,DE\) 已选后，\(C\) 与 \(E\) 已连通，加入它会构成回路 \(C-D-E-C\)。</p>
+          <p><strong>答案：</strong>\(\boxed{CE(3)\text{ 不选，因为会成回路}}\)。</p>
+        </details>
 
-<h3>3. 二叉树与 Huffman 树（课程扩展）</h3><div class="grid"><div class="card"><h4>二叉树、完全二叉树 ⭐⭐</h4><p>二叉树中每个结点至多两个子女，区分左、右子树。满二叉树中每个内部结点恰有两个子女，此时叶数 \(n_0=n_2+1\)。完全二叉树的各层从上到下填满，仅最后一层可不满且从左到右连续。</p></div><div class="card"><h4>Huffman 树 ⭐⭐</h4><p>反复合并权值最小的两个结点，合并权为二者之和，直至只剩根。它给出带权路径长度最小的前缀编码树；频率高的符号倾向于离根更近。</p></div></div>
-<details><summary>练习 8：权值 \(5,7,10,15\) 构造 Huffman 树，求最小带权路径长度。</summary><p><strong>思路：</strong>每轮合并当前最小的两个权值；每次合并产生的新权重新参与比较。</p><p><strong>过程：</strong>\(5+7=12\)，再 \(10+12=22\)，最后 \(15+22=37\)。对应深度为：\(15\) 的深度 \(1\)，\(10\) 的深度 \(2\)，\(5,7\) 的深度 \(3\)。</p><p><strong>答案：</strong>\(\boxed{5\cdot3+7\cdot3+10\cdot2+15\cdot1=71}\)。</p></details>
-</section>
+        <h3>3. 二叉树与 Huffman 树（课程扩展）</h3>
+        <div class="grid">
+          <div class="card">
+            <h4>二叉树、完全二叉树 ⭐⭐</h4>
+            <p>二叉树中每个结点至多两个子女，区分左、右子树。满二叉树中每个内部结点恰有两个子女，此时叶数 \(n_0=n_2+1\)。完全二叉树的各层从上到下填满，仅最后一层可不满且从左到右连续。</p>
+          </div>
+          <div class="card">
+            <h4>Huffman 树 ⭐⭐</h4>
+            <p>反复合并权值最小的两个结点，合并权为二者之和，直至只剩根。它给出带权路径长度最小的前缀编码树；频率高的符号倾向于离根更近。</p>
+          </div>
+        </div>
+        <details>
+          <summary>练习 8：权值 \(5,7,10,15\) 构造 Huffman 树，求最小带权路径长度。</summary>
+          <p><strong>思路：</strong>每轮合并当前最小的两个权值；每次合并产生的新权重新参与比较。</p>
+          <p><strong>过程：</strong>\(5+7=12\)，再 \(10+12=22\)，最后 \(15+22=37\)。对应深度为：\(15\) 的深度 \(1\)，\(10\) 的深度 \(2\)，\(5,7\) 的深度 \(3\)。</p>
+          <p><strong>答案：</strong>\(\boxed{5\cdot3+7\cdot3+10\cdot2+15\cdot1=71}\)。</p>
+        </details>
+      </section>
 
-<section id="review" class="chapter"><span class="tag">STAGE 05 SUMMARY</span><h2>阶段总结与高频题型</h2><table><tr><th>必须记忆</th><th>必须理解</th><th>必须会做</th></tr><tr><td>握手定理、Euler 路/回路条件、平面图 Euler 公式、树的等价刻画、\(n-1\) 条边、Prim/Kruskal 规则</td><td>Euler 看边而 Hamilton 看点；Euler 条件中连通性不可省略；树的路径唯一与无回路等价；MST 只在加权连通图中讨论</td><td>求度/入出度、数连通分支、判 Euler/Hamilton、写邻接矩阵、判平面图必要条件、求生成树与最小生成树、证明树性质</td></tr></table><blockquote>常见失分：忘记无向图一条边在度数和中贡献两次；把两个奇度顶点误判为 Euler 回路；把“弱连通”当“强连通”；邻接矩阵漏填对称位置；Kruskal 未检查回路；Prim 选了不连接当前树的边。</blockquote></section>
-</main></div></body></html>
+      <section id="review" class="chapter"><span class="tag">STAGE 05 SUMMARY</span>
+        <h2>阶段总结与高频题型</h2>
+        <table>
+          <tr>
+            <th>必须记忆</th>
+            <th>必须理解</th>
+            <th>必须会做</th>
+          </tr>
+          <tr>
+            <td>握手定理、Euler 路/回路条件、平面图 Euler 公式、树的等价刻画、\(n-1\) 条边、Prim/Kruskal 规则</td>
+            <td>Euler 看边而 Hamilton 看点；Euler 条件中连通性不可省略；树的路径唯一与无回路等价；MST 只在加权连通图中讨论</td>
+            <td>求度/入出度、数连通分支、判 Euler/Hamilton、写邻接矩阵、判平面图必要条件、求生成树与最小生成树、证明树性质</td>
+          </tr>
+        </table>
+        <blockquote>常见失分：忘记无向图一条边在度数和中贡献两次；把两个奇度顶点误判为 Euler 回路；把“弱连通”当“强连通”；邻接矩阵漏填对称位置；Kruskal 未检查回路；Prim 选了不连接当前树的边。</blockquote>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

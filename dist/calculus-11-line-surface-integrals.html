@@ -1,7 +1,167 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>高等数学：曲线积分与曲面积分</title><link rel="stylesheet" href="assets/chapter-layout.css"><script src="assets/mathjax-config.js"></script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script><script defer src="assets/chapter-layout.js"></script><link rel="stylesheet" href="assets/subject-navigation.css"><script defer src="assets/subject-navigation.js"></script></head><body><div class="cl-shell" data-chapter-layout data-prev-href="calculus-10-multiple-integrals.html" data-prev-label="第 10 章：重积分" data-next-href="calculus-12-infinite-series.html" data-next-label="第 12 章：无穷级数"><aside class="cl-sidebar"><div class="cl-brand">高等数学<small>CHAPTER 11</small></div><nav aria-label="章节目录" data-toc></nav></aside><main class="cl-main"><header class="cl-hero"><span class="cl-kicker">⭐⭐⭐ 重点复习</span><h1>第 11 章：曲线积分与曲面积分</h1><p>本章首先区分“对弧长”与“对坐标”的积分。计算前必须写清曲线方向、参数化和积分微元；平面区域上的格林公式是高频转换工具。</p><div class="cl-meta"><span>高等数学</span><span>·</span><span>概念 / 计算 / 证明与综合应用</span></div></header><section id="goals" class="cl-section" data-toc-section><h2>1. 本章复习目标</h2><article class="cl-card"><h3>学习目标</h3><p>掌握定义、公式与定理的适用条件；能从题目结构选择方法，并通过原讲义例题与练习检验掌握程度。</p></article></section><section id="framework" class="cl-section" data-toc-section><h2>2. 知识框架</h2><div class="cl-grid"><article class="cl-card"><h3>概念与性质</h3><p>由基本定义出发，梳理性质、公式和定理条件。</p></article><article class="cl-card"><h3>方法与应用</h3><p>结合解题模板、例题和练习完成从理解到计算的迁移。</p></article></div></section><section id="concepts" class="cl-section" data-toc-section><h2>3. 核心知识点</h2><h3>原讲义内容</h3><div class="cl-legacy">
-<div class="grid"><div class="card"><h4>第一类曲线积分 <span class="stars">⭐⭐</span></h4><p>\(\int_Lf\,ds\)，与方向无关，参数化后 \(ds=\sqrt{x'^2+y'^2}dt\)。</p></div><div class="card"><h4>第二类曲线积分 <span class="stars">⭐⭐⭐</span></h4><p>\(\int_LPdx+Qdy\)，与方向有关，反向时变号。</p></div><div class="card"><h4>格林公式 <span class="stars">⭐⭐⭐</span></h4><p>将正向闭曲线积分转为二重积分。</p></div><div class="card"><h4>曲面积分 <span class="stars">⭐⭐</span></h4><p>第一类与方向无关；第二类有方向，闭曲面常用高斯公式。</p></div></div>
-<div class="formula">\(\oint_{\partial D}Pdx+Qdy=\iint_D\left(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\right)dA\)</div>
-<div class="example"><strong>例题</strong><p>计算单位圆逆时针 \(\oint_L(-y\,dx+x\,dy)\)。由格林公式，\(\partial Q/\partial x-\partial P/\partial y=1-(-1)=2\)，故结果为 \(2\) 乘单位圆面积，即 \(\boxed{2\pi}\)。</p></div>
-<details><summary>练习：第二类曲线积分反向后如何变化？</summary><p>\(\boxed{\text{变为原积分的相反数}}\)。这是方向型积分，与第一类曲线积分不同。</p></details>
-<details><summary>练习：第一类曲线积分 \(\int_L1ds\) 的几何意义</summary><p>\(\boxed{L\text{ 的弧长}}\)。</p></details>
-</div></section><section id="methods" class="cl-section" data-toc-section><h2>4. 常见题型</h2><article class="cl-card"><h3>方法选择</h3><p>原讲义中对应的解题模板与判断条件已完整保留在“核心知识点”区。</p></article></section><section id="examples" class="cl-section" data-toc-section><h2>5. 典型例题</h2><article class="cl-card"><h3>例题使用方式</h3><p>先独立完成原讲义中的例题，再核对推导和公式条件。</p></article></section><section id="exercises" class="cl-section" data-toc-section><h2>6. 练习题</h2><article class="cl-card"><h3>练习与解析</h3><p>原有折叠练习、答案与解析均保留在“核心知识点”区。</p></article></section><section id="mistakes" class="cl-section" data-toc-section><h2>7. 易错点</h2><aside class="cl-warning"><strong>复习提醒：</strong>先核对题设条件、符号方向和变量范围，再代入公式；原讲义中的具体易错提示均未删减。</aside></section><section id="formulas" class="cl-section" data-toc-section><h2>8. 公式速查</h2><table class="cl-table"><thead><tr><th>复习顺序</th><th>使用要求</th><th>检查项</th></tr></thead><tbody><tr><td>定义与定理</td><td>先确认适用条件</td><td>对象、范围、已知条件</td></tr><tr><td>公式与计算</td><td>代入前保持符号一致</td><td>变量、上下标、边界或矩阵维数</td></tr><tr><td>结论</td><td>写清结果的条件或范围</td><td>数值、符号和逻辑方向</td></tr></tbody></table></section><section id="summary" class="cl-section" data-toc-section><h2>9. 本章总结</h2><article class="cl-summary"><h3>必须记忆</h3><p>定义、公式与定理条件。</p><h3>必须理解</h3><p>概念关系与方法选择依据。</p><h3>必须会做</h3><p>原讲义中的例题、练习与综合题型。</p><h3>容易丢分</h3><p>忽略条件、符号不严谨或跳过关键步骤。</p></article></section><nav class="cl-pager" aria-label="章节切换"><a data-prev href="#"></a><a data-next href="#"></a></nav></main></div></body></html>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>高等数学：曲线积分与曲面积分</title>
+  <link rel="stylesheet" href="assets/chapter-layout.css">
+  <script src="assets/mathjax-config.js"></script>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+
+  <script defer src="assets/chapter-layout.js"></script>
+  <link rel="stylesheet" href="assets/subject-navigation.css">
+  <script defer src="assets/subject-navigation.js"></script>
+</head>
+<body>
+  <div
+    class="cl-shell"
+    data-chapter-layout
+    data-prev-href="calculus-10-multiple-integrals.html"
+    data-prev-label="第 10 章：重积分"
+    data-next-href="calculus-12-infinite-series.html"
+    data-next-label="第 12 章：无穷级数"
+  >
+    <aside class="cl-sidebar">
+      <div class="cl-brand">高等数学<small>CHAPTER 11</small></div>
+      <nav aria-label="章节目录" data-toc>
+
+      </nav>
+    </aside>
+    <main class="cl-main">
+      <header class="cl-hero"><span class="cl-kicker">⭐⭐⭐ 重点复习</span>
+        <h1>第 11 章：曲线积分与曲面积分</h1>
+        <p>本章首先区分“对弧长”与“对坐标”的积分。计算前必须写清曲线方向、参数化和积分微元；平面区域上的格林公式是高频转换工具。</p>
+        <div class="cl-meta"><span>高等数学</span><span>·</span><span>概念 / 计算 / 证明与综合应用</span></div>
+      </header>
+      <section id="goals" class="cl-section" data-toc-section>
+        <h2>1. 本章复习目标</h2>
+        <article class="cl-card">
+          <h3>学习目标</h3>
+          <p>掌握定义、公式与定理的适用条件；能从题目结构选择方法，并通过原讲义例题与练习检验掌握程度。</p>
+        </article>
+      </section>
+      <section id="framework" class="cl-section" data-toc-section>
+        <h2>2. 知识框架</h2>
+        <div class="cl-grid">
+          <article class="cl-card">
+            <h3>概念与性质</h3>
+            <p>由基本定义出发，梳理性质、公式和定理条件。</p>
+          </article>
+          <article class="cl-card">
+            <h3>方法与应用</h3>
+            <p>结合解题模板、例题和练习完成从理解到计算的迁移。</p>
+          </article>
+        </div>
+      </section>
+      <section id="concepts" class="cl-section" data-toc-section>
+        <h2>3. 核心知识点</h2>
+        <h3>原讲义内容</h3>
+        <div class="cl-legacy">
+          <div class="grid">
+            <div class="card">
+              <h4>第一类曲线积分 <span class="stars">⭐⭐</span></h4>
+              <p>\(\int_Lf\,ds\)，与方向无关，参数化后 \(ds=\sqrt{x'^2+y'^2}dt\)。</p>
+            </div>
+            <div class="card">
+              <h4>第二类曲线积分 <span class="stars">⭐⭐⭐</span></h4>
+              <p>\(\int_LPdx+Qdy\)，与方向有关，反向时变号。</p>
+            </div>
+            <div class="card">
+              <h4>格林公式 <span class="stars">⭐⭐⭐</span></h4>
+              <p>将正向闭曲线积分转为二重积分。</p>
+            </div>
+            <div class="card">
+              <h4>曲面积分 <span class="stars">⭐⭐</span></h4>
+              <p>第一类与方向无关；第二类有方向，闭曲面常用高斯公式。</p>
+            </div>
+          </div>
+          <div class="formula">\(\oint_{\partial D}Pdx+Qdy=\iint_D\left(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\right)dA\)</div>
+          <div class="example"><strong>例题</strong>
+            <p>计算单位圆逆时针 \(\oint_L(-y\,dx+x\,dy)\)。由格林公式，\(\partial Q/\partial x-\partial P/\partial y=1-(-1)=2\)，故结果为 \(2\) 乘单位圆面积，即 \(\boxed{2\pi}\)。</p>
+          </div>
+          <details>
+            <summary>练习：第二类曲线积分反向后如何变化？</summary>
+            <p>\(\boxed{\text{变为原积分的相反数}}\)。这是方向型积分，与第一类曲线积分不同。</p>
+          </details>
+          <details>
+            <summary>练习：第一类曲线积分 \(\int_L1ds\) 的几何意义</summary>
+            <p>\(\boxed{L\text{ 的弧长}}\)。</p>
+          </details>
+        </div>
+      </section>
+      <section id="methods" class="cl-section" data-toc-section>
+        <h2>4. 常见题型</h2>
+        <article class="cl-card">
+          <h3>方法选择</h3>
+          <p>原讲义中对应的解题模板与判断条件已完整保留在“核心知识点”区。</p>
+        </article>
+      </section>
+      <section id="examples" class="cl-section" data-toc-section>
+        <h2>5. 典型例题</h2>
+        <article class="cl-card">
+          <h3>例题使用方式</h3>
+          <p>先独立完成原讲义中的例题，再核对推导和公式条件。</p>
+        </article>
+      </section>
+      <section id="exercises" class="cl-section" data-toc-section>
+        <h2>6. 练习题</h2>
+        <article class="cl-card">
+          <h3>练习与解析</h3>
+          <p>原有折叠练习、答案与解析均保留在“核心知识点”区。</p>
+        </article>
+      </section>
+      <section id="mistakes" class="cl-section" data-toc-section>
+        <h2>7. 易错点</h2>
+        <aside class="cl-warning"><strong>复习提醒：</strong>先核对题设条件、符号方向和变量范围，再代入公式；原讲义中的具体易错提示均未删减。</aside>
+      </section>
+      <section id="formulas" class="cl-section" data-toc-section>
+        <h2>8. 公式速查</h2>
+        <table class="cl-table">
+          <thead>
+            <tr>
+              <th>复习顺序</th>
+              <th>使用要求</th>
+              <th>检查项</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>定义与定理</td>
+              <td>先确认适用条件</td>
+              <td>对象、范围、已知条件</td>
+            </tr>
+            <tr>
+              <td>公式与计算</td>
+              <td>代入前保持符号一致</td>
+              <td>变量、上下标、边界或矩阵维数</td>
+            </tr>
+            <tr>
+              <td>结论</td>
+              <td>写清结果的条件或范围</td>
+              <td>数值、符号和逻辑方向</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section id="summary" class="cl-section" data-toc-section>
+        <h2>9. 本章总结</h2>
+        <article class="cl-summary">
+          <h3>必须记忆</h3>
+          <p>定义、公式与定理条件。</p>
+          <h3>必须理解</h3>
+          <p>概念关系与方法选择依据。</p>
+          <h3>必须会做</h3>
+          <p>原讲义中的例题、练习与综合题型。</p>
+          <h3>容易丢分</h3>
+          <p>忽略条件、符号不严谨或跳过关键步骤。</p>
+        </article>
+      </section>
+      <nav class="cl-pager" aria-label="章节切换">
+        <a data-prev href="#"></a>
+        <a data-next href="#"></a>
+      </nav>
+    </main>
+  </div>
+</body>
+</html>

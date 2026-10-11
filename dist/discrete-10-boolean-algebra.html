@@ -1,16 +1,222 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>离散数学：布尔代数</title><link rel="stylesheet" href="assets/chapter-layout.css"><script src="assets/mathjax-config.js"></script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script><script defer src="assets/chapter-layout.js"></script><link rel="stylesheet" href="assets/subject-navigation.css"><script defer src="assets/subject-navigation.js"></script></head><body><div class="cl-shell" data-chapter-layout data-prev-href="discrete-09-combinatorics.html" data-prev-label="第 9 章：组合数学" data-next-href="" data-next-label=""><aside class="cl-sidebar"><div class="cl-brand">离散数学<small>CHAPTER 10</small></div><nav aria-label="章节目录" data-toc></nav></aside><main class="cl-main"><header class="cl-hero"><span class="cl-kicker">⭐⭐⭐ 重点复习</span><h1>第 10 章：布尔代数</h1><p>布尔代数处理取值 \(0,1\) 的量。通常 \(+\) 表示“或”、相邻或 \(\cdot\) 表示“与”、上标 \( '\) 表示“非”。命题联结词和这里的运算在二值语义下对应；真值表、范式的完整基础见<a href="discrete-logic.html">阶段 2：命题逻辑</a>，本节只从“化简”角度使用它们。</p><div class="cl-meta"><span>离散数学</span><span>·</span><span>概念 / 计算 / 证明与综合应用</span></div></header><section id="goals" class="cl-section" data-toc-section><h2>1. 本章复习目标</h2><article class="cl-card"><h3>学习目标</h3><p>掌握定义、公式与定理条件；能使用原讲义中的真值表、矩阵、图表、分布和统计推断题完成练习。</p></article></section><section id="framework" class="cl-section" data-toc-section><h2>2. 知识框架</h2><div class="cl-grid"><article class="cl-card"><h3>概念与性质</h3><p>先厘清定义、条件和性质的联系。</p></article><article class="cl-card"><h3>公式与应用</h3><p>再用题型模板、例题和练习完成方法迁移。</p></article></div></section><section id="concepts" class="cl-section" data-toc-section><h2>3. 核心知识点</h2><h3>原讲义内容</h3><div class="cl-legacy">
-<h3>1. 定义、对偶与基本恒等式</h3><div class="formula">布尔代数常写作 \(\langle B,+,\cdot,',0,1\rangle\)，其中 \(B=\{0,1\}\)。<br>\(x+0=x,\;x\cdot1=x,\;x+x'=1,\;x\cdot x'=0\)。</div>
-<table><tr><th>规律</th><th>公式</th><th>使用提示</th></tr><tr><td>幂等、吸收 ⭐⭐⭐</td><td>\(x+x=x,\;xx=x;\quad x+xy=x,\;x(x+y)=x\)</td><td>看到“同一变量 + 与它相乘的项”优先尝试吸收。</td></tr><tr><td>分配 ⭐⭐⭐</td><td>\(x(y+z)=xy+xz;\quad x+yz=(x+y)(x+z)\)</td><td>第二个是布尔代数特有的对偶分配式。</td></tr><tr><td>德摩根 ⭐⭐⭐</td><td>\((x+y)'=x'y',\quad(xy)'=x'+y'\)</td><td>反演时既要逐变量取反，也要交换 \(+\) 与 \(\cdot\)。</td></tr><tr><td>对偶原理 ⭐⭐</td><td>式中互换 \(+\leftrightarrow\cdot,\;0\leftrightarrow1\)</td><td>不对变量加撇号；由真恒等式得到另一真恒等式。</td></tr></table>
-<div class="example"><strong>例 4：化简 \(F=x+xy+x'y\)。</strong><p>先用吸收律 \(x+xy=x\)，得 \(F=x+x'y\)。再用 \(a+a'b=a+b\)，令 \(a=x,b=y\)，得 \(\boxed{F=x+y}\)。这一步说明“某项含 \(x\)，另一项含 \(x'\)”常可合并，但必须具有 \(x+x'y\) 的准确结构。</p></div>
-<div class="grid"><div class="card"><h4>对偶式</h4><p>若 \(F=x+yz+0\)，其对偶为 \(\boxed{F^d=x(y+z)\cdot1=x(y+z)}\)。仅交换运算符与常量。</p></div><div class="card"><h4>反演式（补函数）</h4><p>若 \(F=x+yz\)，则 \(F'=(x+yz)'=x'(y'+z')\)。先给整体取反，再按德摩根律逐层下推。</p></div></div>
-<h3>2. 布尔函数、标准型与最小/最大项</h3><p>有 \(n\) 个变量的布尔函数是 \(f:\{0,1\}^n\to\{0,1\}\)。含全部变量、并且每个变量只出现一次（可带撇）的乘积项称<strong>最小项</strong> \(m_i\)；相应的和项称<strong>最大项</strong> \(M_i\)。函数为 \(1\) 的行取最小项之和，得主析取范式；函数为 \(0\) 的行取最大项之积，得主合取范式。</p>
-<div class="formula">以变量顺序 \(x,y,z\) 编号：\(m_i\) 把二进制 \(i\) 中的 \(1\) 写成原变量、\(0\) 写成补变量。<br>例如 \(i=5=(101)_2\)：\(m_5=xy'z\)，而 \(M_5=x'+y+z'\)。</div>
-<blockquote>注意：最大项的规则与最小项相反：二进制位为 \(0\) 时写原变量，为 \(1\) 时写补变量，才能使该最大项只在该行取 \(0\)。</blockquote>
-<h3>3. 化简的三种方法</h3><div class="compare"><div class="card"><h4>代数法</h4><p>适合式子短、可见吸收/分配/德摩根结构。优点是计算快；缺点是难保证已最简。</p></div><div class="card"><h4>真值表</h4><p>适合变量少且需确认两式等价或要求标准型。逐行可靠，但变量多时行数 \(2^n\) 增长快。</p></div><div class="card"><h4>卡诺图</h4><p>适合 \(2\sim4\) 个变量（少量课程扩展到 5）。最直观看出相邻最小项可合并。</p></div></div>
-<h3>4. 卡诺图：Gray 码、圈组与无关项</h3><p>行列使用 Gray 码，使相邻格只改变一个变量。卡诺图中圈 \(1,2,4,8,\ldots\) 格，是因为每翻倍一次，就有一个变量在圈内同时出现 \(x,x'\)，可用 \(x+x'=1\) 消去；圈越大，消去的变量越多，留下的文字越少。</p>
-<div class="kmap"><span></span><span>yz 00</span><span>01</span><span>11</span><span>10</span><span>x=0</span><span class="one">1</span><span class="one">1</span><span>0</span><span>0</span><span>x=1</span><span class="one">1</span><span class="one">1</span><span>0</span><span>0</span></div>
-<p>上图是三变量图的一组 \(4\) 格：\(y=0\) 固定，\(x,z\) 都变化，故该组对应 \(y'\)。允许边界相邻、四角相邻和重叠圈；每个值为 \(1\) 的格至少被一个圈覆盖。无关项可当作 \(0\) 或 \(1\)，只在能扩大圈、减少文字时使用，不能让其破坏原来为 \(0\) 的约束。</p>
-<details><summary>练习 3：用代数法化简 \(F=xy+x'y+xy'\)。</summary><p><strong>思路：</strong>先合并前两项中共同的 \(y\)，再检查是否存在 \(x+x'\) 的结构。</p><p><strong>过程：</strong>\(xy+x'y=y(x+x')=y\)。因此 \(F=y+xy'\)。用 \(a+bc=(a+b)(a+c)\)，得 \(F=(y+x)(y+y')=(x+y)\cdot1\)。</p><p><strong>答案：</strong>\(\boxed{F=x+y}\)。</p><blockquote>易错点：不能把 \(xy+x'y\) 误化为 \(x+x'\)；应先提取共同因子 \(y\)。</blockquote></details>
-<details><summary>练习 4：求 \(F=x+yz\) 的对偶式与反演式。</summary><p><strong>思路：</strong>对偶只替换运算和常量；反演则先对整个表达式取补并用德摩根律。</p><p><strong>过程：</strong>对偶：把外层 \(+\) 换成 \(\cdot\)，内层 \(\cdot\) 换成 \(+\)，得 \(x(y+z)\)。反演：\(F'=(x+yz)'=x'(yz)'=x'(y'+z')\)。</p><p><strong>答案：</strong>\(\boxed{F^d=x(y+z),\quad F'=x'(y'+z')}\)。</p></details>
-<details><summary>练习 5：\(F(x,y,z)=\Sigma m(0,1,4,5)\)，用卡诺图化简。</summary><p><strong>思路：</strong>按 \(xyz\) 的二进制编号填入 \(m_0,m_1,m_4,m_5\)。它们在三变量图中构成一个 \(4\) 格圈。</p><p><strong>过程：</strong>这四项分别为 \(x'y'z',x'y'z,xy'z',xy'z\)。圈内 \(x,z\) 同时变化，只有 \(y=0\) 不变，故保留 \(y'\)。</p><p><strong>答案：</strong>\(\boxed{F=y'}\)。</p><blockquote>易错点：列的顺序必须是 Gray 码 \(00,01,11,10\)，不能按普通二进制顺序画图。</blockquote></details>
-</div></section><section id="methods" class="cl-section" data-toc-section><h2>4. 常见题型</h2><article class="cl-card"><h3>方法选择</h3><p>原讲义中的判断方法、真值表、矩阵、图示、分布或统计计算流程均已完整保留在“核心知识点”区。</p></article></section><section id="examples" class="cl-section" data-toc-section><h2>5. 典型例题</h2><article class="cl-card"><h3>例题使用方式</h3><p>先独立作答，再核对原讲义中的关键推导、公式条件与答案。</p></article></section><section id="exercises" class="cl-section" data-toc-section><h2>6. 练习题</h2><article class="cl-card"><h3>练习与解析</h3><p>原有折叠练习、完整解析与易错提示均保留在“核心知识点”区。</p></article></section><section id="mistakes" class="cl-section" data-toc-section><h2>7. 易错点</h2><aside class="cl-warning"><strong>复习提醒：</strong>先检查对象、条件、符号和变量范围；概率题还要检查事件与分布条件，离散题还要检查定义和逻辑方向。</aside></section><section id="formulas" class="cl-section" data-toc-section><h2>8. 公式速查</h2><table class="cl-table"><thead><tr><th>复习顺序</th><th>使用要求</th><th>检查项</th></tr></thead><tbody><tr><td>定义与定理</td><td>确认适用条件</td><td>对象、范围、已知条件</td></tr><tr><td>公式与计算</td><td>代入前保持符号一致</td><td>量词、集合符号、矩阵维数或概率参数</td></tr><tr><td>结论</td><td>说明结论范围</td><td>结果、逻辑方向与单位</td></tr></tbody></table></section><section id="summary" class="cl-section" data-toc-section><h2>9. 本章总结</h2><article class="cl-summary"><h3>必须记忆</h3><p>核心定义、公式和定理条件。</p><h3>必须理解</h3><p>概念间的区别与方法选择依据。</p><h3>必须会做</h3><p>原讲义中的例题、练习与综合题型。</p><h3>容易丢分</h3><p>忽略前提、符号不严谨、混淆相近概念或跳过关键步骤。</p></article></section><nav class="cl-pager" aria-label="章节切换"><a data-prev href="#"></a><a data-next href="#"></a></nav></main></div></body></html>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>离散数学：布尔代数</title>
+  <link rel="stylesheet" href="assets/chapter-layout.css">
+  <script src="assets/mathjax-config.js"></script>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+
+  <script defer src="assets/chapter-layout.js"></script>
+  <link rel="stylesheet" href="assets/subject-navigation.css">
+  <script defer src="assets/subject-navigation.js"></script>
+</head>
+<body>
+  <div
+    class="cl-shell"
+    data-chapter-layout
+    data-prev-href="discrete-09-combinatorics.html"
+    data-prev-label="第 9 章：组合数学"
+    data-next-href=""
+    data-next-label=""
+  >
+    <aside class="cl-sidebar">
+      <div class="cl-brand">离散数学<small>CHAPTER 10</small></div>
+      <nav aria-label="章节目录" data-toc>
+
+      </nav>
+    </aside>
+    <main class="cl-main">
+      <header class="cl-hero"><span class="cl-kicker">⭐⭐⭐ 重点复习</span>
+        <h1>第 10 章：布尔代数</h1>
+        <p>布尔代数处理取值 \(0,1\) 的量。通常 \(+\) 表示“或”、相邻或 \(\cdot\) 表示“与”、上标 \( '\) 表示“非”。命题联结词和这里的运算在二值语义下对应；真值表、范式的完整基础见<a href="discrete-logic.html">阶段 2：命题逻辑</a>，本节只从“化简”角度使用它们。</p>
+        <div class="cl-meta"><span>离散数学</span><span>·</span><span>概念 / 计算 / 证明与综合应用</span></div>
+      </header>
+      <section id="goals" class="cl-section" data-toc-section>
+        <h2>1. 本章复习目标</h2>
+        <article class="cl-card">
+          <h3>学习目标</h3>
+          <p>掌握定义、公式与定理条件；能使用原讲义中的真值表、矩阵、图表、分布和统计推断题完成练习。</p>
+        </article>
+      </section>
+      <section id="framework" class="cl-section" data-toc-section>
+        <h2>2. 知识框架</h2>
+        <div class="cl-grid">
+          <article class="cl-card">
+            <h3>概念与性质</h3>
+            <p>先厘清定义、条件和性质的联系。</p>
+          </article>
+          <article class="cl-card">
+            <h3>公式与应用</h3>
+            <p>再用题型模板、例题和练习完成方法迁移。</p>
+          </article>
+        </div>
+      </section>
+      <section id="concepts" class="cl-section" data-toc-section>
+        <h2>3. 核心知识点</h2>
+        <h3>原讲义内容</h3>
+        <div class="cl-legacy">
+          <h3>1. 定义、对偶与基本恒等式</h3>
+          <div class="formula">布尔代数常写作 \(\langle B,+,\cdot,',0,1\rangle\)，其中 \(B=\{0,1\}\)。<br>\(x+0=x,\;x\cdot1=x,\;x+x'=1,\;x\cdot x'=0\)。</div>
+          <table>
+            <tr>
+              <th>规律</th>
+              <th>公式</th>
+              <th>使用提示</th>
+            </tr>
+            <tr>
+              <td>幂等、吸收 ⭐⭐⭐</td>
+              <td>\(x+x=x,\;xx=x;\quad x+xy=x,\;x(x+y)=x\)</td>
+              <td>看到“同一变量 + 与它相乘的项”优先尝试吸收。</td>
+            </tr>
+            <tr>
+              <td>分配 ⭐⭐⭐</td>
+              <td>\(x(y+z)=xy+xz;\quad x+yz=(x+y)(x+z)\)</td>
+              <td>第二个是布尔代数特有的对偶分配式。</td>
+            </tr>
+            <tr>
+              <td>德摩根 ⭐⭐⭐</td>
+              <td>\((x+y)'=x'y',\quad(xy)'=x'+y'\)</td>
+              <td>反演时既要逐变量取反，也要交换 \(+\) 与 \(\cdot\)。</td>
+            </tr>
+            <tr>
+              <td>对偶原理 ⭐⭐</td>
+              <td>式中互换 \(+\leftrightarrow\cdot,\;0\leftrightarrow1\)</td>
+              <td>不对变量加撇号；由真恒等式得到另一真恒等式。</td>
+            </tr>
+          </table>
+          <div class="example"><strong>例 4：化简 \(F=x+xy+x'y\)。</strong>
+            <p>先用吸收律 \(x+xy=x\)，得 \(F=x+x'y\)。再用 \(a+a'b=a+b\)，令 \(a=x,b=y\)，得 \(\boxed{F=x+y}\)。这一步说明“某项含 \(x\)，另一项含 \(x'\)”常可合并，但必须具有 \(x+x'y\) 的准确结构。</p>
+          </div>
+          <div class="grid">
+            <div class="card">
+              <h4>对偶式</h4>
+              <p>若 \(F=x+yz+0\)，其对偶为 \(\boxed{F^d=x(y+z)\cdot1=x(y+z)}\)。仅交换运算符与常量。</p>
+            </div>
+            <div class="card">
+              <h4>反演式（补函数）</h4>
+              <p>若 \(F=x+yz\)，则 \(F'=(x+yz)'=x'(y'+z')\)。先给整体取反，再按德摩根律逐层下推。</p>
+            </div>
+          </div>
+          <h3>2. 布尔函数、标准型与最小/最大项</h3>
+          <p>有 \(n\) 个变量的布尔函数是 \(f:\{0,1\}^n\to\{0,1\}\)。含全部变量、并且每个变量只出现一次（可带撇）的乘积项称<strong>最小项</strong> \(m_i\)；相应的和项称<strong>最大项</strong> \(M_i\)。函数为 \(1\) 的行取最小项之和，得主析取范式；函数为 \(0\) 的行取最大项之积，得主合取范式。</p>
+          <div class="formula">以变量顺序 \(x,y,z\) 编号：\(m_i\) 把二进制 \(i\) 中的 \(1\) 写成原变量、\(0\) 写成补变量。<br>例如 \(i=5=(101)_2\)：\(m_5=xy'z\)，而 \(M_5=x'+y+z'\)。</div>
+          <blockquote>注意：最大项的规则与最小项相反：二进制位为 \(0\) 时写原变量，为 \(1\) 时写补变量，才能使该最大项只在该行取 \(0\)。</blockquote>
+          <h3>3. 化简的三种方法</h3>
+          <div class="compare">
+            <div class="card">
+              <h4>代数法</h4>
+              <p>适合式子短、可见吸收/分配/德摩根结构。优点是计算快；缺点是难保证已最简。</p>
+            </div>
+            <div class="card">
+              <h4>真值表</h4>
+              <p>适合变量少且需确认两式等价或要求标准型。逐行可靠，但变量多时行数 \(2^n\) 增长快。</p>
+            </div>
+            <div class="card">
+              <h4>卡诺图</h4>
+              <p>适合 \(2\sim4\) 个变量（少量课程扩展到 5）。最直观看出相邻最小项可合并。</p>
+            </div>
+          </div>
+          <h3>4. 卡诺图：Gray 码、圈组与无关项</h3>
+          <p>行列使用 Gray 码，使相邻格只改变一个变量。卡诺图中圈 \(1,2,4,8,\ldots\) 格，是因为每翻倍一次，就有一个变量在圈内同时出现 \(x,x'\)，可用 \(x+x'=1\) 消去；圈越大，消去的变量越多，留下的文字越少。</p>
+          <div class="kmap"><span></span><span>yz 00</span><span>01</span><span>11</span><span>10</span><span>x=0</span><span class="one">1</span><span class="one">1</span><span>0</span><span>0</span><span>x=1</span><span class="one">1</span><span class="one">1</span><span>0</span><span>0</span></div>
+          <p>上图是三变量图的一组 \(4\) 格：\(y=0\) 固定，\(x,z\) 都变化，故该组对应 \(y'\)。允许边界相邻、四角相邻和重叠圈；每个值为 \(1\) 的格至少被一个圈覆盖。无关项可当作 \(0\) 或 \(1\)，只在能扩大圈、减少文字时使用，不能让其破坏原来为 \(0\) 的约束。</p>
+          <details>
+            <summary>练习 3：用代数法化简 \(F=xy+x'y+xy'\)。</summary>
+            <p><strong>思路：</strong>先合并前两项中共同的 \(y\)，再检查是否存在 \(x+x'\) 的结构。</p>
+            <p><strong>过程：</strong>\(xy+x'y=y(x+x')=y\)。因此 \(F=y+xy'\)。用 \(a+bc=(a+b)(a+c)\)，得 \(F=(y+x)(y+y')=(x+y)\cdot1\)。</p>
+            <p><strong>答案：</strong>\(\boxed{F=x+y}\)。</p>
+            <blockquote>易错点：不能把 \(xy+x'y\) 误化为 \(x+x'\)；应先提取共同因子 \(y\)。</blockquote>
+          </details>
+          <details>
+            <summary>练习 4：求 \(F=x+yz\) 的对偶式与反演式。</summary>
+            <p><strong>思路：</strong>对偶只替换运算和常量；反演则先对整个表达式取补并用德摩根律。</p>
+            <p><strong>过程：</strong>对偶：把外层 \(+\) 换成 \(\cdot\)，内层 \(\cdot\) 换成 \(+\)，得 \(x(y+z)\)。反演：\(F'=(x+yz)'=x'(yz)'=x'(y'+z')\)。</p>
+            <p><strong>答案：</strong>\(\boxed{F^d=x(y+z),\quad F'=x'(y'+z')}\)。</p>
+          </details>
+          <details>
+            <summary>练习 5：\(F(x,y,z)=\Sigma m(0,1,4,5)\)，用卡诺图化简。</summary>
+            <p><strong>思路：</strong>按 \(xyz\) 的二进制编号填入 \(m_0,m_1,m_4,m_5\)。它们在三变量图中构成一个 \(4\) 格圈。</p>
+            <p><strong>过程：</strong>这四项分别为 \(x'y'z',x'y'z,xy'z',xy'z\)。圈内 \(x,z\) 同时变化，只有 \(y=0\) 不变，故保留 \(y'\)。</p>
+            <p><strong>答案：</strong>\(\boxed{F=y'}\)。</p>
+            <blockquote>易错点：列的顺序必须是 Gray 码 \(00,01,11,10\)，不能按普通二进制顺序画图。</blockquote>
+          </details>
+        </div>
+      </section>
+      <section id="methods" class="cl-section" data-toc-section>
+        <h2>4. 常见题型</h2>
+        <article class="cl-card">
+          <h3>方法选择</h3>
+          <p>原讲义中的判断方法、真值表、矩阵、图示、分布或统计计算流程均已完整保留在“核心知识点”区。</p>
+        </article>
+      </section>
+      <section id="examples" class="cl-section" data-toc-section>
+        <h2>5. 典型例题</h2>
+        <article class="cl-card">
+          <h3>例题使用方式</h3>
+          <p>先独立作答，再核对原讲义中的关键推导、公式条件与答案。</p>
+        </article>
+      </section>
+      <section id="exercises" class="cl-section" data-toc-section>
+        <h2>6. 练习题</h2>
+        <article class="cl-card">
+          <h3>练习与解析</h3>
+          <p>原有折叠练习、完整解析与易错提示均保留在“核心知识点”区。</p>
+        </article>
+      </section>
+      <section id="mistakes" class="cl-section" data-toc-section>
+        <h2>7. 易错点</h2>
+        <aside class="cl-warning"><strong>复习提醒：</strong>先检查对象、条件、符号和变量范围；概率题还要检查事件与分布条件，离散题还要检查定义和逻辑方向。</aside>
+      </section>
+      <section id="formulas" class="cl-section" data-toc-section>
+        <h2>8. 公式速查</h2>
+        <table class="cl-table">
+          <thead>
+            <tr>
+              <th>复习顺序</th>
+              <th>使用要求</th>
+              <th>检查项</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>定义与定理</td>
+              <td>确认适用条件</td>
+              <td>对象、范围、已知条件</td>
+            </tr>
+            <tr>
+              <td>公式与计算</td>
+              <td>代入前保持符号一致</td>
+              <td>量词、集合符号、矩阵维数或概率参数</td>
+            </tr>
+            <tr>
+              <td>结论</td>
+              <td>说明结论范围</td>
+              <td>结果、逻辑方向与单位</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section id="summary" class="cl-section" data-toc-section>
+        <h2>9. 本章总结</h2>
+        <article class="cl-summary">
+          <h3>必须记忆</h3>
+          <p>核心定义、公式和定理条件。</p>
+          <h3>必须理解</h3>
+          <p>概念间的区别与方法选择依据。</p>
+          <h3>必须会做</h3>
+          <p>原讲义中的例题、练习与综合题型。</p>
+          <h3>容易丢分</h3>
+          <p>忽略前提、符号不严谨、混淆相近概念或跳过关键步骤。</p>
+        </article>
+      </section>
+      <nav class="cl-pager" aria-label="章节切换">
+        <a data-prev href="#"></a>
+        <a data-next href="#"></a>
+      </nav>
+    </main>
+  </div>
+</body>
+</html>

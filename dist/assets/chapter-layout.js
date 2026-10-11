@@ -1,4 +1,4 @@
-(function () {
+(function() {
   const root = document.querySelector('[data-chapter-layout]');
   if (!root) return;
 
@@ -91,7 +91,8 @@
       examples: '<article class="cl-example"><h3>例题：Laplace 求初值问题</h3><p>求 \\(y^{\\prime\\prime}+y=1\\)，\\(y(0)=0,y^{\\prime}(0)=1\\)。变换得 \\(s^2Y-1+Y=1/s\\)，所以 \\(Y=(1/s+1)/(s^2+1)\\)。分解为 \\(Y=1/[s(s^2+1)]+1/(s^2+1)\\)，逆变换得到</p><div class="cl-formula">\\[y(t)=1-\\cos t+\\sin t.\\]</div></article>',
       exercises: '<details class="cl-exercise"><summary>基础：\\(\\mathcal L\\{t\\}\\)</summary><p><strong>过程：</strong>由幂函数公式取 \\(n=1\\)。<strong>答案：</strong>\\(1/s^2\\)，\\(\\operatorname{Re}s&gt;0\\)。</p></details><details class="cl-exercise"><summary>提高：逆变换 \\(1/[s(s+1)]\\)</summary><p><strong>过程：</strong>\\(1/[s(s+1)]=1/s-1/(s+1)\\)。<strong>答案：</strong>\\(1-e^{-t}\\)。<strong>易错点：</strong>部分分式符号要回代检查。</p></details>',
       mistakes: '<aside class="cl-warning"><strong>错误做法：</strong>无条件使用终值定理。<br><strong>正确做法：</strong>先检查 \\(sF(s)\\) 的极点位置；不满足稳定条件时只能通过原函数极限判断。</aside>',
-      formula: '<tr><td>\\(\\mathcal L\\{f' + "'" + '\\}=sF-f(0^+)\\)</td><td>初值存在且变换存在</td><td>初值问题</td></tr><tr><td>\\(\\mathcal L\\{e^{at}f(t)\\}=F(s-a)\\)</td><td>收敛域相应平移</td><td>指数因子</td></tr><tr><td>\\(\\mathcal L\\{f*g\\}=FG\\)</td><td>卷积存在</td><td>卷积与逆变换</td></tr>',
+      formula: '<tr><td>\\(\\mathcal L\\{f' + "'" +
+        '\\}=sF-f(0^+)\\)</td><td>初值存在且变换存在</td><td>初值问题</td></tr><tr><td>\\(\\mathcal L\\{e^{at}f(t)\\}=F(s-a)\\)</td><td>收敛域相应平移</td><td>指数因子</td></tr><tr><td>\\(\\mathcal L\\{f*g\\}=FG\\)</td><td>卷积存在</td><td>卷积与逆变换</td></tr>',
       summary: '<article class="cl-summary"><p><strong>必须记忆：</strong>定义、微分定理、位移定理、卷积和部分分式。<br><strong>必须理解：</strong>收敛域与定理条件。<br><strong>必须会做：</strong>逆变换和二阶初值问题。<br><strong>易丢分：</strong>漏初值项、终值定理条件不足。</p></article>'
     },
     'complex-11-transform-applications.html': {
@@ -109,11 +110,13 @@
   const review = complexContent[complexPage];
   if (review) {
     const hero = root.querySelector('.cl-hero');
-      hero.querySelector('.cl-kicker').textContent = '复变函数 · ⭐⭐⭐ 高频重点';
+    hero.querySelector('.cl-kicker').textContent = '复变函数 · ⭐⭐⭐ 高频重点';
     hero.querySelector('p').textContent = review.intro;
     hero.querySelector('.cl-meta').innerHTML = '<span>概念、定理、例题与练习</span><span>·</span><span>章节内容已完善</span>';
-    root.querySelector('#goals').querySelector('.cl-card').innerHTML = '<h3>学习目标</h3><p>掌握本章定义、定理条件与判定方法；完成“概念理解 → 例题 → 练习解析 → 易错点核对”的复习闭环。</p>';
-    root.querySelector('#framework').querySelector('.cl-grid').innerHTML = '<article class="cl-card"><h3>概念与定理</h3><p>从定义出发，明确可使用结论的条件。</p></article><article class="cl-card"><h3>计算与应用</h3><p>按识别特征、选择方法、分步验算组织解题。</p></article>';
+    root.querySelector('#goals').querySelector('.cl-card').innerHTML =
+      '<h3>学习目标</h3><p>掌握本章定义、定理条件与判定方法；完成“概念理解 → 例题 → 练习解析 → 易错点核对”的复习闭环。</p>';
+    root.querySelector('#framework').querySelector('.cl-grid').innerHTML =
+      '<article class="cl-card"><h3>概念与定理</h3><p>从定义出发，明确可使用结论的条件。</p></article><article class="cl-card"><h3>计算与应用</h3><p>按识别特征、选择方法、分步验算组织解题。</p></article>';
     root.querySelector('#concepts').innerHTML = '<h2>3. 核心知识点</h2>' + review.concepts;
     root.querySelector('#methods').innerHTML = '<h2>4. 常见题型</h2>' + review.methods;
     root.querySelector('#examples').innerHTML = '<h2>5. 典型例题</h2>' + review.examples;
@@ -131,7 +134,9 @@
     if (window.MathJax && typeof window.MathJax.typesetPromise === 'function') {
       typesetComplexContent();
     } else {
-      window.addEventListener('load', typesetComplexContent, { once: true });
+      window.addEventListener('load', typesetComplexContent, {
+        once: true
+      });
     }
   }
 
@@ -149,11 +154,17 @@
 
   const prev = root.querySelector('[data-prev]');
   const next = root.querySelector('[data-next]');
-  [['prev', prev], ['next', next]].forEach(([name, link]) => {
+  [
+    ['prev', prev],
+    ['next', next]
+  ].forEach(([name, link]) => {
     if (!link) return;
     const href = root.dataset[`${name}Href`];
     const label = root.dataset[`${name}Label`];
-    if (!href || !label) { link.hidden = true; return; }
+    if (!href || !label) {
+      link.hidden = true;
+      return;
+    }
     link.href = href;
     link.textContent = `${name === 'prev' ? '← ' : ''}${label}${name === 'next' ? ' →' : ''}`;
   });

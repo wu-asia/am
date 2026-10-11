@@ -5,152 +5,277 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>高等数学：定积分</title>
   <link rel="stylesheet" href="assets/chapter-layout.css">
+
   <script src="assets/mathjax-config.js"></script>
+
+
   <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+
+
   <script defer src="assets/chapter-layout.js"></script>
-<link rel="stylesheet" href="assets/subject-navigation.css"><script defer src="assets/subject-navigation.js"></script></head>
+
+  <link rel="stylesheet" href="assets/subject-navigation.css">
+  <script defer src="assets/subject-navigation.js"></script>
+</head>
 <body>
-<div class="cl-shell" data-chapter-layout data-prev-href="calculus-05-indefinite-integrals.html" data-prev-label="第 5 章：不定积分" data-next-href="calculus-07-integral-applications.html" data-next-label="第 7 章：定积分的应用">
-  <aside class="cl-sidebar">
-    <div class="cl-brand">高等数学复习<small>CHAPTER 06 · DEFINITE INTEGRALS</small></div>
-    <nav aria-label="定积分章节目录" data-toc></nav>
-  </aside>
-  <main class="cl-main">
-    <header class="cl-hero">
-      <span class="cl-kicker">⭐⭐⭐ 高频重点</span>
-      <h1>第 6 章：定积分</h1>
-      <p>定积分描述区间上的累积量。复习时以“确认被积函数与区间 → 选择计算方法 → 正确处理端点或极限”为主线，避免只套原函数而忽略条件。</p>
-      <div class="cl-meta"><span>高等数学</span><span>·</span><span>填空题 / 计算题 / 综合题</span></div>
-    </header>
+  <div
+    class="cl-shell"
+    data-chapter-layout
+    data-prev-href="calculus-05-indefinite-integrals.html"
+    data-prev-label="第 5 章：不定积分"
+    data-next-href="calculus-07-integral-applications.html"
+    data-next-label="第 7 章：定积分的应用"
+  >
+    <aside class="cl-sidebar">
+      <div class="cl-brand">高等数学复习<small>CHAPTER 06 · DEFINITE INTEGRALS</small></div>
+      <nav aria-label="定积分章节目录" data-toc>
 
-    <section id="goals" class="cl-section" data-toc-section>
-      <h2>1. 本章复习目标</h2>
-      <div class="cl-grid">
-        <article class="cl-card"><h3>理解</h3><p>理解定积分的累积意义、可积条件、积分的线性性、区间可加性与保序性。</p></article>
-        <article class="cl-card"><h3>掌握</h3><p>掌握牛顿—莱布尼茨公式、定积分换元法、分部积分法，以及无穷区间与无界函数的反常积分。</p></article>
-        <article class="cl-card"><h3>会判断</h3><p>能识别题目是直接求积分、需要换元、需要分部积分，还是必须先改写为极限。</p></article>
-        <article class="cl-card"><h3>考试重点</h3><p>端点代入、换元后上下限、分部积分边界项，以及反常积分的收敛性是高频失分处。</p></article>
-      </div>
-    </section>
+      </nav>
+    </aside>
+    <main class="cl-main">
+      <header class="cl-hero">
+        <span class="cl-kicker">⭐⭐⭐ 高频重点</span>
+        <h1>第 6 章：定积分</h1>
+        <p>定积分描述区间上的累积量。复习时以“确认被积函数与区间 → 选择计算方法 → 正确处理端点或极限”为主线，避免只套原函数而忽略条件。</p>
+        <div class="cl-meta"><span>高等数学</span><span>·</span><span>填空题 / 计算题 / 综合题</span></div>
+      </header>
 
-    <section id="framework" class="cl-section" data-toc-section>
-      <h2>2. 知识框架</h2>
-      <div class="cl-grid">
-        <article class="cl-card"><h3>概念与性质</h3><p>定积分定义 → 可积性 → 线性性、区间可加性、保序性、估值。</p></article>
-        <article class="cl-card"><h3>计算主线</h3><p>原函数 → 牛顿—莱布尼茨 → 换元法 / 分部积分法 → 对称性。</p></article>
-        <article class="cl-card"><h3>特殊积分</h3><p>无穷区间或函数无界时，先截断，再对截断积分取极限。</p></article>
-        <article class="cl-card"><h3>应用衔接</h3><p>本章的积分计算是面积、体积、弧长与微分方程等后续问题的基础。</p></article>
-      </div>
-    </section>
+      <section id="goals" class="cl-section" data-toc-section>
+        <h2>1. 本章复习目标</h2>
+        <div class="cl-grid">
+          <article class="cl-card">
+            <h3>理解</h3>
+            <p>理解定积分的累积意义、可积条件、积分的线性性、区间可加性与保序性。</p>
+          </article>
+          <article class="cl-card">
+            <h3>掌握</h3>
+            <p>掌握牛顿—莱布尼茨公式、定积分换元法、分部积分法，以及无穷区间与无界函数的反常积分。</p>
+          </article>
+          <article class="cl-card">
+            <h3>会判断</h3>
+            <p>能识别题目是直接求积分、需要换元、需要分部积分，还是必须先改写为极限。</p>
+          </article>
+          <article class="cl-card">
+            <h3>考试重点</h3>
+            <p>端点代入、换元后上下限、分部积分边界项，以及反常积分的收敛性是高频失分处。</p>
+          </article>
+        </div>
+      </section>
 
-    <section id="concepts" class="cl-section" data-toc-section>
-      <h2>3. 核心知识点</h2>
-      <h3>定积分与牛顿—莱布尼茨公式</h3>
-      <p>若 \(f\) 在 \([a,b]\) 上连续，且 \(F'(x)=f(x)\)，则定积分可由任一原函数的端点差计算：</p>
-      <div class="cl-formula">\[\int_a^b f(x)\,dx=F(b)-F(a)=[F(x)]_a^b.\]</div>
-      <p>符号 \([F(x)]_a^b\) 的含义是“上限代入减下限代入”，不是把 \(a,b\) 同时代入后相加。定积分的值是一个数，不再含积分变量。</p>
+      <section id="framework" class="cl-section" data-toc-section>
+        <h2>2. 知识框架</h2>
+        <div class="cl-grid">
+          <article class="cl-card">
+            <h3>概念与性质</h3>
+            <p>定积分定义 → 可积性 → 线性性、区间可加性、保序性、估值。</p>
+          </article>
+          <article class="cl-card">
+            <h3>计算主线</h3>
+            <p>原函数 → 牛顿—莱布尼茨 → 换元法 / 分部积分法 → 对称性。</p>
+          </article>
+          <article class="cl-card">
+            <h3>特殊积分</h3>
+            <p>无穷区间或函数无界时，先截断，再对截断积分取极限。</p>
+          </article>
+          <article class="cl-card">
+            <h3>应用衔接</h3>
+            <p>本章的积分计算是面积、体积、弧长与微分方程等后续问题的基础。</p>
+          </article>
+        </div>
+      </section>
 
-      <h3>基本性质与对称性</h3>
-      <div class="cl-formula">\[\int_a^b(\alpha f+\beta g)\,dx=\alpha\int_a^b f\,dx+\beta\int_a^b g\,dx,\qquad \int_a^b f\,dx=\int_a^c f\,dx+\int_c^b f\,dx.\]</div>
-      <div class="cl-formula">\[\int_a^b f(x)\,dx=-\int_b^a f(x)\,dx,\qquad \int_{-a}^{a}f(x)\,dx=\begin{cases}0,&f\text{ 为奇函数},\\2\int_0^a f(x)\,dx,&f\text{ 为偶函数}.\end{cases}\]</div>
-      <aside class="cl-warning"><strong>判断方法：</strong>积分区间关于原点对称，且题目出现 \(f(-x)=\pm f(x)\) 时，优先检查奇偶性；区间不对称时不能直接使用该结论。</aside>
+      <section id="concepts" class="cl-section" data-toc-section>
+        <h2>3. 核心知识点</h2>
+        <h3>定积分与牛顿—莱布尼茨公式</h3>
+        <p>若 \(f\) 在 \([a,b]\) 上连续，且 \(F'(x)=f(x)\)，则定积分可由任一原函数的端点差计算：</p>
+        <div class="cl-formula">\[\int_a^b f(x)\,dx=F(b)-F(a)=[F(x)]_a^b.\]</div>
+        <p>符号 \([F(x)]_a^b\) 的含义是“上限代入减下限代入”，不是把 \(a,b\) 同时代入后相加。定积分的值是一个数，不再含积分变量。</p>
 
-      <h3>定积分换元法与分部积分法</h3>
-      <div class="cl-formula">\[\int_a^b f(\varphi(x))\varphi'(x)\,dx=\int_{\varphi(a)}^{\varphi(b)}f(u)\,du.\]</div>
-      <p>换元后有两种规范写法：要么同时把上下限改为 \(u\) 的上下限并全程使用 \(u\)；要么换回 \(x\) 后再代入原上下限。二者不能混用。</p>
-      <div class="cl-formula">\[\int_a^b u\,dv=[uv]_a^b-\int_a^b v\,du.\]</div>
-      <p>分部积分的边界项 \([uv]_a^b\) 必须保留。含 \(\ln x\)、反三角函数、或“多项式 × 指数/三角函数”的乘积时，常考虑分部积分。</p>
+        <h3>基本性质与对称性</h3>
+        <div class="cl-formula">\[\int_a^b(\alpha f+\beta g)\,dx=\alpha\int_a^b f\,dx+\beta\int_a^b g\,dx,\qquad \int_a^b f\,dx=\int_a^c f\,dx+\int_c^b f\,dx.\]</div>
+        <div class="cl-formula">\[\int_a^b f(x)\,dx=-\int_b^a f(x)\,dx,\qquad \int_{-a}^{a}f(x)\,dx=\begin{cases}0,&f\text{ 为奇函数},\\2\int_0^a f(x)\,dx,&f\text{ 为偶函数}.\end{cases}\]</div>
+        <aside class="cl-warning"><strong>判断方法：</strong>积分区间关于原点对称，且题目出现 \(f(-x)=\pm f(x)\) 时，优先检查奇偶性；区间不对称时不能直接使用该结论。</aside>
 
-      <h3>反常积分</h3>
-      <p>积分区间无穷或被积函数在区间内无界时，普通定积分定义不直接适用，必须按端点或瑕点拆成极限。</p>
-      <div class="cl-formula">\[\int_1^{+\infty}f(x)\,dx=\lim_{R\to+\infty}\int_1^R f(x)\,dx,\qquad \int_a^b f(x)\,dx=\lim_{\varepsilon\to0^+}\int_{a+\varepsilon}^{b}f(x)\,dx.\]</div>
-      <p>相应极限存在且有限时称积分收敛；极限不存在或为无穷大时称发散。常用判别基准为：</p>
-      <div class="cl-formula">\[\int_1^{+\infty}\frac{1}{x^p}\,dx\text{ 当且仅当 }p>1\text{ 收敛},\qquad \int_0^1\frac{1}{x^p}\,dx\text{ 当且仅当 }p<1\text{ 收敛}.\]</div>
-    </section>
+        <h3>定积分换元法与分部积分法</h3>
+        <div class="cl-formula">\[\int_a^b f(\varphi(x))\varphi'(x)\,dx=\int_{\varphi(a)}^{\varphi(b)}f(u)\,du.\]</div>
+        <p>换元后有两种规范写法：要么同时把上下限改为 \(u\) 的上下限并全程使用 \(u\)；要么换回 \(x\) 后再代入原上下限。二者不能混用。</p>
+        <div class="cl-formula">\[\int_a^b u\,dv=[uv]_a^b-\int_a^b v\,du.\]</div>
+        <p>分部积分的边界项 \([uv]_a^b\) 必须保留。含 \(\ln x\)、反三角函数、或“多项式 × 指数/三角函数”的乘积时，常考虑分部积分。</p>
 
-    <section id="methods" class="cl-section" data-toc-section>
-      <h2>4. 常见题型</h2>
-      <h3>题型一：直接计算与区间拆分</h3>
-      <ol><li>先检查被积函数在区间内是否连续或可积。</li><li>求一个原函数 \(F\)。</li><li>严格按 \(F(b)-F(a)\) 计算；分段函数按分段点拆开。</li></ol>
-      <h3>题型二：定积分换元</h3>
-      <ol><li>识别复合结构 \(f(\varphi(x))\varphi'(x)\)。</li><li>令 \(u=\varphi(x)\)，计算 \(du\) 并同步改变上下限。</li><li>用新变量完成积分；不再把旧变量的端点直接代入。</li></ol>
-      <h3>题型三：分部积分</h3>
-      <ol><li>选择 \(u\) 与 \(dv\)：通常令求导会简化的部分为 \(u\)。</li><li>写出 \(du\)、\(v\)，再代入 \([uv]_a^b-\int_a^b v\,du\)。</li><li>先计算边界项，再处理剩余积分。</li></ol>
-      <h3>题型四：反常积分收敛性</h3>
-      <ol><li>找出无穷端点或无界点；若在内部无界，先在该点处分开。</li><li>写成截断积分的极限。</li><li>计算极限或与 \(p\)-积分比较，最后明确写“收敛”或“发散”。</li></ol>
-    </section>
+        <h3>反常积分</h3>
+        <p>积分区间无穷或被积函数在区间内无界时，普通定积分定义不直接适用，必须按端点或瑕点拆成极限。</p>
+        <div class="cl-formula">\[\int_1^{+\infty}f(x)\,dx=\lim_{R\to+\infty}\int_1^R f(x)\,dx,\qquad \int_a^b f(x)\,dx=\lim_{\varepsilon\to0^+}\int_{a+\varepsilon}^{b}f(x)\,dx.\]</div>
+        <p>相应极限存在且有限时称积分收敛；极限不存在或为无穷大时称发散。常用判别基准为：</p>
+        <div class="cl-formula">\[\int_1^{+\infty}\frac{1}{x^p}\,dx\text{ 当且仅当 }p>1\text{ 收敛},\qquad \int_0^1\frac{1}{x^p}\,dx\text{ 当且仅当 }p<1\text{ 收敛}.\]</div>
+      </section>
 
-    <section id="examples" class="cl-section" data-toc-section>
-      <h2>5. 典型例题</h2>
-      <article class="cl-example">
-        <h3>例题 1：牛顿—莱布尼茨公式</h3>
-        <p><strong>题目：</strong>计算 \(\int_0^1(3x^2+2x+1)\,dx\)。</p>
-        <p><strong>思路：</strong>被积函数是多项式，在闭区间上连续，直接寻找原函数。</p>
-        <p><strong>解答：</strong>取 \(F(x)=x^3+x^2+x\)，所以 \(\int_0^1(3x^2+2x+1)\,dx=[x^3+x^2+x]_0^1=3-0\)。</p>
-        <p><strong>答案：</strong>\(\boxed{3}\)。</p>
-      </article>
-      <article class="cl-example">
-        <h3>例题 2：定积分换元</h3>
-        <p><strong>题目：</strong>计算 \(\int_0^1 2xe^{x^2}\,dx\)。</p>
-        <p><strong>思路：</strong>\(e^{x^2}\) 的内层为 \(x^2\)，其导数 \(2x\) 恰好存在，使用换元。</p>
-        <p><strong>解答：</strong>令 \(u=x^2\)，则 \(du=2x\,dx\)。当 \(x=0\) 时 \(u=0\)，当 \(x=1\) 时 \(u=1\)。故积分为 \(\int_0^1e^u\,du=[e^u]_0^1\)。</p>
-        <p><strong>答案：</strong>\(\boxed{e-1}\)。</p>
-      </article>
-      <article class="cl-example">
-        <h3>例题 3：无穷区间上的反常积分</h3>
-        <p><strong>题目：</strong>判断并计算 \(\int_1^{+\infty}\frac1{x^2}\,dx\)。</p>
-        <p><strong>思路：</strong>上限为无穷，不能直接代入；先截断到 \(R\)，再令 \(R\to+\infty\)。</p>
-        <p><strong>解答：</strong>\(\int_1^{+\infty}x^{-2}\,dx=\lim_{R\to+\infty}[-x^{-1}]_1^R=\lim_{R\to+\infty}(1-\frac1R)\)。</p>
-        <p><strong>答案：</strong>\(\boxed{1}\)，且积分收敛。</p>
-      </article>
-    </section>
+      <section id="methods" class="cl-section" data-toc-section>
+        <h2>4. 常见题型</h2>
+        <h3>题型一：直接计算与区间拆分</h3>
+        <ol>
+          <li>先检查被积函数在区间内是否连续或可积。</li>
+          <li>求一个原函数 \(F\)。</li>
+          <li>严格按 \(F(b)-F(a)\) 计算；分段函数按分段点拆开。</li>
+        </ol>
+        <h3>题型二：定积分换元</h3>
+        <ol>
+          <li>识别复合结构 \(f(\varphi(x))\varphi'(x)\)。</li>
+          <li>令 \(u=\varphi(x)\)，计算 \(du\) 并同步改变上下限。</li>
+          <li>用新变量完成积分；不再把旧变量的端点直接代入。</li>
+        </ol>
+        <h3>题型三：分部积分</h3>
+        <ol>
+          <li>选择 \(u\) 与 \(dv\)：通常令求导会简化的部分为 \(u\)。</li>
+          <li>写出 \(du\)、\(v\)，再代入 \([uv]_a^b-\int_a^b v\,du\)。</li>
+          <li>先计算边界项，再处理剩余积分。</li>
+        </ol>
+        <h3>题型四：反常积分收敛性</h3>
+        <ol>
+          <li>找出无穷端点或无界点；若在内部无界，先在该点处分开。</li>
+          <li>写成截断积分的极限。</li>
+          <li>计算极限或与 \(p\)-积分比较，最后明确写“收敛”或“发散”。</li>
+        </ol>
+      </section>
 
-    <section id="exercises" class="cl-section" data-toc-section>
-      <h2>6. 练习题</h2>
-      <h3>基础题</h3>
-      <details class="cl-exercise"><summary>1. 计算 \(\int_0^{\pi/2}\sin x\,dx\)。</summary><p><strong>思路：</strong>直接使用原函数 \(-\cos x\)。</p><p><strong>步骤：</strong>\([-\cos x]_0^{\pi/2}=-\cos\frac{\pi}{2}-(-\cos0)=0+1\)。</p><p><strong>答案：</strong>\(\boxed{1}\)。</p><p><strong>易错点：</strong>端点相减时不可把下限项的负号遗漏。</p></details>
-      <details class="cl-exercise"><summary>2. 利用奇偶性计算 \(\int_{-2}^{2}(x^3+x^2)\,dx\)。</summary><p><strong>思路：</strong>\(x^3\) 为奇函数，\(x^2\) 为偶函数，区间关于原点对称。</p><p><strong>步骤：</strong>\(\int_{-2}^{2}x^3dx=0\)，\(\int_{-2}^{2}x^2dx=2\int_0^2x^2dx=2\cdot\frac83\)。</p><p><strong>答案：</strong>\(\boxed{\frac{16}{3}}\)。</p><p><strong>易错点：</strong>奇偶性不能在非对称区间上直接使用。</p></details>
-      <h3>提高题</h3>
-      <details class="cl-exercise"><summary>3. 计算 \(\int_0^1x\ln x\,dx\)。</summary><p><strong>思路：</strong>乘积中含 \(\ln x\)，取 \(u=\ln x,dv=x\,dx\)；下端点处须按极限处理。</p><p><strong>步骤：</strong>先在 \([\varepsilon,1]\) 上分部积分：\(\int_\varepsilon^1x\ln xdx=[\frac{x^2}{2}\ln x]_\varepsilon^1-\frac12\int_\varepsilon^1x\,dx\)。当 \(\varepsilon\to0^+\) 时 \(\varepsilon^2\ln\varepsilon\to0\)，其余部分趋于 \(-\frac14\)。</p><p><strong>答案：</strong>\(\boxed{-\frac14}\)。</p><p><strong>易错点：</strong>\(\ln x\) 在 0 处无定义，不能直接把 0 代入边界项。</p></details>
-      <h3>综合题</h3>
-      <details class="cl-exercise"><summary>4. 判断 \(\int_1^{+\infty}\frac1x\,dx\) 是否收敛。</summary><p><strong>思路：</strong>将无穷上限改写为极限，并比较 \(p\)-积分条件。</p><p><strong>步骤：</strong>\(\int_1^{+\infty}\frac1xdx=\lim_{R\to+\infty}\int_1^R\frac1xdx=\lim_{R\to+\infty}\ln R\)。该极限为 \(+\infty\)。</p><p><strong>答案：</strong>\(\boxed{\text{发散}}\)。</p><p><strong>易错点：</strong>\(1/x\) 的原函数存在，不代表无穷区间上的积分必收敛。</p></details>
-    </section>
+      <section id="examples" class="cl-section" data-toc-section>
+        <h2>5. 典型例题</h2>
+        <article class="cl-example">
+          <h3>例题 1：牛顿—莱布尼茨公式</h3>
+          <p><strong>题目：</strong>计算 \(\int_0^1(3x^2+2x+1)\,dx\)。</p>
+          <p><strong>思路：</strong>被积函数是多项式，在闭区间上连续，直接寻找原函数。</p>
+          <p><strong>解答：</strong>取 \(F(x)=x^3+x^2+x\)，所以 \(\int_0^1(3x^2+2x+1)\,dx=[x^3+x^2+x]_0^1=3-0\)。</p>
+          <p><strong>答案：</strong>\(\boxed{3}\)。</p>
+        </article>
+        <article class="cl-example">
+          <h3>例题 2：定积分换元</h3>
+          <p><strong>题目：</strong>计算 \(\int_0^1 2xe^{x^2}\,dx\)。</p>
+          <p><strong>思路：</strong>\(e^{x^2}\) 的内层为 \(x^2\)，其导数 \(2x\) 恰好存在，使用换元。</p>
+          <p><strong>解答：</strong>令 \(u=x^2\)，则 \(du=2x\,dx\)。当 \(x=0\) 时 \(u=0\)，当 \(x=1\) 时 \(u=1\)。故积分为 \(\int_0^1e^u\,du=[e^u]_0^1\)。</p>
+          <p><strong>答案：</strong>\(\boxed{e-1}\)。</p>
+        </article>
+        <article class="cl-example">
+          <h3>例题 3：无穷区间上的反常积分</h3>
+          <p><strong>题目：</strong>判断并计算 \(\int_1^{+\infty}\frac1{x^2}\,dx\)。</p>
+          <p><strong>思路：</strong>上限为无穷，不能直接代入；先截断到 \(R\)，再令 \(R\to+\infty\)。</p>
+          <p><strong>解答：</strong>\(\int_1^{+\infty}x^{-2}\,dx=\lim_{R\to+\infty}[-x^{-1}]_1^R=\lim_{R\to+\infty}(1-\frac1R)\)。</p>
+          <p><strong>答案：</strong>\(\boxed{1}\)，且积分收敛。</p>
+        </article>
+      </section>
 
-    <section id="mistakes" class="cl-section" data-toc-section>
-      <h2>7. 易错点</h2>
-      <aside class="cl-warning"><strong>错误 1：</strong>换元后仍用原来的上下限。<br><strong>正确做法：</strong>若积分变量改为 \(u\)，上下限也必须改为 \(\varphi(a),\varphi(b)\)。</aside>
-      <aside class="cl-warning"><strong>错误 2：</strong>分部积分遗漏 \([uv]_a^b\)。<br><strong>正确做法：</strong>定积分分部公式先写边界项，再处理剩余积分。</aside>
-      <aside class="cl-warning"><strong>错误 3：</strong>把无穷端点直接代入原函数。<br><strong>正确做法：</strong>先写截断积分的极限，极限有限才可称为收敛。</aside>
-      <aside class="cl-warning"><strong>错误 4：</strong>把 \(\int_a^bf(x)dx\) 当成总是非负。<br><strong>正确做法：</strong>定积分是带符号的累积量；函数在 \(x\) 轴下方时贡献为负。</aside>
-    </section>
+      <section id="exercises" class="cl-section" data-toc-section>
+        <h2>6. 练习题</h2>
+        <h3>基础题</h3>
+        <details class="cl-exercise">
+          <summary>1. 计算 \(\int_0^{\pi/2}\sin x\,dx\)。</summary>
+          <p><strong>思路：</strong>直接使用原函数 \(-\cos x\)。</p>
+          <p><strong>步骤：</strong>\([-\cos x]_0^{\pi/2}=-\cos\frac{\pi}{2}-(-\cos0)=0+1\)。</p>
+          <p><strong>答案：</strong>\(\boxed{1}\)。</p>
+          <p><strong>易错点：</strong>端点相减时不可把下限项的负号遗漏。</p>
+        </details>
+        <details class="cl-exercise">
+          <summary>2. 利用奇偶性计算 \(\int_{-2}^{2}(x^3+x^2)\,dx\)。</summary>
+          <p><strong>思路：</strong>\(x^3\) 为奇函数，\(x^2\) 为偶函数，区间关于原点对称。</p>
+          <p><strong>步骤：</strong>\(\int_{-2}^{2}x^3dx=0\)，\(\int_{-2}^{2}x^2dx=2\int_0^2x^2dx=2\cdot\frac83\)。</p>
+          <p><strong>答案：</strong>\(\boxed{\frac{16}{3}}\)。</p>
+          <p><strong>易错点：</strong>奇偶性不能在非对称区间上直接使用。</p>
+        </details>
+        <h3>提高题</h3>
+        <details class="cl-exercise">
+          <summary>3. 计算 \(\int_0^1x\ln x\,dx\)。</summary>
+          <p><strong>思路：</strong>乘积中含 \(\ln x\)，取 \(u=\ln x,dv=x\,dx\)；下端点处须按极限处理。</p>
+          <p><strong>步骤：</strong>先在 \([\varepsilon,1]\) 上分部积分：\(\int_\varepsilon^1x\ln xdx=[\frac{x^2}{2}\ln x]_\varepsilon^1-\frac12\int_\varepsilon^1x\,dx\)。当 \(\varepsilon\to0^+\) 时 \(\varepsilon^2\ln\varepsilon\to0\)，其余部分趋于 \(-\frac14\)。</p>
+          <p><strong>答案：</strong>\(\boxed{-\frac14}\)。</p>
+          <p><strong>易错点：</strong>\(\ln x\) 在 0 处无定义，不能直接把 0 代入边界项。</p>
+        </details>
+        <h3>综合题</h3>
+        <details class="cl-exercise">
+          <summary>4. 判断 \(\int_1^{+\infty}\frac1x\,dx\) 是否收敛。</summary>
+          <p><strong>思路：</strong>将无穷上限改写为极限，并比较 \(p\)-积分条件。</p>
+          <p><strong>步骤：</strong>\(\int_1^{+\infty}\frac1xdx=\lim_{R\to+\infty}\int_1^R\frac1xdx=\lim_{R\to+\infty}\ln R\)。该极限为 \(+\infty\)。</p>
+          <p><strong>答案：</strong>\(\boxed{\text{发散}}\)。</p>
+          <p><strong>易错点：</strong>\(1/x\) 的原函数存在，不代表无穷区间上的积分必收敛。</p>
+        </details>
+      </section>
 
-    <section id="formulas" class="cl-section" data-toc-section>
-      <h2>8. 公式速查</h2>
-      <table class="cl-table">
-        <thead><tr><th>公式</th><th>使用条件</th><th>典型题型</th><th>易错点</th></tr></thead>
-        <tbody>
-          <tr><td>\(\int_a^bf(x)dx=F(b)-F(a)\)</td><td>\(F'=f\)，通常 \(f\) 在区间连续</td><td>直接计算</td><td>上限减下限。</td></tr>
-          <tr><td>\(\int_a^bf(\varphi(x))\varphi'(x)dx=\int_{\varphi(a)}^{\varphi(b)}f(u)du\)</td><td>复合结构与内层导数匹配</td><td>换元积分</td><td>变量与上下限须同步。</td></tr>
-          <tr><td>\(\int_a^bu\,dv=[uv]_a^b-\int_a^bv\,du\)</td><td>可选取 \(u,v\) 且相关积分存在</td><td>乘积积分</td><td>不要漏边界项。</td></tr>
-          <tr><td>\(\int_{-a}^af(x)dx=0\)</td><td>\(f\) 为奇函数，区间对称</td><td>对称区间积分</td><td>先核对奇偶性和区间。</td></tr>
-          <tr><td>\(\int_{-a}^af(x)dx=2\int_0^af(x)dx\)</td><td>\(f\) 为偶函数，区间对称</td><td>对称区间积分</td><td>系数 2 不可漏掉。</td></tr>
-          <tr><td>\(\int_1^\infty x^{-p}dx\)</td><td>\(p>1\) 收敛</td><td>反常积分判别</td><td>端点不同，条件不同。</td></tr>
-        </tbody>
-      </table>
-    </section>
+      <section id="mistakes" class="cl-section" data-toc-section>
+        <h2>7. 易错点</h2>
+        <aside class="cl-warning"><strong>错误 1：</strong>换元后仍用原来的上下限。<br><strong>正确做法：</strong>若积分变量改为 \(u\)，上下限也必须改为 \(\varphi(a),\varphi(b)\)。</aside>
+        <aside class="cl-warning"><strong>错误 2：</strong>分部积分遗漏 \([uv]_a^b\)。<br><strong>正确做法：</strong>定积分分部公式先写边界项，再处理剩余积分。</aside>
+        <aside class="cl-warning"><strong>错误 3：</strong>把无穷端点直接代入原函数。<br><strong>正确做法：</strong>先写截断积分的极限，极限有限才可称为收敛。</aside>
+        <aside class="cl-warning"><strong>错误 4：</strong>把 \(\int_a^bf(x)dx\) 当成总是非负。<br><strong>正确做法：</strong>定积分是带符号的累积量；函数在 \(x\) 轴下方时贡献为负。</aside>
+      </section>
 
-    <section id="summary" class="cl-section" data-toc-section>
-      <h2>9. 本章总结</h2>
-      <article class="cl-summary">
-        <h3>必须记忆</h3><p>牛顿—莱布尼茨公式、换元法、分部积分法、奇偶性公式与 \(p\)-积分收敛条件。</p>
-        <h3>必须理解</h3><p>定积分是累积量；换元必须同步变量与端点；反常积分本质上是极限问题。</p>
-        <h3>必须会做</h3><p>直接积分、换元、分部、利用对称性、判断并计算反常积分。</p>
-        <h3>容易丢分</h3><p>端点代入符号、换元后的上下限、分部积分边界项，以及没有把反常积分改写为极限。</p>
-      </article>
-    </section>
+      <section id="formulas" class="cl-section" data-toc-section>
+        <h2>8. 公式速查</h2>
+        <table class="cl-table">
+          <thead>
+            <tr>
+              <th>公式</th>
+              <th>使用条件</th>
+              <th>典型题型</th>
+              <th>易错点</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>\(\int_a^bf(x)dx=F(b)-F(a)\)</td>
+              <td>\(F'=f\)，通常 \(f\) 在区间连续</td>
+              <td>直接计算</td>
+              <td>上限减下限。</td>
+            </tr>
+            <tr>
+              <td>\(\int_a^bf(\varphi(x))\varphi'(x)dx=\int_{\varphi(a)}^{\varphi(b)}f(u)du\)</td>
+              <td>复合结构与内层导数匹配</td>
+              <td>换元积分</td>
+              <td>变量与上下限须同步。</td>
+            </tr>
+            <tr>
+              <td>\(\int_a^bu\,dv=[uv]_a^b-\int_a^bv\,du\)</td>
+              <td>可选取 \(u,v\) 且相关积分存在</td>
+              <td>乘积积分</td>
+              <td>不要漏边界项。</td>
+            </tr>
+            <tr>
+              <td>\(\int_{-a}^af(x)dx=0\)</td>
+              <td>\(f\) 为奇函数，区间对称</td>
+              <td>对称区间积分</td>
+              <td>先核对奇偶性和区间。</td>
+            </tr>
+            <tr>
+              <td>\(\int_{-a}^af(x)dx=2\int_0^af(x)dx\)</td>
+              <td>\(f\) 为偶函数，区间对称</td>
+              <td>对称区间积分</td>
+              <td>系数 2 不可漏掉。</td>
+            </tr>
+            <tr>
+              <td>\(\int_1^\infty x^{-p}dx\)</td>
+              <td>\(p>1\) 收敛</td>
+              <td>反常积分判别</td>
+              <td>端点不同，条件不同。</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
 
-    <nav class="cl-pager" aria-label="章节切换"><a data-prev href="#"></a><a data-next href="#"></a></nav>
-  </main>
-</div>
+      <section id="summary" class="cl-section" data-toc-section>
+        <h2>9. 本章总结</h2>
+        <article class="cl-summary">
+          <h3>必须记忆</h3>
+          <p>牛顿—莱布尼茨公式、换元法、分部积分法、奇偶性公式与 \(p\)-积分收敛条件。</p>
+          <h3>必须理解</h3>
+          <p>定积分是累积量；换元必须同步变量与端点；反常积分本质上是极限问题。</p>
+          <h3>必须会做</h3>
+          <p>直接积分、换元、分部、利用对称性、判断并计算反常积分。</p>
+          <h3>容易丢分</h3>
+          <p>端点代入符号、换元后的上下限、分部积分边界项，以及没有把反常积分改写为极限。</p>
+        </article>
+      </section>
+
+      <nav class="cl-pager" aria-label="章节切换">
+        <a data-prev href="#"></a>
+        <a data-next href="#"></a>
+      </nav>
+    </main>
+  </div>
 </body>
 </html>

@@ -1,45 +1,449 @@
 <!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>概率论：多维随机变量与数字特征</title>
-<script src="assets/mathjax-config.js"></script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
-<style>:root{--i:#16251d;--m:#637067;--p:#fbfaf5;--l:#dce3d7;--g:#1d6b4f;--y:#fff8e4}*{box-sizing:border-box}body{margin:0;background:var(--p);color:var(--i);font:16px/1.75 "Noto Serif SC",serif}.shell{display:grid;grid-template-columns:265px 1fr;max-width:1450px;margin:auto}.side{position:sticky;top:0;height:100vh;padding:30px 20px;background:#f5f8f1;border-right:1px solid var(--l)}.brand{font:bold 21px system-ui}.brand span{display:block;color:var(--g);font-size:11px;letter-spacing:.12em;margin-top:7px}.side nav{margin-top:24px}.side a{display:block;text-decoration:none;color:var(--m);padding:7px 8px;border-radius:7px}.side a:hover{color:var(--g);background:#e8f3e7}.main{max-width:1080px;padding:48px clamp(22px,5vw,75px) 90px}.hero{padding:30px;background:linear-gradient(125deg,#e2f1dd,#fff7d8);border:1px solid #cee1c8;border-radius:18px}.tag{display:inline-block;background:var(--g);color:#fff;border-radius:30px;padding:3px 10px;font:12px system-ui}.hero h1{font-size:42px;line-height:1.2;margin:14px 0}.intro{color:var(--m)}section{margin:58px 0}.chapter{border-top:4px solid var(--g);padding-top:10px}h2{font-size:29px;margin:7px 0}h3{margin-top:30px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.card,.example{background:#fffefa;border:1px solid var(--l);border-radius:11px;padding:16px}.card h4{margin:0}.stars{color:#a66f00;font:13px system-ui}.formula,.method{background:#eef7ed;padding:13px 16px;border-radius:8px;margin:13px 0;overflow:auto}.formula{font-family:ui-monospace}table{width:100%;border-collapse:collapse;background:#fff;font-size:14px;margin:14px 0}th,td{border:1px solid var(--l);padding:9px;text-align:left;vertical-align:top}th{background:#eef5eb}details{background:#fff;border:1px solid var(--l);border-radius:9px;padding:11px 14px;margin:9px 0}summary{cursor:pointer;font-weight:bold}blockquote{margin:15px 0;padding:11px 15px;background:var(--y);border-left:4px solid #ffd97a}.diagram{max-width:520px;margin:15px auto;padding:10px;background:#fff;border:1px solid var(--l);border-radius:10px}.diagram svg{width:100%;height:auto}mjx-container{max-width:100%;overflow:auto}@media(max-width:780px){.shell{display:block}.side{position:static;height:auto}.side nav{display:flex;overflow:auto;gap:2px}.side a{white-space:nowrap}.main{padding:24px 17px}.grid{grid-template-columns:1fr}}</style><link rel="stylesheet" href="assets/subject-navigation.css"><script defer src="assets/subject-navigation.js"></script></head>
-<body><div class="shell"><aside class="side"><div class="brand">概率论与数理统计复习<span>STAGE 04 · MULTIVARIATE / MOMENTS</span></div><nav><a href="probability-statistics.html">概率论首页</a><a href="probability-random-variables.html">阶段 3：一维随机变量</a><a href="#joint">联合、边缘与条件分布</a><a href="#sum">和变量分布</a><a href="#moments">期望与方差</a><a href="#covariance">协方差与相关系数</a><a href="#review">本章速查</a></nav></aside>
-<main class="main"><header class="hero"><span class="tag">阶段 4 · 两部分</span><h1>多维随机变量<br>与数字特征</h1><p>联合分布刻画两个变量如何共同变化；边缘分布“忽略”另一个变量，条件分布则固定已知信息。数字特征把分布压缩为位置、离散程度和线性关系的度量。</p></header>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>概率论：多维随机变量与数字特征</title>
 
-<section id="joint" class="chapter"><span class="tag">PART 01</span><h2>二维随机变量：联合、边缘与条件分布 <span class="stars">⭐⭐⭐ 边缘 / 条件 / 独立</span></h2><p class="intro">二维随机变量 \((X,Y)\) 把每个样本点映为一个有序实数对。联合分布保留两者同时取值的信息；只看 X 或只看 Y 时得到边缘分布。</p>
-<h3>1. 联合分布与边缘分布</h3><div class="formula">\[F_{X,Y}(x,y)=P(X\le x,Y\le y).\]<br>\[\text{连续情形：}\quad f_X(x)=\int_{-\infty}^{+\infty}f_{X,Y}(x,y)\,dy,\qquad f_Y(y)=\int_{-\infty}^{+\infty}f_{X,Y}(x,y)\,dx.\]</div>
-<p>离散情形中，联合分布律为 \(p_{ij}=P(X=x_i,Y=y_j)\)，边缘分布按行或列求和：\(P(X=x_i)=\sum_jp_{ij}\)，\(P(Y=y_j)=\sum_ip_{ij}\)。连续情形把“对另一变量求和”改为积分；积分范围必须与联合密度的非零区域相交。</p>
-<table><tr><th>条件分布</th><th>条件与含义</th></tr><tr><td>离散：\(P(X=x_i\mid Y=y_j)=\frac{p_{ij}}{P(Y=y_j)}\)</td><td>要求 \(P(Y=y_j)>0\)。固定 \(Y=y_j\) 后，对该列概率重新归一化。</td></tr><tr><td>连续：\(f_{X\mid Y}(x\mid y)=\frac{f_{X,Y}(x,y)}{f_Y(y)}\)</td><td>要求 \(f_Y(y)>0\)。它是给定 y 后 x 的条件密度，不是某单点条件概率。</td></tr></table>
-<div class="example"><strong>例题 1：联合分布表如下，求边缘分布及 \(P(X=1\mid Y=1)\)。</strong><table><tr><th>\(X\backslash Y\)</th><th>0</th><th>1</th><th>行和</th></tr><tr><th>0</th><td>0.1</td><td>0.2</td><td>0.3</td></tr><tr><th>1</th><td>0.3</td><td>0.4</td><td>0.7</td></tr><tr><th>列和</th><td>0.4</td><td>0.6</td><td>1</td></tr></table><p><strong>过程：</strong>行和、列和即边缘分布。条件概率为 \(\frac{P(X=1,Y=1)}{P(Y=1)}=\frac{0.4}{0.6}\)。</p><p><strong>答案：</strong>\(\boxed{P(X=0)=0.3,P(X=1)=0.7;\;P(Y=0)=0.4,P(Y=1)=0.6;\;P(X=1\mid Y=1)=2/3}\)。</p></div>
-<h3>2. 独立性</h3><div class="formula">\[X,Y\text{ 独立}\quad\Longleftrightarrow\quad F_{X,Y}(x,y)=F_X(x)F_Y(y).\]<br>\[\text{连续型常用判据：}\quad f_{X,Y}(x,y)=f_X(x)f_Y(y)\quad(\text{在全部平面上}).\]</div>
-<p>联合密度等于两个边缘密度的乘积，表示知道 Y 的取值不会改变 X 的分布，反之亦然。对离散变量，检验每个格子是否满足 \(p_{ij}=P(X=x_i)P(Y=y_j)\)。只在少数点相等不足以断定独立。</p>
-<div class="diagram"><svg viewBox="0 0 500 255" role="img" aria-label="联合密度的三角形支持区域"><line x1="65" y1="205" x2="450" y2="205" stroke="#637067" stroke-width="2"/><line x1="65" y1="215" x2="65" y2="35" stroke="#637067" stroke-width="2"/><polygon points="65,205 420,205 420,45" fill="#a9d8a6" fill-opacity=".7" stroke="#1d6b4f" stroke-width="2"/><line x1="65" y1="205" x2="420" y2="45" stroke="#1d6b4f" stroke-width="2"/><text x="440" y="212" font-size="16">x</text><text x="53" y="38" font-size="16">y</text><text x="350" y="82" font-size="16">y=1</text><text x="410" y="226" font-size="16">x=1</text><text x="190" y="180" font-size="16">0&lt;y&lt;x&lt;1</text></svg><p class="intro">联合密度的支持区域会限制积分上下限；若支持区域不是矩形，即使函数形式能分解，也通常不独立。</p></div>
-<details><summary>基础练习 1：对上表判断 X、Y 是否独立。</summary><p><strong>思路：</strong>任取一个格子比较联合概率与边缘概率乘积；若有一处不等即可否定独立。</p><p><strong>过程：</strong>\(P(X=0,Y=0)=0.1\)，而 \(P(X=0)P(Y=0)=0.3\times0.4=0.12\)。</p><p><strong>答案：</strong>\(\boxed{X,Y\text{ 不独立}}\)。</p><blockquote>易错点：不能只看行和、列和是否都为 1；那只是联合分布表的归一化条件。</blockquote></details>
-<details><summary>提高练习 2：\(f_{X,Y}(x,y)=2\)，定义在 \(0&lt;y&lt;x&lt;1\) 上，其余为 0。求 \(f_X(x)\)、\(f_Y(y)\)，并判断独立性。</summary><p><strong>思路：</strong>固定 x 时 \(y\) 的范围为 \(0&lt;y&lt;x\)；固定 y 时 \(x\) 的范围为 \(y&lt;x&lt;1\)。</p><p><strong>过程：</strong>\(f_X(x)=\int_0^x2dy=2x\;(0<x<1)\)；\(f_Y(y)=\int_y^12dx=2(1-y)\;(0<y<1)\)。联合支持域是三角形而边缘乘积在整个单位正方形内可正，不可能相等。</p><p><strong>答案：</strong>\(\boxed{f_X(x)=2x,\;f_Y(y)=2(1-y),\;X,Y\text{ 不独立}}\)。</p></details>
-</section>
+  <script src="assets/mathjax-config.js"></script>
 
-<section id="sum" class="chapter"><span class="tag">PART 02</span><h2>随机变量函数：和变量与卷积 <span class="stars">⭐⭐⭐ \(Z=X+Y\)</span></h2><p class="intro">求 \(Z=X+Y\) 时，目标值 z 可以由许多对 \((x,y)\) 组成；必须把所有满足 \(x+y=z\) 的可能性加总或积分，不能只任取一对。</p>
-<div class="formula">\[\text{离散一般式：}\quad P(Z=z)=\sum_xP(X=x,Y=z-x).\]<br>\[\text{若 X,Y 独立：}\quad P(Z=z)=\sum_xP(X=x)P(Y=z-x).\]<br>\[\text{连续独立时：}\quad f_Z(z)=\int_{-\infty}^{+\infty}f_X(x)f_Y(z-x)\,dx.\]</div>
-<p>连续公式称为<strong>卷积</strong>。虽写作 \((-\infty,+\infty)\) 的积分，但实际只在 \(x\) 与 \(z-x\) 同时落入各自支持区间处有贡献；先画或列出不等式确定有效积分范围，最不易出错。</p>
-<div class="example"><strong>例题 2：X、Y 独立且均服从 \(U(0,1)\)，求 \(Z=X+Y\) 的密度。</strong><p><strong>思路：</strong>两密度均为 1，须同时满足 \(0<x<1\) 与 \(0<z-x<1\)，即 \(\max(0,z-1)<x<\min(1,z)\)。</p><p><strong>过程：</strong>当 \(0<z<1\)，有效长度为 z；当 \(1\le z<2\)，有效长度为 \(2-z\)；其余为 0。</p><p><strong>答案：</strong>\(\boxed{f_Z(z)=\begin{cases}z,&0<z<1\\2-z,&1\le z<2\\0,&\text{其他}.\end{cases}}\)</p></div>
-<details><summary>基础练习 3：独立掷两枚公平骰子，\(X,Y\) 为点数，求 \(P(X+Y=7)\)。</summary><p><strong>思路：</strong>离散卷积：列出所有 \(x+(7-x)\) 的可行组合。</p><p><strong>过程：</strong>有 \((1,6),(2,5),(3,4),(4,3),(5,2),(6,1)\) 六种，每种概率为 \(1/36\)。</p><p><strong>答案：</strong>\(\boxed{1/6}\)。</p><blockquote>易错点：不能把“和的取值 2 到12”视作等可能。</blockquote></details>
-</section>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
 
-<section id="moments" class="chapter"><span class="tag">PART 03</span><h2>数学期望与方差 <span class="stars">⭐⭐⭐ 线性性 / 计算公式</span></h2>
-<div class="formula">\[\text{离散：}\quad E(X)=\sum_ix_ip_i;\qquad\text{连续：}\quad E(X)=\int_{-\infty}^{+\infty}xf(x)\,dx.\]<br>\[\text{方差：}\quad D(X)=E[(X-E(X))^2]=E(X^2)-[E(X)]^2.\]</div>
-<p>期望是按概率加权的平均位置；它不要求 X 实际一定取到该数。计算 \(E[g(X)]\) 时可直接对 \(g(x)\) 加权或积分，不必先求 \(g(X)\) 的分布。方差度量围绕均值的平方偏离，故必非负。</p>
-<table><tr><th>性质</th><th>条件与解释</th></tr><tr><td>\(E(aX+b)=aE(X)+b\)</td><td>线性变换的平均位置同步线性变换。</td></tr><tr><td>\(E(X+Y)=E(X)+E(Y)\) ⭐⭐⭐</td><td><strong>不要求独立。</strong>只要相关期望存在，联合分布的加权和可拆开。</td></tr><tr><td>\(D(aX+b)=a^2D(X)\)</td><td>平移不改变离散程度；缩放会把偏差放大 a 倍、平方偏差放大 \(a^2\) 倍。</td></tr><tr><td>\(D(X+Y)=D(X)+D(Y)+2\operatorname{Cov}(X,Y)\)</td><td>一般式；独立时协方差为 0，才可直接相加。</td></tr></table>
-<div class="example"><strong>例题 3：若 \(P(X=0)=1/2,P(X=2)=1/2\)，求 \(E(X)\)、\(D(X)\) 与 \(E(3X-1)\)。</strong><p><strong>过程：</strong>\(E(X)=0\cdot1/2+2\cdot1/2=1\)。\(E(X^2)=0+4\cdot1/2=2\)，故 \(D(X)=2-1^2=1\)。线性性给出 \(E(3X-1)=3E(X)-1\)。</p><p><strong>答案：</strong>\(\boxed{E(X)=1,\;D(X)=1,\;E(3X-1)=2}\)。</p></div>
-<details><summary>提高练习 4：\(X\sim B(10,0.3)\)，求 \(E(X)\)、\(D(X)\) 与 \(E(2X+5)\)。</summary><p><strong>思路：</strong>二项分布的成功次数可看作 10 个独立 0-1 变量之和；使用 \(E(X)=np,D(X)=np(1-p)\)。</p><p><strong>过程：</strong>\(E(X)=10\cdot0.3=3\)，\(D(X)=10\cdot0.3\cdot0.7=2.1\)。\(E(2X+5)=2\cdot3+5\)。</p><p><strong>答案：</strong>\(\boxed{3,\;2.1,\;11}\)。</p><blockquote>易错点：方差不是 \(np^2\)，而是 \(np(1-p)\)。</blockquote></details>
-</section>
 
-<section id="covariance" class="chapter"><span class="tag">PART 04</span><h2>协方差与相关系数 <span class="stars">⭐⭐⭐ 独立的单向结论</span></h2>
-<div class="formula">\[\operatorname{Cov}(X,Y)=E[(X-E(X))(Y-E(Y))]=E(XY)-E(X)E(Y).\]<br>\[\rho_{X,Y}=\frac{\operatorname{Cov}(X,Y)}{\sqrt{D(X)D(Y)}},\qquad -1\le\rho_{X,Y}\le1.\]</div>
-<p>协方差反映 X、Y 是否呈线性同向或反向变化：正值倾向同向，负值倾向反向，零表示无线性相关。相关系数把协方差标准化，只有 \(D(X)>0,D(Y)>0\) 时才定义。</p>
-<blockquote>独立 \(\Rightarrow\operatorname{Cov}(X,Y)=0\)，因为独立时 \(E(XY)=E(X)E(Y)\)。反过来通常不成立：令 X 均匀取 \(-1,0,1\)，令 \(Y=X^2\)。由对称性 \(E(X)=E(X^3)=0\)，故协方差为 0；但 \(P(X=0,Y=0)=1/3\ne P(X=0)P(Y=0)=1/9\)，二者仍不独立。</blockquote>
-<details><summary>基础练习 5：若 \(D(X)=4,D(Y)=9,\operatorname{Cov}(X,Y)=3\)，求相关系数与 \(D(X+Y)\)。</summary><p><strong>思路：</strong>直接代定义与方差和公式。</p><p><strong>过程：</strong>\(\rho=\frac3{\sqrt{4\cdot9}}=\frac12\)。\(D(X+Y)=4+9+2\cdot3\)。</p><p><strong>答案：</strong>\(\boxed{\rho=1/2,\quad D(X+Y)=19}\)。</p></details>
-<details><summary>综合练习 6：对例题 1 的联合分布表，求 \(E(X)\)、\(E(Y)\)、\(E(XY)\)、协方差。</summary><p><strong>思路：</strong>利用边缘分布求前两项；因 X、Y 只取 0、1，\(XY=1\) 仅当 \((1,1)\)。</p><p><strong>过程：</strong>\(E(X)=P(X=1)=0.7\)，\(E(Y)=P(Y=1)=0.6\)，\(E(XY)=P(1,1)=0.4\)。协方差 \(=0.4-0.7\cdot0.6\)。</p><p><strong>答案：</strong>\(\boxed{E(X)=0.7,\;E(Y)=0.6,\;E(XY)=0.4,\;\operatorname{Cov}(X,Y)=-0.02}\)。</p><blockquote>易错点：\(E(XY)\) 不能一般写成 \(E(X)E(Y)\)；只有独立时才可。</blockquote></details>
-<details><summary>综合练习 7：若 \(Y=2X+1\)，且 \(D(X)>0\)，求 \(\rho_{X,Y}\)。</summary><p><strong>思路：</strong>利用协方差与方差的线性变换性质。</p><p><strong>过程：</strong>\(\operatorname{Cov}(X,Y)=\operatorname{Cov}(X,2X+1)=2D(X)\)，\(D(Y)=4D(X)\)。代入相关系数得 \(\frac{2D(X)}{\sqrt{D(X)\cdot4D(X)}}\)。</p><p><strong>答案：</strong>\(\boxed{\rho_{X,Y}=1}\)。这是完全正线性关系。</p></details>
-</section>
+  <style>
+    :root {
+      --i: #16251d;
+      --m: #637067;
+      --p: #fbfaf5;
+      --l: #dce3d7;
+      --g: #1d6b4f;
+      --y: #fff8e4
+    }
 
-<section id="review" class="chapter"><span class="tag">STAGE 04 SUMMARY</span><h2>本章公式速查与易错点</h2><table><tr><th>必须记忆</th><th>必须理解</th><th>必须会做</th></tr><tr><td>边缘积分/求和、条件分布、独立判据、离散与连续卷积、期望定义及线性性、方差计算式、协方差与相关系数</td><td>边缘化是在忽略另一变量；条件化是在固定信息后重新归一化；和变量要汇总所有分解；期望可加不要求独立；零协方差不等于独立</td><td>求边缘/条件分布、判独立、求和变量分布、求期望方差、求协方差与相关系数</td></tr></table><blockquote>易错点：联合密度积分范围受支持域限制；连续条件密度不能当单点概率；卷积前先定有效区间；\(D(X+Y)\) 不可漏协方差项；相关系数需两方差均正。</blockquote></section>
-</main></div></body></html>
+    * {
+      box-sizing: border-box
+    }
+
+    body {
+      margin: 0;
+      background: var(--p);
+      color: var(--i);
+      font: 16px/1.75 "Noto Serif SC", serif
+    }
+
+    .shell {
+      display: grid;
+      grid-template-columns: 265px 1fr;
+      max-width: 1450px;
+      margin: auto
+    }
+
+    .side {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 30px 20px;
+      background: #f5f8f1;
+      border-right: 1px solid var(--l)
+    }
+
+    .brand {
+      font: bold 21px system-ui
+    }
+
+    .brand span {
+      display: block;
+      color: var(--g);
+      font-size: 11px;
+      letter-spacing: .12em;
+      margin-top: 7px
+    }
+
+    .side nav {
+      margin-top: 24px
+    }
+
+    .side a {
+      display: block;
+      text-decoration: none;
+      color: var(--m);
+      padding: 7px 8px;
+      border-radius: 7px
+    }
+
+    .side a:hover {
+      color: var(--g);
+      background: #e8f3e7
+    }
+
+    .main {
+      max-width: 1080px;
+      padding: 48px clamp(22px, 5vw, 75px) 90px
+    }
+
+    .hero {
+      padding: 30px;
+      background: linear-gradient(125deg, #e2f1dd, #fff7d8);
+      border: 1px solid #cee1c8;
+      border-radius: 18px
+    }
+
+    .tag {
+      display: inline-block;
+      background: var(--g);
+      color: #fff;
+      border-radius: 30px;
+      padding: 3px 10px;
+      font: 12px system-ui
+    }
+
+    .hero h1 {
+      font-size: 42px;
+      line-height: 1.2;
+      margin: 14px 0
+    }
+
+    .intro {
+      color: var(--m)
+    }
+
+    section {
+      margin: 58px 0
+    }
+
+    .chapter {
+      border-top: 4px solid var(--g);
+      padding-top: 10px
+    }
+
+    h2 {
+      font-size: 29px;
+      margin: 7px 0
+    }
+
+    h3 {
+      margin-top: 30px
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 13px
+    }
+
+    .card,
+    .example {
+      background: #fffefa;
+      border: 1px solid var(--l);
+      border-radius: 11px;
+      padding: 16px
+    }
+
+    .card h4 {
+      margin: 0
+    }
+
+    .stars {
+      color: #a66f00;
+      font: 13px system-ui
+    }
+
+    .formula,
+    .method {
+      background: #eef7ed;
+      padding: 13px 16px;
+      border-radius: 8px;
+      margin: 13px 0;
+      overflow: auto
+    }
+
+    .formula {
+      font-family: ui-monospace
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      font-size: 14px;
+      margin: 14px 0
+    }
+
+    th,
+    td {
+      border: 1px solid var(--l);
+      padding: 9px;
+      text-align: left;
+      vertical-align: top
+    }
+
+    th {
+      background: #eef5eb
+    }
+
+    details {
+      background: #fff;
+      border: 1px solid var(--l);
+      border-radius: 9px;
+      padding: 11px 14px;
+      margin: 9px 0
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: bold
+    }
+
+    blockquote {
+      margin: 15px 0;
+      padding: 11px 15px;
+      background: var(--y);
+      border-left: 4px solid #ffd97a
+    }
+
+    .diagram {
+      max-width: 520px;
+      margin: 15px auto;
+      padding: 10px;
+      background: #fff;
+      border: 1px solid var(--l);
+      border-radius: 10px
+    }
+
+    .diagram svg {
+      width: 100%;
+      height: auto
+    }
+
+    mjx-container {
+      max-width: 100%;
+      overflow: auto
+    }
+
+    @media(max-width:780px) {
+      .shell {
+        display: block
+      }
+
+      .side {
+        position: static;
+        height: auto
+      }
+
+      .side nav {
+        display: flex;
+        overflow: auto;
+        gap: 2px
+      }
+
+      .side a {
+        white-space: nowrap
+      }
+
+      .main {
+        padding: 24px 17px
+      }
+
+      .grid {
+        grid-template-columns: 1fr
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="assets/subject-navigation.css">
+  <script defer src="assets/subject-navigation.js"></script>
+</head>
+<body>
+  <div class="shell">
+    <aside class="side">
+      <div class="brand">概率论与数理统计复习<span>STAGE 04 · MULTIVARIATE / MOMENTS</span></div>
+      <nav>
+        <a href="probability-statistics.html">概率论首页</a>
+        <a href="probability-random-variables.html">阶段 3：一维随机变量</a>
+        <a href="#joint">联合、边缘与条件分布</a>
+        <a href="#sum">和变量分布</a>
+        <a href="#moments">期望与方差</a>
+        <a href="#covariance">协方差与相关系数</a>
+        <a href="#review">本章速查</a>
+      </nav>
+    </aside>
+    <main class="main">
+      <header class="hero"><span class="tag">阶段 4 · 两部分</span>
+        <h1>多维随机变量<br>与数字特征</h1>
+        <p>联合分布刻画两个变量如何共同变化；边缘分布“忽略”另一个变量，条件分布则固定已知信息。数字特征把分布压缩为位置、离散程度和线性关系的度量。</p>
+      </header>
+
+      <section id="joint" class="chapter"><span class="tag">PART 01</span>
+        <h2>二维随机变量：联合、边缘与条件分布 <span class="stars">⭐⭐⭐ 边缘 / 条件 / 独立</span></h2>
+        <p class="intro">二维随机变量 \((X,Y)\) 把每个样本点映为一个有序实数对。联合分布保留两者同时取值的信息；只看 X 或只看 Y 时得到边缘分布。</p>
+        <h3>1. 联合分布与边缘分布</h3>
+        <div class="formula">\[F_{X,Y}(x,y)=P(X\le x,Y\le y).\]<br>\[\text{连续情形：}\quad f_X(x)=\int_{-\infty}^{+\infty}f_{X,Y}(x,y)\,dy,\qquad f_Y(y)=\int_{-\infty}^{+\infty}f_{X,Y}(x,y)\,dx.\]</div>
+        <p>离散情形中，联合分布律为 \(p_{ij}=P(X=x_i,Y=y_j)\)，边缘分布按行或列求和：\(P(X=x_i)=\sum_jp_{ij}\)，\(P(Y=y_j)=\sum_ip_{ij}\)。连续情形把“对另一变量求和”改为积分；积分范围必须与联合密度的非零区域相交。</p>
+        <table>
+          <tr>
+            <th>条件分布</th>
+            <th>条件与含义</th>
+          </tr>
+          <tr>
+            <td>离散：\(P(X=x_i\mid Y=y_j)=\frac{p_{ij}}{P(Y=y_j)}\)</td>
+            <td>要求 \(P(Y=y_j)>0\)。固定 \(Y=y_j\) 后，对该列概率重新归一化。</td>
+          </tr>
+          <tr>
+            <td>连续：\(f_{X\mid Y}(x\mid y)=\frac{f_{X,Y}(x,y)}{f_Y(y)}\)</td>
+            <td>要求 \(f_Y(y)>0\)。它是给定 y 后 x 的条件密度，不是某单点条件概率。</td>
+          </tr>
+        </table>
+        <div class="example"><strong>例题 1：联合分布表如下，求边缘分布及 \(P(X=1\mid Y=1)\)。</strong>
+          <table>
+            <tr>
+              <th>\(X\backslash Y\)</th>
+              <th>0</th>
+              <th>1</th>
+              <th>行和</th>
+            </tr>
+            <tr>
+              <th>0</th>
+              <td>0.1</td>
+              <td>0.2</td>
+              <td>0.3</td>
+            </tr>
+            <tr>
+              <th>1</th>
+              <td>0.3</td>
+              <td>0.4</td>
+              <td>0.7</td>
+            </tr>
+            <tr>
+              <th>列和</th>
+              <td>0.4</td>
+              <td>0.6</td>
+              <td>1</td>
+            </tr>
+          </table>
+          <p><strong>过程：</strong>行和、列和即边缘分布。条件概率为 \(\frac{P(X=1,Y=1)}{P(Y=1)}=\frac{0.4}{0.6}\)。</p>
+          <p><strong>答案：</strong>\(\boxed{P(X=0)=0.3,P(X=1)=0.7;\;P(Y=0)=0.4,P(Y=1)=0.6;\;P(X=1\mid Y=1)=2/3}\)。</p>
+        </div>
+        <h3>2. 独立性</h3>
+        <div class="formula">\[X,Y\text{ 独立}\quad\Longleftrightarrow\quad F_{X,Y}(x,y)=F_X(x)F_Y(y).\]<br>\[\text{连续型常用判据：}\quad f_{X,Y}(x,y)=f_X(x)f_Y(y)\quad(\text{在全部平面上}).\]</div>
+        <p>联合密度等于两个边缘密度的乘积，表示知道 Y 的取值不会改变 X 的分布，反之亦然。对离散变量，检验每个格子是否满足 \(p_{ij}=P(X=x_i)P(Y=y_j)\)。只在少数点相等不足以断定独立。</p>
+        <div class="diagram"><svg viewBox="0 0 500 255" role="img" aria-label="联合密度的三角形支持区域"><line x1="65" y1="205" x2="450" y2="205" stroke="#637067" stroke-width="2"/><line x1="65" y1="215" x2="65" y2="35" stroke="#637067" stroke-width="2"/><polygon points="65,205 420,205 420,45" fill="#a9d8a6" fill-opacity=".7" stroke="#1d6b4f" stroke-width="2"/><line x1="65" y1="205" x2="420" y2="45" stroke="#1d6b4f" stroke-width="2"/><text x="440" y="212" font-size="16">x</text><text x="53" y="38" font-size="16">y</text><text x="350" y="82" font-size="16">y=1</text><text x="410" y="226" font-size="16">x=1</text><text x="190" y="180" font-size="16">0&lt;y&lt;x&lt;1</text></svg>
+          <p class="intro">联合密度的支持区域会限制积分上下限；若支持区域不是矩形，即使函数形式能分解，也通常不独立。</p>
+        </div>
+        <details>
+          <summary>基础练习 1：对上表判断 X、Y 是否独立。</summary>
+          <p><strong>思路：</strong>任取一个格子比较联合概率与边缘概率乘积；若有一处不等即可否定独立。</p>
+          <p><strong>过程：</strong>\(P(X=0,Y=0)=0.1\)，而 \(P(X=0)P(Y=0)=0.3\times0.4=0.12\)。</p>
+          <p><strong>答案：</strong>\(\boxed{X,Y\text{ 不独立}}\)。</p>
+          <blockquote>易错点：不能只看行和、列和是否都为 1；那只是联合分布表的归一化条件。</blockquote>
+        </details>
+        <details>
+          <summary>提高练习 2：\(f_{X,Y}(x,y)=2\)，定义在 \(0&lt;y&lt;x&lt;1\) 上，其余为 0。求 \(f_X(x)\)、\(f_Y(y)\)，并判断独立性。</summary>
+          <p><strong>思路：</strong>固定 x 时 \(y\) 的范围为 \(0&lt;y&lt;x\)；固定 y 时 \(x\) 的范围为 \(y&lt;x&lt;1\)。</p>
+          <p><strong>过程：</strong>\(f_X(x)=\int_0^x2dy=2x\;(0<x<1)\)；\(f_Y(y)=\int_y^12dx=2(1-y)\;(0<y<1)\)。联合支持域是三角形而边缘乘积在整个单位正方形内可正，不可能相等。</p>
+          <p><strong>答案：</strong>\(\boxed{f_X(x)=2x,\;f_Y(y)=2(1-y),\;X,Y\text{ 不独立}}\)。</p>
+        </details>
+      </section>
+
+      <section id="sum" class="chapter"><span class="tag">PART 02</span>
+        <h2>随机变量函数：和变量与卷积 <span class="stars">⭐⭐⭐ \(Z=X+Y\)</span></h2>
+        <p class="intro">求 \(Z=X+Y\) 时，目标值 z 可以由许多对 \((x,y)\) 组成；必须把所有满足 \(x+y=z\) 的可能性加总或积分，不能只任取一对。</p>
+        <div class="formula">\[\text{离散一般式：}\quad P(Z=z)=\sum_xP(X=x,Y=z-x).\]<br>\[\text{若 X,Y 独立：}\quad P(Z=z)=\sum_xP(X=x)P(Y=z-x).\]<br>\[\text{连续独立时：}\quad f_Z(z)=\int_{-\infty}^{+\infty}f_X(x)f_Y(z-x)\,dx.\]</div>
+        <p>连续公式称为<strong>卷积</strong>。虽写作 \((-\infty,+\infty)\) 的积分，但实际只在 \(x\) 与 \(z-x\) 同时落入各自支持区间处有贡献；先画或列出不等式确定有效积分范围，最不易出错。</p>
+        <div class="example"><strong>例题 2：X、Y 独立且均服从 \(U(0,1)\)，求 \(Z=X+Y\) 的密度。</strong>
+          <p><strong>思路：</strong>两密度均为 1，须同时满足 \(0<x<1\) 与 \(0<z-x<1\)，即 \(\max(0,z-1)<x<\min(1,z)\)。</p>
+          <p><strong>过程：</strong>当 \(0<z<1\)，有效长度为 z；当 \(1\le z<2\)，有效长度为 \(2-z\)；其余为 0。</p>
+          <p><strong>答案：</strong>\(\boxed{f_Z(z)=\begin{cases}z,&0<z<1\\2-z,&1\le z<2\\0,&\text{其他}.\end{cases}}\)</p>
+        </div>
+        <details>
+          <summary>基础练习 3：独立掷两枚公平骰子，\(X,Y\) 为点数，求 \(P(X+Y=7)\)。</summary>
+          <p><strong>思路：</strong>离散卷积：列出所有 \(x+(7-x)\) 的可行组合。</p>
+          <p><strong>过程：</strong>有 \((1,6),(2,5),(3,4),(4,3),(5,2),(6,1)\) 六种，每种概率为 \(1/36\)。</p>
+          <p><strong>答案：</strong>\(\boxed{1/6}\)。</p>
+          <blockquote>易错点：不能把“和的取值 2 到12”视作等可能。</blockquote>
+        </details>
+      </section>
+
+      <section id="moments" class="chapter"><span class="tag">PART 03</span>
+        <h2>数学期望与方差 <span class="stars">⭐⭐⭐ 线性性 / 计算公式</span></h2>
+        <div class="formula">\[\text{离散：}\quad E(X)=\sum_ix_ip_i;\qquad\text{连续：}\quad E(X)=\int_{-\infty}^{+\infty}xf(x)\,dx.\]<br>\[\text{方差：}\quad D(X)=E[(X-E(X))^2]=E(X^2)-[E(X)]^2.\]</div>
+        <p>期望是按概率加权的平均位置；它不要求 X 实际一定取到该数。计算 \(E[g(X)]\) 时可直接对 \(g(x)\) 加权或积分，不必先求 \(g(X)\) 的分布。方差度量围绕均值的平方偏离，故必非负。</p>
+        <table>
+          <tr>
+            <th>性质</th>
+            <th>条件与解释</th>
+          </tr>
+          <tr>
+            <td>\(E(aX+b)=aE(X)+b\)</td>
+            <td>线性变换的平均位置同步线性变换。</td>
+          </tr>
+          <tr>
+            <td>\(E(X+Y)=E(X)+E(Y)\) ⭐⭐⭐</td>
+            <td><strong>不要求独立。</strong>只要相关期望存在，联合分布的加权和可拆开。</td>
+          </tr>
+          <tr>
+            <td>\(D(aX+b)=a^2D(X)\)</td>
+            <td>平移不改变离散程度；缩放会把偏差放大 a 倍、平方偏差放大 \(a^2\) 倍。</td>
+          </tr>
+          <tr>
+            <td>\(D(X+Y)=D(X)+D(Y)+2\operatorname{Cov}(X,Y)\)</td>
+            <td>一般式；独立时协方差为 0，才可直接相加。</td>
+          </tr>
+        </table>
+        <div class="example"><strong>例题 3：若 \(P(X=0)=1/2,P(X=2)=1/2\)，求 \(E(X)\)、\(D(X)\) 与 \(E(3X-1)\)。</strong>
+          <p><strong>过程：</strong>\(E(X)=0\cdot1/2+2\cdot1/2=1\)。\(E(X^2)=0+4\cdot1/2=2\)，故 \(D(X)=2-1^2=1\)。线性性给出 \(E(3X-1)=3E(X)-1\)。</p>
+          <p><strong>答案：</strong>\(\boxed{E(X)=1,\;D(X)=1,\;E(3X-1)=2}\)。</p>
+        </div>
+        <details>
+          <summary>提高练习 4：\(X\sim B(10,0.3)\)，求 \(E(X)\)、\(D(X)\) 与 \(E(2X+5)\)。</summary>
+          <p><strong>思路：</strong>二项分布的成功次数可看作 10 个独立 0-1 变量之和；使用 \(E(X)=np,D(X)=np(1-p)\)。</p>
+          <p><strong>过程：</strong>\(E(X)=10\cdot0.3=3\)，\(D(X)=10\cdot0.3\cdot0.7=2.1\)。\(E(2X+5)=2\cdot3+5\)。</p>
+          <p><strong>答案：</strong>\(\boxed{3,\;2.1,\;11}\)。</p>
+          <blockquote>易错点：方差不是 \(np^2\)，而是 \(np(1-p)\)。</blockquote>
+        </details>
+      </section>
+
+      <section id="covariance" class="chapter"><span class="tag">PART 04</span>
+        <h2>协方差与相关系数 <span class="stars">⭐⭐⭐ 独立的单向结论</span></h2>
+        <div class="formula">\[\operatorname{Cov}(X,Y)=E[(X-E(X))(Y-E(Y))]=E(XY)-E(X)E(Y).\]<br>\[\rho_{X,Y}=\frac{\operatorname{Cov}(X,Y)}{\sqrt{D(X)D(Y)}},\qquad -1\le\rho_{X,Y}\le1.\]</div>
+        <p>协方差反映 X、Y 是否呈线性同向或反向变化：正值倾向同向，负值倾向反向，零表示无线性相关。相关系数把协方差标准化，只有 \(D(X)>0,D(Y)>0\) 时才定义。</p>
+        <blockquote>独立 \(\Rightarrow\operatorname{Cov}(X,Y)=0\)，因为独立时 \(E(XY)=E(X)E(Y)\)。反过来通常不成立：令 X 均匀取 \(-1,0,1\)，令 \(Y=X^2\)。由对称性 \(E(X)=E(X^3)=0\)，故协方差为 0；但 \(P(X=0,Y=0)=1/3\ne P(X=0)P(Y=0)=1/9\)，二者仍不独立。</blockquote>
+        <details>
+          <summary>基础练习 5：若 \(D(X)=4,D(Y)=9,\operatorname{Cov}(X,Y)=3\)，求相关系数与 \(D(X+Y)\)。</summary>
+          <p><strong>思路：</strong>直接代定义与方差和公式。</p>
+          <p><strong>过程：</strong>\(\rho=\frac3{\sqrt{4\cdot9}}=\frac12\)。\(D(X+Y)=4+9+2\cdot3\)。</p>
+          <p><strong>答案：</strong>\(\boxed{\rho=1/2,\quad D(X+Y)=19}\)。</p>
+        </details>
+        <details>
+          <summary>综合练习 6：对例题 1 的联合分布表，求 \(E(X)\)、\(E(Y)\)、\(E(XY)\)、协方差。</summary>
+          <p><strong>思路：</strong>利用边缘分布求前两项；因 X、Y 只取 0、1，\(XY=1\) 仅当 \((1,1)\)。</p>
+          <p><strong>过程：</strong>\(E(X)=P(X=1)=0.7\)，\(E(Y)=P(Y=1)=0.6\)，\(E(XY)=P(1,1)=0.4\)。协方差 \(=0.4-0.7\cdot0.6\)。</p>
+          <p><strong>答案：</strong>\(\boxed{E(X)=0.7,\;E(Y)=0.6,\;E(XY)=0.4,\;\operatorname{Cov}(X,Y)=-0.02}\)。</p>
+          <blockquote>易错点：\(E(XY)\) 不能一般写成 \(E(X)E(Y)\)；只有独立时才可。</blockquote>
+        </details>
+        <details>
+          <summary>综合练习 7：若 \(Y=2X+1\)，且 \(D(X)>0\)，求 \(\rho_{X,Y}\)。</summary>
+          <p><strong>思路：</strong>利用协方差与方差的线性变换性质。</p>
+          <p><strong>过程：</strong>\(\operatorname{Cov}(X,Y)=\operatorname{Cov}(X,2X+1)=2D(X)\)，\(D(Y)=4D(X)\)。代入相关系数得 \(\frac{2D(X)}{\sqrt{D(X)\cdot4D(X)}}\)。</p>
+          <p><strong>答案：</strong>\(\boxed{\rho_{X,Y}=1}\)。这是完全正线性关系。</p>
+        </details>
+      </section>
+
+      <section id="review" class="chapter"><span class="tag">STAGE 04 SUMMARY</span>
+        <h2>本章公式速查与易错点</h2>
+        <table>
+          <tr>
+            <th>必须记忆</th>
+            <th>必须理解</th>
+            <th>必须会做</th>
+          </tr>
+          <tr>
+            <td>边缘积分/求和、条件分布、独立判据、离散与连续卷积、期望定义及线性性、方差计算式、协方差与相关系数</td>
+            <td>边缘化是在忽略另一变量；条件化是在固定信息后重新归一化；和变量要汇总所有分解；期望可加不要求独立；零协方差不等于独立</td>
+            <td>求边缘/条件分布、判独立、求和变量分布、求期望方差、求协方差与相关系数</td>
+          </tr>
+        </table>
+        <blockquote>易错点：联合密度积分范围受支持域限制；连续条件密度不能当单点概率；卷积前先定有效区间；\(D(X+Y)\) 不可漏协方差项；相关系数需两方差均正。</blockquote>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

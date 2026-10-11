@@ -1,11 +1,218 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>离散数学：组合数学</title><link rel="stylesheet" href="assets/chapter-layout.css"><script src="assets/mathjax-config.js"></script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script><script defer src="assets/chapter-layout.js"></script><link rel="stylesheet" href="assets/subject-navigation.css"><script defer src="assets/subject-navigation.js"></script></head><body><div class="cl-shell" data-chapter-layout data-prev-href="discrete-08-trees.html" data-prev-label="第 8 章：树" data-next-href="discrete-10-boolean-algebra.html" data-next-label="第 10 章：布尔代数"><aside class="cl-sidebar"><div class="cl-brand">离散数学<small>CHAPTER 9</small></div><nav aria-label="章节目录" data-toc></nav></aside><main class="cl-main"><header class="cl-hero"><span class="cl-kicker">⭐⭐⭐ 重点复习</span><h1>第 9 章：组合数学</h1><p>组合数学的第一步不是代公式，而是先说清：对象是否按位置区分、是否允许重复、不同方案是否互斥。选对模型后，公式只是对计数过程的压缩。</p><div class="cl-meta"><span>离散数学</span><span>·</span><span>概念 / 计算 / 证明与综合应用</span></div></header><section id="goals" class="cl-section" data-toc-section><h2>1. 本章复习目标</h2><article class="cl-card"><h3>学习目标</h3><p>掌握定义、公式与定理条件；能使用原讲义中的真值表、矩阵、图表、分布和统计推断题完成练习。</p></article></section><section id="framework" class="cl-section" data-toc-section><h2>2. 知识框架</h2><div class="cl-grid"><article class="cl-card"><h3>概念与性质</h3><p>先厘清定义、条件和性质的联系。</p></article><article class="cl-card"><h3>公式与应用</h3><p>再用题型模板、例题和练习完成方法迁移。</p></article></div></section><section id="concepts" class="cl-section" data-toc-section><h2>3. 核心知识点</h2><h3>原讲义内容</h3><div class="cl-legacy">
-<table><tr><th>方法</th><th>公式</th><th>何时使用</th></tr><tr><td>加法原理 ⭐⭐⭐</td><td>互斥的 \(r\) 类方案总数 \(n_1+\cdots+n_r\)</td><td>一次只能走其中一种路径，例如“选文科或理科专业”。若可同时发生，不能直接相加。</td></tr><tr><td>乘法原理 ⭐⭐⭐</td><td>连续 \(r\) 步方案数 \(n_1n_2\cdots n_r\)</td><td>一个完整方案必须依次完成每一步，例如先选班级再选学生。</td></tr><tr><td>排列 ⭐⭐⭐</td><td>\(P(n,r)=\frac{n!}{(n-r)!}\)</td><td>从 \(n\) 个不同对象中取 \(r\) 个并排位，顺序不同算不同。</td></tr><tr><td>组合 ⭐⭐⭐</td><td>\(\binom nr=\frac{n!}{r!(n-r)!}\)</td><td>从 \(n\) 个不同对象中取 \(r\) 个，不分顺序。</td></tr><tr><td>重复排列 ⭐⭐</td><td>\(n^r\)</td><td>有 \(r\) 个位置，每一位可反复选 \(n\) 种符号。</td></tr><tr><td>重复组合 ⭐⭐</td><td>\(\binom{n+r-1}{r}\)</td><td>从 \(n\) 类对象中选 \(r\) 个，可重复且不计顺序；等价于非负整数解 \(x_1+\cdots+x_n=r\)。</td></tr></table>
-<div class="example"><strong>例题：6 位密码由数字构成，首位不能为 0，允许重复。</strong><p><strong>识别：</strong>位置有先后、每位可重复，是重复排列；首位有额外限制。</p><p><strong>计算：</strong>首位有 \(9\) 种，其余五位各有 \(10\) 种，故方案数为 \(9\cdot10^5\)。</p><p><strong>答案：</strong>\(\boxed{900000}\)。</p></div>
-<h3>二项式定理</h3><div class="formula">\[(a+b)^n=\sum_{k=0}^{n}\binom nk a^{\,n-k}b^k.\]</div>
-<p>展开时要从 \(n\) 个因子中选 \(k\) 个因子贡献 \(b\)，其余 \(n-k\) 个贡献 \(a\)。选择这 \(k\) 个位置的方式有 \(\binom nk\) 种，因此该项系数正是组合数。求某一项时，先令 \(b\) 的幂或总次数满足题意，再代入对应的 \(k\)。</p>
-<details><summary>练习 1：求 \((2x-3)^5\) 中 \(x^3\) 项。</summary><p><strong>思路：</strong>把 \(a=2x,b=-3,n=5\)。要留下 \(x^3\)，需从五个因子中选 \(k=2\) 个取 \(-3\)。</p><p><strong>过程：</strong>\(\binom52(2x)^3(-3)^2=10\cdot8x^3\cdot9\)。</p><p><strong>答案：</strong>\(\boxed{720x^3}\)。</p><blockquote>易错点：\(k\) 是取 \(b\) 的次数，不是 \(x\) 的次数。</blockquote></details>
-<h3>鸽巢原理与容斥原理</h3><div class="grid"><div class="card"><h4>鸽巢原理 ⭐⭐⭐</h4><p>把 \(n+1\) 个对象放入 \(n\) 个盒子，至少一盒不少于 \(2\) 个。推广为：把 \(N\) 个对象放入 \(k\) 个盒子，至少有一盒不少于 \(\left\lceil\frac Nk\right\rceil\) 个。</p><p><strong>反向思考：</strong>若每盒至多 \(r-1\) 个，总数至多 \(k(r-1)\)。超过它，就必有一盒至少 \(r\) 个。</p></div><div class="card"><h4>容斥原理 ⭐⭐⭐</h4><p>\(|A\cup B|=|A|+|B|-|A\cap B|\)。</p><p>\(|A\cup B\cup C|=|A|+|B|+|C|-|A\cap B|-|A\cap C|-|B\cap C|+|A\cap B\cap C|\)。</p><p>加单集时交集被重复计数，减去两两交集后三者交集又被多减一次，所以最后加回。</p></div></div>
-<details><summary>练习 2：13 名学生至少有多少人生日在同一月份？</summary><p><strong>思路：</strong>把学生看作对象，12 个月看作盒子，使用推广鸽巢原理。</p><p><strong>过程：</strong>\(\lceil13/12\rceil=2\)。若每月至多一人，总数最多 12，与 13 矛盾。</p><p><strong>答案：</strong>\(\boxed{2}\) 人。</p></details>
-<details><summary>练习 3：40 人中会英语 \(22\) 人，会日语 \(18\) 人，两种都会 \(8\) 人，至少会一种的有多少人？</summary><p><strong>思路：</strong>两种技能可以重叠，不能直接相加；用二集合容斥。</p><p><strong>过程：</strong>\(|E\cup J|=22+18-8=32\)。</p><p><strong>答案：</strong>\(\boxed{32}\) 人；两种都不会的有 \(40-32=8\) 人。</p><blockquote>易错点：交集成员在 \(22+18\) 中被数了两次，必须减一次。</blockquote></details>
-<h3>递推关系与生成函数（扩展）</h3><p>递推关系把较大规模答案写成较小规模答案：例如 Fibonacci 数列 \(F_n=F_{n-1}+F_{n-2}\)。生成函数把数列 \((a_n)\) 编码为 \(A(x)=\sum_{n\ge0}a_nx^n\)，常用于求递推的通项或受限计数。考题先写初值，再写递推的来源；只写递推式而忽略初值不能唯一确定数列。</p>
-</div></section><section id="methods" class="cl-section" data-toc-section><h2>4. 常见题型</h2><article class="cl-card"><h3>方法选择</h3><p>原讲义中的判断方法、真值表、矩阵、图示、分布或统计计算流程均已完整保留在“核心知识点”区。</p></article></section><section id="examples" class="cl-section" data-toc-section><h2>5. 典型例题</h2><article class="cl-card"><h3>例题使用方式</h3><p>先独立作答，再核对原讲义中的关键推导、公式条件与答案。</p></article></section><section id="exercises" class="cl-section" data-toc-section><h2>6. 练习题</h2><article class="cl-card"><h3>练习与解析</h3><p>原有折叠练习、完整解析与易错提示均保留在“核心知识点”区。</p></article></section><section id="mistakes" class="cl-section" data-toc-section><h2>7. 易错点</h2><aside class="cl-warning"><strong>复习提醒：</strong>先检查对象、条件、符号和变量范围；概率题还要检查事件与分布条件，离散题还要检查定义和逻辑方向。</aside></section><section id="formulas" class="cl-section" data-toc-section><h2>8. 公式速查</h2><table class="cl-table"><thead><tr><th>复习顺序</th><th>使用要求</th><th>检查项</th></tr></thead><tbody><tr><td>定义与定理</td><td>确认适用条件</td><td>对象、范围、已知条件</td></tr><tr><td>公式与计算</td><td>代入前保持符号一致</td><td>量词、集合符号、矩阵维数或概率参数</td></tr><tr><td>结论</td><td>说明结论范围</td><td>结果、逻辑方向与单位</td></tr></tbody></table></section><section id="summary" class="cl-section" data-toc-section><h2>9. 本章总结</h2><article class="cl-summary"><h3>必须记忆</h3><p>核心定义、公式和定理条件。</p><h3>必须理解</h3><p>概念间的区别与方法选择依据。</p><h3>必须会做</h3><p>原讲义中的例题、练习与综合题型。</p><h3>容易丢分</h3><p>忽略前提、符号不严谨、混淆相近概念或跳过关键步骤。</p></article></section><nav class="cl-pager" aria-label="章节切换"><a data-prev href="#"></a><a data-next href="#"></a></nav></main></div></body></html>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>离散数学：组合数学</title>
+  <link rel="stylesheet" href="assets/chapter-layout.css">
+  <script src="assets/mathjax-config.js"></script>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+
+  <script defer src="assets/chapter-layout.js"></script>
+  <link rel="stylesheet" href="assets/subject-navigation.css">
+  <script defer src="assets/subject-navigation.js"></script>
+</head>
+<body>
+  <div
+    class="cl-shell"
+    data-chapter-layout
+    data-prev-href="discrete-08-trees.html"
+    data-prev-label="第 8 章：树"
+    data-next-href="discrete-10-boolean-algebra.html"
+    data-next-label="第 10 章：布尔代数"
+  >
+    <aside class="cl-sidebar">
+      <div class="cl-brand">离散数学<small>CHAPTER 9</small></div>
+      <nav aria-label="章节目录" data-toc>
+
+      </nav>
+    </aside>
+    <main class="cl-main">
+      <header class="cl-hero"><span class="cl-kicker">⭐⭐⭐ 重点复习</span>
+        <h1>第 9 章：组合数学</h1>
+        <p>组合数学的第一步不是代公式，而是先说清：对象是否按位置区分、是否允许重复、不同方案是否互斥。选对模型后，公式只是对计数过程的压缩。</p>
+        <div class="cl-meta"><span>离散数学</span><span>·</span><span>概念 / 计算 / 证明与综合应用</span></div>
+      </header>
+      <section id="goals" class="cl-section" data-toc-section>
+        <h2>1. 本章复习目标</h2>
+        <article class="cl-card">
+          <h3>学习目标</h3>
+          <p>掌握定义、公式与定理条件；能使用原讲义中的真值表、矩阵、图表、分布和统计推断题完成练习。</p>
+        </article>
+      </section>
+      <section id="framework" class="cl-section" data-toc-section>
+        <h2>2. 知识框架</h2>
+        <div class="cl-grid">
+          <article class="cl-card">
+            <h3>概念与性质</h3>
+            <p>先厘清定义、条件和性质的联系。</p>
+          </article>
+          <article class="cl-card">
+            <h3>公式与应用</h3>
+            <p>再用题型模板、例题和练习完成方法迁移。</p>
+          </article>
+        </div>
+      </section>
+      <section id="concepts" class="cl-section" data-toc-section>
+        <h2>3. 核心知识点</h2>
+        <h3>原讲义内容</h3>
+        <div class="cl-legacy">
+          <table>
+            <tr>
+              <th>方法</th>
+              <th>公式</th>
+              <th>何时使用</th>
+            </tr>
+            <tr>
+              <td>加法原理 ⭐⭐⭐</td>
+              <td>互斥的 \(r\) 类方案总数 \(n_1+\cdots+n_r\)</td>
+              <td>一次只能走其中一种路径，例如“选文科或理科专业”。若可同时发生，不能直接相加。</td>
+            </tr>
+            <tr>
+              <td>乘法原理 ⭐⭐⭐</td>
+              <td>连续 \(r\) 步方案数 \(n_1n_2\cdots n_r\)</td>
+              <td>一个完整方案必须依次完成每一步，例如先选班级再选学生。</td>
+            </tr>
+            <tr>
+              <td>排列 ⭐⭐⭐</td>
+              <td>\(P(n,r)=\frac{n!}{(n-r)!}\)</td>
+              <td>从 \(n\) 个不同对象中取 \(r\) 个并排位，顺序不同算不同。</td>
+            </tr>
+            <tr>
+              <td>组合 ⭐⭐⭐</td>
+              <td>\(\binom nr=\frac{n!}{r!(n-r)!}\)</td>
+              <td>从 \(n\) 个不同对象中取 \(r\) 个，不分顺序。</td>
+            </tr>
+            <tr>
+              <td>重复排列 ⭐⭐</td>
+              <td>\(n^r\)</td>
+              <td>有 \(r\) 个位置，每一位可反复选 \(n\) 种符号。</td>
+            </tr>
+            <tr>
+              <td>重复组合 ⭐⭐</td>
+              <td>\(\binom{n+r-1}{r}\)</td>
+              <td>从 \(n\) 类对象中选 \(r\) 个，可重复且不计顺序；等价于非负整数解 \(x_1+\cdots+x_n=r\)。</td>
+            </tr>
+          </table>
+          <div class="example"><strong>例题：6 位密码由数字构成，首位不能为 0，允许重复。</strong>
+            <p><strong>识别：</strong>位置有先后、每位可重复，是重复排列；首位有额外限制。</p>
+            <p><strong>计算：</strong>首位有 \(9\) 种，其余五位各有 \(10\) 种，故方案数为 \(9\cdot10^5\)。</p>
+            <p><strong>答案：</strong>\(\boxed{900000}\)。</p>
+          </div>
+          <h3>二项式定理</h3>
+          <div class="formula">\[(a+b)^n=\sum_{k=0}^{n}\binom nk a^{\,n-k}b^k.\]</div>
+          <p>展开时要从 \(n\) 个因子中选 \(k\) 个因子贡献 \(b\)，其余 \(n-k\) 个贡献 \(a\)。选择这 \(k\) 个位置的方式有 \(\binom nk\) 种，因此该项系数正是组合数。求某一项时，先令 \(b\) 的幂或总次数满足题意，再代入对应的 \(k\)。</p>
+          <details>
+            <summary>练习 1：求 \((2x-3)^5\) 中 \(x^3\) 项。</summary>
+            <p><strong>思路：</strong>把 \(a=2x,b=-3,n=5\)。要留下 \(x^3\)，需从五个因子中选 \(k=2\) 个取 \(-3\)。</p>
+            <p><strong>过程：</strong>\(\binom52(2x)^3(-3)^2=10\cdot8x^3\cdot9\)。</p>
+            <p><strong>答案：</strong>\(\boxed{720x^3}\)。</p>
+            <blockquote>易错点：\(k\) 是取 \(b\) 的次数，不是 \(x\) 的次数。</blockquote>
+          </details>
+          <h3>鸽巢原理与容斥原理</h3>
+          <div class="grid">
+            <div class="card">
+              <h4>鸽巢原理 ⭐⭐⭐</h4>
+              <p>把 \(n+1\) 个对象放入 \(n\) 个盒子，至少一盒不少于 \(2\) 个。推广为：把 \(N\) 个对象放入 \(k\) 个盒子，至少有一盒不少于 \(\left\lceil\frac Nk\right\rceil\) 个。</p>
+              <p><strong>反向思考：</strong>若每盒至多 \(r-1\) 个，总数至多 \(k(r-1)\)。超过它，就必有一盒至少 \(r\) 个。</p>
+            </div>
+            <div class="card">
+              <h4>容斥原理 ⭐⭐⭐</h4>
+              <p>\(|A\cup B|=|A|+|B|-|A\cap B|\)。</p>
+              <p>\(|A\cup B\cup C|=|A|+|B|+|C|-|A\cap B|-|A\cap C|-|B\cap C|+|A\cap B\cap C|\)。</p>
+              <p>加单集时交集被重复计数，减去两两交集后三者交集又被多减一次，所以最后加回。</p>
+            </div>
+          </div>
+          <details>
+            <summary>练习 2：13 名学生至少有多少人生日在同一月份？</summary>
+            <p><strong>思路：</strong>把学生看作对象，12 个月看作盒子，使用推广鸽巢原理。</p>
+            <p><strong>过程：</strong>\(\lceil13/12\rceil=2\)。若每月至多一人，总数最多 12，与 13 矛盾。</p>
+            <p><strong>答案：</strong>\(\boxed{2}\) 人。</p>
+          </details>
+          <details>
+            <summary>练习 3：40 人中会英语 \(22\) 人，会日语 \(18\) 人，两种都会 \(8\) 人，至少会一种的有多少人？</summary>
+            <p><strong>思路：</strong>两种技能可以重叠，不能直接相加；用二集合容斥。</p>
+            <p><strong>过程：</strong>\(|E\cup J|=22+18-8=32\)。</p>
+            <p><strong>答案：</strong>\(\boxed{32}\) 人；两种都不会的有 \(40-32=8\) 人。</p>
+            <blockquote>易错点：交集成员在 \(22+18\) 中被数了两次，必须减一次。</blockquote>
+          </details>
+          <h3>递推关系与生成函数（扩展）</h3>
+          <p>递推关系把较大规模答案写成较小规模答案：例如 Fibonacci 数列 \(F_n=F_{n-1}+F_{n-2}\)。生成函数把数列 \((a_n)\) 编码为 \(A(x)=\sum_{n\ge0}a_nx^n\)，常用于求递推的通项或受限计数。考题先写初值，再写递推的来源；只写递推式而忽略初值不能唯一确定数列。</p>
+        </div>
+      </section>
+      <section id="methods" class="cl-section" data-toc-section>
+        <h2>4. 常见题型</h2>
+        <article class="cl-card">
+          <h3>方法选择</h3>
+          <p>原讲义中的判断方法、真值表、矩阵、图示、分布或统计计算流程均已完整保留在“核心知识点”区。</p>
+        </article>
+      </section>
+      <section id="examples" class="cl-section" data-toc-section>
+        <h2>5. 典型例题</h2>
+        <article class="cl-card">
+          <h3>例题使用方式</h3>
+          <p>先独立作答，再核对原讲义中的关键推导、公式条件与答案。</p>
+        </article>
+      </section>
+      <section id="exercises" class="cl-section" data-toc-section>
+        <h2>6. 练习题</h2>
+        <article class="cl-card">
+          <h3>练习与解析</h3>
+          <p>原有折叠练习、完整解析与易错提示均保留在“核心知识点”区。</p>
+        </article>
+      </section>
+      <section id="mistakes" class="cl-section" data-toc-section>
+        <h2>7. 易错点</h2>
+        <aside class="cl-warning"><strong>复习提醒：</strong>先检查对象、条件、符号和变量范围；概率题还要检查事件与分布条件，离散题还要检查定义和逻辑方向。</aside>
+      </section>
+      <section id="formulas" class="cl-section" data-toc-section>
+        <h2>8. 公式速查</h2>
+        <table class="cl-table">
+          <thead>
+            <tr>
+              <th>复习顺序</th>
+              <th>使用要求</th>
+              <th>检查项</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>定义与定理</td>
+              <td>确认适用条件</td>
+              <td>对象、范围、已知条件</td>
+            </tr>
+            <tr>
+              <td>公式与计算</td>
+              <td>代入前保持符号一致</td>
+              <td>量词、集合符号、矩阵维数或概率参数</td>
+            </tr>
+            <tr>
+              <td>结论</td>
+              <td>说明结论范围</td>
+              <td>结果、逻辑方向与单位</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section id="summary" class="cl-section" data-toc-section>
+        <h2>9. 本章总结</h2>
+        <article class="cl-summary">
+          <h3>必须记忆</h3>
+          <p>核心定义、公式和定理条件。</p>
+          <h3>必须理解</h3>
+          <p>概念间的区别与方法选择依据。</p>
+          <h3>必须会做</h3>
+          <p>原讲义中的例题、练习与综合题型。</p>
+          <h3>容易丢分</h3>
+          <p>忽略前提、符号不严谨、混淆相近概念或跳过关键步骤。</p>
+        </article>
+      </section>
+      <nav class="cl-pager" aria-label="章节切换">
+        <a data-prev href="#"></a>
+        <a data-next href="#"></a>
+      </nav>
+    </main>
+  </div>
+</body>
+</html>

@@ -1,14 +1,490 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>线性代数复习讲义</title><script src="assets/mathjax-config.js"></script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script><style>:root{--i:#16251d;--m:#637067;--p:#fbfaf5;--l:#dce3d7;--g:#1d6b4f;--y:#fff8e4}*{box-sizing:border-box}body{margin:0;background:var(--p);color:var(--i);font:16px/1.75 "Noto Serif SC",serif}.shell{display:grid;grid-template-columns:260px 1fr;max-width:1450px;margin:auto}.side{position:sticky;top:0;height:100vh;padding:30px 20px;background:#f5f8f1;border-right:1px solid var(--l)}.brand{font:bold 21px system-ui}.brand span{display:block;color:var(--g);font-size:11px;letter-spacing:.12em;margin-top:7px}.side a{display:block;text-decoration:none;color:var(--m);padding:6px 8px;border-radius:7px}.side a:hover{color:var(--g);background:#e8f3e7}.side nav{margin-top:25px}.main{max-width:1050px;padding:48px clamp(22px,5vw,75px) 90px}.hero{padding:30px;background:linear-gradient(125deg,#e2f1dd,#fff7d8);border:1px solid #cee1c8;border-radius:18px}.tag{display:inline-block;background:var(--g);color:white;border-radius:30px;padding:3px 10px;font:12px system-ui}.hero h1{font-size:43px;line-height:1.2;margin:14px 0}.intro{color:var(--m)}section{margin:58px 0}.chapter{border-top:4px solid var(--g);padding-top:10px}h2{font-size:29px;margin:7px 0}h3{margin-top:30px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.card,.example{background:#fffefa;border:1px solid var(--l);border-radius:11px;padding:16px}.card h4{margin:0}.stars{color:#a66f00;font:13px system-ui}.formula,.method{background:#eef7ed;padding:13px 16px;border-radius:8px;margin:13px 0;overflow:auto}.formula{font-family:ui-monospace}table{width:100%;border-collapse:collapse;background:white;font-size:14px;margin:14px 0}th,td{border:1px solid var(--l);padding:9px;text-align:left;vertical-align:top}th{background:#eef5eb}details{background:white;border:1px solid var(--l);border-radius:9px;padding:11px 14px;margin:9px 0}summary{cursor:pointer;font-weight:bold}blockquote{margin:15px 0;padding:11px 15px;background:var(--y);border-left:4px solid #ffd97a}mjx-container{max-width:100%;overflow:auto}@media(max-width:780px){.shell{display:block}.side{position:static;height:auto}.side nav{display:flex;overflow:auto;gap:2px}.side a{white-space:nowrap}.main{padding:24px 17px}.grid{grid-template-columns:1fr}}</style><link rel="stylesheet" href="assets/subject-navigation.css"><script defer src="assets/subject-navigation.js"></script></head><body><div class="shell"><aside class="side"><div class="brand">数学复习系统<span>LINEAR ALGEBRA · 01–10</span></div><nav><a href="index.html">高等数学</a><a href="linear-01-determinants.html">01 行列式</a><a href="linear-02-matrices.html">02 矩阵</a><a href="linear-03-inverse-matrices.html">03 逆矩阵</a><a href="linear-04-rank.html">04 秩</a><a href="linear-05-linear-systems.html">05 方程组</a><a href="linear-06-vectors-linear-dependence.html">06 向量组</a><a href="linear-07-vector-spaces.html">07 向量空间</a><a href="linear-08-eigenvalues-eigenvectors.html">08 特征值</a><a href="linear-09-diagonalization.html">09 对角化</a><a href="linear-10-quadratic-forms.html">10 二次型</a><a href="#compare">概念对比</a><a href="#final">总复习</a></nav></aside><main class="main"><header class="hero"><span class="tag">大学线性代数考试复习</span><h1>线性代数<br>复习讲义</h1><p>概念 → 判断 → 模板 → 例题 → 折叠解析。矩阵、公式均由浏览器端 MathJax 排版。</p></header>
-<section id="d" class="chapter"><span class="tag">01</span><h2>行列式 <span class="stars">⭐⭐⭐ 计算/证明</span></h2><p class="intro">行列式衡量方阵是否压缩空间；非零意味着方程组可唯一求解、矩阵可逆。</p><div class="formula">\(|A|=\sum_j a_{ij}A_{ij},\quad A_{ij}=(-1)^{i+j}M_{ij}\)</div><div class="method"><strong>判断：</strong>先找比例行、零行、可提出公因子；再用行加倍数制造零；最后按零多的行/列展开。行交换变号，行数乘 \(k\) 行列式也乘 \(k\)，行加倍数不变。</div><div class="example"><strong>例题：</strong>\(\left|\begin{smallmatrix}1&2\\3&4\end{smallmatrix}\right|=4-6=-2\ne0\)，故矩阵可逆。</div><details><summary>练习：\(\left|\begin{smallmatrix}1&2&3\\2&4&7\\1&1&2\end{smallmatrix}\right|\)</summary><p>\(R_2\leftarrow R_2-2R_1,R_3\leftarrow R_3-R_1\) 得 \(\begin{pmatrix}1&2&3\\0&0&1\\0&-1&-1\end{pmatrix}\)。按第二行展开，结果 \(\boxed{-1}\)。行加倍数不改变行列式。</p></details><blockquote>余子式 \(M_{ij}\) 不带符号；代数余子式 \(A_{ij}\) 才带 \((-1)^{i+j}\)。</blockquote></section>
-<section id="m" class="chapter"><span class="tag">02</span><h2>矩阵 <span class="stars">⭐⭐⭐ 计算题</span></h2><div class="formula">\((AB)_{ij}=\sum_k a_{ik}b_{kj},\quad(AB)C=A(BC),\quad AB\ne BA\text{（一般）}\)</div><p>矩阵乘法要求内维相等。它不交换：\(A=\begin{pmatrix}1&1\\0&1\end{pmatrix},B=\begin{pmatrix}1&0\\1&1\end{pmatrix}\) 时 \(AB=\begin{pmatrix}2&1\\1&1\end{pmatrix}\ne BA=\begin{pmatrix}1&1\\1&2\end{pmatrix}\)。结合律成立，因为三重求和的分组不变。</p><details><summary>练习：\(A=\begin{pmatrix}1&2\\0&1\end{pmatrix}\)，求 \(A^2\)</summary><p>按行乘列：\(\boxed{A^2=\begin{pmatrix}1&4\\0&1\end{pmatrix}}\)。不要逐元素平方。</p></details><details><summary>公式速查</summary><p>\((AB)^T=B^TA^T\)（顺序反转）；对称矩阵 \(A^T=A\)；\((A+B)^T=A^T+B^T\)。</p></details></section>
-<section id="inv" class="chapter"><span class="tag">03</span><h2>逆矩阵 <span class="stars">⭐⭐⭐</span></h2><div class="formula">A^{-1}=\frac1{|A|}A^*\ (|A|\ne0),\qquad(AB)^{-1}=B^{-1}A^{-1}</div><table><tr><th>等价条件（\(n\) 阶方阵）</th><th>理解</th></tr><tr><td>\(A\) 可逆 \(\Leftrightarrow|A|\ne0\Leftrightarrow r(A)=n\)</td><td>列向量没有冗余，变换不压扁方向</td></tr><tr><td>\(\Leftrightarrow Ax=0\) 仅零解</td><td>没有非零向量被映为零</td></tr></table><div class="method"><strong>求逆：</strong>低阶用伴随矩阵；一般用 \((A|E)\to(E|A^{-1})\)。左侧不能化为 \(E\) 即不可逆。</div><details><summary>练习：求 \(\begin{pmatrix}1&2\\3&7\end{pmatrix}^{-1}\)</summary><p>\(\left(\begin{array}{cc|cc}1&2&1&0\\3&7&0&1\end{array}\right)\to\left(\begin{array}{cc|cc}1&2&1&0\\0&1&-3&1\end{array}\right)\to\left(\begin{array}{cc|cc}1&0&7&-2\\0&1&-3&1\end{array}\right)\)，故 \(\boxed{\begin{pmatrix}7&-2\\-3&1\end{pmatrix}}\)。</p></details></section>
-<section id="rank" class="chapter"><span class="tag">04</span><h2>矩阵的秩 <span class="stars">⭐⭐⭐</span></h2><div class="formula">r(A)\le\min(m,n),\quad r(A)=r(A^T),\quad r(AB)\le\min\{r(A),r(B)\}</div><p>秩是独立信息的数量。初等行变换可逆，行空间可相互恢复，所以不改变秩；阶梯形的非零行数即秩。</p><details><summary>练习：求 \(r\begin{pmatrix}1&2&3\\2&4&6\\1&1&1\end{pmatrix}\)</summary><p>消元得 \(\begin{pmatrix}1&2&3\\0&0&0\\0&-1&-2\end{pmatrix}\)，两行非零，\(\boxed{r=2}\)。</p></details></section>
-<section id="eq" class="chapter"><span class="tag">05</span><h2>线性方程组 <span class="stars">⭐⭐⭐</span></h2><div class="formula">r(A)=r(A|b)\Leftrightarrow\text{有解};\quad r(A)=r(A|b)=n\Leftrightarrow\text{唯一解}</div><p>增广矩阵出现 \((0,\ldots,0|c),c\ne0\) 表示矛盾，故无解；有解而秩小于未知数个数则有自由变量，故无穷多解。</p><details><summary>练习：\(x+y=1,\ 2x+2y=2\)</summary><p>\(\left(\begin{array}{cc|c}1&1&1\\2&2&2\end{array}\right)\to\left(\begin{array}{cc|c}1&1&1\\0&0&0\end{array}\right)\)。秩均为 \(1<2\)，\(\boxed{x=1-t,y=t}\)。</p></details></section>
-<section id="vec" class="chapter"><span class="tag">06</span><h2>向量组与线性相关 <span class="stars">⭐⭐⭐</span></h2><div class="formula">k_1\alpha_1+\cdots+k_s\alpha_s=0:\ \text{仅零解}\Rightarrow\text{无关；有非零解}\Rightarrow\text{相关}</div><p>直观上，相关表示某向量可由其余向量表示。将向量作列组成矩阵：\(r=s\) 无关；\(r<s\) 相关。极大无关组的向量数就是秩。</p><details><summary>练习：\((1,0),(0,1),(1,1)\) 是否无关？</summary><p>\((1,1)=(1,0)+(0,1)\)，存在非零系数的零组合，故 \(\boxed{\text{相关}}\)；前两个可取为极大无关组。</p></details></section>
-<section id="space" class="chapter"><span class="tag">07</span><h2>向量空间 <span class="stars">⭐⭐</span></h2><p>基同时满足“线性无关”（无冗余）和“张成空间”（足够）；\(\dim V=n\) 表示任一组基都恰有 \(n\) 个向量。</p><details><summary>练习：\((1,1),(1,-1)\) 是 \(\mathbb R^2\) 的基吗？</summary><p>行列式 \(-2\ne0\)，两向量无关；二维中两个无关向量必张成 \(\mathbb R^2\)，故 \(\boxed{\text{是}}\)。</p></details></section>
-<section id="eig" class="chapter"><span class="tag">08</span><h2>特征值与特征向量 <span class="stars">⭐⭐⭐</span></h2><div class="formula">A\alpha=\lambda\alpha\Longleftrightarrow(A-\lambda E)\alpha=0\Longleftrightarrow|A-\lambda E|=0</div><p>最后一步来自齐次方程有非零解当且仅当系数矩阵奇异。步骤：先求特征方程的根，再对每根解齐次方程；特征向量不能为零。</p><details><summary>练习：\(A=\operatorname{diag}(2,3)\)</summary><p>\(|A-\lambda E|=(2-\lambda)(3-\lambda)\)，特征值为 \(2,3\)；对应向量可取 \(\boxed{(1,0)^T,(0,1)^T}\)。</p></details></section>
-<section id="diag" class="chapter"><span class="tag">09</span><h2>矩阵对角化 <span class="stars">⭐⭐⭐</span></h2><div class="formula">P^{-1}AP=\Lambda,\quad P=(\alpha_1,\ldots,\alpha_n),\quad\Lambda=\operatorname{diag}(\lambda_1,\ldots,\lambda_n)</div><p>因为 \(A\alpha_i=\lambda_i\alpha_i\)，所以 \(AP=P\Lambda\)。有 \(n\) 个线性无关特征向量是可对角化的充要条件；有 \(n\) 个不同特征值是常用充分条件。</p><details><summary>易错点：相似与合同</summary><p>相似 \(P^{-1}AP\) 研究线性变换与特征值；合同 \(P^TAP\) 化二次型。两者不能混用。</p></details></section>
-<section id="quad" class="chapter"><span class="tag">10</span><h2>二次型 <span class="stars">⭐⭐⭐</span></h2><div class="formula">f(x)=x^TAx,\quad A=A^T;\qquad A\text{ 正定}\Longleftrightarrow\Delta_1>0,\ldots,\Delta_n>0</div><p>Sylvester 判别法的适用条件是<strong>实对称矩阵</strong>，\(\Delta_i\) 为顺序主子式。</p><details><summary>练习：\(x_1^2+2x_2^2\) 是否正定？</summary><p>\(A=\operatorname{diag}(1,2)\)，\(\Delta_1=1>0,\Delta_2=2>0\)，故 \(\boxed{\text{正定}}\)。</p></details></section>
-<section id="compare" class="chapter"><span class="tag">COMPARE</span><h2>概念对比与公式速查</h2><table><tr><th>A</th><th>B</th><th>区别 / 联系</th></tr><tr><td>余子式</td><td>代数余子式</td><td>\(A_{ij}=(-1)^{i+j}M_{ij}\)</td></tr><tr><td>相关</td><td>无关</td><td>齐次组合有非零解 / 仅零解</td></tr><tr><td>极大无关组</td><td>秩</td><td>前者是向量组，后者是其个数</td></tr><tr><td>相似</td><td>合同</td><td>保特征 / 化二次型</td></tr><tr><td>行变换</td><td>列变换</td><td>均不改秩；解方程通常做行变换</td></tr></table><div class="formula">A\text{ 可逆}\Longleftrightarrow|A|\ne0\Longleftrightarrow r(A)=n\Longleftrightarrow Ax=0\text{ 仅零解}\Longleftrightarrow A\text{ 列向量无关}</div></section>
-<section id="bank" class="chapter"><span class="tag">PRACTICE BANK</span><h2>章节速查与补充题库</h2><table><tr><th>章节</th><th>必须会</th><th>最易错</th></tr><tr><td>行列式</td><td>性质化简、展开、参数判零</td><td>行交换忘记变号</td></tr><tr><td>矩阵/逆</td><td>按行乘列、\((A|E)\) 消元</td><td>把矩阵逐元素相乘</td></tr><tr><td>秩/方程组</td><td>主元与自由变量、比较增广秩</td><td>只看 \(r(A)\) 不看 \(r(A|b)\)</td></tr><tr><td>向量/空间</td><td>齐次方程判相关、基与维数</td><td>把极大无关组误当作秩</td></tr><tr><td>特征/二次型</td><td>逐根求特征向量、顺序主子式</td><td>特征向量取零；非对称矩阵套 Sylvester</td></tr></table><h3>补充练习（含解析）</h3><details><summary>1. 若三阶 \(|A|=5\)，求 \(|2A|\)</summary><p>三行均乘 \(2\)，行列式乘 \(2^3\)，故 \(\boxed{40}\)。易错：不能只乘 \(2\)。</p></details><details><summary>2. 求 \(r\begin{pmatrix}1&2\\2&4\\3&6\end{pmatrix}\)</summary><p>\(R_2-2R_1,R_3-3R_1\) 后只余一非零行，故 \(\boxed{r=1}\)。</p></details><details><summary>3. 解 \(x+y=1,\ 2x+2y=k\)</summary><p>消元得 \((0,0|k-2)\)。\(k\ne2\) 无解；\(k=2\) 时秩为 \(1<2\)，\(\boxed{x=1-t,y=t}\)。</p></details><details><summary>4. 求 \(\begin{pmatrix}4&1\\2&3\end{pmatrix}\) 的特征值和特征向量</summary><p>\(|A-\lambda E|=(\lambda-5)(\lambda-2)\)。\(\lambda=5\) 取 \((1,1)^T\)；\(\lambda=2\) 取 \((1,-2)^T\)。</p></details><details><summary>5. 将上题矩阵对角化</summary><p>取 \(P=\begin{pmatrix}1&1\\1&-2\end{pmatrix}\)，\(\Lambda=\operatorname{diag}(5,2)\)，故 \(\boxed{P^{-1}AP=\Lambda}\)。列顺序必须和对角元同步。</p></details><details><summary>6. 判定 \(2x^2+2xy+2y^2\) 正定性</summary><p>对应实对称 \(A=\begin{pmatrix}2&1\\1&2\end{pmatrix}\)，\(\Delta_1=2>0,\Delta_2=3>0\)，故 \(\boxed{\text{正定}}\)。</p></details><details><summary>7. 证明 \(A\) 可逆当且仅当 \(Ax=0\) 仅零解</summary><p>可逆时左乘 \(A^{-1}\) 得 \(x=0\)；反之，仅零解表示列无关，故 \(r(A)=n\)，从而 \(|A|\ne0\)，矩阵可逆。</p></details></section>
-<section id="final" class="chapter"><span class="tag">FINAL REVIEW</span><h2>总复习与模拟题</h2><div class="method"><strong>方法触发词：</strong>“可逆”→行列式/秩/零空间；“独立”→齐次方程；“方程组”→增广矩阵比秩；“特征”→\(|A-\lambda E|=0\)；“正定”→先验对称再用顺序主子式。</div><details><summary>模拟 1：何时 \(Ax=b\) 唯一解？</summary><p>\(\boxed{r(A)=r(A|b)=n}\)：前者保证有解，等于未知量数保证无自由变量。</p></details><details><summary>模拟 2：不同特征值的特征向量为什么无关？</summary><p>若存在最短的非平凡相关组合，左乘 \(A\) 后减去某特征值倍原式，能得到更短的非平凡相关组合，矛盾；故无关。</p></details><blockquote>考前 5 分钟：行交换使行列式变号；\(AB\) 一般不交换；\((AB)^{-1}\) 顺序反转；秩数主元；特征向量非零；Sylvester 仅用于实对称矩阵。</blockquote></section></main></div></body></html>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>线性代数复习讲义</title>
+  <script src="assets/mathjax-config.js"></script>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+
+  <style>
+    :root {
+      --i: #16251d;
+      --m: #637067;
+      --p: #fbfaf5;
+      --l: #dce3d7;
+      --g: #1d6b4f;
+      --y: #fff8e4
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    body {
+      margin: 0;
+      background: var(--p);
+      color: var(--i);
+      font: 16px/1.75 "Noto Serif SC", serif
+    }
+
+    .shell {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      max-width: 1450px;
+      margin: auto
+    }
+
+    .side {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 30px 20px;
+      background: #f5f8f1;
+      border-right: 1px solid var(--l)
+    }
+
+    .brand {
+      font: bold 21px system-ui
+    }
+
+    .brand span {
+      display: block;
+      color: var(--g);
+      font-size: 11px;
+      letter-spacing: .12em;
+      margin-top: 7px
+    }
+
+    .side a {
+      display: block;
+      text-decoration: none;
+      color: var(--m);
+      padding: 6px 8px;
+      border-radius: 7px
+    }
+
+    .side a:hover {
+      color: var(--g);
+      background: #e8f3e7
+    }
+
+    .side nav {
+      margin-top: 25px
+    }
+
+    .main {
+      max-width: 1050px;
+      padding: 48px clamp(22px, 5vw, 75px) 90px
+    }
+
+    .hero {
+      padding: 30px;
+      background: linear-gradient(125deg, #e2f1dd, #fff7d8);
+      border: 1px solid #cee1c8;
+      border-radius: 18px
+    }
+
+    .tag {
+      display: inline-block;
+      background: var(--g);
+      color: white;
+      border-radius: 30px;
+      padding: 3px 10px;
+      font: 12px system-ui
+    }
+
+    .hero h1 {
+      font-size: 43px;
+      line-height: 1.2;
+      margin: 14px 0
+    }
+
+    .intro {
+      color: var(--m)
+    }
+
+    section {
+      margin: 58px 0
+    }
+
+    .chapter {
+      border-top: 4px solid var(--g);
+      padding-top: 10px
+    }
+
+    h2 {
+      font-size: 29px;
+      margin: 7px 0
+    }
+
+    h3 {
+      margin-top: 30px
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 13px
+    }
+
+    .card,
+    .example {
+      background: #fffefa;
+      border: 1px solid var(--l);
+      border-radius: 11px;
+      padding: 16px
+    }
+
+    .card h4 {
+      margin: 0
+    }
+
+    .stars {
+      color: #a66f00;
+      font: 13px system-ui
+    }
+
+    .formula,
+    .method {
+      background: #eef7ed;
+      padding: 13px 16px;
+      border-radius: 8px;
+      margin: 13px 0;
+      overflow: auto
+    }
+
+    .formula {
+      font-family: ui-monospace
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      font-size: 14px;
+      margin: 14px 0
+    }
+
+    th,
+    td {
+      border: 1px solid var(--l);
+      padding: 9px;
+      text-align: left;
+      vertical-align: top
+    }
+
+    th {
+      background: #eef5eb
+    }
+
+    details {
+      background: white;
+      border: 1px solid var(--l);
+      border-radius: 9px;
+      padding: 11px 14px;
+      margin: 9px 0
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: bold
+    }
+
+    blockquote {
+      margin: 15px 0;
+      padding: 11px 15px;
+      background: var(--y);
+      border-left: 4px solid #ffd97a
+    }
+
+    mjx-container {
+      max-width: 100%;
+      overflow: auto
+    }
+
+    @media(max-width:780px) {
+      .shell {
+        display: block
+      }
+
+      .side {
+        position: static;
+        height: auto
+      }
+
+      .side nav {
+        display: flex;
+        overflow: auto;
+        gap: 2px
+      }
+
+      .side a {
+        white-space: nowrap
+      }
+
+      .main {
+        padding: 24px 17px
+      }
+
+      .grid {
+        grid-template-columns: 1fr
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="assets/subject-navigation.css">
+  <script defer src="assets/subject-navigation.js"></script>
+</head>
+<body>
+  <div class="shell">
+    <aside class="side">
+      <div class="brand">数学复习系统<span>LINEAR ALGEBRA · 01–10</span></div>
+      <nav>
+        <a href="index.html">高等数学</a>
+        <a href="linear-01-determinants.html">01 行列式</a>
+        <a href="linear-02-matrices.html">02 矩阵</a>
+        <a href="linear-03-inverse-matrices.html">03 逆矩阵</a>
+        <a href="linear-04-rank.html">04 秩</a>
+        <a href="linear-05-linear-systems.html">05 方程组</a>
+        <a href="linear-06-vectors-linear-dependence.html">06 向量组</a>
+        <a href="linear-07-vector-spaces.html">07 向量空间</a>
+        <a href="linear-08-eigenvalues-eigenvectors.html">08 特征值</a>
+        <a href="linear-09-diagonalization.html">09 对角化</a>
+        <a href="linear-10-quadratic-forms.html">10 二次型</a>
+        <a href="#compare">概念对比</a>
+        <a href="#final">总复习</a>
+      </nav>
+    </aside>
+    <main class="main">
+      <header class="hero"><span class="tag">大学线性代数考试复习</span>
+        <h1>线性代数<br>复习讲义</h1>
+        <p>概念 → 判断 → 模板 → 例题 → 折叠解析。矩阵、公式均由浏览器端 MathJax 排版。</p>
+      </header>
+      <section id="d" class="chapter"><span class="tag">01</span>
+        <h2>行列式 <span class="stars">⭐⭐⭐ 计算/证明</span></h2>
+        <p class="intro">行列式衡量方阵是否压缩空间；非零意味着方程组可唯一求解、矩阵可逆。</p>
+        <div class="formula">\(|A|=\sum_j a_{ij}A_{ij},\quad A_{ij}=(-1)^{i+j}M_{ij}\)</div>
+        <div class="method"><strong>判断：</strong>先找比例行、零行、可提出公因子；再用行加倍数制造零；最后按零多的行/列展开。行交换变号，行数乘 \(k\) 行列式也乘 \(k\)，行加倍数不变。</div>
+        <div class="example"><strong>例题：</strong>\(\left|\begin{smallmatrix}1&2\\3&4\end{smallmatrix}\right|=4-6=-2\ne0\)，故矩阵可逆。</div>
+        <details>
+          <summary>练习：\(\left|\begin{smallmatrix}1&2&3\\2&4&7\\1&1&2\end{smallmatrix}\right|\)</summary>
+          <p>\(R_2\leftarrow R_2-2R_1,R_3\leftarrow R_3-R_1\) 得 \(\begin{pmatrix}1&2&3\\0&0&1\\0&-1&-1\end{pmatrix}\)。按第二行展开，结果 \(\boxed{-1}\)。行加倍数不改变行列式。</p>
+        </details>
+        <blockquote>余子式 \(M_{ij}\) 不带符号；代数余子式 \(A_{ij}\) 才带 \((-1)^{i+j}\)。</blockquote>
+      </section>
+      <section id="m" class="chapter"><span class="tag">02</span>
+        <h2>矩阵 <span class="stars">⭐⭐⭐ 计算题</span></h2>
+        <div class="formula">\((AB)_{ij}=\sum_k a_{ik}b_{kj},\quad(AB)C=A(BC),\quad AB\ne BA\text{（一般）}\)</div>
+        <p>矩阵乘法要求内维相等。它不交换：\(A=\begin{pmatrix}1&1\\0&1\end{pmatrix},B=\begin{pmatrix}1&0\\1&1\end{pmatrix}\) 时 \(AB=\begin{pmatrix}2&1\\1&1\end{pmatrix}\ne BA=\begin{pmatrix}1&1\\1&2\end{pmatrix}\)。结合律成立，因为三重求和的分组不变。</p>
+        <details>
+          <summary>练习：\(A=\begin{pmatrix}1&2\\0&1\end{pmatrix}\)，求 \(A^2\)</summary>
+          <p>按行乘列：\(\boxed{A^2=\begin{pmatrix}1&4\\0&1\end{pmatrix}}\)。不要逐元素平方。</p>
+        </details>
+        <details>
+          <summary>公式速查</summary>
+          <p>\((AB)^T=B^TA^T\)（顺序反转）；对称矩阵 \(A^T=A\)；\((A+B)^T=A^T+B^T\)。</p>
+        </details>
+      </section>
+      <section id="inv" class="chapter"><span class="tag">03</span>
+        <h2>逆矩阵 <span class="stars">⭐⭐⭐</span></h2>
+        <div class="formula">A^{-1}=\frac1{|A|}A^*\ (|A|\ne0),\qquad(AB)^{-1}=B^{-1}A^{-1}</div>
+        <table>
+          <tr>
+            <th>等价条件（\(n\) 阶方阵）</th>
+            <th>理解</th>
+          </tr>
+          <tr>
+            <td>\(A\) 可逆 \(\Leftrightarrow|A|\ne0\Leftrightarrow r(A)=n\)</td>
+            <td>列向量没有冗余，变换不压扁方向</td>
+          </tr>
+          <tr>
+            <td>\(\Leftrightarrow Ax=0\) 仅零解</td>
+            <td>没有非零向量被映为零</td>
+          </tr>
+        </table>
+        <div class="method"><strong>求逆：</strong>低阶用伴随矩阵；一般用 \((A|E)\to(E|A^{-1})\)。左侧不能化为 \(E\) 即不可逆。</div>
+        <details>
+          <summary>练习：求 \(\begin{pmatrix}1&2\\3&7\end{pmatrix}^{-1}\)</summary>
+          <p>\(\left(\begin{array}{cc|cc}1&2&1&0\\3&7&0&1\end{array}\right)\to\left(\begin{array}{cc|cc}1&2&1&0\\0&1&-3&1\end{array}\right)\to\left(\begin{array}{cc|cc}1&0&7&-2\\0&1&-3&1\end{array}\right)\)，故 \(\boxed{\begin{pmatrix}7&-2\\-3&1\end{pmatrix}}\)。</p>
+        </details>
+      </section>
+      <section id="rank" class="chapter"><span class="tag">04</span>
+        <h2>矩阵的秩 <span class="stars">⭐⭐⭐</span></h2>
+        <div class="formula">r(A)\le\min(m,n),\quad r(A)=r(A^T),\quad r(AB)\le\min\{r(A),r(B)\}</div>
+        <p>秩是独立信息的数量。初等行变换可逆，行空间可相互恢复，所以不改变秩；阶梯形的非零行数即秩。</p>
+        <details>
+          <summary>练习：求 \(r\begin{pmatrix}1&2&3\\2&4&6\\1&1&1\end{pmatrix}\)</summary>
+          <p>消元得 \(\begin{pmatrix}1&2&3\\0&0&0\\0&-1&-2\end{pmatrix}\)，两行非零，\(\boxed{r=2}\)。</p>
+        </details>
+      </section>
+      <section id="eq" class="chapter"><span class="tag">05</span>
+        <h2>线性方程组 <span class="stars">⭐⭐⭐</span></h2>
+        <div class="formula">r(A)=r(A|b)\Leftrightarrow\text{有解};\quad r(A)=r(A|b)=n\Leftrightarrow\text{唯一解}</div>
+        <p>增广矩阵出现 \((0,\ldots,0|c),c\ne0\) 表示矛盾，故无解；有解而秩小于未知数个数则有自由变量，故无穷多解。</p>
+        <details>
+          <summary>练习：\(x+y=1,\ 2x+2y=2\)</summary>
+          <p>\(\left(\begin{array}{cc|c}1&1&1\\2&2&2\end{array}\right)\to\left(\begin{array}{cc|c}1&1&1\\0&0&0\end{array}\right)\)。秩均为 \(1<2\)，\(\boxed{x=1-t,y=t}\)。</p>
+        </details>
+      </section>
+      <section id="vec" class="chapter"><span class="tag">06</span>
+        <h2>向量组与线性相关 <span class="stars">⭐⭐⭐</span></h2>
+        <div class="formula">k_1\alpha_1+\cdots+k_s\alpha_s=0:\ \text{仅零解}\Rightarrow\text{无关；有非零解}\Rightarrow\text{相关}</div>
+        <p>直观上，相关表示某向量可由其余向量表示。将向量作列组成矩阵：\(r=s\) 无关；\(r<s\) 相关。极大无关组的向量数就是秩。</p>
+        <details>
+          <summary>练习：\((1,0),(0,1),(1,1)\) 是否无关？</summary>
+          <p>\((1,1)=(1,0)+(0,1)\)，存在非零系数的零组合，故 \(\boxed{\text{相关}}\)；前两个可取为极大无关组。</p>
+        </details>
+      </section>
+      <section id="space" class="chapter"><span class="tag">07</span>
+        <h2>向量空间 <span class="stars">⭐⭐</span></h2>
+        <p>基同时满足“线性无关”（无冗余）和“张成空间”（足够）；\(\dim V=n\) 表示任一组基都恰有 \(n\) 个向量。</p>
+        <details>
+          <summary>练习：\((1,1),(1,-1)\) 是 \(\mathbb R^2\) 的基吗？</summary>
+          <p>行列式 \(-2\ne0\)，两向量无关；二维中两个无关向量必张成 \(\mathbb R^2\)，故 \(\boxed{\text{是}}\)。</p>
+        </details>
+      </section>
+      <section id="eig" class="chapter"><span class="tag">08</span>
+        <h2>特征值与特征向量 <span class="stars">⭐⭐⭐</span></h2>
+        <div class="formula">A\alpha=\lambda\alpha\Longleftrightarrow(A-\lambda E)\alpha=0\Longleftrightarrow|A-\lambda E|=0</div>
+        <p>最后一步来自齐次方程有非零解当且仅当系数矩阵奇异。步骤：先求特征方程的根，再对每根解齐次方程；特征向量不能为零。</p>
+        <details>
+          <summary>练习：\(A=\operatorname{diag}(2,3)\)</summary>
+          <p>\(|A-\lambda E|=(2-\lambda)(3-\lambda)\)，特征值为 \(2,3\)；对应向量可取 \(\boxed{(1,0)^T,(0,1)^T}\)。</p>
+        </details>
+      </section>
+      <section id="diag" class="chapter"><span class="tag">09</span>
+        <h2>矩阵对角化 <span class="stars">⭐⭐⭐</span></h2>
+        <div class="formula">P^{-1}AP=\Lambda,\quad P=(\alpha_1,\ldots,\alpha_n),\quad\Lambda=\operatorname{diag}(\lambda_1,\ldots,\lambda_n)</div>
+        <p>因为 \(A\alpha_i=\lambda_i\alpha_i\)，所以 \(AP=P\Lambda\)。有 \(n\) 个线性无关特征向量是可对角化的充要条件；有 \(n\) 个不同特征值是常用充分条件。</p>
+        <details>
+          <summary>易错点：相似与合同</summary>
+          <p>相似 \(P^{-1}AP\) 研究线性变换与特征值；合同 \(P^TAP\) 化二次型。两者不能混用。</p>
+        </details>
+      </section>
+      <section id="quad" class="chapter"><span class="tag">10</span>
+        <h2>二次型 <span class="stars">⭐⭐⭐</span></h2>
+        <div class="formula">f(x)=x^TAx,\quad A=A^T;\qquad A\text{ 正定}\Longleftrightarrow\Delta_1>0,\ldots,\Delta_n>0</div>
+        <p>Sylvester 判别法的适用条件是<strong>实对称矩阵</strong>，\(\Delta_i\) 为顺序主子式。</p>
+        <details>
+          <summary>练习：\(x_1^2+2x_2^2\) 是否正定？</summary>
+          <p>\(A=\operatorname{diag}(1,2)\)，\(\Delta_1=1>0,\Delta_2=2>0\)，故 \(\boxed{\text{正定}}\)。</p>
+        </details>
+      </section>
+      <section id="compare" class="chapter"><span class="tag">COMPARE</span>
+        <h2>概念对比与公式速查</h2>
+        <table>
+          <tr>
+            <th>A</th>
+            <th>B</th>
+            <th>区别 / 联系</th>
+          </tr>
+          <tr>
+            <td>余子式</td>
+            <td>代数余子式</td>
+            <td>\(A_{ij}=(-1)^{i+j}M_{ij}\)</td>
+          </tr>
+          <tr>
+            <td>相关</td>
+            <td>无关</td>
+            <td>齐次组合有非零解 / 仅零解</td>
+          </tr>
+          <tr>
+            <td>极大无关组</td>
+            <td>秩</td>
+            <td>前者是向量组，后者是其个数</td>
+          </tr>
+          <tr>
+            <td>相似</td>
+            <td>合同</td>
+            <td>保特征 / 化二次型</td>
+          </tr>
+          <tr>
+            <td>行变换</td>
+            <td>列变换</td>
+            <td>均不改秩；解方程通常做行变换</td>
+          </tr>
+        </table>
+        <div class="formula">A\text{ 可逆}\Longleftrightarrow|A|\ne0\Longleftrightarrow r(A)=n\Longleftrightarrow Ax=0\text{ 仅零解}\Longleftrightarrow A\text{ 列向量无关}</div>
+      </section>
+      <section id="bank" class="chapter"><span class="tag">PRACTICE BANK</span>
+        <h2>章节速查与补充题库</h2>
+        <table>
+          <tr>
+            <th>章节</th>
+            <th>必须会</th>
+            <th>最易错</th>
+          </tr>
+          <tr>
+            <td>行列式</td>
+            <td>性质化简、展开、参数判零</td>
+            <td>行交换忘记变号</td>
+          </tr>
+          <tr>
+            <td>矩阵/逆</td>
+            <td>按行乘列、\((A|E)\) 消元</td>
+            <td>把矩阵逐元素相乘</td>
+          </tr>
+          <tr>
+            <td>秩/方程组</td>
+            <td>主元与自由变量、比较增广秩</td>
+            <td>只看 \(r(A)\) 不看 \(r(A|b)\)</td>
+          </tr>
+          <tr>
+            <td>向量/空间</td>
+            <td>齐次方程判相关、基与维数</td>
+            <td>把极大无关组误当作秩</td>
+          </tr>
+          <tr>
+            <td>特征/二次型</td>
+            <td>逐根求特征向量、顺序主子式</td>
+            <td>特征向量取零；非对称矩阵套 Sylvester</td>
+          </tr>
+        </table>
+        <h3>补充练习（含解析）</h3>
+        <details>
+          <summary>1. 若三阶 \(|A|=5\)，求 \(|2A|\)</summary>
+          <p>三行均乘 \(2\)，行列式乘 \(2^3\)，故 \(\boxed{40}\)。易错：不能只乘 \(2\)。</p>
+        </details>
+        <details>
+          <summary>2. 求 \(r\begin{pmatrix}1&2\\2&4\\3&6\end{pmatrix}\)</summary>
+          <p>\(R_2-2R_1,R_3-3R_1\) 后只余一非零行，故 \(\boxed{r=1}\)。</p>
+        </details>
+        <details>
+          <summary>3. 解 \(x+y=1,\ 2x+2y=k\)</summary>
+          <p>消元得 \((0,0|k-2)\)。\(k\ne2\) 无解；\(k=2\) 时秩为 \(1<2\)，\(\boxed{x=1-t,y=t}\)。</p>
+        </details>
+        <details>
+          <summary>4. 求 \(\begin{pmatrix}4&1\\2&3\end{pmatrix}\) 的特征值和特征向量</summary>
+          <p>\(|A-\lambda E|=(\lambda-5)(\lambda-2)\)。\(\lambda=5\) 取 \((1,1)^T\)；\(\lambda=2\) 取 \((1,-2)^T\)。</p>
+        </details>
+        <details>
+          <summary>5. 将上题矩阵对角化</summary>
+          <p>取 \(P=\begin{pmatrix}1&1\\1&-2\end{pmatrix}\)，\(\Lambda=\operatorname{diag}(5,2)\)，故 \(\boxed{P^{-1}AP=\Lambda}\)。列顺序必须和对角元同步。</p>
+        </details>
+        <details>
+          <summary>6. 判定 \(2x^2+2xy+2y^2\) 正定性</summary>
+          <p>对应实对称 \(A=\begin{pmatrix}2&1\\1&2\end{pmatrix}\)，\(\Delta_1=2>0,\Delta_2=3>0\)，故 \(\boxed{\text{正定}}\)。</p>
+        </details>
+        <details>
+          <summary>7. 证明 \(A\) 可逆当且仅当 \(Ax=0\) 仅零解</summary>
+          <p>可逆时左乘 \(A^{-1}\) 得 \(x=0\)；反之，仅零解表示列无关，故 \(r(A)=n\)，从而 \(|A|\ne0\)，矩阵可逆。</p>
+        </details>
+      </section>
+      <section id="final" class="chapter"><span class="tag">FINAL REVIEW</span>
+        <h2>总复习与模拟题</h2>
+        <div class="method"><strong>方法触发词：</strong>“可逆”→行列式/秩/零空间；“独立”→齐次方程；“方程组”→增广矩阵比秩；“特征”→\(|A-\lambda E|=0\)；“正定”→先验对称再用顺序主子式。</div>
+        <details>
+          <summary>模拟 1：何时 \(Ax=b\) 唯一解？</summary>
+          <p>\(\boxed{r(A)=r(A|b)=n}\)：前者保证有解，等于未知量数保证无自由变量。</p>
+        </details>
+        <details>
+          <summary>模拟 2：不同特征值的特征向量为什么无关？</summary>
+          <p>若存在最短的非平凡相关组合，左乘 \(A\) 后减去某特征值倍原式，能得到更短的非平凡相关组合，矛盾；故无关。</p>
+        </details>
+        <blockquote>考前 5 分钟：行交换使行列式变号；\(AB\) 一般不交换；\((AB)^{-1}\) 顺序反转；秩数主元；特征向量非零；Sylvester 仅用于实对称矩阵。</blockquote>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

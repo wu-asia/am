@@ -1,10 +1,175 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>高等数学：微分方程</title><link rel="stylesheet" href="assets/chapter-layout.css"><script src="assets/mathjax-config.js"></script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script><script defer src="assets/chapter-layout.js"></script><link rel="stylesheet" href="assets/subject-navigation.css"><script defer src="assets/subject-navigation.js"></script></head><body><div class="cl-shell" data-chapter-layout data-prev-href="calculus-07-integral-applications.html" data-prev-label="第 7 章：定积分的应用" data-next-href="calculus-09-multivariable-differentiation.html" data-next-label="第 9 章：多元函数微分学"><aside class="cl-sidebar"><div class="cl-brand">高等数学<small>CHAPTER 8</small></div><nav aria-label="章节目录" data-toc></nav></aside><main class="cl-main"><header class="cl-hero"><span class="cl-kicker">⭐⭐⭐ 重点复习</span><h1>第 8 章：微分方程</h1><p>微分方程以未知函数及其导数为对象。重点是识别类型：可分离变量、一阶线性、二阶常系数线性方程。</p><div class="cl-meta"><span>高等数学</span><span>·</span><span>概念 / 计算 / 证明与综合应用</span></div></header><section id="goals" class="cl-section" data-toc-section><h2>1. 本章复习目标</h2><article class="cl-card"><h3>学习目标</h3><p>掌握定义、公式与定理的适用条件；能从题目结构选择方法，并通过原讲义例题与练习检验掌握程度。</p></article></section><section id="framework" class="cl-section" data-toc-section><h2>2. 知识框架</h2><div class="cl-grid"><article class="cl-card"><h3>概念与性质</h3><p>由基本定义出发，梳理性质、公式和定理条件。</p></article><article class="cl-card"><h3>方法与应用</h3><p>结合解题模板、例题和练习完成从理解到计算的迁移。</p></article></div></section><section id="concepts" class="cl-section" data-toc-section><h2>3. 核心知识点</h2><h3>原讲义内容</h3><div class="cl-legacy">
-<div class="grid"><div class="card"><h4>可分离变量 <span class="stars">⭐⭐⭐</span></h4><p>可写为 \(g(y)dy=f(x)dx\)，两边积分并代初值。</p></div><div class="card"><h4>一阶线性 <span class="stars">⭐⭐⭐</span></h4><p>\(y'+P(x)y=Q(x)\)，用积分因子。</p></div><div class="card"><h4>二阶常系数齐次 <span class="stars">⭐⭐</span></h4><p>由特征方程根的三种情形写通解。</p></div><div class="card"><h4>初值问题 <span class="stars">⭐⭐</span></h4><p>通解后再代初值确定常数；不可颠倒。</p></div></div>
-<div class="formula">\(y'+P(x)y=Q(x),\quad \mu(x)=e^{\int P(x)dx},\quad y=\frac{\int\mu Qdx+C}{\mu}\)</div>
-<div class="example"><strong>例 1 · 可分离变量</strong><p>解 \(y'=xy\)。分离得 \(dy/y=x dx\)，积分 \(\ln|y|=x^2/2+C\)，所以 \(\boxed{y=Ce^{x^2/2}}\)（包含零解）。</p></div>
-<div class="example"><strong>例 2 · 一阶线性</strong><p>解 \(y'+y=x\)。\(\mu=e^x\)，故 \((e^xy)'=xe^x\)。积分并整理得 \(\boxed{y=x-1+Ce^{-x}}\)。</p></div>
-<h3>练习与解析</h3>
-<details><summary>1. 解 \(y'=2xy,\ y(0)=3\)</summary><p>通解 \(y=Ce^{x^2}\)，由 \(y(0)=3\) 得 \(C=3\)。\(\boxed{y=3e^{x^2}}\)。</p></details>
-<details><summary>2. 解 \(y'-2y=0\)</summary><p>分离或一阶线性均可，\(\boxed{y=Ce^{2x}}\)。</p></details>
-<details><summary>3. 解 \(y''-3y'+2y=0\)</summary><p>特征方程 \(r^2-3r+2=0\)，根为 \(1,2\)，故 \(\boxed{y=C_1e^x+C_2e^{2x}}\)。</p></details>
-</div></section><section id="methods" class="cl-section" data-toc-section><h2>4. 常见题型</h2><article class="cl-card"><h3>方法选择</h3><p>原讲义中对应的解题模板与判断条件已完整保留在“核心知识点”区。</p></article></section><section id="examples" class="cl-section" data-toc-section><h2>5. 典型例题</h2><article class="cl-card"><h3>例题使用方式</h3><p>先独立完成原讲义中的例题，再核对推导和公式条件。</p></article></section><section id="exercises" class="cl-section" data-toc-section><h2>6. 练习题</h2><article class="cl-card"><h3>练习与解析</h3><p>原有折叠练习、答案与解析均保留在“核心知识点”区。</p></article></section><section id="mistakes" class="cl-section" data-toc-section><h2>7. 易错点</h2><aside class="cl-warning"><strong>复习提醒：</strong>先核对题设条件、符号方向和变量范围，再代入公式；原讲义中的具体易错提示均未删减。</aside></section><section id="formulas" class="cl-section" data-toc-section><h2>8. 公式速查</h2><table class="cl-table"><thead><tr><th>复习顺序</th><th>使用要求</th><th>检查项</th></tr></thead><tbody><tr><td>定义与定理</td><td>先确认适用条件</td><td>对象、范围、已知条件</td></tr><tr><td>公式与计算</td><td>代入前保持符号一致</td><td>变量、上下标、边界或矩阵维数</td></tr><tr><td>结论</td><td>写清结果的条件或范围</td><td>数值、符号和逻辑方向</td></tr></tbody></table></section><section id="summary" class="cl-section" data-toc-section><h2>9. 本章总结</h2><article class="cl-summary"><h3>必须记忆</h3><p>定义、公式与定理条件。</p><h3>必须理解</h3><p>概念关系与方法选择依据。</p><h3>必须会做</h3><p>原讲义中的例题、练习与综合题型。</p><h3>容易丢分</h3><p>忽略条件、符号不严谨或跳过关键步骤。</p></article></section><nav class="cl-pager" aria-label="章节切换"><a data-prev href="#"></a><a data-next href="#"></a></nav></main></div></body></html>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>高等数学：微分方程</title>
+  <link rel="stylesheet" href="assets/chapter-layout.css">
+  <script src="assets/mathjax-config.js"></script>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+
+  <script defer src="assets/chapter-layout.js"></script>
+  <link rel="stylesheet" href="assets/subject-navigation.css">
+  <script defer src="assets/subject-navigation.js"></script>
+</head>
+<body>
+  <div
+    class="cl-shell"
+    data-chapter-layout
+    data-prev-href="calculus-07-integral-applications.html"
+    data-prev-label="第 7 章：定积分的应用"
+    data-next-href="calculus-09-multivariable-differentiation.html"
+    data-next-label="第 9 章：多元函数微分学"
+  >
+    <aside class="cl-sidebar">
+      <div class="cl-brand">高等数学<small>CHAPTER 8</small></div>
+      <nav aria-label="章节目录" data-toc>
+
+      </nav>
+    </aside>
+    <main class="cl-main">
+      <header class="cl-hero"><span class="cl-kicker">⭐⭐⭐ 重点复习</span>
+        <h1>第 8 章：微分方程</h1>
+        <p>微分方程以未知函数及其导数为对象。重点是识别类型：可分离变量、一阶线性、二阶常系数线性方程。</p>
+        <div class="cl-meta"><span>高等数学</span><span>·</span><span>概念 / 计算 / 证明与综合应用</span></div>
+      </header>
+      <section id="goals" class="cl-section" data-toc-section>
+        <h2>1. 本章复习目标</h2>
+        <article class="cl-card">
+          <h3>学习目标</h3>
+          <p>掌握定义、公式与定理的适用条件；能从题目结构选择方法，并通过原讲义例题与练习检验掌握程度。</p>
+        </article>
+      </section>
+      <section id="framework" class="cl-section" data-toc-section>
+        <h2>2. 知识框架</h2>
+        <div class="cl-grid">
+          <article class="cl-card">
+            <h3>概念与性质</h3>
+            <p>由基本定义出发，梳理性质、公式和定理条件。</p>
+          </article>
+          <article class="cl-card">
+            <h3>方法与应用</h3>
+            <p>结合解题模板、例题和练习完成从理解到计算的迁移。</p>
+          </article>
+        </div>
+      </section>
+      <section id="concepts" class="cl-section" data-toc-section>
+        <h2>3. 核心知识点</h2>
+        <h3>原讲义内容</h3>
+        <div class="cl-legacy">
+          <div class="grid">
+            <div class="card">
+              <h4>可分离变量 <span class="stars">⭐⭐⭐</span></h4>
+              <p>可写为 \(g(y)dy=f(x)dx\)，两边积分并代初值。</p>
+            </div>
+            <div class="card">
+              <h4>一阶线性 <span class="stars">⭐⭐⭐</span></h4>
+              <p>\(y'+P(x)y=Q(x)\)，用积分因子。</p>
+            </div>
+            <div class="card">
+              <h4>二阶常系数齐次 <span class="stars">⭐⭐</span></h4>
+              <p>由特征方程根的三种情形写通解。</p>
+            </div>
+            <div class="card">
+              <h4>初值问题 <span class="stars">⭐⭐</span></h4>
+              <p>通解后再代初值确定常数；不可颠倒。</p>
+            </div>
+          </div>
+          <div class="formula">\(y'+P(x)y=Q(x),\quad \mu(x)=e^{\int P(x)dx},\quad y=\frac{\int\mu Qdx+C}{\mu}\)</div>
+          <div class="example"><strong>例 1 · 可分离变量</strong>
+            <p>解 \(y'=xy\)。分离得 \(dy/y=x dx\)，积分 \(\ln|y|=x^2/2+C\)，所以 \(\boxed{y=Ce^{x^2/2}}\)（包含零解）。</p>
+          </div>
+          <div class="example"><strong>例 2 · 一阶线性</strong>
+            <p>解 \(y'+y=x\)。\(\mu=e^x\)，故 \((e^xy)'=xe^x\)。积分并整理得 \(\boxed{y=x-1+Ce^{-x}}\)。</p>
+          </div>
+          <h3>练习与解析</h3>
+          <details>
+            <summary>1. 解 \(y'=2xy,\ y(0)=3\)</summary>
+            <p>通解 \(y=Ce^{x^2}\)，由 \(y(0)=3\) 得 \(C=3\)。\(\boxed{y=3e^{x^2}}\)。</p>
+          </details>
+          <details>
+            <summary>2. 解 \(y'-2y=0\)</summary>
+            <p>分离或一阶线性均可，\(\boxed{y=Ce^{2x}}\)。</p>
+          </details>
+          <details>
+            <summary>3. 解 \(y''-3y'+2y=0\)</summary>
+            <p>特征方程 \(r^2-3r+2=0\)，根为 \(1,2\)，故 \(\boxed{y=C_1e^x+C_2e^{2x}}\)。</p>
+          </details>
+        </div>
+      </section>
+      <section id="methods" class="cl-section" data-toc-section>
+        <h2>4. 常见题型</h2>
+        <article class="cl-card">
+          <h3>方法选择</h3>
+          <p>原讲义中对应的解题模板与判断条件已完整保留在“核心知识点”区。</p>
+        </article>
+      </section>
+      <section id="examples" class="cl-section" data-toc-section>
+        <h2>5. 典型例题</h2>
+        <article class="cl-card">
+          <h3>例题使用方式</h3>
+          <p>先独立完成原讲义中的例题，再核对推导和公式条件。</p>
+        </article>
+      </section>
+      <section id="exercises" class="cl-section" data-toc-section>
+        <h2>6. 练习题</h2>
+        <article class="cl-card">
+          <h3>练习与解析</h3>
+          <p>原有折叠练习、答案与解析均保留在“核心知识点”区。</p>
+        </article>
+      </section>
+      <section id="mistakes" class="cl-section" data-toc-section>
+        <h2>7. 易错点</h2>
+        <aside class="cl-warning"><strong>复习提醒：</strong>先核对题设条件、符号方向和变量范围，再代入公式；原讲义中的具体易错提示均未删减。</aside>
+      </section>
+      <section id="formulas" class="cl-section" data-toc-section>
+        <h2>8. 公式速查</h2>
+        <table class="cl-table">
+          <thead>
+            <tr>
+              <th>复习顺序</th>
+              <th>使用要求</th>
+              <th>检查项</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>定义与定理</td>
+              <td>先确认适用条件</td>
+              <td>对象、范围、已知条件</td>
+            </tr>
+            <tr>
+              <td>公式与计算</td>
+              <td>代入前保持符号一致</td>
+              <td>变量、上下标、边界或矩阵维数</td>
+            </tr>
+            <tr>
+              <td>结论</td>
+              <td>写清结果的条件或范围</td>
+              <td>数值、符号和逻辑方向</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section id="summary" class="cl-section" data-toc-section>
+        <h2>9. 本章总结</h2>
+        <article class="cl-summary">
+          <h3>必须记忆</h3>
+          <p>定义、公式与定理条件。</p>
+          <h3>必须理解</h3>
+          <p>概念关系与方法选择依据。</p>
+          <h3>必须会做</h3>
+          <p>原讲义中的例题、练习与综合题型。</p>
+          <h3>容易丢分</h3>
+          <p>忽略条件、符号不严谨或跳过关键步骤。</p>
+        </article>
+      </section>
+      <nav class="cl-pager" aria-label="章节切换">
+        <a data-prev href="#"></a>
+        <a data-next href="#"></a>
+      </nav>
+    </main>
+  </div>
+</body>
+</html>

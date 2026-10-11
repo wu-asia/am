@@ -1,11 +1,198 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>概率论与数理统计：随机事件与概率</title><link rel="stylesheet" href="assets/chapter-layout.css"><script src="assets/mathjax-config.js"></script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script><script defer src="assets/chapter-layout.js"></script><link rel="stylesheet" href="assets/subject-navigation.css"><script defer src="assets/subject-navigation.js"></script></head><body><div class="cl-shell" data-chapter-layout data-prev-href="" data-prev-label="" data-next-href="probability-02-conditional-independence.html" data-next-label="第 2 章：条件概率与独立性"><aside class="cl-sidebar"><div class="cl-brand">概率论与数理统计<small>CHAPTER 1</small></div><nav aria-label="章节目录" data-toc></nav></aside><main class="cl-main"><header class="cl-hero"><span class="cl-kicker">⭐⭐⭐ 重点复习</span><h1>第 1 章：随机事件与概率</h1><p>随机试验是在相同条件下可重复进行、结果不确定但所有可能结果可列或可描述的试验。单个可能结果是样本点 \(\omega\)，样本点全体构成样本空间 \(\Omega\)；事件就是 \(\Omega\) 的子集。</p><div class="cl-meta"><span>概率论与数理统计</span><span>·</span><span>概念 / 计算 / 证明与综合应用</span></div></header><section id="goals" class="cl-section" data-toc-section><h2>1. 本章复习目标</h2><article class="cl-card"><h3>学习目标</h3><p>掌握定义、公式与定理条件；能使用原讲义中的真值表、矩阵、图表、分布和统计推断题完成练习。</p></article></section><section id="framework" class="cl-section" data-toc-section><h2>2. 知识框架</h2><div class="cl-grid"><article class="cl-card"><h3>概念与性质</h3><p>先厘清定义、条件和性质的联系。</p></article><article class="cl-card"><h3>公式与应用</h3><p>再用题型模板、例题和练习完成方法迁移。</p></article></div></section><section id="concepts" class="cl-section" data-toc-section><h2>3. 核心知识点</h2><h3>原讲义内容</h3><div class="cl-legacy"><h3>1. 复习目标与知识框架</h3><p class="intro">随机试验是在相同条件下可重复进行、结果不确定但所有可能结果可列或可描述的试验。单个可能结果是样本点 \(\omega\)，样本点全体构成样本空间 \(\Omega\)；事件就是 \(\Omega\) 的子集。</p>
-<div class="grid"><div class="card"><h4>事件类型 ⭐⭐</h4><p>必然事件是 \(\Omega\)，不可能事件是 \(\varnothing\)，一般事件 \(A\subseteq\Omega\)。事件是结果集合，不是“一个概率数”。</p></div><div class="card"><h4>先辨关系 ⭐⭐⭐</h4><p>先判断包含、互斥或一般相交，再选补集、加法公式或容斥。符号 \(\overline A\) 的补集始终相对于 \(\Omega\)。</p></div></div>
-<h3>2. 事件运算与集合图</h3><div class="formula">\[A\cup B:\text{至少一个发生};\quad A\cap B:\text{同时发生};\quad A-B=A\cap\overline B:\text{A发生而B不发生};\quad\overline A:\text{A不发生}.\]</div>
-<div class="diagram"><svg viewBox="0 0 520 245" role="img" aria-label="事件 A 和 B 的集合图"><rect x="12" y="12" width="496" height="212" rx="10" fill="#f6fbf3" stroke="#637067" stroke-width="2"/><text x="28" y="38" fill="#16251d" font-size="18">Ω</text><circle cx="220" cy="125" r="80" fill="#a9d8a6" fill-opacity=".62" stroke="#1d6b4f" stroke-width="2"/><circle cx="305" cy="125" r="80" fill="#f5d982" fill-opacity=".62" stroke="#a66f00" stroke-width="2"/><text x="168" y="125" fill="#16251d" font-size="20">A</text><text x="344" y="125" fill="#16251d" font-size="20">B</text><text x="253" y="130" fill="#16251d" font-size="16">A∩B</text></svg><p class="intro">重叠区表示 \(A\cap B\)；两个圆的并表示 \(A\cup B\)。圆外但仍在矩形内的区域属于 \(\overline{A\cup B}\)。</p></div>
-<table><tr><th>性质 / 公式</th><th>条件与理解</th></tr><tr><td>\(P(\Omega)=1,\;P(\varnothing)=0\)</td><td>概率公理给出总样本空间的概率为 1；不可能事件没有概率质量。</td></tr><tr><td>\(P(\overline A)=1-P(A)\)</td><td>\(A\) 与 \(\overline A\) 互斥且并为 \(\Omega\)。特别适合“至少发生一次”。</td></tr><tr><td>\(P(A\cup B)=P(A)+P(B)-P(A\cap B)\)</td><td>一般加法公式；交集被前两项重复计算一次，故需减回一次。</td></tr><tr><td>若 \(A\cap B=\varnothing\)，\(P(A\cup B)=P(A)+P(B)\)</td><td>仅在互斥时可直接相加，不能擅自省略交集项。</td></tr></table>
-<h3>3. 概率公理、古典概型与几何概型</h3><p>概率 \(P\) 满足非负性 \(P(A)\ge0\)、规范性 \(P(\Omega)=1\)，以及两两互斥事件可列可加性。<strong>古典概型</strong>还要求样本点有限且等可能，此时</p><div class="formula">\[P(A)=\frac{|A|}{|\Omega|}=\frac{\text{有利基本结果数}}{\text{全部等可能基本结果数}}.\]</div>
-<p>几何概型把“等可能”转化为长度、面积或体积的比例：\(P(A)=\frac{\text{有利区域测度}}{\text{总区域测度}}\)。使用前必须确认随机落点在相应区域内均匀分布。</p>
-<div class="example"><strong>例题 1：掷两枚公平骰子，求点数和为 8 的概率。</strong><p><strong>识别：</strong>有序结果 \((i,j)\) 共 \(6\times6=36\) 个，等可能；不能只把“和”当六种等可能结果。</p><p><strong>过程：</strong>有利结果为 \((2,6),(3,5),(4,4),(5,3),(6,2)\)，共 5 个。</p><p><strong>答案：</strong>\(\boxed{P(\text{和为8})=\frac5{36}}\)。</p></div>
-<details><summary>基础练习 1：一副 52 张牌中任抽 1 张，A 为“抽到红桃”，B 为“抽到人头牌”。求 \(P(A\cup B)\)。</summary><p><strong>思路：</strong>红桃 13 张，人头牌（J、Q、K）9 张；红桃人头牌有 3 张，事件相交。</p><p><strong>过程：</strong>\(P(A\cup B)=\frac{13}{52}+\frac9{52}-\frac3{52}\)。</p><p><strong>答案：</strong>\(\boxed{\frac{19}{52}}\)。</p><blockquote>易错点：红桃 J、Q、K 同时被两个事件计入，必须减去一次。</blockquote></details>
-<details><summary>提高练习 2：从 1 到 100 任取一个整数，求至少能被 2 或 5 整除的概率。</summary><p><strong>思路：</strong>“至少一个”用并集；同时被 2、5 整除就是被 10 整除。</p><p><strong>过程：</strong>2 的倍数 50 个，5 的倍数 20 个，10 的倍数 10 个。有利数 \(50+20-10=60\)。</p><p><strong>答案：</strong>\(\boxed{\frac{60}{100}=\frac35}\)。</p></details>
-</div></section><section id="methods" class="cl-section" data-toc-section><h2>4. 常见题型</h2><article class="cl-card"><h3>方法选择</h3><p>原讲义中的判断方法、真值表、矩阵、图示、分布或统计计算流程均已完整保留在“核心知识点”区。</p></article></section><section id="examples" class="cl-section" data-toc-section><h2>5. 典型例题</h2><article class="cl-card"><h3>例题使用方式</h3><p>先独立作答，再核对原讲义中的关键推导、公式条件与答案。</p></article></section><section id="exercises" class="cl-section" data-toc-section><h2>6. 练习题</h2><article class="cl-card"><h3>练习与解析</h3><p>原有折叠练习、完整解析与易错提示均保留在“核心知识点”区。</p></article></section><section id="mistakes" class="cl-section" data-toc-section><h2>7. 易错点</h2><aside class="cl-warning"><strong>复习提醒：</strong>先检查对象、条件、符号和变量范围；概率题还要检查事件与分布条件，离散题还要检查定义和逻辑方向。</aside></section><section id="formulas" class="cl-section" data-toc-section><h2>8. 公式速查</h2><table class="cl-table"><thead><tr><th>复习顺序</th><th>使用要求</th><th>检查项</th></tr></thead><tbody><tr><td>定义与定理</td><td>确认适用条件</td><td>对象、范围、已知条件</td></tr><tr><td>公式与计算</td><td>代入前保持符号一致</td><td>量词、集合符号、矩阵维数或概率参数</td></tr><tr><td>结论</td><td>说明结论范围</td><td>结果、逻辑方向与单位</td></tr></tbody></table></section><section id="summary" class="cl-section" data-toc-section><h2>9. 本章总结</h2><article class="cl-summary"><h3>必须记忆</h3><p>核心定义、公式和定理条件。</p><h3>必须理解</h3><p>概念间的区别与方法选择依据。</p><h3>必须会做</h3><p>原讲义中的例题、练习与综合题型。</p><h3>容易丢分</h3><p>忽略前提、符号不严谨、混淆相近概念或跳过关键步骤。</p></article></section><nav class="cl-pager" aria-label="章节切换"><a data-prev href="#"></a><a data-next href="#"></a></nav></main></div></body></html>
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>概率论与数理统计：随机事件与概率</title>
+  <link rel="stylesheet" href="assets/chapter-layout.css">
+  <script src="assets/mathjax-config.js"></script>
+
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+
+  <script defer src="assets/chapter-layout.js"></script>
+  <link rel="stylesheet" href="assets/subject-navigation.css">
+  <script defer src="assets/subject-navigation.js"></script>
+</head>
+<body>
+  <div
+    class="cl-shell"
+    data-chapter-layout
+    data-prev-href=""
+    data-prev-label=""
+    data-next-href="probability-02-conditional-independence.html"
+    data-next-label="第 2 章：条件概率与独立性"
+  >
+    <aside class="cl-sidebar">
+      <div class="cl-brand">概率论与数理统计<small>CHAPTER 1</small></div>
+      <nav aria-label="章节目录" data-toc>
+
+      </nav>
+    </aside>
+    <main class="cl-main">
+      <header class="cl-hero"><span class="cl-kicker">⭐⭐⭐ 重点复习</span>
+        <h1>第 1 章：随机事件与概率</h1>
+        <p>随机试验是在相同条件下可重复进行、结果不确定但所有可能结果可列或可描述的试验。单个可能结果是样本点 \(\omega\)，样本点全体构成样本空间 \(\Omega\)；事件就是 \(\Omega\) 的子集。</p>
+        <div class="cl-meta"><span>概率论与数理统计</span><span>·</span><span>概念 / 计算 / 证明与综合应用</span></div>
+      </header>
+      <section id="goals" class="cl-section" data-toc-section>
+        <h2>1. 本章复习目标</h2>
+        <article class="cl-card">
+          <h3>学习目标</h3>
+          <p>掌握定义、公式与定理条件；能使用原讲义中的真值表、矩阵、图表、分布和统计推断题完成练习。</p>
+        </article>
+      </section>
+      <section id="framework" class="cl-section" data-toc-section>
+        <h2>2. 知识框架</h2>
+        <div class="cl-grid">
+          <article class="cl-card">
+            <h3>概念与性质</h3>
+            <p>先厘清定义、条件和性质的联系。</p>
+          </article>
+          <article class="cl-card">
+            <h3>公式与应用</h3>
+            <p>再用题型模板、例题和练习完成方法迁移。</p>
+          </article>
+        </div>
+      </section>
+      <section id="concepts" class="cl-section" data-toc-section>
+        <h2>3. 核心知识点</h2>
+        <h3>原讲义内容</h3>
+        <div class="cl-legacy">
+          <h3>1. 复习目标与知识框架</h3>
+          <p class="intro">随机试验是在相同条件下可重复进行、结果不确定但所有可能结果可列或可描述的试验。单个可能结果是样本点 \(\omega\)，样本点全体构成样本空间 \(\Omega\)；事件就是 \(\Omega\) 的子集。</p>
+          <div class="grid">
+            <div class="card">
+              <h4>事件类型 ⭐⭐</h4>
+              <p>必然事件是 \(\Omega\)，不可能事件是 \(\varnothing\)，一般事件 \(A\subseteq\Omega\)。事件是结果集合，不是“一个概率数”。</p>
+            </div>
+            <div class="card">
+              <h4>先辨关系 ⭐⭐⭐</h4>
+              <p>先判断包含、互斥或一般相交，再选补集、加法公式或容斥。符号 \(\overline A\) 的补集始终相对于 \(\Omega\)。</p>
+            </div>
+          </div>
+          <h3>2. 事件运算与集合图</h3>
+          <div class="formula">\[A\cup B:\text{至少一个发生};\quad A\cap B:\text{同时发生};\quad A-B=A\cap\overline B:\text{A发生而B不发生};\quad\overline A:\text{A不发生}.\]</div>
+          <div class="diagram"><svg viewBox="0 0 520 245" role="img" aria-label="事件 A 和 B 的集合图"><rect x="12" y="12" width="496" height="212" rx="10" fill="#f6fbf3" stroke="#637067" stroke-width="2"/><text x="28" y="38" fill="#16251d" font-size="18">Ω</text><circle cx="220" cy="125" r="80" fill="#a9d8a6" fill-opacity=".62" stroke="#1d6b4f" stroke-width="2"/><circle cx="305" cy="125" r="80" fill="#f5d982" fill-opacity=".62" stroke="#a66f00" stroke-width="2"/><text x="168" y="125" fill="#16251d" font-size="20">A</text><text x="344" y="125" fill="#16251d" font-size="20">B</text><text x="253" y="130" fill="#16251d" font-size="16">A∩B</text></svg>
+            <p class="intro">重叠区表示 \(A\cap B\)；两个圆的并表示 \(A\cup B\)。圆外但仍在矩形内的区域属于 \(\overline{A\cup B}\)。</p>
+          </div>
+          <table>
+            <tr>
+              <th>性质 / 公式</th>
+              <th>条件与理解</th>
+            </tr>
+            <tr>
+              <td>\(P(\Omega)=1,\;P(\varnothing)=0\)</td>
+              <td>概率公理给出总样本空间的概率为 1；不可能事件没有概率质量。</td>
+            </tr>
+            <tr>
+              <td>\(P(\overline A)=1-P(A)\)</td>
+              <td>\(A\) 与 \(\overline A\) 互斥且并为 \(\Omega\)。特别适合“至少发生一次”。</td>
+            </tr>
+            <tr>
+              <td>\(P(A\cup B)=P(A)+P(B)-P(A\cap B)\)</td>
+              <td>一般加法公式；交集被前两项重复计算一次，故需减回一次。</td>
+            </tr>
+            <tr>
+              <td>若 \(A\cap B=\varnothing\)，\(P(A\cup B)=P(A)+P(B)\)</td>
+              <td>仅在互斥时可直接相加，不能擅自省略交集项。</td>
+            </tr>
+          </table>
+          <h3>3. 概率公理、古典概型与几何概型</h3>
+          <p>概率 \(P\) 满足非负性 \(P(A)\ge0\)、规范性 \(P(\Omega)=1\)，以及两两互斥事件可列可加性。<strong>古典概型</strong>还要求样本点有限且等可能，此时</p>
+          <div class="formula">\[P(A)=\frac{|A|}{|\Omega|}=\frac{\text{有利基本结果数}}{\text{全部等可能基本结果数}}.\]</div>
+          <p>几何概型把“等可能”转化为长度、面积或体积的比例：\(P(A)=\frac{\text{有利区域测度}}{\text{总区域测度}}\)。使用前必须确认随机落点在相应区域内均匀分布。</p>
+          <div class="example"><strong>例题 1：掷两枚公平骰子，求点数和为 8 的概率。</strong>
+            <p><strong>识别：</strong>有序结果 \((i,j)\) 共 \(6\times6=36\) 个，等可能；不能只把“和”当六种等可能结果。</p>
+            <p><strong>过程：</strong>有利结果为 \((2,6),(3,5),(4,4),(5,3),(6,2)\)，共 5 个。</p>
+            <p><strong>答案：</strong>\(\boxed{P(\text{和为8})=\frac5{36}}\)。</p>
+          </div>
+          <details>
+            <summary>基础练习 1：一副 52 张牌中任抽 1 张，A 为“抽到红桃”，B 为“抽到人头牌”。求 \(P(A\cup B)\)。</summary>
+            <p><strong>思路：</strong>红桃 13 张，人头牌（J、Q、K）9 张；红桃人头牌有 3 张，事件相交。</p>
+            <p><strong>过程：</strong>\(P(A\cup B)=\frac{13}{52}+\frac9{52}-\frac3{52}\)。</p>
+            <p><strong>答案：</strong>\(\boxed{\frac{19}{52}}\)。</p>
+            <blockquote>易错点：红桃 J、Q、K 同时被两个事件计入，必须减去一次。</blockquote>
+          </details>
+          <details>
+            <summary>提高练习 2：从 1 到 100 任取一个整数，求至少能被 2 或 5 整除的概率。</summary>
+            <p><strong>思路：</strong>“至少一个”用并集；同时被 2、5 整除就是被 10 整除。</p>
+            <p><strong>过程：</strong>2 的倍数 50 个，5 的倍数 20 个，10 的倍数 10 个。有利数 \(50+20-10=60\)。</p>
+            <p><strong>答案：</strong>\(\boxed{\frac{60}{100}=\frac35}\)。</p>
+          </details>
+        </div>
+      </section>
+      <section id="methods" class="cl-section" data-toc-section>
+        <h2>4. 常见题型</h2>
+        <article class="cl-card">
+          <h3>方法选择</h3>
+          <p>原讲义中的判断方法、真值表、矩阵、图示、分布或统计计算流程均已完整保留在“核心知识点”区。</p>
+        </article>
+      </section>
+      <section id="examples" class="cl-section" data-toc-section>
+        <h2>5. 典型例题</h2>
+        <article class="cl-card">
+          <h3>例题使用方式</h3>
+          <p>先独立作答，再核对原讲义中的关键推导、公式条件与答案。</p>
+        </article>
+      </section>
+      <section id="exercises" class="cl-section" data-toc-section>
+        <h2>6. 练习题</h2>
+        <article class="cl-card">
+          <h3>练习与解析</h3>
+          <p>原有折叠练习、完整解析与易错提示均保留在“核心知识点”区。</p>
+        </article>
+      </section>
+      <section id="mistakes" class="cl-section" data-toc-section>
+        <h2>7. 易错点</h2>
+        <aside class="cl-warning"><strong>复习提醒：</strong>先检查对象、条件、符号和变量范围；概率题还要检查事件与分布条件，离散题还要检查定义和逻辑方向。</aside>
+      </section>
+      <section id="formulas" class="cl-section" data-toc-section>
+        <h2>8. 公式速查</h2>
+        <table class="cl-table">
+          <thead>
+            <tr>
+              <th>复习顺序</th>
+              <th>使用要求</th>
+              <th>检查项</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>定义与定理</td>
+              <td>确认适用条件</td>
+              <td>对象、范围、已知条件</td>
+            </tr>
+            <tr>
+              <td>公式与计算</td>
+              <td>代入前保持符号一致</td>
+              <td>量词、集合符号、矩阵维数或概率参数</td>
+            </tr>
+            <tr>
+              <td>结论</td>
+              <td>说明结论范围</td>
+              <td>结果、逻辑方向与单位</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section id="summary" class="cl-section" data-toc-section>
+        <h2>9. 本章总结</h2>
+        <article class="cl-summary">
+          <h3>必须记忆</h3>
+          <p>核心定义、公式和定理条件。</p>
+          <h3>必须理解</h3>
+          <p>概念间的区别与方法选择依据。</p>
+          <h3>必须会做</h3>
+          <p>原讲义中的例题、练习与综合题型。</p>
+          <h3>容易丢分</h3>
+          <p>忽略前提、符号不严谨、混淆相近概念或跳过关键步骤。</p>
+        </article>
+      </section>
+      <nav class="cl-pager" aria-label="章节切换">
+        <a data-prev href="#"></a>
+        <a data-next href="#"></a>
+      </nav>
+    </main>
+  </div>
+</body>
+</html>

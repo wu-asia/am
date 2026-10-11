@@ -1,40 +1,541 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>离散数学：组合数学、题库与总复习</title>
-<script src="assets/mathjax-config.js"></script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
-<style>
-:root{--i:#16251d;--m:#637067;--p:#fbfaf5;--l:#dce3d7;--g:#1d6b4f;--y:#fff8e4}*{box-sizing:border-box}body{margin:0;background:var(--p);color:var(--i);font:16px/1.75 "Noto Serif SC",serif}.shell{display:grid;grid-template-columns:265px 1fr;max-width:1450px;margin:auto}.side{position:sticky;top:0;height:100vh;padding:30px 20px;background:#f5f8f1;border-right:1px solid var(--l)}.brand{font:bold 21px system-ui}.brand span{display:block;color:var(--g);font-size:11px;letter-spacing:.12em;margin-top:7px}.side nav{margin-top:24px}.side a{display:block;text-decoration:none;color:var(--m);padding:7px 8px;border-radius:7px}.side a:hover{color:var(--g);background:#e8f3e7}.main{max-width:1080px;padding:48px clamp(22px,5vw,75px) 90px}.hero{padding:30px;background:linear-gradient(125deg,#e2f1dd,#fff7d8);border:1px solid #cee1c8;border-radius:18px}.tag{display:inline-block;background:var(--g);color:white;border-radius:30px;padding:3px 10px;font:12px system-ui}.hero h1{font-size:42px;line-height:1.2;margin:14px 0}.intro{color:var(--m)}section{margin:58px 0}.chapter{border-top:4px solid var(--g);padding-top:10px}h2{font-size:29px;margin:7px 0}h3{margin-top:28px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.card,.example{background:#fffefa;border:1px solid var(--l);border-radius:11px;padding:16px}.card h4{margin:0}.stars{color:#a66f00;font:13px system-ui}.formula,.method{background:#eef7ed;padding:13px 16px;border-radius:8px;margin:13px 0;overflow:auto}.formula{font-family:ui-monospace}table{width:100%;border-collapse:collapse;background:white;font-size:14px;margin:14px 0}th,td{border:1px solid var(--l);padding:9px;text-align:left;vertical-align:top}th{background:#eef5eb}details{background:white;border:1px solid var(--l);border-radius:9px;padding:11px 14px;margin:9px 0}summary{cursor:pointer;font-weight:bold}blockquote{margin:15px 0;padding:11px 15px;background:var(--y);border-left:4px solid #ffd97a}.bank-nav{display:flex;gap:8px;flex-wrap:wrap}.bank-nav button{border:1px solid var(--l);background:#fff;padding:7px 10px;border-radius:7px;cursor:pointer;color:var(--i)}.bank-nav button:hover,.bank-nav button.active{background:var(--g);color:#fff;border-color:var(--g)}.level{font:12px system-ui;color:var(--g);font-weight:bold}.q{margin:10px 0}.q p{margin:7px 0}mjx-container{max-width:100%;overflow:auto}@media(max-width:780px){.shell{display:block}.side{position:static;height:auto}.side nav{display:flex;overflow:auto;gap:2px}.side a{white-space:nowrap}.main{padding:24px 17px}.grid{grid-template-columns:1fr}}
-</style><link rel="stylesheet" href="assets/subject-navigation.css"><script defer src="assets/subject-navigation.js"></script></head>
-<body><div class="shell"><aside class="side"><div class="brand">离散数学复习<span>STAGE 06 · COMBINATORICS / REVIEW</span></div><nav>
-<a href="discrete-math.html">离散数学首页</a><a href="#comb">组合数学</a><a href="#bank">统一题库</a><a href="#revision">考前总复习</a><a href="#compare">概念对比</a><a href="#check">验收记录</a>
-</nav></aside><main class="main"><header class="hero"><span class="tag">阶段 6 · 收尾</span><h1>组合数学、统一题库<br>与考前总复习</h1><p>本页完成离散数学最后一章，并把十章练习按基础、提高、综合三层组织。先在“组合数学”建立方法，再用题库做针对性查漏，最后用速查表完成考前回顾。</p></header>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>离散数学：组合数学、题库与总复习</title>
 
-<section id="comb" class="chapter"><span class="tag">PART 01</span><h2>组合数学 <span class="stars">⭐⭐⭐ 计数 / 二项式 / 容斥</span></h2><p class="intro">组合数学的第一步不是代公式，而是先说清：对象是否按位置区分、是否允许重复、不同方案是否互斥。选对模型后，公式只是对计数过程的压缩。</p>
-<table><tr><th>方法</th><th>公式</th><th>何时使用</th></tr><tr><td>加法原理 ⭐⭐⭐</td><td>互斥的 \(r\) 类方案总数 \(n_1+\cdots+n_r\)</td><td>一次只能走其中一种路径，例如“选文科或理科专业”。若可同时发生，不能直接相加。</td></tr><tr><td>乘法原理 ⭐⭐⭐</td><td>连续 \(r\) 步方案数 \(n_1n_2\cdots n_r\)</td><td>一个完整方案必须依次完成每一步，例如先选班级再选学生。</td></tr><tr><td>排列 ⭐⭐⭐</td><td>\(P(n,r)=\frac{n!}{(n-r)!}\)</td><td>从 \(n\) 个不同对象中取 \(r\) 个并排位，顺序不同算不同。</td></tr><tr><td>组合 ⭐⭐⭐</td><td>\(\binom nr=\frac{n!}{r!(n-r)!}\)</td><td>从 \(n\) 个不同对象中取 \(r\) 个，不分顺序。</td></tr><tr><td>重复排列 ⭐⭐</td><td>\(n^r\)</td><td>有 \(r\) 个位置，每一位可反复选 \(n\) 种符号。</td></tr><tr><td>重复组合 ⭐⭐</td><td>\(\binom{n+r-1}{r}\)</td><td>从 \(n\) 类对象中选 \(r\) 个，可重复且不计顺序；等价于非负整数解 \(x_1+\cdots+x_n=r\)。</td></tr></table>
-<div class="example"><strong>例题：6 位密码由数字构成，首位不能为 0，允许重复。</strong><p><strong>识别：</strong>位置有先后、每位可重复，是重复排列；首位有额外限制。</p><p><strong>计算：</strong>首位有 \(9\) 种，其余五位各有 \(10\) 种，故方案数为 \(9\cdot10^5\)。</p><p><strong>答案：</strong>\(\boxed{900000}\)。</p></div>
-<h3>二项式定理</h3><div class="formula">\[(a+b)^n=\sum_{k=0}^{n}\binom nk a^{\,n-k}b^k.\]</div>
-<p>展开时要从 \(n\) 个因子中选 \(k\) 个因子贡献 \(b\)，其余 \(n-k\) 个贡献 \(a\)。选择这 \(k\) 个位置的方式有 \(\binom nk\) 种，因此该项系数正是组合数。求某一项时，先令 \(b\) 的幂或总次数满足题意，再代入对应的 \(k\)。</p>
-<details><summary>练习 1：求 \((2x-3)^5\) 中 \(x^3\) 项。</summary><p><strong>思路：</strong>把 \(a=2x,b=-3,n=5\)。要留下 \(x^3\)，需从五个因子中选 \(k=2\) 个取 \(-3\)。</p><p><strong>过程：</strong>\(\binom52(2x)^3(-3)^2=10\cdot8x^3\cdot9\)。</p><p><strong>答案：</strong>\(\boxed{720x^3}\)。</p><blockquote>易错点：\(k\) 是取 \(b\) 的次数，不是 \(x\) 的次数。</blockquote></details>
-<h3>鸽巢原理与容斥原理</h3><div class="grid"><div class="card"><h4>鸽巢原理 ⭐⭐⭐</h4><p>把 \(n+1\) 个对象放入 \(n\) 个盒子，至少一盒不少于 \(2\) 个。推广为：把 \(N\) 个对象放入 \(k\) 个盒子，至少有一盒不少于 \(\left\lceil\frac Nk\right\rceil\) 个。</p><p><strong>反向思考：</strong>若每盒至多 \(r-1\) 个，总数至多 \(k(r-1)\)。超过它，就必有一盒至少 \(r\) 个。</p></div><div class="card"><h4>容斥原理 ⭐⭐⭐</h4><p>\(|A\cup B|=|A|+|B|-|A\cap B|\)。</p><p>\(|A\cup B\cup C|=|A|+|B|+|C|-|A\cap B|-|A\cap C|-|B\cap C|+|A\cap B\cap C|\)。</p><p>加单集时交集被重复计数，减去两两交集后三者交集又被多减一次，所以最后加回。</p></div></div>
-<details><summary>练习 2：13 名学生至少有多少人生日在同一月份？</summary><p><strong>思路：</strong>把学生看作对象，12 个月看作盒子，使用推广鸽巢原理。</p><p><strong>过程：</strong>\(\lceil13/12\rceil=2\)。若每月至多一人，总数最多 12，与 13 矛盾。</p><p><strong>答案：</strong>\(\boxed{2}\) 人。</p></details>
-<details><summary>练习 3：40 人中会英语 \(22\) 人，会日语 \(18\) 人，两种都会 \(8\) 人，至少会一种的有多少人？</summary><p><strong>思路：</strong>两种技能可以重叠，不能直接相加；用二集合容斥。</p><p><strong>过程：</strong>\(|E\cup J|=22+18-8=32\)。</p><p><strong>答案：</strong>\(\boxed{32}\) 人；两种都不会的有 \(40-32=8\) 人。</p><blockquote>易错点：交集成员在 \(22+18\) 中被数了两次，必须减一次。</blockquote></details>
-<h3>递推关系与生成函数（扩展）</h3><p>递推关系把较大规模答案写成较小规模答案：例如 Fibonacci 数列 \(F_n=F_{n-1}+F_{n-2}\)。生成函数把数列 \((a_n)\) 编码为 \(A(x)=\sum_{n\ge0}a_nx^n\)，常用于求递推的通项或受限计数。考题先写初值，再写递推的来源；只写递推式而忽略初值不能唯一确定数列。</p>
-</section>
+  <script src="assets/mathjax-config.js"></script>
 
-<section id="bank" class="chapter"><span class="tag">PART 02</span><h2>十章统一题库 <span class="stars">基础 8 · 提高 5 · 综合 3</span></h2><p class="intro">每章均配置 16 题：基础题用于概念与公式反射，提高题训练两个知识点协同，综合题模拟证明或多步骤计算。点击章节筛选；每一题均给出思路、过程、答案与易错点。</p><div id="bank-nav" class="bank-nav"></div><div id="bank-content"></div></section>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
 
-<section id="revision" class="chapter"><span class="tag">PART 03</span><h2>离散数学考前总复习</h2><div class="grid"><div class="card"><h4>高频公式</h4><p>\(\neg\forall xP\equiv\exists x\neg P\)；\(A\triangle B=(A-B)\cup(B-A)\)；\(|A\cup B|=|A|+|B|-|A\cap B|\)。</p><p>\(\sum\deg(v)=2|E|\)；树有 \(n-1\) 条边；\(\binom nr=\frac{n!}{r!(n-r)!}\)。</p></div><div class="card"><h4>高频定义</h4><p>等价关系：自反、对称、传递；偏序：自反、反对称、传递；双射：既单又满；群：封闭、结合、幺元、逆元。</p></div><div class="card"><h4>高频定理</h4><p>Euler 回路：连通且全偶度；Euler 路：连通且零或两个奇度点；有限群子群阶整除群阶；连通平面图 \(v-e+f=2\)。</p></div><div class="card"><h4>考前计算路线</h4><p>逻辑题先真值/等值变形；关系题先列性质条件；图题先数度与分支；组合题先判断“有序、可重、是否重叠”。</p></div></div>
-<h3>高频证明模板</h3><table><tr><th>目标</th><th>推荐模板</th></tr><tr><td>证明集合相等</td><td>元素法：任取 \(x\)，连续写 \(x\in\) 左边 \(\Longleftrightarrow\cdots\Longleftrightarrow x\in\) 右边。</td></tr><tr><td>证明关系具某性质</td><td>从定义任取相关元素；把已知关系逐条代入；最后得到定义要求的关系。</td></tr><tr><td>证明是子群</td><td>先说明非空，再用 \(ab^{-1}\in H\) 的子群判别法。</td></tr><tr><td>证明树性质</td><td>反证：若有两条不同简单路径，则拼出回路；或用归纳法每次删去一片叶。</td></tr><tr><td>计数证明</td><td>先说明“每个对象被计数几次”；重叠问题用容斥，至少出现问题用鸽巢反证。</td></tr></table>
-<h3>考前速查</h3><blockquote>看到 \(\to\)：优先换成 \(\neg P\lor Q\)。看到“任意/存在”的否定：量词互换并否定谓词。看到关系闭包：补自环、补反边、补路径边。看到“一笔画”：先判连通，再数奇度。看到“选若干个”：先问顺序与重复。看到“最小生成树”：Prim 保持一棵树，Kruskal 避免成环。</blockquote>
-</section>
 
-<section id="compare" class="chapter"><span class="tag">PART 04</span><h2>高频概念对比</h2><table><tr><th>概念 A</th><th>概念 B</th><th>关键区别</th></tr><tr><td>\(x\in A\)</td><td>\(A\subseteq B\)</td><td>前者是“元素—集合”关系；后者是“集合—集合”关系。</td></tr><tr><td>子集</td><td>真子集</td><td>\(A\subseteq B\) 允许 \(A=B\)；\(A\subset B\) 还要求 \(A\ne B\)。</td></tr><tr><td>对称</td><td>反对称</td><td>对称要求 \(xRy\Rightarrow yRx\)；反对称要求双向相关时只能 \(x=y\)。</td></tr><tr><td>自反</td><td>反自反</td><td>前者所有 \((x,x)\) 都在关系中；后者所有 \((x,x)\) 都不在。</td></tr><tr><td>等价关系</td><td>偏序关系</td><td>二者都有自反、传递；等价加对称并形成划分，偏序加反对称并可画 Hasse 图。</td></tr><tr><td>单射 / 满射 / 双射</td><td>—</td><td>不合流 / 不遗漏陪域 / 同时满足二者；只有双射必有逆函数。</td></tr><tr><td>Euler 路</td><td>Hamilton 路</td><td>前者每条边恰一次；后者每个顶点恰一次。</td></tr><tr><td>极大元</td><td>最大元</td><td>极大元上方无更大可比元素，可有多个；最大元必须不小于所有元素，至多一个。</td></tr><tr><td>最小项</td><td>最大项</td><td>最小项只在对应输入行取 \(1\)，用于主析取范式；最大项只在对应输入行取 \(0\)，用于主合取范式。</td></tr><tr><td>对偶式</td><td>反演式</td><td>对偶交换 \(+,\cdot,0,1\)，不改变量；反演对整个表达式取补并用德摩根律。</td></tr></table></section>
-<section id="check" class="chapter"><span class="tag">PART 05</span><h2>项目验收记录</h2><table><tr><th>检查项</th><th>结论</th></tr><tr><td>三大模块入口与页面链接</td><td>高等数学、线性代数、离散数学入口均保留；离散数学十章均有已完成页面入口。</td></tr><tr><td>公式、真值表、卡诺图、矩阵与图示</td><td>统一使用 MathJax 配置；逻辑页、布尔页、图论页分别保留相应结构化内容。</td></tr><tr><td>移动端布局</td><td>各离散数学页面均使用侧栏折叠为横向导航、内容单列的媒体查询。</td></tr><tr><td>搜索</td><td>项目原有静态页面未配置跨页全文搜索；章节导航和页内锚点保持可用，未引入不完整的搜索入口。</td></tr><tr><td>内容状态</td><td>离散数学首页已改为完成态章节导航；十章入口均指向对应讲义或题库页面。</td></tr></table><blockquote>验收范围为静态页面结构、链接目标、公式配置与内容一致性检查。浏览器外部网络不可用时，MathJax 的下载与渲染需在具备网络的浏览器环境中加载。</blockquote></section>
-</main></div>
-<script>
-const makeBank=raw=>JSON.parse(raw.replace(/\\/g,'\\\\'));
-const bank=makeBank(String.raw`{
+  <style>
+    :root {
+      --i: #16251d;
+      --m: #637067;
+      --p: #fbfaf5;
+      --l: #dce3d7;
+      --g: #1d6b4f;
+      --y: #fff8e4
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    body {
+      margin: 0;
+      background: var(--p);
+      color: var(--i);
+      font: 16px/1.75 "Noto Serif SC", serif
+    }
+
+    .shell {
+      display: grid;
+      grid-template-columns: 265px 1fr;
+      max-width: 1450px;
+      margin: auto
+    }
+
+    .side {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 30px 20px;
+      background: #f5f8f1;
+      border-right: 1px solid var(--l)
+    }
+
+    .brand {
+      font: bold 21px system-ui
+    }
+
+    .brand span {
+      display: block;
+      color: var(--g);
+      font-size: 11px;
+      letter-spacing: .12em;
+      margin-top: 7px
+    }
+
+    .side nav {
+      margin-top: 24px
+    }
+
+    .side a {
+      display: block;
+      text-decoration: none;
+      color: var(--m);
+      padding: 7px 8px;
+      border-radius: 7px
+    }
+
+    .side a:hover {
+      color: var(--g);
+      background: #e8f3e7
+    }
+
+    .main {
+      max-width: 1080px;
+      padding: 48px clamp(22px, 5vw, 75px) 90px
+    }
+
+    .hero {
+      padding: 30px;
+      background: linear-gradient(125deg, #e2f1dd, #fff7d8);
+      border: 1px solid #cee1c8;
+      border-radius: 18px
+    }
+
+    .tag {
+      display: inline-block;
+      background: var(--g);
+      color: white;
+      border-radius: 30px;
+      padding: 3px 10px;
+      font: 12px system-ui
+    }
+
+    .hero h1 {
+      font-size: 42px;
+      line-height: 1.2;
+      margin: 14px 0
+    }
+
+    .intro {
+      color: var(--m)
+    }
+
+    section {
+      margin: 58px 0
+    }
+
+    .chapter {
+      border-top: 4px solid var(--g);
+      padding-top: 10px
+    }
+
+    h2 {
+      font-size: 29px;
+      margin: 7px 0
+    }
+
+    h3 {
+      margin-top: 28px
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 13px
+    }
+
+    .card,
+    .example {
+      background: #fffefa;
+      border: 1px solid var(--l);
+      border-radius: 11px;
+      padding: 16px
+    }
+
+    .card h4 {
+      margin: 0
+    }
+
+    .stars {
+      color: #a66f00;
+      font: 13px system-ui
+    }
+
+    .formula,
+    .method {
+      background: #eef7ed;
+      padding: 13px 16px;
+      border-radius: 8px;
+      margin: 13px 0;
+      overflow: auto
+    }
+
+    .formula {
+      font-family: ui-monospace
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      font-size: 14px;
+      margin: 14px 0
+    }
+
+    th,
+    td {
+      border: 1px solid var(--l);
+      padding: 9px;
+      text-align: left;
+      vertical-align: top
+    }
+
+    th {
+      background: #eef5eb
+    }
+
+    details {
+      background: white;
+      border: 1px solid var(--l);
+      border-radius: 9px;
+      padding: 11px 14px;
+      margin: 9px 0
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: bold
+    }
+
+    blockquote {
+      margin: 15px 0;
+      padding: 11px 15px;
+      background: var(--y);
+      border-left: 4px solid #ffd97a
+    }
+
+    .bank-nav {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap
+    }
+
+    .bank-nav button {
+      border: 1px solid var(--l);
+      background: #fff;
+      padding: 7px 10px;
+      border-radius: 7px;
+      cursor: pointer;
+      color: var(--i)
+    }
+
+    .bank-nav button:hover,
+    .bank-nav button.active {
+      background: var(--g);
+      color: #fff;
+      border-color: var(--g)
+    }
+
+    .level {
+      font: 12px system-ui;
+      color: var(--g);
+      font-weight: bold
+    }
+
+    .q {
+      margin: 10px 0
+    }
+
+    .q p {
+      margin: 7px 0
+    }
+
+    mjx-container {
+      max-width: 100%;
+      overflow: auto
+    }
+
+    @media(max-width:780px) {
+      .shell {
+        display: block
+      }
+
+      .side {
+        position: static;
+        height: auto
+      }
+
+      .side nav {
+        display: flex;
+        overflow: auto;
+        gap: 2px
+      }
+
+      .side a {
+        white-space: nowrap
+      }
+
+      .main {
+        padding: 24px 17px
+      }
+
+      .grid {
+        grid-template-columns: 1fr
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="assets/subject-navigation.css">
+  <script defer src="assets/subject-navigation.js"></script>
+</head>
+<body>
+  <div class="shell">
+    <aside class="side">
+      <div class="brand">离散数学复习<span>STAGE 06 · COMBINATORICS / REVIEW</span></div>
+      <nav>
+
+        <a href="discrete-math.html">离散数学首页</a>
+        <a href="#comb">组合数学</a>
+        <a href="#bank">统一题库</a>
+        <a href="#revision">考前总复习</a>
+        <a href="#compare">概念对比</a>
+        <a href="#check">验收记录</a>
+
+      </nav>
+    </aside>
+    <main class="main">
+      <header class="hero"><span class="tag">阶段 6 · 收尾</span>
+        <h1>组合数学、统一题库<br>与考前总复习</h1>
+        <p>本页完成离散数学最后一章，并把十章练习按基础、提高、综合三层组织。先在“组合数学”建立方法，再用题库做针对性查漏，最后用速查表完成考前回顾。</p>
+      </header>
+
+      <section id="comb" class="chapter"><span class="tag">PART 01</span>
+        <h2>组合数学 <span class="stars">⭐⭐⭐ 计数 / 二项式 / 容斥</span></h2>
+        <p class="intro">组合数学的第一步不是代公式，而是先说清：对象是否按位置区分、是否允许重复、不同方案是否互斥。选对模型后，公式只是对计数过程的压缩。</p>
+        <table>
+          <tr>
+            <th>方法</th>
+            <th>公式</th>
+            <th>何时使用</th>
+          </tr>
+          <tr>
+            <td>加法原理 ⭐⭐⭐</td>
+            <td>互斥的 \(r\) 类方案总数 \(n_1+\cdots+n_r\)</td>
+            <td>一次只能走其中一种路径，例如“选文科或理科专业”。若可同时发生，不能直接相加。</td>
+          </tr>
+          <tr>
+            <td>乘法原理 ⭐⭐⭐</td>
+            <td>连续 \(r\) 步方案数 \(n_1n_2\cdots n_r\)</td>
+            <td>一个完整方案必须依次完成每一步，例如先选班级再选学生。</td>
+          </tr>
+          <tr>
+            <td>排列 ⭐⭐⭐</td>
+            <td>\(P(n,r)=\frac{n!}{(n-r)!}\)</td>
+            <td>从 \(n\) 个不同对象中取 \(r\) 个并排位，顺序不同算不同。</td>
+          </tr>
+          <tr>
+            <td>组合 ⭐⭐⭐</td>
+            <td>\(\binom nr=\frac{n!}{r!(n-r)!}\)</td>
+            <td>从 \(n\) 个不同对象中取 \(r\) 个，不分顺序。</td>
+          </tr>
+          <tr>
+            <td>重复排列 ⭐⭐</td>
+            <td>\(n^r\)</td>
+            <td>有 \(r\) 个位置，每一位可反复选 \(n\) 种符号。</td>
+          </tr>
+          <tr>
+            <td>重复组合 ⭐⭐</td>
+            <td>\(\binom{n+r-1}{r}\)</td>
+            <td>从 \(n\) 类对象中选 \(r\) 个，可重复且不计顺序；等价于非负整数解 \(x_1+\cdots+x_n=r\)。</td>
+          </tr>
+        </table>
+        <div class="example"><strong>例题：6 位密码由数字构成，首位不能为 0，允许重复。</strong>
+          <p><strong>识别：</strong>位置有先后、每位可重复，是重复排列；首位有额外限制。</p>
+          <p><strong>计算：</strong>首位有 \(9\) 种，其余五位各有 \(10\) 种，故方案数为 \(9\cdot10^5\)。</p>
+          <p><strong>答案：</strong>\(\boxed{900000}\)。</p>
+        </div>
+        <h3>二项式定理</h3>
+        <div class="formula">\[(a+b)^n=\sum_{k=0}^{n}\binom nk a^{\,n-k}b^k.\]</div>
+        <p>展开时要从 \(n\) 个因子中选 \(k\) 个因子贡献 \(b\)，其余 \(n-k\) 个贡献 \(a\)。选择这 \(k\) 个位置的方式有 \(\binom nk\) 种，因此该项系数正是组合数。求某一项时，先令 \(b\) 的幂或总次数满足题意，再代入对应的 \(k\)。</p>
+        <details>
+          <summary>练习 1：求 \((2x-3)^5\) 中 \(x^3\) 项。</summary>
+          <p><strong>思路：</strong>把 \(a=2x,b=-3,n=5\)。要留下 \(x^3\)，需从五个因子中选 \(k=2\) 个取 \(-3\)。</p>
+          <p><strong>过程：</strong>\(\binom52(2x)^3(-3)^2=10\cdot8x^3\cdot9\)。</p>
+          <p><strong>答案：</strong>\(\boxed{720x^3}\)。</p>
+          <blockquote>易错点：\(k\) 是取 \(b\) 的次数，不是 \(x\) 的次数。</blockquote>
+        </details>
+        <h3>鸽巢原理与容斥原理</h3>
+        <div class="grid">
+          <div class="card">
+            <h4>鸽巢原理 ⭐⭐⭐</h4>
+            <p>把 \(n+1\) 个对象放入 \(n\) 个盒子，至少一盒不少于 \(2\) 个。推广为：把 \(N\) 个对象放入 \(k\) 个盒子，至少有一盒不少于 \(\left\lceil\frac Nk\right\rceil\) 个。</p>
+            <p><strong>反向思考：</strong>若每盒至多 \(r-1\) 个，总数至多 \(k(r-1)\)。超过它，就必有一盒至少 \(r\) 个。</p>
+          </div>
+          <div class="card">
+            <h4>容斥原理 ⭐⭐⭐</h4>
+            <p>\(|A\cup B|=|A|+|B|-|A\cap B|\)。</p>
+            <p>\(|A\cup B\cup C|=|A|+|B|+|C|-|A\cap B|-|A\cap C|-|B\cap C|+|A\cap B\cap C|\)。</p>
+            <p>加单集时交集被重复计数，减去两两交集后三者交集又被多减一次，所以最后加回。</p>
+          </div>
+        </div>
+        <details>
+          <summary>练习 2：13 名学生至少有多少人生日在同一月份？</summary>
+          <p><strong>思路：</strong>把学生看作对象，12 个月看作盒子，使用推广鸽巢原理。</p>
+          <p><strong>过程：</strong>\(\lceil13/12\rceil=2\)。若每月至多一人，总数最多 12，与 13 矛盾。</p>
+          <p><strong>答案：</strong>\(\boxed{2}\) 人。</p>
+        </details>
+        <details>
+          <summary>练习 3：40 人中会英语 \(22\) 人，会日语 \(18\) 人，两种都会 \(8\) 人，至少会一种的有多少人？</summary>
+          <p><strong>思路：</strong>两种技能可以重叠，不能直接相加；用二集合容斥。</p>
+          <p><strong>过程：</strong>\(|E\cup J|=22+18-8=32\)。</p>
+          <p><strong>答案：</strong>\(\boxed{32}\) 人；两种都不会的有 \(40-32=8\) 人。</p>
+          <blockquote>易错点：交集成员在 \(22+18\) 中被数了两次，必须减一次。</blockquote>
+        </details>
+        <h3>递推关系与生成函数（扩展）</h3>
+        <p>递推关系把较大规模答案写成较小规模答案：例如 Fibonacci 数列 \(F_n=F_{n-1}+F_{n-2}\)。生成函数把数列 \((a_n)\) 编码为 \(A(x)=\sum_{n\ge0}a_nx^n\)，常用于求递推的通项或受限计数。考题先写初值，再写递推的来源；只写递推式而忽略初值不能唯一确定数列。</p>
+      </section>
+
+      <section id="bank" class="chapter"><span class="tag">PART 02</span>
+        <h2>十章统一题库 <span class="stars">基础 8 · 提高 5 · 综合 3</span></h2>
+        <p class="intro">每章均配置 16 题：基础题用于概念与公式反射，提高题训练两个知识点协同，综合题模拟证明或多步骤计算。点击章节筛选；每一题均给出思路、过程、答案与易错点。</p>
+        <div id="bank-nav" class="bank-nav"></div>
+        <div id="bank-content"></div>
+      </section>
+
+      <section id="revision" class="chapter"><span class="tag">PART 03</span>
+        <h2>离散数学考前总复习</h2>
+        <div class="grid">
+          <div class="card">
+            <h4>高频公式</h4>
+            <p>\(\neg\forall xP\equiv\exists x\neg P\)；\(A\triangle B=(A-B)\cup(B-A)\)；\(|A\cup B|=|A|+|B|-|A\cap B|\)。</p>
+            <p>\(\sum\deg(v)=2|E|\)；树有 \(n-1\) 条边；\(\binom nr=\frac{n!}{r!(n-r)!}\)。</p>
+          </div>
+          <div class="card">
+            <h4>高频定义</h4>
+            <p>等价关系：自反、对称、传递；偏序：自反、反对称、传递；双射：既单又满；群：封闭、结合、幺元、逆元。</p>
+          </div>
+          <div class="card">
+            <h4>高频定理</h4>
+            <p>Euler 回路：连通且全偶度；Euler 路：连通且零或两个奇度点；有限群子群阶整除群阶；连通平面图 \(v-e+f=2\)。</p>
+          </div>
+          <div class="card">
+            <h4>考前计算路线</h4>
+            <p>逻辑题先真值/等值变形；关系题先列性质条件；图题先数度与分支；组合题先判断“有序、可重、是否重叠”。</p>
+          </div>
+        </div>
+        <h3>高频证明模板</h3>
+        <table>
+          <tr>
+            <th>目标</th>
+            <th>推荐模板</th>
+          </tr>
+          <tr>
+            <td>证明集合相等</td>
+            <td>元素法：任取 \(x\)，连续写 \(x\in\) 左边 \(\Longleftrightarrow\cdots\Longleftrightarrow x\in\) 右边。</td>
+          </tr>
+          <tr>
+            <td>证明关系具某性质</td>
+            <td>从定义任取相关元素；把已知关系逐条代入；最后得到定义要求的关系。</td>
+          </tr>
+          <tr>
+            <td>证明是子群</td>
+            <td>先说明非空，再用 \(ab^{-1}\in H\) 的子群判别法。</td>
+          </tr>
+          <tr>
+            <td>证明树性质</td>
+            <td>反证：若有两条不同简单路径，则拼出回路；或用归纳法每次删去一片叶。</td>
+          </tr>
+          <tr>
+            <td>计数证明</td>
+            <td>先说明“每个对象被计数几次”；重叠问题用容斥，至少出现问题用鸽巢反证。</td>
+          </tr>
+        </table>
+        <h3>考前速查</h3>
+        <blockquote>看到 \(\to\)：优先换成 \(\neg P\lor Q\)。看到“任意/存在”的否定：量词互换并否定谓词。看到关系闭包：补自环、补反边、补路径边。看到“一笔画”：先判连通，再数奇度。看到“选若干个”：先问顺序与重复。看到“最小生成树”：Prim 保持一棵树，Kruskal 避免成环。</blockquote>
+      </section>
+
+      <section id="compare" class="chapter"><span class="tag">PART 04</span>
+        <h2>高频概念对比</h2>
+        <table>
+          <tr>
+            <th>概念 A</th>
+            <th>概念 B</th>
+            <th>关键区别</th>
+          </tr>
+          <tr>
+            <td>\(x\in A\)</td>
+            <td>\(A\subseteq B\)</td>
+            <td>前者是“元素—集合”关系；后者是“集合—集合”关系。</td>
+          </tr>
+          <tr>
+            <td>子集</td>
+            <td>真子集</td>
+            <td>\(A\subseteq B\) 允许 \(A=B\)；\(A\subset B\) 还要求 \(A\ne B\)。</td>
+          </tr>
+          <tr>
+            <td>对称</td>
+            <td>反对称</td>
+            <td>对称要求 \(xRy\Rightarrow yRx\)；反对称要求双向相关时只能 \(x=y\)。</td>
+          </tr>
+          <tr>
+            <td>自反</td>
+            <td>反自反</td>
+            <td>前者所有 \((x,x)\) 都在关系中；后者所有 \((x,x)\) 都不在。</td>
+          </tr>
+          <tr>
+            <td>等价关系</td>
+            <td>偏序关系</td>
+            <td>二者都有自反、传递；等价加对称并形成划分，偏序加反对称并可画 Hasse 图。</td>
+          </tr>
+          <tr>
+            <td>单射 / 满射 / 双射</td>
+            <td>—</td>
+            <td>不合流 / 不遗漏陪域 / 同时满足二者；只有双射必有逆函数。</td>
+          </tr>
+          <tr>
+            <td>Euler 路</td>
+            <td>Hamilton 路</td>
+            <td>前者每条边恰一次；后者每个顶点恰一次。</td>
+          </tr>
+          <tr>
+            <td>极大元</td>
+            <td>最大元</td>
+            <td>极大元上方无更大可比元素，可有多个；最大元必须不小于所有元素，至多一个。</td>
+          </tr>
+          <tr>
+            <td>最小项</td>
+            <td>最大项</td>
+            <td>最小项只在对应输入行取 \(1\)，用于主析取范式；最大项只在对应输入行取 \(0\)，用于主合取范式。</td>
+          </tr>
+          <tr>
+            <td>对偶式</td>
+            <td>反演式</td>
+            <td>对偶交换 \(+,\cdot,0,1\)，不改变量；反演对整个表达式取补并用德摩根律。</td>
+          </tr>
+        </table>
+      </section>
+      <section id="check" class="chapter"><span class="tag">PART 05</span>
+        <h2>项目验收记录</h2>
+        <table>
+          <tr>
+            <th>检查项</th>
+            <th>结论</th>
+          </tr>
+          <tr>
+            <td>三大模块入口与页面链接</td>
+            <td>高等数学、线性代数、离散数学入口均保留；离散数学十章均有已完成页面入口。</td>
+          </tr>
+          <tr>
+            <td>公式、真值表、卡诺图、矩阵与图示</td>
+            <td>统一使用 MathJax 配置；逻辑页、布尔页、图论页分别保留相应结构化内容。</td>
+          </tr>
+          <tr>
+            <td>移动端布局</td>
+            <td>各离散数学页面均使用侧栏折叠为横向导航、内容单列的媒体查询。</td>
+          </tr>
+          <tr>
+            <td>搜索</td>
+            <td>项目原有静态页面未配置跨页全文搜索；章节导航和页内锚点保持可用，未引入不完整的搜索入口。</td>
+          </tr>
+          <tr>
+            <td>内容状态</td>
+            <td>离散数学首页已改为完成态章节导航；十章入口均指向对应讲义或题库页面。</td>
+          </tr>
+        </table>
+        <blockquote>验收范围为静态页面结构、链接目标、公式配置与内容一致性检查。浏览器外部网络不可用时，MathJax 的下载与渲染需在具备网络的浏览器环境中加载。</blockquote>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const makeBank = raw => JSON.parse(raw.replace(/\\/g, '\\\\'));
+    const bank = makeBank(String.raw`{
 "命题逻辑":[
 ["基础题 1","写出 \(P\to Q\) 的等值式。","思路：消去蕴含。过程：仅在 \(P=1,Q=0\) 时为假，等价于“非 \(P\) 或 \(Q\)”。答案：\(\neg P\lor Q\)。易错：不能写成 \(P\lor\neg Q\)。"],
 ["基础题 2","化简 \(\neg(P\land Q)\)。","思路：德摩根律。过程：整体否定进入括号时合取变析取。答案：\(\neg P\lor\neg Q\)。易错：两个变量都必须否定。"],
@@ -206,7 +707,25 @@ const bank=makeBank(String.raw`{
 ["综合题 2","\(F=\Sigma m(0,1,4,5)\) 化简。","思路：卡诺图四格圈。过程：x,z变化，y固定0。答案：y'。易错：编号变量顺序固定。"],
 ["综合题 3","对偶与反演的本质区别。","思路：分别看操作对象。过程：对偶是形式替换；反演是补函数。答案：规则不同。易错：不能把对偶当否定。"]]
 }`);
-const nav=document.getElementById('bank-nav'),out=document.getElementById('bank-content');
-function render(name){[...nav.children].forEach(x=>x.classList.toggle('active',x.textContent===name));const rows=bank[name],levels=['基础题','提高题','综合题'];out.innerHTML='<h3>'+name+'题组</h3>'+levels.map(level=>'<h4 class="level">'+level+'</h4>'+rows.filter(x=>x[0].startsWith(level)).map(x=>'<details class="q"><summary>'+x[0]+'：'+x[1]+'</summary><p>'+x[2]+'</p></details>').join('')).join('');if(window.MathJax&&MathJax.typesetPromise)MathJax.typesetPromise([out]);}
-Object.keys(bank).forEach((name,i)=>{const b=document.createElement('button');b.textContent=name;b.onclick=()=>render(name);nav.appendChild(b);if(!i)render(name);});
-</script></body></html>
+    const nav = document.getElementById('bank-nav'),
+      out = document.getElementById('bank-content');
+
+    function render(name) {
+      [...nav.children].forEach(x => x.classList.toggle('active', x.textContent === name));
+      const rows = bank[name],
+        levels = ['基础题', '提高题', '综合题'];
+      out.innerHTML = '<h3>' + name + '题组</h3>' + levels.map(level => '<h4 class="level">' + level + '</h4>' + rows.filter(
+        x => x[0].startsWith(level)).map(x => '<details class="q"><summary>' + x[0] + '：' + x[1] + '</summary><p>' + x[
+        2] + '</p></details>').join('')).join('');
+      if (window.MathJax && MathJax.typesetPromise) MathJax.typesetPromise([out]);
+    }
+    Object.keys(bank).forEach((name, i) => {
+      const b = document.createElement('button');
+      b.textContent = name;
+      b.onclick = () => render(name);
+      nav.appendChild(b);
+      if (!i) render(name);
+    });
+  </script>
+</body>
+</html>

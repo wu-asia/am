@@ -1,16 +1,481 @@
 <!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>概率论与数理统计：题库与考前总复习</title><script src="assets/mathjax-config.js"></script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
-<style>:root{--i:#16251d;--m:#637067;--p:#fbfaf5;--l:#dce3d7;--g:#1d6b4f;--y:#fff8e4}*{box-sizing:border-box}body{margin:0;background:var(--p);color:var(--i);font:16px/1.75 "Noto Serif SC",serif}.shell{display:grid;grid-template-columns:265px 1fr;max-width:1450px;margin:auto}.side{position:sticky;top:0;height:100vh;padding:30px 20px;background:#f5f8f1;border-right:1px solid var(--l)}.brand{font:bold 21px system-ui}.brand span{display:block;color:var(--g);font-size:11px;letter-spacing:.12em;margin-top:7px}.side nav{margin-top:24px}.side a{display:block;text-decoration:none;color:var(--m);padding:7px 8px;border-radius:7px}.side a:hover{color:var(--g);background:#e8f3e7}.main{max-width:1100px;padding:48px clamp(22px,5vw,75px) 90px}.hero{padding:30px;background:linear-gradient(125deg,#e2f1dd,#fff7d8);border:1px solid #cee1c8;border-radius:18px}.tag{display:inline-block;background:var(--g);color:#fff;border-radius:30px;padding:3px 10px;font:12px system-ui}.hero h1{font-size:42px;line-height:1.2;margin:14px 0}.intro{color:var(--m)}section{margin:58px 0}.chapter{border-top:4px solid var(--g);padding-top:10px}h2{font-size:29px;margin:7px 0}h3{margin:23px 0 8px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.card{background:#fffefa;border:1px solid var(--l);border-radius:11px;padding:16px}.formula,.method{background:#eef7ed;padding:13px 16px;border-radius:8px;margin:13px 0;overflow:auto}table{width:100%;border-collapse:collapse;background:#fff;font-size:14px;margin:14px 0}th,td{border:1px solid var(--l);padding:9px;text-align:left;vertical-align:top}th{background:#eef5eb}details{background:#fff;border:1px solid var(--l);border-radius:9px;padding:11px 14px;margin:9px 0}summary{cursor:pointer;font-weight:bold}.q{border-top:1px dashed var(--l);padding:14px 0}.q:first-child{border-top:0}.q p{margin:5px 0}.q strong{color:#24563f}blockquote{margin:15px 0;padding:11px 15px;background:var(--y);border-left:4px solid #ffd97a}.filter{width:100%;max-width:540px;padding:11px 13px;border:1px solid var(--l);border-radius:8px;font:16px inherit;background:#fff}.step{padding-left:22px;margin:6px 0}.step li{margin:4px 0}.small{font-size:14px;color:var(--m)}mjx-container{max-width:100%;overflow:auto}@media(max-width:780px){.shell{display:block}.side{position:static;height:auto}.side nav{display:flex;overflow:auto;gap:2px}.side a{white-space:nowrap}.main{padding:24px 17px}.grid{grid-template-columns:1fr}}</style><link rel="stylesheet" href="assets/subject-navigation.css"><script defer src="assets/subject-navigation.js"></script></head>
-<body><div class="shell"><aside class="side"><div class="brand">概率论与数理统计复习<span>QUESTION BANK · FINAL REVIEW</span></div><nav><a href="probability-statistics.html">概率论首页</a><a href="#bank">分章题库</a><a href="#formula">公式速查</a><a href="#compare">概念对比</a><a href="#final">考前总复习</a></nav></aside><main class="main"><header class="hero"><span class="tag">阶段 7 · 题库与验收</span><h1>概率论与数理统计<br>综合题库与考前总复习</h1><p>按“识别模型 → 核对条件 → 选公式 → 写出事件或统计量 → 检验结果”完成一题。题库每章含 8 道基础题、5 道提高题和 3 道综合题；展开题目即可查看考点、思路、公式选择、步骤、答案与易错点。</p></header>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>概率论与数理统计：题库与考前总复习</title>
+  <script src="assets/mathjax-config.js"></script>
 
-<section id="bank" class="chapter"><span class="tag">QUESTION BANK</span><h2>九章分层题库</h2><p class="intro">输入章节或关键词筛选。基础题检验定义与公式；提高题训练条件判断；综合题模拟多步骤计算。每道题均给出完整的六项解题信息。</p><input id="filter" class="filter" placeholder="例如：贝叶斯、正态、估计、检验"><div id="bankList"></div></section>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
 
-<section id="formula" class="chapter"><span class="tag">FORMULA SHEET</span><h2>概率论公式速查</h2><table><tr><th>公式</th><th>使用条件</th><th>典型题型</th><th>易错点</th></tr><tr><td>\(P(A\cup B)=P(A)+P(B)-P(A\cap B)\)</td><td>任意两个事件</td><td>并事件、至少一个发生</td><td>只有互斥时才可去掉交集项。</td></tr><tr><td>\(P(A\mid B)=P(AB)/P(B)\)</td><td>\(P(B)&gt;0\)</td><td>已知发生 \(B\) 后求 \(A\)</td><td>条件把样本空间限制为 \(B\)，分母不是 \(P(A)\)。</td></tr><tr><td>\(P(AB)=P(A\mid B)P(B)\)</td><td>\(P(B)&gt;0\)</td><td>连乘、抽取、路径概率</td><td>多个事件须按给定顺序继续条件化。</td></tr><tr><td>\(P(A)=\sum_iP(B_i)P(A\mid B_i)\)</td><td>\(\{B_i\}\) 是互斥完备划分</td><td>全概率、分来源计算</td><td>遗漏分支或划分不完备会出错。</td></tr><tr><td>\(P(B_i\mid A)=\frac{P(B_i)P(A\mid B_i)}{\sum_jP(B_j)P(A\mid B_j)}\)</td><td>全概率分母大于 0</td><td>贝叶斯反推来源</td><td>分子是目标来源，分母是 \(P(A)\)。</td></tr><tr><td>\(P(X=k)=\binom nkp^k(1-p)^{n-k}\)</td><td>\(n\) 次独立同分布的 0–1 试验</td><td>恰好 \(k\) 次成功</td><td>确认“固定次数、相同成功率、相互独立”。</td></tr><tr><td>\(P(X=k)=e^{-\lambda}\lambda^k/k!\)</td><td>计数模型，\(k=0,1,\ldots\)</td><td>单位时间/面积内稀有事件</td><td>\(\lambda\) 同时是均值与方差。</td></tr><tr><td>\(Z=(X-\mu)/\sigma\sim N(0,1)\)</td><td>\(X\sim N(\mu,\sigma^2)\)</td><td>正态概率、分位点</td><td>分母为标准差 \(\sigma\)，不是方差 \(\sigma^2\)。</td></tr><tr><td>\(F(x)=P(X\le x)\)，\(F(x)=\int_{-\infty}^xf(t)dt\)</td><td>后一式适用于连续型</td><td>分布函数与密度互求</td><td>密度值不是点概率；连续型 \(P(X=a)=0\)。</td></tr><tr><td>\(E(X)=\sum x_ip_i\) 或 \(\int xf(x)dx\)</td><td>相应和/积分收敛</td><td>均值、线性变换</td><td>\(E(X+Y)\) 不要求独立。</td></tr><tr><td>\(D(X)=E(X^2)-[E(X)]^2\)</td><td>二阶矩存在</td><td>方差计算</td><td>方差不线性：\(D(X+Y)\) 一般不能直接相加。</td></tr><tr><td>\(\operatorname{Cov}(X,Y)=E(XY)-E(X)E(Y)\)</td><td>二阶矩存在</td><td>协方差、相关系数</td><td>独立必不相关；不相关通常不推出独立。</td></tr><tr><td>\(\frac{\sum X_i-n\mu}{\sigma\sqrt n}\Rightarrow N(0,1)\)</td><td>独立同分布、方差有限，\(n\) 足够大</td><td>样本和/均值近似</td><td>样本均值标准差是 \(\sigma/\sqrt n\)。</td></tr></table></section>
 
-<section id="compare" class="chapter"><span class="tag">COMPARISONS</span><h2>高频概念对比</h2><table><tr><th>概念</th><th>左侧</th><th>右侧</th><th>判断提醒</th></tr><tr><td>互斥 vs 独立</td><td>\(AB=\varnothing\)，不能同时发生</td><td>\(P(AB)=P(A)P(B)\)，发生与否互不改变概率</td><td>正概率事件互斥时 \(P(AB)=0\)，所以不独立。</td></tr><tr><td>分布函数 vs 密度</td><td>\(F(x)\) 是累计概率</td><td>\(f(x)\) 是单位长度概率的密度</td><td>连续型区间概率取密度积分，不取 \(f(a)\)。</td></tr><tr><td>期望 vs 方差</td><td>位置中心，具有线性性</td><td>波动大小，平方单位</td><td>\(D(aX+b)=a^2D(X)\)。</td></tr><tr><td>独立 vs 不相关</td><td>联合分布可分解</td><td>协方差为零</td><td>前者推出后者；后者未必推出前者。</td></tr><tr><td>二项 vs 泊松</td><td>固定 \(n\) 次试验的成功次数</td><td>给定区间内随机到达次数</td><td>\(n\) 大、\(p\) 小、\(np\to\lambda\) 时可用泊松近似二项。</td></tr><tr><td>大数定律 vs 中心极限定理</td><td>样本均值趋近何处</td><td>标准化和/均值的分布趋近什么</td><td>一个是概率收敛，一个是分布近似。</td></tr><tr><td>点估计 vs 区间估计</td><td>用一个统计量估参数</td><td>给出带置信度的参数范围</td><td>置信度针对重复抽样程序，不是参数随机变化。</td></tr><tr><td>第一类 vs 第二类错误</td><td>\(H_0\) 真却拒绝</td><td>\(H_0\) 假却未拒绝</td><td>显著性水平 \(\alpha\) 控制第一类错误上界。</td></tr></table></section>
+  <style>
+    :root {
+      --i: #16251d;
+      --m: #637067;
+      --p: #fbfaf5;
+      --l: #dce3d7;
+      --g: #1d6b4f;
+      --y: #fff8e4
+    }
 
-<section id="final" class="chapter"><span class="tag">FINAL REVIEW</span><h2>概率论考前总复习</h2><div class="grid"><div class="card"><h3>高频定义</h3><p>事件是样本空间的子集；随机变量是从样本空间到实数的函数；独立要求联合概率可分解；统计量只含样本、不含未知参数。</p></div><div class="card"><h3>高频题型</h3><p>古典概型、条件概率与贝叶斯；分布函数/密度；二项、泊松、正态；联合与边缘分布；期望方差；中心极限定理；估计与检验。</p></div><div class="card"><h3>公式选择流程</h3><ol class="step"><li>先写随机对象、事件或统计量。</li><li>出现“已知”先考虑条件概率；多来源先列全概率树。</li><li>确认分布类型及参数，再代入公式。</li><li>和/均值且样本量大时检查 CLT 条件。</li><li>估计或检验先明确总体、参数、方差已知性与单双侧。</li></ol></div><div class="card"><h3>考前 10 分钟速查</h3><ol class="step"><li>条件概率分母必须为条件事件概率。</li><li>互斥不等于独立。</li><li>连续点概率为 0，密度可大于 1。</li><li>标准化除以标准差。</li><li>\(E(X+Y)\) 总可拆；方差需协方差项。</li><li>检验结论写“不拒绝”而非“接受”。</li></ol></div></div><blockquote><strong>最后检查：</strong>概率是否在 \([0,1]\) 内；分布律/密度是否归一；方差是否非负；区间端点与标准化方向是否正确；检验结论是否与拒绝域或 \(p\) 值一致。</blockquote></section>
-</main></div><script>
+    * {
+      box-sizing: border-box
+    }
+
+    body {
+      margin: 0;
+      background: var(--p);
+      color: var(--i);
+      font: 16px/1.75 "Noto Serif SC", serif
+    }
+
+    .shell {
+      display: grid;
+      grid-template-columns: 265px 1fr;
+      max-width: 1450px;
+      margin: auto
+    }
+
+    .side {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 30px 20px;
+      background: #f5f8f1;
+      border-right: 1px solid var(--l)
+    }
+
+    .brand {
+      font: bold 21px system-ui
+    }
+
+    .brand span {
+      display: block;
+      color: var(--g);
+      font-size: 11px;
+      letter-spacing: .12em;
+      margin-top: 7px
+    }
+
+    .side nav {
+      margin-top: 24px
+    }
+
+    .side a {
+      display: block;
+      text-decoration: none;
+      color: var(--m);
+      padding: 7px 8px;
+      border-radius: 7px
+    }
+
+    .side a:hover {
+      color: var(--g);
+      background: #e8f3e7
+    }
+
+    .main {
+      max-width: 1100px;
+      padding: 48px clamp(22px, 5vw, 75px) 90px
+    }
+
+    .hero {
+      padding: 30px;
+      background: linear-gradient(125deg, #e2f1dd, #fff7d8);
+      border: 1px solid #cee1c8;
+      border-radius: 18px
+    }
+
+    .tag {
+      display: inline-block;
+      background: var(--g);
+      color: #fff;
+      border-radius: 30px;
+      padding: 3px 10px;
+      font: 12px system-ui
+    }
+
+    .hero h1 {
+      font-size: 42px;
+      line-height: 1.2;
+      margin: 14px 0
+    }
+
+    .intro {
+      color: var(--m)
+    }
+
+    section {
+      margin: 58px 0
+    }
+
+    .chapter {
+      border-top: 4px solid var(--g);
+      padding-top: 10px
+    }
+
+    h2 {
+      font-size: 29px;
+      margin: 7px 0
+    }
+
+    h3 {
+      margin: 23px 0 8px
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 13px
+    }
+
+    .card {
+      background: #fffefa;
+      border: 1px solid var(--l);
+      border-radius: 11px;
+      padding: 16px
+    }
+
+    .formula,
+    .method {
+      background: #eef7ed;
+      padding: 13px 16px;
+      border-radius: 8px;
+      margin: 13px 0;
+      overflow: auto
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      font-size: 14px;
+      margin: 14px 0
+    }
+
+    th,
+    td {
+      border: 1px solid var(--l);
+      padding: 9px;
+      text-align: left;
+      vertical-align: top
+    }
+
+    th {
+      background: #eef5eb
+    }
+
+    details {
+      background: #fff;
+      border: 1px solid var(--l);
+      border-radius: 9px;
+      padding: 11px 14px;
+      margin: 9px 0
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: bold
+    }
+
+    .q {
+      border-top: 1px dashed var(--l);
+      padding: 14px 0
+    }
+
+    .q:first-child {
+      border-top: 0
+    }
+
+    .q p {
+      margin: 5px 0
+    }
+
+    .q strong {
+      color: #24563f
+    }
+
+    blockquote {
+      margin: 15px 0;
+      padding: 11px 15px;
+      background: var(--y);
+      border-left: 4px solid #ffd97a
+    }
+
+    .filter {
+      width: 100%;
+      max-width: 540px;
+      padding: 11px 13px;
+      border: 1px solid var(--l);
+      border-radius: 8px;
+      font: 16px inherit;
+      background: #fff
+    }
+
+    .step {
+      padding-left: 22px;
+      margin: 6px 0
+    }
+
+    .step li {
+      margin: 4px 0
+    }
+
+    .small {
+      font-size: 14px;
+      color: var(--m)
+    }
+
+    mjx-container {
+      max-width: 100%;
+      overflow: auto
+    }
+
+    @media(max-width:780px) {
+      .shell {
+        display: block
+      }
+
+      .side {
+        position: static;
+        height: auto
+      }
+
+      .side nav {
+        display: flex;
+        overflow: auto;
+        gap: 2px
+      }
+
+      .side a {
+        white-space: nowrap
+      }
+
+      .main {
+        padding: 24px 17px
+      }
+
+      .grid {
+        grid-template-columns: 1fr
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="assets/subject-navigation.css">
+  <script defer src="assets/subject-navigation.js"></script>
+</head>
+<body>
+  <div class="shell">
+    <aside class="side">
+      <div class="brand">概率论与数理统计复习<span>QUESTION BANK · FINAL REVIEW</span></div>
+      <nav>
+        <a href="probability-statistics.html">概率论首页</a>
+        <a href="#bank">分章题库</a>
+        <a href="#formula">公式速查</a>
+        <a href="#compare">概念对比</a>
+        <a href="#final">考前总复习</a>
+      </nav>
+    </aside>
+    <main class="main">
+      <header class="hero"><span class="tag">阶段 7 · 题库与验收</span>
+        <h1>概率论与数理统计<br>综合题库与考前总复习</h1>
+        <p>按“识别模型 → 核对条件 → 选公式 → 写出事件或统计量 → 检验结果”完成一题。题库每章含 8 道基础题、5 道提高题和 3 道综合题；展开题目即可查看考点、思路、公式选择、步骤、答案与易错点。</p>
+      </header>
+
+      <section id="bank" class="chapter"><span class="tag">QUESTION BANK</span>
+        <h2>九章分层题库</h2>
+        <p class="intro">输入章节或关键词筛选。基础题检验定义与公式；提高题训练条件判断；综合题模拟多步骤计算。每道题均给出完整的六项解题信息。</p><input id="filter" class="filter" placeholder="例如：贝叶斯、正态、估计、检验">
+        <div id="bankList"></div>
+      </section>
+
+      <section id="formula" class="chapter"><span class="tag">FORMULA SHEET</span>
+        <h2>概率论公式速查</h2>
+        <table>
+          <tr>
+            <th>公式</th>
+            <th>使用条件</th>
+            <th>典型题型</th>
+            <th>易错点</th>
+          </tr>
+          <tr>
+            <td>\(P(A\cup B)=P(A)+P(B)-P(A\cap B)\)</td>
+            <td>任意两个事件</td>
+            <td>并事件、至少一个发生</td>
+            <td>只有互斥时才可去掉交集项。</td>
+          </tr>
+          <tr>
+            <td>\(P(A\mid B)=P(AB)/P(B)\)</td>
+            <td>\(P(B)&gt;0\)</td>
+            <td>已知发生 \(B\) 后求 \(A\)</td>
+            <td>条件把样本空间限制为 \(B\)，分母不是 \(P(A)\)。</td>
+          </tr>
+          <tr>
+            <td>\(P(AB)=P(A\mid B)P(B)\)</td>
+            <td>\(P(B)&gt;0\)</td>
+            <td>连乘、抽取、路径概率</td>
+            <td>多个事件须按给定顺序继续条件化。</td>
+          </tr>
+          <tr>
+            <td>\(P(A)=\sum_iP(B_i)P(A\mid B_i)\)</td>
+            <td>\(\{B_i\}\) 是互斥完备划分</td>
+            <td>全概率、分来源计算</td>
+            <td>遗漏分支或划分不完备会出错。</td>
+          </tr>
+          <tr>
+            <td>\(P(B_i\mid A)=\frac{P(B_i)P(A\mid B_i)}{\sum_jP(B_j)P(A\mid B_j)}\)</td>
+            <td>全概率分母大于 0</td>
+            <td>贝叶斯反推来源</td>
+            <td>分子是目标来源，分母是 \(P(A)\)。</td>
+          </tr>
+          <tr>
+            <td>\(P(X=k)=\binom nkp^k(1-p)^{n-k}\)</td>
+            <td>\(n\) 次独立同分布的 0–1 试验</td>
+            <td>恰好 \(k\) 次成功</td>
+            <td>确认“固定次数、相同成功率、相互独立”。</td>
+          </tr>
+          <tr>
+            <td>\(P(X=k)=e^{-\lambda}\lambda^k/k!\)</td>
+            <td>计数模型，\(k=0,1,\ldots\)</td>
+            <td>单位时间/面积内稀有事件</td>
+            <td>\(\lambda\) 同时是均值与方差。</td>
+          </tr>
+          <tr>
+            <td>\(Z=(X-\mu)/\sigma\sim N(0,1)\)</td>
+            <td>\(X\sim N(\mu,\sigma^2)\)</td>
+            <td>正态概率、分位点</td>
+            <td>分母为标准差 \(\sigma\)，不是方差 \(\sigma^2\)。</td>
+          </tr>
+          <tr>
+            <td>\(F(x)=P(X\le x)\)，\(F(x)=\int_{-\infty}^xf(t)dt\)</td>
+            <td>后一式适用于连续型</td>
+            <td>分布函数与密度互求</td>
+            <td>密度值不是点概率；连续型 \(P(X=a)=0\)。</td>
+          </tr>
+          <tr>
+            <td>\(E(X)=\sum x_ip_i\) 或 \(\int xf(x)dx\)</td>
+            <td>相应和/积分收敛</td>
+            <td>均值、线性变换</td>
+            <td>\(E(X+Y)\) 不要求独立。</td>
+          </tr>
+          <tr>
+            <td>\(D(X)=E(X^2)-[E(X)]^2\)</td>
+            <td>二阶矩存在</td>
+            <td>方差计算</td>
+            <td>方差不线性：\(D(X+Y)\) 一般不能直接相加。</td>
+          </tr>
+          <tr>
+            <td>\(\operatorname{Cov}(X,Y)=E(XY)-E(X)E(Y)\)</td>
+            <td>二阶矩存在</td>
+            <td>协方差、相关系数</td>
+            <td>独立必不相关；不相关通常不推出独立。</td>
+          </tr>
+          <tr>
+            <td>\(\frac{\sum X_i-n\mu}{\sigma\sqrt n}\Rightarrow N(0,1)\)</td>
+            <td>独立同分布、方差有限，\(n\) 足够大</td>
+            <td>样本和/均值近似</td>
+            <td>样本均值标准差是 \(\sigma/\sqrt n\)。</td>
+          </tr>
+        </table>
+      </section>
+
+      <section id="compare" class="chapter"><span class="tag">COMPARISONS</span>
+        <h2>高频概念对比</h2>
+        <table>
+          <tr>
+            <th>概念</th>
+            <th>左侧</th>
+            <th>右侧</th>
+            <th>判断提醒</th>
+          </tr>
+          <tr>
+            <td>互斥 vs 独立</td>
+            <td>\(AB=\varnothing\)，不能同时发生</td>
+            <td>\(P(AB)=P(A)P(B)\)，发生与否互不改变概率</td>
+            <td>正概率事件互斥时 \(P(AB)=0\)，所以不独立。</td>
+          </tr>
+          <tr>
+            <td>分布函数 vs 密度</td>
+            <td>\(F(x)\) 是累计概率</td>
+            <td>\(f(x)\) 是单位长度概率的密度</td>
+            <td>连续型区间概率取密度积分，不取 \(f(a)\)。</td>
+          </tr>
+          <tr>
+            <td>期望 vs 方差</td>
+            <td>位置中心，具有线性性</td>
+            <td>波动大小，平方单位</td>
+            <td>\(D(aX+b)=a^2D(X)\)。</td>
+          </tr>
+          <tr>
+            <td>独立 vs 不相关</td>
+            <td>联合分布可分解</td>
+            <td>协方差为零</td>
+            <td>前者推出后者；后者未必推出前者。</td>
+          </tr>
+          <tr>
+            <td>二项 vs 泊松</td>
+            <td>固定 \(n\) 次试验的成功次数</td>
+            <td>给定区间内随机到达次数</td>
+            <td>\(n\) 大、\(p\) 小、\(np\to\lambda\) 时可用泊松近似二项。</td>
+          </tr>
+          <tr>
+            <td>大数定律 vs 中心极限定理</td>
+            <td>样本均值趋近何处</td>
+            <td>标准化和/均值的分布趋近什么</td>
+            <td>一个是概率收敛，一个是分布近似。</td>
+          </tr>
+          <tr>
+            <td>点估计 vs 区间估计</td>
+            <td>用一个统计量估参数</td>
+            <td>给出带置信度的参数范围</td>
+            <td>置信度针对重复抽样程序，不是参数随机变化。</td>
+          </tr>
+          <tr>
+            <td>第一类 vs 第二类错误</td>
+            <td>\(H_0\) 真却拒绝</td>
+            <td>\(H_0\) 假却未拒绝</td>
+            <td>显著性水平 \(\alpha\) 控制第一类错误上界。</td>
+          </tr>
+        </table>
+      </section>
+
+      <section id="final" class="chapter"><span class="tag">FINAL REVIEW</span>
+        <h2>概率论考前总复习</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>高频定义</h3>
+            <p>事件是样本空间的子集；随机变量是从样本空间到实数的函数；独立要求联合概率可分解；统计量只含样本、不含未知参数。</p>
+          </div>
+          <div class="card">
+            <h3>高频题型</h3>
+            <p>古典概型、条件概率与贝叶斯；分布函数/密度；二项、泊松、正态；联合与边缘分布；期望方差；中心极限定理；估计与检验。</p>
+          </div>
+          <div class="card">
+            <h3>公式选择流程</h3>
+            <ol class="step">
+              <li>先写随机对象、事件或统计量。</li>
+              <li>出现“已知”先考虑条件概率；多来源先列全概率树。</li>
+              <li>确认分布类型及参数，再代入公式。</li>
+              <li>和/均值且样本量大时检查 CLT 条件。</li>
+              <li>估计或检验先明确总体、参数、方差已知性与单双侧。</li>
+            </ol>
+          </div>
+          <div class="card">
+            <h3>考前 10 分钟速查</h3>
+            <ol class="step">
+              <li>条件概率分母必须为条件事件概率。</li>
+              <li>互斥不等于独立。</li>
+              <li>连续点概率为 0，密度可大于 1。</li>
+              <li>标准化除以标准差。</li>
+              <li>\(E(X+Y)\) 总可拆；方差需协方差项。</li>
+              <li>检验结论写“不拒绝”而非“接受”。</li>
+            </ol>
+          </div>
+        </div>
+        <blockquote><strong>最后检查：</strong>概率是否在 \([0,1]\) 内；分布律/密度是否归一；方差是否非负；区间端点与标准化方向是否正确；检验结论是否与拒绝域或 \(p\) 值一致。</blockquote>
+      </section>
+    </main>
+  </div>
+  <script>
 const chapters=[
 ['随机事件与概率','事件 概率 古典','古典概型、事件运算、概率公理',['掷两枚均匀硬币，求至少一枚正面的概率。','从 52 张牌抽一张，求抽到红桃或 A 的概率。','验证事件补集公式并用于求“不发生 A”的概率。','从 1 至 10 等可能取数，求被 2 或 3 整除的概率。','判断两个给定事件是否互斥。','用频率解释概率的统计含义。','在几何概型中求落入子区间的概率。','用容斥公式求至少一个事件发生的概率'],['三次独立投掷硬币，求恰有两次正面的概率。','抽取不放回的两球，写出样本空间并求同色概率。','给出反事件法计算“至少一次成功”。','由三个事件的概率数据计算并事件概率。','说明概率公理如何保证概率非负'],['含限制条件的抽球问题，分别用直接计数与反事件法比较。','设计一个几何概型并计算目标区域比例。','证明 \(P(A-B)=P(A)-P(AB)\)']],
 ['条件概率与独立性','条件 贝叶斯 独立','条件概率、全概率、贝叶斯、独立',['已知 \(P(A)=0.6,P(B)=0.5,P(AB)=0.3\)，求 \(P(A\mid B)\)。','两次抽取不放回，写出乘法公式。','判断 \(P(AB)=P(A)P(B)\) 是否成立。','解释为何正概率互斥事件不独立。','由全概率公式计算一个混合来源事件。','写出贝叶斯公式中的分子与分母。','求三个相互独立事件同时发生概率。','用反事件求独立重复试验中至少一次成功概率'],['产品来自两条生产线，已知次品率，求随机产品为次品概率。','已知产品次品，反推其来自某生产线的概率。','判断三个事件两两独立是否足以相互独立。','连续两次检验，利用条件概率计算路径概率。','建立事件树并核对所有叶节点概率和为 1'],['医疗筛查题：计算阳性概率与阳性后的患病概率。','抽球问题比较放回与不放回时的独立性。','给出两两独立但不相互独立的构造思路']],
@@ -25,4 +490,6 @@ const chapters=[
 function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
 function solution(title,type,topic,n){const formula=type==='基础题'?'先回到定义或本章基本公式。':type==='提高题'?'先确认题设条件，再选用连接各步骤的公式。':'先拆分为事件、分布或统计推断的子问题，逐一衔接。';const answer=type==='基础题'?'按定义代入并化简即可得到题目要求的概率、分布或结论。':type==='提高题'?'完成条件核对与计算后，结果须满足概率、方差或参数的取值范围。':'分别得到中间结果并合并；最后写出结论及其适用条件。';return `<div class="q"><p><strong>${type} ${n}：</strong>${title}</p><p><strong>考点：</strong>${topic}</p><p><strong>思路：</strong>先把文字条件转成事件、随机变量或统计模型；不要直接套公式。</p><p><strong>公式选择原因：</strong>${formula}</p><p><strong>完整步骤：</strong>① 写出样本空间/分布/统计量；② 核对公式条件；③ 代入已知量并按运算顺序化简；④ 用范围、归一性或方向检查。</p><p><strong>最终答案：</strong>${answer}</p><p><strong>易错点：</strong>不要遗漏条件、混淆条件事件与目标事件，且保留必要的适用条件。</p></div>`}
 const bank=document.getElementById('bankList');chapters.forEach((c,idx)=>{const groups=[['基础题',c[3]],['提高题',c[4]],['综合题',c[5]]];const wrap=document.createElement('details');wrap.className='chapterBank';wrap.dataset.key=(c[0]+' '+c[1]+' '+c[2]).toLowerCase();wrap.innerHTML=`<summary>第 ${idx+1} 章：${c[0]}（基础 8 题 · 提高 5 题 · 综合 3 题）</summary><p class="small">覆盖：${c[2]}。建议先独立作答，再展开逐题核对思路与步骤。</p>`;groups.forEach(([type,qs])=>{const d=document.createElement('details');d.innerHTML=`<summary>${type}（${qs.length} 题）</summary>`+qs.map((q,i)=>solution(q,type,c[2],i+1)).join('');wrap.appendChild(d)});bank.appendChild(wrap)});const filter=document.getElementById('filter');filter.addEventListener('input',()=>{const q=filter.value.trim().toLowerCase();document.querySelectorAll('.chapterBank').forEach(x=>x.hidden=!!q&&!x.dataset.key.includes(q)&&!x.textContent.toLowerCase().includes(q));});
-</script></body></html>
+</script>
+</body>
+</html>

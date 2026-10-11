@@ -5,36 +5,132 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>章节模板示例</title>
   <link rel="stylesheet" href="assets/chapter-layout.css">
+
   <script src="assets/mathjax-config.js"></script>
+
+
   <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+
+
   <script defer src="assets/chapter-layout.js"></script>
-<link rel="stylesheet" href="assets/subject-navigation.css"><script defer src="assets/subject-navigation.js"></script></head>
+
+  <link rel="stylesheet" href="assets/subject-navigation.css">
+  <script defer src="assets/subject-navigation.js"></script>
+</head>
 <body>
-<div class="cl-shell" data-chapter-layout data-subject="数学复习系统" data-prev-href="" data-prev-label="" data-next-href="" data-next-label="">
-  <aside class="cl-sidebar">
-    <div class="cl-brand">数学复习系统<small data-subject-label>CHAPTER TEMPLATE</small></div>
-    <nav aria-label="章节目录" data-toc></nav>
-  </aside>
-  <main class="cl-main">
-    <header class="cl-hero">
-      <span class="cl-kicker">⭐⭐⭐ 高频重点</span>
-      <h1>章节标题</h1>
-      <p>章节简介：用一两句话说明本章研究对象、考试重点与和前后章节的关系。</p>
-      <div class="cl-meta"><span>学科名称</span><span>·</span><span>选择题 / 计算题 / 证明题</span></div>
-    </header>
+  <div
+    class="cl-shell"
+    data-chapter-layout
+    data-subject="数学复习系统"
+    data-prev-href=""
+    data-prev-label=""
+    data-next-href=""
+    data-next-label=""
+  >
+    <aside class="cl-sidebar">
+      <div class="cl-brand">数学复习系统<small data-subject-label>CHAPTER TEMPLATE</small></div>
+      <nav aria-label="章节目录" data-toc>
 
-    <section id="goals" class="cl-section" data-toc-section><h2>1. 本章复习目标</h2><div class="cl-card"><h3>完成本章后应能做到什么</h3><p>列出本章的概念目标、计算目标和综合应用目标。</p></div></section>
-    <section id="framework" class="cl-section" data-toc-section><h2>2. 知识框架</h2><div class="cl-grid"><div class="cl-card"><h3>概念与性质</h3><p>按由基础到应用的顺序列出知识节点。</p></div><div class="cl-card"><h3>公式与方法</h3><p>说明公式成立条件与题型入口。</p></div></div></section>
-    <section id="concepts" class="cl-section" data-toc-section><h2>3. 核心知识点</h2><h3>知识点名称</h3><p>给出定义、直观理解、使用条件与判断方法。</p><div class="cl-formula">\[f(x)=x^2\]</div></section>
-    <section id="methods" class="cl-section" data-toc-section><h2>4. 常见题型</h2><h3>题型名称</h3><ol><li>识别题目中的已知条件。</li><li>选择满足条件的定理或公式。</li><li>逐步计算并检查结果。</li></ol></section>
-    <section id="examples" class="cl-section" data-toc-section><h2>5. 典型例题</h2><article class="cl-example"><h3>例题：标题</h3><p><strong>思路：</strong>先解释选择方法的原因。</p><p><strong>解答：</strong>给出关键推导，而不跳过条件。</p><p><strong>答案：</strong>\(\boxed{\text{结果}}\)</p></article></section>
-    <section id="exercises" class="cl-section" data-toc-section><h2>6. 练习题</h2><details class="cl-exercise"><summary>练习题：题目文字</summary><p><strong>思路：</strong>说明入口。</p><p><strong>步骤：</strong>写出计算过程。</p><p><strong>答案：</strong>\(\boxed{\text{结果}}\)</p><p><strong>易错点：</strong>标明常见遗漏。</p></details></section>
-    <section id="mistakes" class="cl-section" data-toc-section><h2>7. 易错点</h2><aside class="cl-warning"><strong>错误做法：</strong>忽略公式的适用条件。<br><strong>正确做法：</strong>先核对定义域、前提或独立性等条件。</aside></section>
-    <section id="formulas" class="cl-section" data-toc-section><h2>8. 公式速查</h2><table class="cl-table"><thead><tr><th>公式</th><th>使用条件</th><th>典型题型</th></tr></thead><tbody><tr><td>\(a^2-b^2=(a-b)(a+b)\)</td><td>代数恒等式</td><td>因式分解、极限化简</td></tr></tbody></table></section>
-    <section id="summary" class="cl-section" data-toc-section><h2>9. 本章总结</h2><div class="cl-summary"><h3>必须记忆 / 必须理解 / 必须会做</h3><p>分别归纳定义公式、条件关系、题型能力和易错点。</p></div></section>
+      </nav>
+    </aside>
+    <main class="cl-main">
+      <header class="cl-hero">
+        <span class="cl-kicker">⭐⭐⭐ 高频重点</span>
+        <h1>章节标题</h1>
+        <p>章节简介：用一两句话说明本章研究对象、考试重点与和前后章节的关系。</p>
+        <div class="cl-meta"><span>学科名称</span><span>·</span><span>选择题 / 计算题 / 证明题</span></div>
+      </header>
 
-    <nav class="cl-pager" aria-label="章节切换"><a data-prev href="#"></a><a data-next href="#"></a></nav>
-  </main>
-</div>
+      <section id="goals" class="cl-section" data-toc-section>
+        <h2>1. 本章复习目标</h2>
+        <div class="cl-card">
+          <h3>完成本章后应能做到什么</h3>
+          <p>列出本章的概念目标、计算目标和综合应用目标。</p>
+        </div>
+      </section>
+      <section id="framework" class="cl-section" data-toc-section>
+        <h2>2. 知识框架</h2>
+        <div class="cl-grid">
+          <div class="cl-card">
+            <h3>概念与性质</h3>
+            <p>按由基础到应用的顺序列出知识节点。</p>
+          </div>
+          <div class="cl-card">
+            <h3>公式与方法</h3>
+            <p>说明公式成立条件与题型入口。</p>
+          </div>
+        </div>
+      </section>
+      <section id="concepts" class="cl-section" data-toc-section>
+        <h2>3. 核心知识点</h2>
+        <h3>知识点名称</h3>
+        <p>给出定义、直观理解、使用条件与判断方法。</p>
+        <div class="cl-formula">\[f(x)=x^2\]</div>
+      </section>
+      <section id="methods" class="cl-section" data-toc-section>
+        <h2>4. 常见题型</h2>
+        <h3>题型名称</h3>
+        <ol>
+          <li>识别题目中的已知条件。</li>
+          <li>选择满足条件的定理或公式。</li>
+          <li>逐步计算并检查结果。</li>
+        </ol>
+      </section>
+      <section id="examples" class="cl-section" data-toc-section>
+        <h2>5. 典型例题</h2>
+        <article class="cl-example">
+          <h3>例题：标题</h3>
+          <p><strong>思路：</strong>先解释选择方法的原因。</p>
+          <p><strong>解答：</strong>给出关键推导，而不跳过条件。</p>
+          <p><strong>答案：</strong>\(\boxed{\text{结果}}\)</p>
+        </article>
+      </section>
+      <section id="exercises" class="cl-section" data-toc-section>
+        <h2>6. 练习题</h2>
+        <details class="cl-exercise">
+          <summary>练习题：题目文字</summary>
+          <p><strong>思路：</strong>说明入口。</p>
+          <p><strong>步骤：</strong>写出计算过程。</p>
+          <p><strong>答案：</strong>\(\boxed{\text{结果}}\)</p>
+          <p><strong>易错点：</strong>标明常见遗漏。</p>
+        </details>
+      </section>
+      <section id="mistakes" class="cl-section" data-toc-section>
+        <h2>7. 易错点</h2>
+        <aside class="cl-warning"><strong>错误做法：</strong>忽略公式的适用条件。<br><strong>正确做法：</strong>先核对定义域、前提或独立性等条件。</aside>
+      </section>
+      <section id="formulas" class="cl-section" data-toc-section>
+        <h2>8. 公式速查</h2>
+        <table class="cl-table">
+          <thead>
+            <tr>
+              <th>公式</th>
+              <th>使用条件</th>
+              <th>典型题型</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>\(a^2-b^2=(a-b)(a+b)\)</td>
+              <td>代数恒等式</td>
+              <td>因式分解、极限化简</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section id="summary" class="cl-section" data-toc-section>
+        <h2>9. 本章总结</h2>
+        <div class="cl-summary">
+          <h3>必须记忆 / 必须理解 / 必须会做</h3>
+          <p>分别归纳定义公式、条件关系、题型能力和易错点。</p>
+        </div>
+      </section>
+
+      <nav class="cl-pager" aria-label="章节切换">
+        <a data-prev href="#"></a>
+        <a data-next href="#"></a>
+      </nav>
+    </main>
+  </div>
 </body>
 </html>
