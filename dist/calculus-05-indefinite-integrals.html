@@ -1,0 +1,50 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>高等数学：不定积分</title><link rel="stylesheet" href="assets/chapter-layout.css"><script src="assets/mathjax-config.js"></script><script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script><script defer src="assets/chapter-layout.js"></script></head><body><div class="cl-shell" data-chapter-layout data-prev-href="calculus-04-applications-of-derivatives.html" data-prev-label="第 4 章：导数的应用" data-next-href="calculus-definite-integrals.html" data-next-label="第 6 章：定积分"><aside class="cl-sidebar"><div class="cl-brand">高等数学<small>CHAPTER 5</small></div><nav aria-label="章节目录" data-toc></nav></aside><main class="cl-main"><header class="cl-hero"><span class="cl-kicker">⭐⭐⭐ 重点复习</span><h1>第 5 章：不定积分</h1><p>不定积分是求导的逆运算，但“反向”并不意味着逐项生搬公式。考试关键在于先识别被积式结构，再选择直接积分、换元、分部积分或有理函数分解。</p><div class="cl-meta"><span>高等数学</span><span>·</span><span>概念 / 计算 / 证明与综合应用</span></div></header><section id="goals" class="cl-section" data-toc-section><h2>1. 本章复习目标</h2><article class="cl-card"><h3>学习目标</h3><p>掌握定义、公式与定理的适用条件；能从题目结构选择方法，并通过原讲义例题与练习检验掌握程度。</p></article></section><section id="framework" class="cl-section" data-toc-section><h2>2. 知识框架</h2><div class="cl-grid"><article class="cl-card"><h3>概念与性质</h3><p>由基本定义出发，梳理性质、公式和定理条件。</p></article><article class="cl-card"><h3>方法与应用</h3><p>结合解题模板、例题和练习完成从理解到计算的迁移。</p></article></div></section><section id="concepts" class="cl-section" data-toc-section><h2>3. 核心知识点</h2><h3>原讲义内容</h3><div class="cl-legacy">
+<div class="grid">
+<div class="card"><h4>原函数与不定积分 <span class="stars">⭐⭐⭐</span></h4><p>若 \(F'(x)=f(x)\)，则 \(\int f(x)\,dx=F(x)+C\)。常数 \(C\) 不可遗漏。</p></div>
+<div class="card"><h4>凑微分与换元法 <span class="stars">⭐⭐⭐</span></h4><p>出现 \(f(g(x))g'(x)\) 的结构时，优先令 \(u=g(x)\)。</p></div>
+<div class="card"><h4>分部积分法 <span class="stars">⭐⭐⭐</span></h4><p>适合“一个因子求导会简化，另一个易积分”的乘积。</p></div>
+<div class="card"><h4>有理函数积分 <span class="stars">⭐⭐</span></h4><p>先约分或做多项式除法，再依分母因式分解为部分分式。</p></div>
+</div>
+
+<h3>核心知识与公式</h3>
+<div class="formula">\(\int f(x)\,dx=F(x)+C\quad\Longleftrightarrow\quad F'(x)=f(x)\)</div>
+<table><tr><th>被积函数</th><th>不定积分</th><th>使用条件 / 提醒</th></tr>
+<tr><td>\(x^\alpha\)</td><td>\(\frac{x^{\alpha+1}}{\alpha+1}+C\)</td><td>\(\alpha\ne-1\)</td></tr>
+<tr><td>\(1/x\)</td><td>\(\ln|x|+C\)</td><td>绝对值不可漏</td></tr>
+<tr><td>\(e^x\)</td><td>\(e^x+C\)</td><td></td></tr>
+<tr><td>\(a^x\)</td><td>\(\frac{a^x}{\ln a}+C\)</td><td>\(a>0,a\ne1\)</td></tr>
+<tr><td>\(\sin x,\cos x\)</td><td>\(-\cos x+C,\ \sin x+C\)</td><td>注意符号</td></tr>
+<tr><td>\(\frac1{1+x^2}\)</td><td>\(\arctan x+C\)</td><td></td></tr>
+<tr><td>\(\frac1{\sqrt{1-x^2}}\)</td><td>\(\arcsin x+C\)</td><td>\(|x|<1\) 的区间内</td></tr></table>
+<blockquote>不定积分结果必须写 \(+C\)。不同原函数只相差一个常数；没有 \(+C\) 的答案不是完整不定积分。</blockquote>
+
+<h3>解题方法与判断模板</h3>
+<div class="method"><strong>方法选择：</strong><ol><li>先尝试拆项，直接套基本积分公式。</li><li>若出现“内函数导数”或只差常数倍，优先凑微分/换元。</li><li>若为多项式与指数、对数、三角函数的乘积，判断分部积分：选求导后更简单的一项为 \(u\)。</li><li>若为有理式 \(\frac{P(x)}{Q(x)}\)，先比较次数；分子次数不低于分母先做除法，再分解分母。</li></ol></div>
+<h4>换元法</h4>
+<div class="formula">\(\int f(g(x))g'(x)\,dx=\int f(u)\,du,\quad u=g(x)\)</div>
+<p>常见信号：\(\frac{g'(x)}{g(x)}\)、\(\cos(g(x))g'(x)\)、\(e^{g(x)}g'(x)\)、\([g(x)]^\alpha g'(x)\)。凑微分时，补上的常数必须在积分外补偿。</p>
+<h4>分部积分法</h4>
+<div class="formula">\(\int u\,dv=uv-\int v\,du\)</div>
+<p>常用选取顺序可记为：反三角/对数优先作 \(u\)，其次多项式，再考虑指数或三角函数。判断标准是：求导后的 \(u'\) 是否更简单，且 \(dv\) 是否容易积分。</p>
+<h4>有理函数</h4>
+<p>真分式且分母可分解时，按因子设部分分式。对于线性因子 \((x-a)\) 配 \(\frac A{x-a}\)；不可约二次因子 \(x^2+px+q\) 配 \(\frac{Ax+B}{x^2+px+q}\)。</p>
+
+<h3>典型例题</h3>
+<div class="example"><strong>例 1 · 凑微分</strong><p>计算 \(\int\frac{2x}{1+x^2}\,dx\)。</p><p>分母内层 \(1+x^2\) 的导数正好是 \(2x\)。令 \(u=1+x^2,du=2x\,dx\)，得 \(\int\frac{du}{u}=\boxed{\ln(1+x^2)+C}\)。因 \(1+x^2>0\)，这里可省绝对值。</p></div>
+<div class="example"><strong>例 2 · 分部积分</strong><p>计算 \(\int xe^x\,dx\)。</p><p>选 \(u=x,dv=e^x dx\)，则 \(du=dx,v=e^x\)。由分部积分，\(\int xe^x dx=xe^x-\int e^x dx=\boxed{e^x(x-1)+C}\)。选 \(u=e^x\) 会使问题没有简化，因此不合适。</p></div>
+<div class="example"><strong>例 3 · 有理函数</strong><p>计算 \(\int\frac{1}{x^2-1}\,dx\)。</p><p>\(\frac1{x^2-1}=\frac1{(x-1)(x+1)}=\frac A{x-1}+\frac B{x+1}\)。比较系数得 \(A=\frac12,B=-\frac12\)。故积分为 \(\boxed{\frac12\ln\left|\frac{x-1}{x+1}\right|+C}\)。</p></div>
+
+<h3>复习习题与详细解析</h3>
+<details><summary>1. 计算 \(\int(3x^2-2+\cos x)\,dx\)</summary><p><strong>思路：</strong>逐项直接积分。<br><strong>步骤：</strong>\(\int3x^2dx=x^3,\int(-2)dx=-2x,\int\cos xdx=\sin x\)。<br><strong>答案：</strong>\(\boxed{x^3-2x+\sin x+C}\)。<br><strong>易错：</strong>每一项合并后只需统一写一个 \(+C\)。</p></details>
+<details><summary>2. 计算 \(\int\frac{x}{x^2+4}\,dx\)</summary><p><strong>思路：</strong>分母内层导数为 \(2x\)，只差常数倍。<br><strong>步骤：</strong>\(\int\frac{x}{x^2+4}dx=\frac12\int\frac{2x}{x^2+4}dx\)。令 \(u=x^2+4\)，得 \(\boxed{\frac12\ln(x^2+4)+C}\)。</p></details>
+<details><summary>3. 计算 \(\int x\ln x\,dx\)（\(x>0\)）</summary><p><strong>思路：</strong>多项式与对数相乘，用分部积分，取 \(u=\ln x,dv=x\,dx\)。<br><strong>步骤：</strong>\(du=dx/x,v=x^2/2\)。故 \(\int x\ln xdx=\frac{x^2}{2}\ln x-\frac12\int xdx=\boxed{\frac{x^2}{2}\ln x-\frac{x^2}{4}+C}\)。</p></details>
+<details><summary>4. 计算 \(\int\frac{2x+3}{x^2+3x+2}\,dx\)</summary><p><strong>思路：</strong>分母导数正好是 \(2x+3\)。<br><strong>步骤：</strong>令 \(u=x^2+3x+2\)，则 \(du=(2x+3)dx\)。答案为 \(\boxed{\ln|x^2+3x+2|+C}\)。<br><strong>易错：</strong>二次式可能为负，不能擅自去掉绝对值。</p></details>
+<details><summary>5. 计算 \(\int\frac{1}{x(x+1)}\,dx\)</summary><p><strong>思路：</strong>部分分式分解。令 \(\frac1{x(x+1)}=\frac A x+\frac B{x+1}\)，得 \(A=1,B=-1\)。<br><strong>答案：</strong>\(\boxed{\ln|x|-\ln|x+1|+C=\ln\left|\frac{x}{x+1}\right|+C}\)。</p></details>
+
+<h3>常见错误</h3>
+<table><tr><th>错误做法</th><th>正确做法与原因</th></tr>
+<tr><td>\(\int x^{-1}dx=\frac{x^0}{0}\)</td><td>幂函数公式不适用于 \(\alpha=-1\)，应为 \(\ln|x|+C\)。</td></tr>
+<tr><td>分部积分后忘记负号</td><td>牢记 \(\int u\,dv=uv-\int v\,du\)，建议先写完整公式再代入。</td></tr>
+<tr><td>换元后仍混用 \(u,x\)</td><td>换元后将积分完全改写为 \(u\) 的式子，积分完再回代。</td></tr>
+<tr><td>有理函数直接硬积分</td><td>先判假分式/真分式，再除法或部分分式分解。</td></tr>
+</div></section><section id="methods" class="cl-section" data-toc-section><h2>4. 常见题型</h2><article class="cl-card"><h3>方法选择</h3><p>原讲义中对应的解题模板与判断条件已完整保留在“核心知识点”区。</p></article></section><section id="examples" class="cl-section" data-toc-section><h2>5. 典型例题</h2><article class="cl-card"><h3>例题使用方式</h3><p>先独立完成原讲义中的例题，再核对推导和公式条件。</p></article></section><section id="exercises" class="cl-section" data-toc-section><h2>6. 练习题</h2><article class="cl-card"><h3>练习与解析</h3><p>原有折叠练习、答案与解析均保留在“核心知识点”区。</p></article></section><section id="mistakes" class="cl-section" data-toc-section><h2>7. 易错点</h2><aside class="cl-warning"><strong>复习提醒：</strong>先核对题设条件、符号方向和变量范围，再代入公式；原讲义中的具体易错提示均未删减。</aside></section><section id="formulas" class="cl-section" data-toc-section><h2>8. 公式速查</h2><table class="cl-table"><thead><tr><th>复习顺序</th><th>使用要求</th><th>检查项</th></tr></thead><tbody><tr><td>定义与定理</td><td>先确认适用条件</td><td>对象、范围、已知条件</td></tr><tr><td>公式与计算</td><td>代入前保持符号一致</td><td>变量、上下标、边界或矩阵维数</td></tr><tr><td>结论</td><td>写清结果的条件或范围</td><td>数值、符号和逻辑方向</td></tr></tbody></table></section><section id="summary" class="cl-section" data-toc-section><h2>9. 本章总结</h2><article class="cl-summary"><h3>必须记忆</h3><p>定义、公式与定理条件。</p><h3>必须理解</h3><p>概念关系与方法选择依据。</p><h3>必须会做</h3><p>原讲义中的例题、练习与综合题型。</p><h3>容易丢分</h3><p>忽略条件、符号不严谨或跳过关键步骤。</p></article></section><nav class="cl-pager" aria-label="章节切换"><a data-prev href="#"></a><a data-next href="#"></a></nav></main></div></body></html>
